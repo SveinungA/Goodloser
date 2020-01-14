@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>The Good Loser – Analysis of Conjoint Experiment</title>
+  <meta name="description" content="The Good Loser – Analysis of Conjoint Experiment">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="The Good Loser – Analysis of Conjoint Experiment" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="loser-picture.png" />
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="The Good Loser – Analysis of Conjoint Experiment" />
+  
+  
+  <meta name="twitter:image" content="loser-picture.png" />
+
+
+
+<meta name="date" content="2019-01-14">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="effects-grouped-by-issue-i.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.5/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="libs/jszip-1.10.16/jszip.min.js"></script>
+<script src="libs/pdfmake-1.10.16/pdfmake.min.js"></script>
+<script src="libs/pdfmake-1.10.16/vfs_fonts.js"></script>
+<link href="libs/dt-ext-buttons-1.10.16/css/buttons.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-buttons-1.10.16/js/dataTables.buttons.min.js"></script>
+<script src="libs/dt-ext-buttons-1.10.16/js/buttons.flash.min.js"></script>
+<script src="libs/dt-ext-buttons-1.10.16/js/buttons.html5.min.js"></script>
+<script src="libs/dt-ext-buttons-1.10.16/js/buttons.colVis.min.js"></script>
+<script src="libs/dt-ext-buttons-1.10.16/js/buttons.print.min.js"></script>
+<link href="libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
+<link href="libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="libs/selectize-0.12.0/selectize.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Good Loser Project</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="create-data-set.html"><a href="create-data-set.html"><i class="fa fa-check"></i><b>2</b> Create Data Set</a><ul>
+<li class="chapter" data-level="2.1" data-path="create-data-set.html"><a href="create-data-set.html#load-packages-or-install-them-if-not-already-installed"><i class="fa fa-check"></i><b>2.1</b> Load packages or install them if not already installed</a></li>
+<li class="chapter" data-level="2.2" data-path="create-data-set.html"><a href="create-data-set.html#load-raw-data"><i class="fa fa-check"></i><b>2.2</b> Load raw data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="codebook.html"><a href="codebook.html"><i class="fa fa-check"></i><b>3</b> Codebook</a><ul>
+<li class="chapter" data-level="3.1" data-path="codebook.html"><a href="codebook.html#items"><i class="fa fa-check"></i><b>3.1</b> Items</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="codebook.html"><a href="codebook.html#responseid"><i class="fa fa-check"></i><b>3.1.1</b> responseid</a></li>
+<li class="chapter" data-level="3.1.2" data-path="codebook.html"><a href="codebook.html#r13pad1"><i class="fa fa-check"></i><b>3.1.2</b> r13pad1</a></li>
+<li class="chapter" data-level="3.1.3" data-path="codebook.html"><a href="codebook.html#r13pad2"><i class="fa fa-check"></i><b>3.1.3</b> r13pad2</a></li>
+<li class="chapter" data-level="3.1.4" data-path="codebook.html"><a href="codebook.html#r13pad3"><i class="fa fa-check"></i><b>3.1.4</b> r13pad3</a></li>
+<li class="chapter" data-level="3.1.5" data-path="codebook.html"><a href="codebook.html#r13pad4"><i class="fa fa-check"></i><b>3.1.5</b> r13pad4</a></li>
+<li class="chapter" data-level="3.1.6" data-path="codebook.html"><a href="codebook.html#r13pad5_avsender"><i class="fa fa-check"></i><b>3.1.6</b> r13pad5_avsender</a></li>
+<li class="chapter" data-level="3.1.7" data-path="codebook.html"><a href="codebook.html#r13pad5_sak"><i class="fa fa-check"></i><b>3.1.7</b> r13pad5_sak</a></li>
+<li class="chapter" data-level="3.1.8" data-path="codebook.html"><a href="codebook.html#r13pad5_utfall"><i class="fa fa-check"></i><b>3.1.8</b> r13pad5_utfall</a></li>
+<li class="chapter" data-level="3.1.9" data-path="codebook.html"><a href="codebook.html#r13pad5_vinner"><i class="fa fa-check"></i><b>3.1.9</b> r13pad5_vinner</a></li>
+<li class="chapter" data-level="3.1.10" data-path="codebook.html"><a href="codebook.html#r13pad5_vinnermargin"><i class="fa fa-check"></i><b>3.1.10</b> r13pad5_vinnermargin</a></li>
+<li class="chapter" data-level="3.1.11" data-path="codebook.html"><a href="codebook.html#r13pad6_ran"><i class="fa fa-check"></i><b>3.1.11</b> r13pad6_ran</a></li>
+<li class="chapter" data-level="3.1.12" data-path="codebook.html"><a href="codebook.html#r13pad6a"><i class="fa fa-check"></i><b>3.1.12</b> r13pad6a</a></li>
+<li class="chapter" data-level="3.1.13" data-path="codebook.html"><a href="codebook.html#r13pad6b"><i class="fa fa-check"></i><b>3.1.13</b> r13pad6b</a></li>
+<li class="chapter" data-level="3.1.14" data-path="codebook.html"><a href="codebook.html#r13pad7a"><i class="fa fa-check"></i><b>3.1.14</b> r13pad7a</a></li>
+<li class="chapter" data-level="3.1.15" data-path="codebook.html"><a href="codebook.html#r13pad7b"><i class="fa fa-check"></i><b>3.1.15</b> r13pad7b</a></li>
+<li class="chapter" data-level="3.1.16" data-path="codebook.html"><a href="codebook.html#r13pad8a"><i class="fa fa-check"></i><b>3.1.16</b> r13pad8a</a></li>
+<li class="chapter" data-level="3.1.17" data-path="codebook.html"><a href="codebook.html#r13pad8b"><i class="fa fa-check"></i><b>3.1.17</b> r13pad8b</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="codebook.html"><a href="codebook.html#missingness-report"><i class="fa fa-check"></i><b>3.2</b> Missingness report</a></li>
+<li class="chapter" data-level="3.3" data-path="codebook.html"><a href="codebook.html#codebook-table"><i class="fa fa-check"></i><b>3.3</b> Codebook table</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="main-effects.html"><a href="main-effects.html"><i class="fa fa-check"></i><b>4</b> Main effects</a><ul>
+<li class="chapter" data-level="4.1" data-path="main-effects.html"><a href="main-effects.html#prepare-data"><i class="fa fa-check"></i><b>4.1</b> Prepare data</a></li>
+<li class="chapter" data-level="4.2" data-path="main-effects.html"><a href="main-effects.html#reasonable-decision"><i class="fa fa-check"></i><b>4.2</b> Reasonable decision</a></li>
+<li class="chapter" data-level="4.3" data-path="main-effects.html"><a href="main-effects.html#willingnes-to-accept"><i class="fa fa-check"></i><b>4.3</b> Willingnes to accept</a></li>
+<li class="chapter" data-level="4.4" data-path="main-effects.html"><a href="main-effects.html#fairness-perceptions"><i class="fa fa-check"></i><b>4.4</b> Fairness perceptions</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="effects-on-losers.html"><a href="effects-on-losers.html"><i class="fa fa-check"></i><b>5</b> Effects on losers</a><ul>
+<li class="chapter" data-level="5.1" data-path="effects-on-losers.html"><a href="effects-on-losers.html#prepare-data-1"><i class="fa fa-check"></i><b>5.1</b> Prepare data</a></li>
+<li class="chapter" data-level="5.2" data-path="effects-on-losers.html"><a href="effects-on-losers.html#reasonable"><i class="fa fa-check"></i><b>5.2</b> Reasonable</a></li>
+<li class="chapter" data-level="5.3" data-path="effects-on-losers.html"><a href="effects-on-losers.html#willingnes-to-accept-1"><i class="fa fa-check"></i><b>5.3</b> Willingnes to accept</a></li>
+<li class="chapter" data-level="5.4" data-path="effects-on-losers.html"><a href="effects-on-losers.html#fairness-perceptions-1"><i class="fa fa-check"></i><b>5.4</b> Fairness perceptions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="effects-on-winners.html"><a href="effects-on-winners.html"><i class="fa fa-check"></i><b>6</b> Effects on winners</a><ul>
+<li class="chapter" data-level="6.1" data-path="effects-on-winners.html"><a href="effects-on-winners.html#prepare-data-2"><i class="fa fa-check"></i><b>6.1</b> Prepare data</a></li>
+<li class="chapter" data-level="6.2" data-path="effects-on-winners.html"><a href="effects-on-winners.html#reasonable-1"><i class="fa fa-check"></i><b>6.2</b> Reasonable</a></li>
+<li class="chapter" data-level="6.3" data-path="effects-on-winners.html"><a href="effects-on-winners.html#willingnes-to-accept-2"><i class="fa fa-check"></i><b>6.3</b> Willingnes to accept</a></li>
+<li class="chapter" data-level="6.4" data-path="effects-on-winners.html"><a href="effects-on-winners.html#fairness-perceptions-2"><i class="fa fa-check"></i><b>6.4</b> Fairness perceptions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="effects-grouped-by-issue-i.html"><a href="effects-grouped-by-issue-i.html"><i class="fa fa-check"></i><b>7</b> Effects grouped by issue (I)</a><ul>
+<li class="chapter" data-level="7.1" data-path="effects-grouped-by-issue-i.html"><a href="effects-grouped-by-issue-i.html#prepare-data-3"><i class="fa fa-check"></i><b>7.1</b> Prepare data</a></li>
+<li class="chapter" data-level="7.2" data-path="effects-grouped-by-issue-i.html"><a href="effects-grouped-by-issue-i.html#reasonable-2"><i class="fa fa-check"></i><b>7.2</b> Reasonable</a></li>
+<li class="chapter" data-level="7.3" data-path="effects-grouped-by-issue-i.html"><a href="effects-grouped-by-issue-i.html#willingnes-to-accept-3"><i class="fa fa-check"></i><b>7.3</b> Willingnes to accept</a></li>
+<li class="chapter" data-level="7.4" data-path="effects-grouped-by-issue-i.html"><a href="effects-grouped-by-issue-i.html#fairness-perceptions-3"><i class="fa fa-check"></i><b>7.4</b> Fairness perceptions</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="effects-grouped-by-issue-ii.html"><a href="effects-grouped-by-issue-ii.html"><i class="fa fa-check"></i><b>8</b> Effects grouped by issue (II)</a><ul>
+<li class="chapter" data-level="8.1" data-path="effects-grouped-by-issue-ii.html"><a href="effects-grouped-by-issue-ii.html#prepare-data-4"><i class="fa fa-check"></i><b>8.1</b> Prepare data</a></li>
+<li class="chapter" data-level="8.2" data-path="effects-grouped-by-issue-ii.html"><a href="effects-grouped-by-issue-ii.html#reasonable-3"><i class="fa fa-check"></i><b>8.2</b> Reasonable</a></li>
+<li class="chapter" data-level="8.3" data-path="effects-grouped-by-issue-ii.html"><a href="effects-grouped-by-issue-ii.html#willingnes-to-accept-4"><i class="fa fa-check"></i><b>8.3</b> Willingnes to accept</a></li>
+<li class="chapter" data-level="8.4" data-path="effects-grouped-by-issue-ii.html"><a href="effects-grouped-by-issue-ii.html#fairness-perceptions-4"><i class="fa fa-check"></i><b>8.4</b> Fairness perceptions</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Good Loser – Analysis of Conjoint Experiment</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="effects-grouped-by-issue-ii" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Effects grouped by issue (II)</h1>
+<blockquote>
+<p>Issue: Increase road toll for diesel cars</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;broom&quot;</span>)){<span class="kw">install.packages</span>(<span class="st">&quot;broom&quot;</span>);  <span class="kw">library</span>(broom)}
+<span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;haven&quot;</span>)){<span class="kw">install.packages</span>(<span class="st">&quot;haven&quot;</span>);  <span class="kw">library</span>(haven)}
+<span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;here&quot;</span>)){<span class="kw">install.packages</span>(<span class="st">&quot;here&quot;</span>);  <span class="kw">library</span>(here)}
+<span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;knitr&quot;</span>)){<span class="kw">install.packages</span>(<span class="st">&quot;knitr&quot;</span>);  <span class="kw">library</span>(knitr)}
+<span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;kableExtra&quot;</span>)){<span class="kw">install.packages</span>(<span class="st">&quot;kableExtra&quot;</span>);  <span class="kw">library</span>(kableExtra)}
+<span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;tidyverse&quot;</span>)){<span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>);  <span class="kw">library</span>(tidyverse)}
+
+<span class="kw">set.seed</span>(<span class="dv">2016</span>)
+
+d &lt;-<span class="st"> </span><span class="kw">read_sav</span>(<span class="st">&quot;C:</span><span class="ch">\\</span><span class="st">Users/Sveinung/OneDrive/NORCE 2018-/goodloser/Conjoint/Bookdown-goodloser/Data/Goodloser-exp3.sav&quot;</span>)
+
+knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">TRUE</span>, <span class="dt">knitr.kable.NA =</span> <span class="st">&quot;&quot;</span>, <span class="dt">cache =</span> <span class="ot">FALSE</span>, <span class="dt">warning =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<div id="prepare-data-4" class="section level2">
+<h2><span class="header-section-number">8.1</span> Prepare data</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">main_<span class="dv">01</span> &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rsp_id =</span> <span class="kw">as.numeric</span>(responseid),
+          <span class="dt">rsp_toll =</span> <span class="kw">case_when</span>(r13pad3 <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;In favour of road toll increase of diesel cars&quot;</span>,
+                              r13pad3 <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Against road toll increase of diesel cars&quot;</span>),
+         <span class="dt">rsp_toll_imp =</span> <span class="kw">case_when</span>(r13pad4 <span class="op">%in%</span><span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Important&quot;</span>,
+                                  r13pad4 <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Not important&quot;</span>),
+         <span class="dt">treat_outcome =</span> <span class="kw">case_when</span>(r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;The Yes side won the vote&quot;</span>,
+                                 r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;The No side won the vote&quot;</span>),
+         <span class="dt">treat_outfav_toll =</span> <span class="kw">case_when</span>(r13pad3 <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Favorable outcome&quot;</span>,
+                                  r13pad3 <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Favorable outcome&quot;</span>,
+                                  r13pad3 <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Unfavorable outcome&quot;</span>,
+                                  r13pad3 <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Unfavorable outcome&quot;</span>),
+         <span class="dt">treat_issue =</span> <span class="kw">case_when</span>(r13pad5_sak <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Ban on begging&quot;</span>,
+                               r13pad5_sak <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Road toll increase of diesel cars&quot;</span>),
+         <span class="dt">treat_winningmargin =</span> <span class="kw">case_when</span>(r13pad5_vinnermargin <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Not shown&quot;</span>,
+                                       r13pad5_vinnermargin <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Slight majority&quot;</span>,
+                                       r13pad5_vinnermargin <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Large majority&quot;</span>),
+         <span class="dt">treat_winnergloat =</span> <span class="kw">case_when</span>(r13pad5_vinner <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Not shown&quot;</span>,
+                                     r13pad5_vinner <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Winning politician gloats&quot;</span>),
+         <span class="dt">treat_prime =</span> <span class="kw">case_when</span>(r13pad5_avsender <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Not shown&quot;</span>,
+                               r13pad5_avsender <span class="op">==</span><span class="st"> </span><span class="dv">2</span>  <span class="op">|</span><span class="st"> </span>r13pad5_avsender <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;No prime&quot;</span>,
+                               r13pad5_avsender <span class="op">==</span><span class="st"> </span><span class="dv">3</span>  <span class="op">|</span><span class="st"> </span>r13pad5_avsender <span class="op">==</span><span class="st"> </span><span class="dv">6</span> <span class="op">~</span><span class="st"> &quot;Specific prime&quot;</span>,
+                               r13pad5_avsender <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">|</span><span class="st"> </span>r13pad5_avsender <span class="op">==</span><span class="st"> </span><span class="dv">7</span> <span class="op">~</span><span class="st"> &quot;General prime&quot;</span>),
+         <span class="dt">treat_messenger =</span> <span class="kw">case_when</span>(r13pad5_avsender <span class="op">%in%</span><span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Political leader&quot;</span>,
+                                   r13pad5_avsender <span class="op">%in%</span><span class="st"> </span><span class="dv">5</span><span class="op">:</span><span class="dv">7</span> <span class="op">~</span><span class="st"> &quot;Local newspaper&quot;</span>),
+         <span class="dt">post_fair =</span> <span class="kw">case_when</span>(r13pad6a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>r13pad6b <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> </span><span class="dv">5</span>,
+                          r13pad6a <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">|</span><span class="st"> </span>r13pad6b <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> </span><span class="dv">4</span>,
+                          r13pad6a <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">|</span><span class="st"> </span>r13pad6b <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>),
+          <span class="dt">post_reasonable =</span> <span class="kw">case_when</span>(r13pad7a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>r13pad7b <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> </span><span class="dv">5</span>,
+                          r13pad7a <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">|</span><span class="st"> </span>r13pad7b <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> </span><span class="dv">4</span>,
+                          r13pad7a <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">|</span><span class="st"> </span>r13pad7b <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>),
+          <span class="dt">post_accept =</span> <span class="kw">case_when</span>(r13pad8a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>r13pad8b <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> </span><span class="dv">5</span>,
+                          r13pad8a <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">|</span><span class="st"> </span>r13pad8b <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> </span><span class="dv">4</span>,
+                          r13pad8a <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">|</span><span class="st"> </span>r13pad8b <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>)
+
+  ) <span class="op">%&gt;%</span><span class="st"> </span>
+
+<span class="st">  </span><span class="kw">replace_with_na_all</span>(<span class="dt">condition =</span> <span class="op">~</span>.x <span class="op">==</span><span class="st"> </span><span class="dv">98</span> )<span class="op">%&gt;%</span><span class="st">  </span><span class="co">#Recode 98 (not asked) as missing</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(r13pad6_ran)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#Remove NA&#39;s</span>
+<span class="st">  </span><span class="kw">filter</span>(treat_issue <span class="op">==</span><span class="st"> &quot;Road toll increase of diesel cars&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+## We want the value labels in particular order for the tables and figures.
+<span class="st">        </span><span class="kw">mutate</span>(<span class="dt">treat_winningmargin =</span> <span class="kw">lvls_reorder</span>(treat_winningmargin, <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)), 
+               <span class="dt">treat_prime =</span> <span class="kw">lvls_reorder</span>(treat_prime, <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>)) 
+        )</code></pre></div>
+</div>
+<div id="reasonable-3" class="section level2">
+<h2><span class="header-section-number">8.2</span> Reasonable</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;Functions/amce.R&quot;</span>)
+
+res_main &lt;-<span class="st">  </span>main_<span class="dv">01</span> <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">amce</span>(post_reasonable, treat_outfav_toll, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger) 
+  
+res_main &lt;-<span class="st"> </span>res_main <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(value, estimate, std_error, statistic)
+
+<span class="kw">kable</span>(res_main, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">caption =</span> <span class="st">&quot;Average Marginal Component Effects&quot;</span>, <span class="dt">col.names =</span> <span class="kw">linebreak</span>(<span class="kw">c</span>(<span class="st">&quot;Treatment value&quot;</span>, <span class="st">&quot;Estimate&quot;</span>, <span class="st">&quot;Std. Error&quot;</span>, <span class="st">&quot;t-statistic&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;responsive&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st"> </span><span class="kw">group_rows</span>(<span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;Road toll issue&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Winning margin&quot;</span> =<span class="st"> </span><span class="dv">3</span>, <span class="st">&quot;Winner gloating&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Good loser prime&quot;</span> =<span class="st"> </span><span class="dv">4</span>, <span class="st">&quot;Primer&quot;</span> =<span class="st"> </span><span class="dv">2</span>))</code></pre></div>
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:post_reasonable_toll)Average Marginal Component Effects
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Treatment value
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t-statistic
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="2">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Road toll issue</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Favorable outcome
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Unfavorable outcome
+</td>
+<td style="text-align:right;">
+-0.4420842
+</td>
+<td style="text-align:right;">
+0.0446485
+</td>
+<td style="text-align:right;">
+-9.9014279
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Winning margin</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Slight majority
+</td>
+<td style="text-align:right;">
+0.0000316
+</td>
+<td style="text-align:right;">
+0.0556053
+</td>
+<td style="text-align:right;">
+0.0005676
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Large majority
+</td>
+<td style="text-align:right;">
+-0.0059215
+</td>
+<td style="text-align:right;">
+0.0562066
+</td>
+<td style="text-align:right;">
+-0.1053524
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Winner gloating</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Winning politician gloats
+</td>
+<td style="text-align:right;">
+-0.0584100
+</td>
+<td style="text-align:right;">
+0.0457045
+</td>
+<td style="text-align:right;">
+-1.2779925
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Good loser prime</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+No prime
+</td>
+<td style="text-align:right;">
+-0.0804813
+</td>
+<td style="text-align:right;">
+0.0774356
+</td>
+<td style="text-align:right;">
+-1.0393316
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Specific prime
+</td>
+<td style="text-align:right;">
+0.0642842
+</td>
+<td style="text-align:right;">
+0.0778357
+</td>
+<td style="text-align:right;">
+0.8258961
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+General prime
+</td>
+<td style="text-align:right;">
+-0.0227851
+</td>
+<td style="text-align:right;">
+0.0764353
+</td>
+<td style="text-align:right;">
+-0.2980968
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Primer</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Local newspaper
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Political leader
+</td>
+<td style="text-align:right;">
+0.0342233
+</td>
+<td style="text-align:right;">
+0.0484663
+</td>
+<td style="text-align:right;">
+0.7061261
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="willingnes-to-accept-4" class="section level2">
+<h2><span class="header-section-number">8.3</span> Willingnes to accept</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;Functions/amce.R&quot;</span>)
+
+res_main &lt;-<span class="st">  </span>main_<span class="dv">01</span> <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">amce</span>(post_accept, treat_outfav_toll, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger) 
+  
+res_main &lt;-<span class="st"> </span>res_main <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(value, estimate, std_error, statistic)
+
+<span class="kw">kable</span>(res_main, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">caption =</span> <span class="st">&quot;Average Marginal Component Effects&quot;</span>, <span class="dt">col.names =</span> <span class="kw">linebreak</span>(<span class="kw">c</span>(<span class="st">&quot;Treatment value&quot;</span>, <span class="st">&quot;Estimate&quot;</span>, <span class="st">&quot;Std. Error&quot;</span>, <span class="st">&quot;t-statistic&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;responsive&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st"> </span><span class="kw">group_rows</span>(<span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;Road toll issue&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Winning margin&quot;</span> =<span class="st"> </span><span class="dv">3</span>, <span class="st">&quot;Winner gloating&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Good loser prime&quot;</span> =<span class="st"> </span><span class="dv">4</span>, <span class="st">&quot;Primer&quot;</span> =<span class="st"> </span><span class="dv">2</span>))</code></pre></div>
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:post_accept_toll)Average Marginal Component Effects
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Treatment value
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t-statistic
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="2">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Road toll issue</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Favorable outcome
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Unfavorable outcome
+</td>
+<td style="text-align:right;">
+-0.3967006
+</td>
+<td style="text-align:right;">
+0.0410872
+</td>
+<td style="text-align:right;">
+-9.6550939
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Winning margin</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Slight majority
+</td>
+<td style="text-align:right;">
+0.0218218
+</td>
+<td style="text-align:right;">
+0.0513092
+</td>
+<td style="text-align:right;">
+0.4253008
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Large majority
+</td>
+<td style="text-align:right;">
+0.0714744
+</td>
+<td style="text-align:right;">
+0.0519625
+</td>
+<td style="text-align:right;">
+1.3754984
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Winner gloating</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Winning politician gloats
+</td>
+<td style="text-align:right;">
+-0.0526128
+</td>
+<td style="text-align:right;">
+0.0423543
+</td>
+<td style="text-align:right;">
+-1.2422061
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Good loser prime</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+No prime
+</td>
+<td style="text-align:right;">
+-0.0271905
+</td>
+<td style="text-align:right;">
+0.0711716
+</td>
+<td style="text-align:right;">
+-0.3820414
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Specific prime
+</td>
+<td style="text-align:right;">
+0.1245453
+</td>
+<td style="text-align:right;">
+0.0712701
+</td>
+<td style="text-align:right;">
+1.7475099
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+General prime
+</td>
+<td style="text-align:right;">
+0.0379592
+</td>
+<td style="text-align:right;">
+0.0706727
+</td>
+<td style="text-align:right;">
+0.5371122
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Primer</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Local newspaper
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Political leader
+</td>
+<td style="text-align:right;">
+-0.0228254
+</td>
+<td style="text-align:right;">
+0.0448770
+</td>
+<td style="text-align:right;">
+-0.5086198
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="fairness-perceptions-4" class="section level2">
+<h2><span class="header-section-number">8.4</span> Fairness perceptions</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;Functions/amce.R&quot;</span>)
+
+res_main &lt;-<span class="st">  </span>main_<span class="dv">01</span> <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">amce</span>(post_fair, treat_outfav_toll, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger) 
+  
+res_main &lt;-<span class="st"> </span>res_main <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(value, estimate, std_error, statistic)
+
+<span class="kw">kable</span>(res_main, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">caption =</span> <span class="st">&quot;Average Marginal Component Effects&quot;</span>, <span class="dt">col.names =</span> <span class="kw">linebreak</span>(<span class="kw">c</span>(<span class="st">&quot;Treatment value&quot;</span>, <span class="st">&quot;Estimate&quot;</span>, <span class="st">&quot;Std. Error&quot;</span>, <span class="st">&quot;t-statistic&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;responsive&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st"> </span><span class="kw">group_rows</span>(<span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;Road toll issue&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Winning margin&quot;</span> =<span class="st"> </span><span class="dv">3</span>, <span class="st">&quot;Winner gloating&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Good loser prime&quot;</span> =<span class="st"> </span><span class="dv">4</span>, <span class="st">&quot;Primer&quot;</span> =<span class="st"> </span><span class="dv">2</span>))</code></pre></div>
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:post_fair_toll)Average Marginal Component Effects
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Treatment value
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t-statistic
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="2">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Road toll issue</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Favorable outcome
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Unfavorable outcome
+</td>
+<td style="text-align:right;">
+-0.1925553
+</td>
+<td style="text-align:right;">
+0.0402348
+</td>
+<td style="text-align:right;">
+-4.7857934
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Winning margin</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Slight majority
+</td>
+<td style="text-align:right;">
+0.0310398
+</td>
+<td style="text-align:right;">
+0.0493090
+</td>
+<td style="text-align:right;">
+0.6294957
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Large majority
+</td>
+<td style="text-align:right;">
+0.0349867
+</td>
+<td style="text-align:right;">
+0.0497402
+</td>
+<td style="text-align:right;">
+0.7033879
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Winner gloating</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Winning politician gloats
+</td>
+<td style="text-align:right;">
+0.0168514
+</td>
+<td style="text-align:right;">
+0.0405169
+</td>
+<td style="text-align:right;">
+0.4159102
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Good loser prime</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+No prime
+</td>
+<td style="text-align:right;">
+0.1366123
+</td>
+<td style="text-align:right;">
+0.0679182
+</td>
+<td style="text-align:right;">
+2.0114248
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Specific prime
+</td>
+<td style="text-align:right;">
+0.2267096
+</td>
+<td style="text-align:right;">
+0.0685551
+</td>
+<td style="text-align:right;">
+3.3069696
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+General prime
+</td>
+<td style="text-align:right;">
+0.1079486
+</td>
+<td style="text-align:right;">
+0.0674777
+</td>
+<td style="text-align:right;">
+1.5997660
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="4" style="border-bottom: 1px solid;">
+<strong>Primer</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Local newspaper
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Political leader
+</td>
+<td style="text-align:right;">
+0.0169850
+</td>
+<td style="text-align:right;">
+0.0428948
+</td>
+<td style="text-align:right;">
+0.3959696
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="effects-grouped-by-issue-i.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

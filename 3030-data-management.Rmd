@@ -1,0 +1,35 @@
+# Data management
+
+>This chapter describes the data management that is conducted prior to any analysis
+
+```{r 303_setup}
+if(!require("codebook")){install.packages("codebook");  library(codebook)}
+if(!require("dplyr")){install.packages("dplyr");  library(dplyr)}
+if(!require("haven")){install.packages("haven");  library(haven)}
+if(!require("knitr")){install.packages("knitr");  library(knitr)}
+if(!require("naniar")){install.packages("naniar");  library(naniar)}
+if(!require("openxlsx")){install.packages("openxlsx");  library(openxlsx)}
+if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
+
+d <- read_sav("C:\\Users/Sveinung/OneDrive/NORCE 2018-/goodloser/Conjoint/Bookdown-goodloser/Data/Goodloser-exp3.sav")
+
+knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", cache = FALSE, warning = FALSE)
+
+```
+
+##Exclude observations
+> Exclude respondents who rush through the experiment. In line with the [pre-registration](GoogLoser_Prereg_3_#16823), these are defined as respondents who spend less than 25 percent of the median time on answering the questions are excluded from the analysis. 
+
+
+```{r 303_exclude}
+d <- d %>%
+  mutate(median = median(time, na.rm = TRUE)) %>% 
+  filter(time >= 0.25*median  )
+
+d %>% 
+  write_sav("Data/Goodloser-exp3.sav") %>%  #Create data file, .sav format
+  write.csv("Data/Goodloser-exp3.csv")  #Create data file, .csv format
+``` 
+
+
+

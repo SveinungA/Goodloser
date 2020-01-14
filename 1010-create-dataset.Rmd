@@ -1,0 +1,48 @@
+# (PART) STUDY I: SWEDISH VIGNETTE {-}
+
+INFO ABOUT THE SURVEY HERE
+
+# Create Data Set
+
+
+
+## Load packages or install them if not already installed
+
+```{r 101_setup, echo=TRUE, cache=FALSE, warning=FALSE}
+if(!require("haven")){install.packages("haven");  library(haven)}
+if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
+
+```
+
+##Load raw Swedish Citizen Panel data
+
+Load data using the haven package. Select variables of interest, and create new data set in .sav and .csv formats
+
+```{r 101_loadraw_scp, echo=TRUE}
+
+scp_raw <- read_sav("Data/Studie3_Esaiasson_20180611.sav") %>% 
+  mutate(idnummer = as.numeric(idnummer))
+
+d  <- scp_raw %>%  select(
+                       Q64, #age
+                       Q63, #gender
+                       S3_1_1,
+                       S3_2_1,
+                       S3_4_1_1,
+                       S3_4_1_2,
+                       S3_5_1,
+                       S3_6_1_1,
+                       S3_6_1_2,
+                       S3_7_1_1,
+                       S3_7_1_2,
+                       S3_8_1_1,
+                       S3_8_1_2,
+                       Studie3sel
+)
+
+#Create data file, .csv format
+  write.csv(d, "Data/Goodloser-exp1.csv") 
+  #Create data file, .sav format
+  write_sav(d, "Data/Goodloser-exp1.sav", compress = FALSE) 
+
+```

@@ -1,0 +1,80 @@
+# Data management
+
+>This chapter describes the data management that is conducted prior to any analysis.
+
+```{r 103_setup}
+if(!require("haven")){install.packages("haven");  library(haven)}
+if(!require("knitr")){install.packages("knitr");  library(knitr)}
+if(!require("naniar")){install.packages("naniar");  library(naniar)}
+if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
+
+d <- read_sav("C:\\Users/Sveinung/OneDrive/NORCE 2018-/goodloser/Conjoint/Bookdown-goodloser/Data/Goodloser-exp1.sav")
+
+knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", cache = FALSE, warning = FALSE)
+
+```
+
+```{r 103_prepare}
+d <- d %>%
+  rename("age" = "Q64",
+          "gender" = "Q63",
+          "opinion_ban" = "S3_1_1",
+          "opinion_strength" = "S3_2_1",
+          "fairness_1" = "S3_4_1_1",
+          "fairness_2" = "S3_4_1_2",
+          "justice" = "S3_5_1", #Note: There was only variable with this question item
+          "eval_1" = "S3_6_1_1",
+          "eval_2" = "S3_6_1_2",
+          "accept_1" = "S3_7_1_1",
+          "accept_2" = "S3_7_1_2",
+          "comply_1" = "S3_8_1_1",
+          "comply_2" = "S3_8_1_2",
+          "treatment" = "Studie3sel"
+                  )
+
+d <- d %>%
+  gather(orig, fairness, fairness_1:fairness_2) %>% 
+  filter(!is.na(fairness)) %>% 
+  gather(orig, eval, eval_1:eval_2) %>% 
+  filter(!is.na(eval)) %>% 
+  select(-orig) %>% 
+  gather(orig, accept, accept_1:accept_2) %>% 
+  filter(!is.na(accept)) %>% 
+  select(-orig) %>% 
+  gather(orig, comply, comply_1:comply_2) %>% 
+  filter(!is.na(comply)) %>% 
+  select(-orig) 
+
+
+##Create manipulation check variable that measures whether the respondents correctly identify whether the outcome was favorable or unfavorable to them
+d <- d %>%
+  mutate(favorability = case_when(
+    treatment %in% 1:3 & opinion_ban == 1 ~ "Unfavorable",
+    treatment %in% 1:3 & opinion_ban == 2 ~ "Favorable",
+    treatment %in% 4:6 & opinion_ban == 1 ~ "Unfavorable",
+    treatment %in% 4:6 & opinion_ban == 2 ~ "Favorable"
+      )
+  )
+ 
+
+#Label values on treatment variable
+d <- d %>%
+  mutate(treatment = case_when(
+    .[["treatment"]] == 1 | .[["treatment"]] == 4 ~ "Lamenting politician",
+    .[["treatment"]] == 2 | .[["treatment"]] == 5 ~ "General prime",
+    .[["treatment"]] == 3 | .[["treatment"]] == 6 ~ "Not shown")
+  )
+
+#Label values on opinion ban variable
+d <- d %>%
+  mutate(opinion_ban = case_when(
+    .[["opinion_ban"]] == 1 ~ "Anti",
+    .[["opinion_ban"]] == 2 ~ "Pro")
+  )
+
+
+#Save data file, .csv and .sav format
+  write.csv(d, "Data/Goodloser-exp1.csv") 
+  
+  write_sav(d, "Data/Goodloser-exp1.sav", compress = FALSE) 
+```

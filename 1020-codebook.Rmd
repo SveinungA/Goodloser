@@ -1,0 +1,18 @@
+# Codebook
+
+> This chapter displays the codebook for the  data set of the first Good Loser experiment, automatically generated using the R package "codebook".
+
+
+```{r 102_setup, cache=FALSE, warning=FALSE}
+if(!require("codebook")){install.packages("codebook");  library(codebook)}
+if(!require("haven")){install.packages("haven");  library(haven)}
+
+```
+
+```{r 102_codebook}
+d <- read_sav("C:\\Users/Sveinung/OneDrive/NORCE 2018-/goodloser/Conjoint/Bookdown-goodloser/Data/Goodloser-exp1.sav")
+
+detect_missings(d, ninety_nine_problems = TRUE, negative_values_are_missing = TRUE)
+codebook(d)
+```
+

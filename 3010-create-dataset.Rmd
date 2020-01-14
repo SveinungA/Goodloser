@@ -1,0 +1,77 @@
+# (PART) STUDY III: NORWEGIAN CONJOINT {-}
+The experiment was fielded in Norway during the fall of 2018 through the 13th wave of [Norwegian Citizen Panel (NCP)](https://www.uib.no/medborger). The NCP  is a research-purpose internet panel with over 6000 active participants. It is based on a probability sample of the general Norwegian population above the age of 18 drawn from the Norwegian National Registry. The survey is based on a online questionnaire with postal recruitment. Panel members complete a questionnaire three times a year of 15 minutes each. The NCP is a core component of The Digital Social Science Core Facilities (DIGSSCORE), and  was established in 2013 as a collaboration between several departments at the Faculty of Social Sciences at the University of Bergen and NORCE -- Norwegian Research Centre. We refer to the [documentation report](Data/ncp-wave13-documentation.pdf) for further details on technical aspects of the survey, panel recruitment, response rates of the 13th wave, and representativeness. For details about the data collected in this project and the NCP at large, we refer to the [codebook for the Waves 1-13](Data/ncp-wave13-codebook.pdf).
+
+# Create Data Set
+
+> This chapter describes the process of loading the full NCP data set and from that creating a sample data set with the relevant variables for the Good Loser conjoint experiment.
+
+## Load packages or install them if not already installed
+
+```{r 301_setup, echo=TRUE, cache=FALSE, warning=FALSE}
+if(!require("ggplot2")){install.packages("ggplot2");  library(ggplot2)}
+if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
+if(!require("haven")){install.packages("haven");  library(haven)}
+if(!require("knitr")){install.packages("knitr");  library(knitr)}
+if(!require("readxl")){install.packages("readxl");  library(readxl)}
+if(!require("Hmisc")){install.packages("Hmisc");  library(Hmisc)}
+if(!require("likert")){install.packages("likert");  library(likert)}
+if(!require("naniar")){install.packages("naniar");  library(naniar)}
+if(!require("ggthemes")){install.packages("ggthemes");  library(ggthemes)}
+
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", cache = FALSE, warning = FALSE, message = FALSE, error = TRUE, echo = FALSE)
+
+```
+
+##Load raw NCP data
+
+Select variables of interest for the good loser experiment, recode, and create new data set in .sav and .csv formats
+
+```{r 301_loadraw_ncp, echo=TRUE}
+d_1 <- read_sav("C:\\Users/Sveinung/OneDrive/NORCE 2018-/goodloser/Conjoint/Bookdown-goodloser/Data/Norwegian Citizen Panel - wave 1-13 - EN.sav")
+
+ d_1 <- d_1 %>%
+  select(responseid, #Select variables of interest for the good loser experiment
+         r13pad1,    
+         r13pad2,
+         r13pad3,
+         r13pad4,
+         r13pad5_avsender,
+         r13pad5_sak,
+         r13pad5_utfall,
+         r13pad5_vinner,
+         r13pad5_vinnermargin,
+         r13pad6_ran,
+         r13pad6a,
+         r13pad6b,
+         r13pad7a,
+         r13pad7b,
+         r13pad8a,
+         r13pad8b
+         )  
+```
+
+##Load Time tracker data
+
+>The time tracker data set is a separate data set that provides information about how long the respondents spent on answering the three post measure questions in the Good loser experiment. 
+
+```{r 301_loadraw_time, echo=TRUE}
+d_2 <- read_xlsx("C:\\Users/Sveinung/OneDrive/NORCE 2018-/goodloser/Conjoint/Bookdown-goodloser/Data/TimeTracker - runde 13.xlsx")
+
+d_2 <-  d_2 %>%
+  select(responseid = responseID, 
+         timeTracker2_R13PAD6A,
+         timeTracker2_R13PAD6B
+         )  %>% 
+  gather(Scale_time, time, timeTracker2_R13PAD6A:timeTracker2_R13PAD6B) %>% 
+  filter(!is.na(time))
+```
+
+##Merge data sets
+
+```{r 301_merge, echo=TRUE}
+d <- left_join(d_1, d_2, by= "responseid") %>% 
+   filter(!is.na(time))  
+
+d %>%    write_sav("Data/Goodloser-exp3.sav") %>%  #Create data file, .sav format
+  write.csv("Data/Goodloser-exp3.csv")  #Create data file, .csv format
+```

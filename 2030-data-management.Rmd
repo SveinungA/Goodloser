@@ -1,0 +1,138 @@
+# Data management
+
+>This chapter describes the data management that is conducted prior to any analysis
+
+```{r 203_manage}
+if(!require("dplyr")){install.packages("dplyr");  library(dplyr)}
+if(!require("haven")){install.packages("haven");  library(haven)}
+if(!require("knitr")){install.packages("knitr");  library(knitr)}
+if(!require("naniar")){install.packages("naniar");  library(naniar)}
+if(!require("openxlsx")){install.packages("openxlsx");  library(openxlsx)}
+if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
+
+d <- read_sav("C:\\Users/Sveinung/OneDrive/NORCE 2018-/goodloser/Conjoint/Bookdown-goodloser/Data/Goodloser-exp2.sav")
+
+knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", cache = FALSE, warning = FALSE)
+
+```
+
+```{r 203_prepare}
+
+d <- d %>%
+  rename("imp_accept"= "r9pad1",
+          "other_accept" = "r9pad2",
+          "self_accept" = "r9pad3",
+          "opinion_ban" = "r10pad1",
+          "opinion_strength" = "r10pad2",
+          "video_mobile" = "r10pad3_mobil",
+          "video_proban_treat" = "r10pad3a_ran",
+          "video_antiban_treat" = "r10pad3b_ran",
+          "video_ended" = "r10pad3ended",
+          "video_error" = "r10pad3error",
+          "video_paused" = "r10pad3paused",
+          "video_played" = "r10pad3played",
+          "video_timespent" = "r10pad3_timespent",
+          "video_report" = "r10pad4",
+          "fairness" = "r10pad5",
+          "accept" = "r10pad6",
+          "trust" = "r10pad7",
+          "check_outcome" = "r10pad8",
+          "check_politician" = "r10pad9"
+  )
+
+#Merge treatments with ban and no ban outcomes          
+d <- d %>%
+  gather(video, treatment, video_proban_treat:video_antiban_treat)
+
+#Make NA the respondents with values 98 (Not asked) or 97 (No answer) for entire dataset. (Checked with command 'sum(is.na(Loser$video_timespent)) that no values on that 
+#variable has value 97 or 98)
+d[d == 97] <- NA
+d[d == 98] <- NA
+
+#Reverse scales
+d <- d %>%
+  mutate(imp_accept = -(imp_accept)+6,
+         other_accept = -(other_accept)+6,
+         self_accept = -(self_accept)+6,
+         opinion_strength = -(opinion_strength)+6,
+         fairness = -(fairness)+6,
+         accept = -(accept)+6,
+         trust = -(trust)+6
+  )
+
+
+#Remove respondents who did not see the video properly. Will be used as main data set
+d <- d %>%
+  filter(!is.na(treatment))%>% #Keep all who where assigned to a video treatment
+  filter(video_timespent %in% 60:300) %>% #Keep only those who stayed with the video for more than 60 seconds and less than 300 seconds
+  filter(video_report %in% c(1, 3)) #Keep only those who reported that they had sound and picture or picture but no sound
+
+##Create manipulation check variable that measures whether the respondents correctly identify whether the outcome was favorable or unfavorable to them
+d <- d %>%
+  mutate(favorability = case_when(
+    treatment %in% 1:4 ~ "Unfavorable",
+    treatment == 5    ~ "Favorable"
+  )
+  )%>%
+  mutate(mcheck_favorability = case_when(
+    is.na(favorability) ~ "Incorrect",
+    favorability=="Favorable" & check_outcome==1 ~ "Correct",
+    favorability=="Unfavorable" & check_outcome==2 ~ "Correct",
+    favorability %in% 3:4 ~ "Incorrect",
+    favorability=="Favorable" & check_outcome==2 ~ "Incorrect",
+    favorability=="Unfavorable" & check_outcome==1 ~ "Incorrect"
+  )
+  ) 
+
+#Label values on treatment variable
+d <- d %>%
+  mutate(treatment = case_when(
+    .[["treatment"]] == 1 ~ "Lamenting politician",
+    .[["treatment"]] == 2 ~ "Specific prime",
+    .[["treatment"]] == 3 ~ "General Prime",
+    .[["treatment"]] == 4 ~ "Not shown",
+    .[["treatment"]] == 5 ~ "Winner"),
+    opinion_ban = case_when(
+    .[["opinion_ban"]] == 1 ~ "Pro",
+    .[["opinion_ban"]] == 2 ~ "Anti"),
+    responseid = as.numeric(responseid),
+         imp_accept = case_when(imp_accept %in% 4:5 ~ "Important",
+                                imp_accept %in% 1:3 ~ "Not important"),
+         other_accept = case_when(other_accept %in% 4:5 ~ "High degree",
+                                  other_accept %in% 1:3 ~ "Low degree"),
+         self_accept = case_when(self_accept %in% 4:5 ~ "High degree",
+                                 self_accept %in% 1:3 ~ "Low degree"),
+         opinion_strength = case_when(opinion_strength %in% 4:5 ~ "Important",
+                                      opinion_strength %in% 1:3 ~ "Not important")
+  )
+#Save file with the main data set
+write_sav(d, "Data/Goodloser-exp2.sav")
+write_csv(d, "Data/Goodloser-exp2.csv")
+
+#----------------------------------------------------
+#Prepare redux data set, where respondents who fail the manipulation check are excluded
+#----------------------------------------------------
+
+#Create a separate data set where also those who fail the manipulation check are excluded.
+Loser_redux <- d %>%
+  filter(mcheck_favorability == "Correct")
+
+#Save file with the redux good loser data set
+
+write_sav(Loser_redux, "Loser_redux.sav")
+write_csv(Loser_redux, "Loser_redux.csv")
+
+
+#d <- d %>%
+#  mutate(treatment = case_when(
+#    .[["treatment"]] == 1 ~ "minority spokesperson disappointed and against the outcome",
+#    .[["treatment"]] == 2 ~ "minority spokesperson disappointed and against the outcome, but procedure was fair so outcome must be accepted",
+#    .[["treatment"]] == 3 ~ "minority spokesperson disappointed and against the outcome, but losses must be accepted in a democracy",
+#    .[["treatment"]] == 4 ~ "control - no additional information",
+#    .[["treatment"]] == 5 ~ "winner control - no additional information")
+#  )
+    
+
+
+
+```
