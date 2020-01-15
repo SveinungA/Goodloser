@@ -2,6 +2,7 @@
 
 ```{r 104_packages}
 if(!require("broom")){install.packages("broom");  library(broom)}
+if(!require("devtools")){install.packages("devtools");  library(devtools)}
 if(!require("haven")){install.packages("haven");  library(haven)}
 if(!require("here")){install.packages("here");  library(here)}
 if(!require("knitr")){install.packages("knitr");  library(knitr)}
