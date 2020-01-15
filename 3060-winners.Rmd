@@ -14,7 +14,7 @@ if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 
 set.seed(2016)
 
-d <- read_sav("C:\\Users/Sveinung/OneDrive/NORCE 2018-/goodloser/Conjoint/Bookdown-goodloser/Data/Goodloser-exp3.sav")
+d <- read_sav("Data/Goodloser-exp3.sav")
 
 knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", cache = FALSE, warning = FALSE)
 

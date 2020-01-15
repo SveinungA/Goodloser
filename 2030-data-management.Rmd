@@ -10,7 +10,7 @@ if(!require("naniar")){install.packages("naniar");  library(naniar)}
 if(!require("openxlsx")){install.packages("openxlsx");  library(openxlsx)}
 if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 
-d <- read_sav("C:\\Users/Sveinung/OneDrive/NORCE 2018-/goodloser/Conjoint/Bookdown-goodloser/Data/Goodloser-exp2.sav")
+d <- read_sav("Data/Goodloser-exp2.sav")
 
 knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", cache = FALSE, warning = FALSE)
 
