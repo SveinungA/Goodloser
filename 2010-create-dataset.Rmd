@@ -31,7 +31,7 @@ Select variables of interest, and create new data set in .sav and .csv formats
 
 ```{r 201_loadraw_ncp, echo=TRUE}
 
-ncp_raw <- read_sav("C:\\Users/Sveinung/OneDrive/NORCE 2018-/goodloser/Conjoint/Bookdown-goodloser/Data/Norwegian Citizen Panel - wave 1-13 - EN.sav") 
+ncp_raw <- read_sav("Data/Norwegian Citizen Panel - wave 1-13 - EN.sav") 
 
 d  <- ncp_raw %>% 
                      select(

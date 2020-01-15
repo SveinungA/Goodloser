@@ -27,9 +27,9 @@ knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", cache = FALSE, warning 
 Select variables of interest for the good loser experiment, recode, and create new data set in .sav and .csv formats
 
 ```{r 301_loadraw_ncp, echo=TRUE}
-d_1 <- read_sav("C:\\Users/Sveinung/OneDrive/NORCE 2018-/goodloser/Conjoint/Bookdown-goodloser/Data/Norwegian Citizen Panel - wave 1-13 - EN.sav")
+ncp_raw <- read_sav("Data/Norwegian Citizen Panel - wave 1-13 - EN.sav") 
 
- d_1 <- d_1 %>%
+ d_1 <- ncp_raw %>%
   select(responseid, #Select variables of interest for the good loser experiment
          r13pad1,    
          r13pad2,
@@ -55,7 +55,7 @@ d_1 <- read_sav("C:\\Users/Sveinung/OneDrive/NORCE 2018-/goodloser/Conjoint/Book
 >The time tracker data set is a separate data set that provides information about how long the respondents spent on answering the three post measure questions in the Good loser experiment. 
 
 ```{r 301_loadraw_time, echo=TRUE}
-d_2 <- read_xlsx("C:\\Users/Sveinung/OneDrive/NORCE 2018-/goodloser/Conjoint/Bookdown-goodloser/Data/TimeTracker - runde 13.xlsx")
+d_2 <- read_xlsx("Data/TimeTracker - runde 13.xlsx")
 
 d_2 <-  d_2 %>%
   select(responseid = responseID, 

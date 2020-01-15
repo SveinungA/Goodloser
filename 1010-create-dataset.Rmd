@@ -11,6 +11,7 @@ INFO ABOUT THE SURVEY HERE
 ```{r 101_setup, echo=TRUE, cache=FALSE, warning=FALSE}
 if(!require("haven")){install.packages("haven");  library(haven)}
 if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
+if(!require("here")){install.packages("here");  library(here)}
 
 ```
 
