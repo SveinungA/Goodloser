@@ -8,7 +8,7 @@ if(!require("knitr")){install.packages("knitr");  library(knitr)}
 if(!require("naniar")){install.packages("naniar");  library(naniar)}
 if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 
-d <- read_sav("Data/Goodloser-exp1.sav")
+d <- read_sav("Data/Goodloser-exp1-orig.sav")
 
 knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", cache = FALSE, warning = FALSE)
 

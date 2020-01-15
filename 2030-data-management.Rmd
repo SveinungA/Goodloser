@@ -10,7 +10,7 @@ if(!require("naniar")){install.packages("naniar");  library(naniar)}
 if(!require("openxlsx")){install.packages("openxlsx");  library(openxlsx)}
 if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 
-d <- read_sav("Data/Goodloser-exp2.sav")
+d <- read_sav("Data/Goodloser-exp2-orig.sav")
 
 knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", cache = FALSE, warning = FALSE)
 
@@ -119,8 +119,8 @@ Loser_redux <- d %>%
 
 #Save file with the redux good loser data set
 
-write_sav(Loser_redux, "Loser_redux.sav")
-write_csv(Loser_redux, "Loser_redux.csv")
+write_sav(Loser_redux, "Data/Goodloser-exp2-exclusive.sav")
+write_csv(Loser_redux, "Data/Goodloser-exp2-exclusive.csv")
 
 
 #d <- d %>%

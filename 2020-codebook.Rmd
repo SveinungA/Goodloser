@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", cache = FALSE, warning 
 ```
 
 ```{r 202_codebook}
-d <- read_sav("Data/Goodloser-exp2.sav")
+d <- read_sav("Data/Goodloser-exp2-orig.sav")
 
 detect_missings(d, ninety_nine_problems = TRUE, negative_values_are_missing = TRUE)
 codebook(d)

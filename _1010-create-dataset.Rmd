@@ -42,8 +42,8 @@ d  <- scp_raw %>%  select(
 )
 
 #Create data file, .csv format
-  write.csv(d, "Data/Goodloser-exp1.csv") 
+  write.csv(d, "Data/Goodloser-exp1-orig.csv") 
   #Create data file, .sav format
-  write_sav(d, "Data/Goodloser-exp1.sav", compress = FALSE) 
+  write_sav(d, "Data/Goodloser-exp1.orig.sav", compress = FALSE) 
 
 ```

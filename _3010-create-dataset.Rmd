@@ -72,6 +72,6 @@ d_2 <-  d_2 %>%
 d <- left_join(d_1, d_2, by= "responseid") %>% 
    filter(!is.na(time))  
 
-d %>%    write_sav("Data/Goodloser-exp3.sav") %>%  #Create data file, .sav format
-  write.csv("Data/Goodloser-exp3.csv")  #Create data file, .csv format
+d %>%    write_sav("Data/Goodloser-exp3-orig.sav") %>%  #Create data file, .sav format
+  write.csv("Data/Goodloser-exp3-orig.csv")  #Create data file, .csv format
 ```

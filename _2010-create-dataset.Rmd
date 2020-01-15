@@ -68,8 +68,8 @@ d  <- ncp_raw %>%
                      ) 
 
 #Create data file, .csv format
-  write.csv(d, "Data/Goodloser-exp2.csv") 
+  write.csv(d, "Data/Goodloser-exp2-orig.csv") 
   #Create data file, .sav format.
-  write_sav(d, "Data/Goodloser-exp2.sav", compress = FALSE) 
+  write_sav(d, "Data/Goodloser-exp2-orig.sav", compress = FALSE) 
 
 ```

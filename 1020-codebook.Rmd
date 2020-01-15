@@ -10,7 +10,7 @@ if(!require("haven")){install.packages("haven");  library(haven)}
 ```
 
 ```{r 102_codebook}
-d <- read_sav("Data/Goodloser-exp1.sav")
+d <- read_sav("Data/Goodloser-exp1-orig.sav")
 
 detect_missings(d, ninety_nine_problems = TRUE, negative_values_are_missing = TRUE)
 codebook(d)
