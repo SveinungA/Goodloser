@@ -1,6 +1,3 @@
-# (PART) STUDY I: SWEDISH VIGNETTE {-}
-
-INFO ABOUT THE SURVEY HERE
 
 # Create Data Set
 
@@ -8,10 +5,12 @@ INFO ABOUT THE SURVEY HERE
 
 ## Load packages or install them if not already installed
 
-```{r 101_setup, echo=TRUE, cache=FALSE, warning=FALSE}
+```{r 101_setup, include=FALSE}
 if(!require("haven")){install.packages("haven");  library(haven)}
 if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 if(!require("here")){install.packages("here");  library(here)}
+
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 
 ```
 

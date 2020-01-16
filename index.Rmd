@@ -12,6 +12,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 description: ""
+github-repo: SveinungA/Goodloser
 always_allow_html: yes
 header-includes:
 - \usepackage{booktabs}
@@ -34,13 +35,6 @@ header-includes:
 
 This is the analysis report for the  *Good Loser Project* by [Peter Esaiasson](https://www.gu.se/omuniversitetet/personal/?userId=xesape), [Hannah Werner](http://www.uva.nl/profiel/w/e/h.i.werner/h.i.werner.html), and [Sveinung Arnesen](http://frosty-bose-c7f82c.netlify.com/). 
 The study comprises three survey embedded experiments; one video vignette experiment in Norway, one text vignette experiment in Sweden, and one conjoint experiment in Norway. The study has been presented at the Barcelona-Gothenburg-Bergen workshop on Experiments in Political Science in 2018, and will be presented at the 2019 Conference of the Midwestern Political Science Association in Chicago, USA.
-
-About Study I -- Swedish vignette: TBA
-
-About Study II -- Norwegian video vignette: TBA
-
-The conjoint experiment described in PART III was fielded in Norway during the fall of 2018 through the 13th wave of [Norwegian Citizen Panel (NCP)](https://www.uib.no/medborger). The NCP  is a research-purpose internet panel with over 6000 active participants. It is based on a probability sample of the general Norwegian population above the age of 18 drawn from the Norwegian National Registry. The survey is based on a online questionnaire with postal recruitment. Panel members complete a questionnaire three times a year of 15 minutes each. The NCP is a core component of The Digital Social Science Core Facilities (DIGSSCORE), and  was established in 2013 as a collaboration between several departments at the Faculty of Social Sciences at the University of Bergen and NORCE -- Norwegian Research Centre. We refer to the [documentation report](Data/ncp-wave13-documentation.pdf) for further details on technical aspects of the survey, panel recruitment, response rates of the 13th wave, and representativeness. For details about the data collected in this project and the NCP at large, we refer to the [codebook for the Waves 1-13](Data/ncp-wave13-codebook.pdf).
-
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
