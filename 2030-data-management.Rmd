@@ -12,7 +12,7 @@ if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 
 d <- read_sav("Data/Goodloser-exp2-orig.sav")
 
-knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
 ```{r 203_prepare}
