@@ -152,7 +152,7 @@ ggsave(
 res_main <- res_main %>% 
   select(value, estimate, std_error, statistic, p_value)
 
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>%
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-reasonable-nocon.html"))
@@ -219,7 +219,7 @@ res_main <- res_main %>%
   select(value, estimate, std_error, statistic, p_value)
 
 
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>%
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-accept-nocon.html"))
@@ -288,7 +288,7 @@ res_main <- res_main %>%
   select(value, estimate, std_error, statistic, p_value)
 
 
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>% 
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-fairness-nocon.html"))

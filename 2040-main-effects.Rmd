@@ -94,7 +94,7 @@ table <- res_main %>%
                    term == "treatmentSpecific prime" ~ "Specific prime",
                    term == "treatmentWinner" ~ "Winner"))
 
-kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-fairness-novig.html"))
 ```
@@ -162,7 +162,7 @@ table <- res_main %>%
                    term == "treatmentSpecific prime" ~ "Specific prime",
                    term == "treatmentWinner" ~ "Winner"))
 
-kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-accept-novig.html"))
 ```
@@ -231,7 +231,7 @@ table <- res_main %>%
                    term == "treatmentSpecific prime" ~ "Specific prime",
                    term == "treatmentWinner" ~ "Winner"))
 
-kable(table, booktabs = TRUE, caption = "Treatment effects on trust in politician, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on trust in politician, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-trust-novig.html"))
 ```

@@ -86,7 +86,7 @@ table <- res_main %>%
                     term == "favorabilityUnfavorable" ~ "Unfavorable outcome")
          )
 
-kable(table, booktabs = TRUE, caption = "Difference fairness perceptions of decision between winners and losers, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>% 
+kable(table, booktabs = TRUE, caption = "Difference fairness perceptions of decision between winners and losers, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-fairness-diff-swevig.html"))
 ```
@@ -149,7 +149,7 @@ table <- res_main %>%
                    term == "treatmentGeneral prime" ~ "General prime")
          )
 
-kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  %>% 
   cat(., file = here("output", "swevig", "tbls", "html", "tbl-fairness-swevig.html"))
 ```
@@ -210,7 +210,7 @@ table <- res_main %>%
                    term == "treatmentGeneral prime" ~ "General prime")
          )
 
-kable(table, booktabs = TRUE, caption = "Treatment effects on justice perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on justice perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-justice-swevig.html"))
 ```
@@ -272,7 +272,7 @@ table <- res_main %>%
                    term == "treatmentGeneral prime" ~ "General prime")
          )
 
-kable(table, booktabs = TRUE, caption = "Treatment effects on decision evaluation, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on decision evaluation, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-evaluation-swevig.html"))
 ```
@@ -334,7 +334,7 @@ table <- res_main %>%
                    term == "treatmentGeneral prime" ~ "General prime")
          )
 
-kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-acceptance-swevig.html"))
 ```
@@ -396,7 +396,7 @@ table <- res_main %>%
                    term == "treatmentGeneral prime" ~ "General prime")
          )
 
-kable(table, booktabs = TRUE, caption = "Treatment effects on decision compliance, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on decision compliance, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-compliance-swevig.html"))
 ```
