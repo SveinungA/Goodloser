@@ -147,7 +147,8 @@ res_main <- res_main %>%
 
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- group_rows(index = c("Outcome favorability" = 2, "Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))
+ group_rows(index = c("Outcome favorability" = 2, "Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-toll-reasonable-nocon.html"))
 
 ```
        
@@ -214,7 +215,8 @@ res_main <- res_main %>%
 
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- group_rows(index = c("Outcome favorability" = 2, "Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))
+ group_rows(index = c("Outcome favorability" = 2, "Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-toll-accept-nocon.html"))
 
 ```
 
@@ -280,6 +282,7 @@ res_main <- res_main %>%
 
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- group_rows(index = c("Outcome favorability" = 2, "Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))
+ group_rows(index = c("Outcome favorability" = 2, "Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-toll-fairness-nocon.html"))
 
 ```

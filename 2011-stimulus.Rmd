@@ -33,6 +33,7 @@ table <- tibble(Preference = c("Pro ban on begging", "Pro ban\non begging", "Pro
     mutate_all(linebreak) %>% 
     kable(booktabs = T, linesep = "", escape = F,  caption = "Vignette text per treatment", col.names = linebreak(c("Preference", "Treatment", "Text"))) %>% 
     collapse_rows(columns = 1, latex_hline = "major", valign = "top") %>% 
-  kable_styling(latex_options = c("striped", "scale_down")) 
+  kable_styling(latex_options = c("striped", "scale_down")) %>% 
+  cat(., file = here("output", "novig", "tbls", "html",  "tbl-vignette-novig.html"))
 
 ```
