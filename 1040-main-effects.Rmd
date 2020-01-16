@@ -19,7 +19,7 @@ source("goodloser-utils.R")
 
 d <- read_sav("Data/Goodloser-exp1.sav")
 
-knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", cache = FALSE, warning = FALSE)
+knitr::opts_chunk$set(include = FALSE, knitr.kable.NA = "", cache = FALSE, warning = FALSE)
 
 ```
 

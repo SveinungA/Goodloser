@@ -38,7 +38,7 @@ main_01 <- d %>%
                                   r13pad4 %in% 3:5 ~ "Not important"),
          treat_outcome = case_when(r13pad5_utfall == 1 ~ "The Yes side won the vote",
                                  r13pad5_utfall == 2 ~ "The No side won the vote"),
-        treat_outfav = case_when(r13pad5_sak == 1 & r13pad1 == 1 & r13pad5_utfall == 1 ~ "Favorable outcome",
+         treat_outfav = case_when(r13pad5_sak == 1 & r13pad1 == 1 & r13pad5_utfall == 1 ~ "Favorable outcome",
                                   r13pad5_sak == 1 & r13pad1 == 2 & r13pad5_utfall == 2 ~ "Favorable outcome",
                                   r13pad5_sak == 1 & r13pad1 == 1 & r13pad5_utfall == 2 ~ "Unfavorable outcome",
                                   r13pad5_sak == 1 & r13pad1 == 2 & r13pad5_utfall == 1 ~ "Unfavorable outcome",
@@ -53,11 +53,11 @@ main_01 <- d %>%
                                        r13pad5_vinnermargin == 3 ~ "Large majority"),
          treat_winnergloat = case_when(r13pad5_vinner == 1 ~ "Not shown",
                                      r13pad5_vinner == 2 ~ "Winning politician gloats"),
-        treat_prime = case_when(r13pad5_avsender == 1 ~ "No prime",
+        treat_prime = case_when(r13pad5_avsender == 1 ~ "Not shown",
                                r13pad5_avsender == 2  | r13pad5_avsender == 5 ~ "No prime",
                                r13pad5_avsender == 3  | r13pad5_avsender == 6 ~ "Specific prime",
                                r13pad5_avsender == 4 | r13pad5_avsender == 7 ~ "General prime"),
-         treat_messenger = case_when(r13pad5_avsender %in% 2:4 ~ "Political leader",
+         treat_messenger = case_when(r13pad5_avsender %in% 3:4 ~ "Political leader",
                                    r13pad5_avsender %in% 6:7 ~ "Local newspaper"),
          post_fair = case_when(r13pad6a == 1 | r13pad6b == 1 ~ 5,
                           r13pad6a == 2 | r13pad6b == 2 ~ 4,
@@ -76,11 +76,13 @@ main_01 <- d %>%
                           r13pad8a == 5 | r13pad8b == 5 ~ 1)
 
   ) %>% 
-                  replace_with_na_all(condition = ~.x == 98 )%>% #Recode 98 (not asked) as missing
-                 filter(!is.na(r13pad6_ran)) %>% 
-                mutate(treat_winningmargin = lvls_reorder(treat_winningmargin, c(2, 3, 1)), 
-               treat_prime = lvls_reorder(treat_prime, c(3, 2, 4, 1))
-                )
+
+  replace_with_na_all(condition = ~.x == 98 )%>%  #Recode 98 (not asked) as missing
+  filter(!is.na(r13pad6_ran)) %>%  #Remove NA's
+## We want the value labels in particular order for the tables and figures.
+        mutate(treat_winningmargin = lvls_reorder(treat_winningmargin, c(2, 3, 1)), 
+               treat_prime = lvls_reorder(treat_prime, c(3, 2, 4, 1)) 
+        )
                
     main_01 <- main_01 %>%   
       filter(treat_outfav == "Unfavorable outcome")

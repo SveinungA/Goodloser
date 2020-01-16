@@ -130,13 +130,13 @@ fig_amce <-
 fig_amce
 
 ggsave(
-  here("output", "figs", "pngs", "fig_toll_reasonable.png"),
+  here("output", "nocon", "figs", "pngs", "fig_toll_reasonable.png"),
   plot = fig_amce,
   width = 5.5, height = 2.75
 )
 
 ggsave(
-  here("output", "figs", "pdfs", "fig_toll_reasonable.pdf"),
+  here("output", "nocon", "figs", "pdfs", "fig_toll_reasonable.pdf"),
   plot = fig_amce,
   width = 5.5, height = 2.75
 )
@@ -196,13 +196,13 @@ fig_amce <-
 fig_amce
 
 ggsave(
-  here("output", "figs", "pngs", "fig_toll_accept.png"),
+  here("output", "nocon", "figs", "pngs", "fig_toll_accept.png"),
   plot = fig_amce,
   width = 5.5, height = 2.75
 )
 
 ggsave(
-  here("output", "figs", "pdfs", "fig_toll_accept.pdf"),
+  here("output", "nocon", "figs", "pdfs", "fig_toll_accept.pdf"),
   plot = fig_amce,
   width = 5.5, height = 2.75
 )
@@ -262,13 +262,13 @@ fig_amce <-
 fig_amce
 
 ggsave(
-  here("output", "figs", "pngs", "fig_toll_fair.png"),
+  here("output", "nocon", "figs", "pngs", "fig_toll_fair.png"),
   plot = fig_amce,
   width = 5.5, height = 2.75
 )
 
 ggsave(
-  here("output", "figs", "pdfs", "fig_toll_fair.pdf"),
+  here("output", "nocon", "figs", "pdfs", "fig_toll_fair.pdf"),
   plot = fig_amce,
   width = 5.5, height = 2.75
 )

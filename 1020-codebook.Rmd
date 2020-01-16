@@ -2,8 +2,7 @@
 
 > This chapter displays the codebook for the  data set of the first Good Loser experiment, automatically generated using the R package "codebook".
 
-
-```{r 102_setup, cache=FALSE, warning=FALSE}
+```{r 102_setup, cache=FALSE, warning=FALSE, include=FALSE}
 if(!require("codebook")){install.packages("codebook");  library(codebook)}
 if(!require("haven")){install.packages("haven");  library(haven)}
 
