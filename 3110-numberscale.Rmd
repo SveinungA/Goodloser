@@ -1,16 +1,4 @@
-# Numbered answer scale
-
-> This chapter shows the treatment effects for the alternative, numbered answer scale. This scale reads:
-
-> - 1 Most fair  
-  - 2  
-  - 3  
-  - 4  
-  - 5 Least fair
-  
->  Half of the respondents were asked to answer the post measures of fairness, reasonableness, and willingness to accept the decision with the regular, worded answer scale, while the other half gets this numbered scale in stead (please note that the scales are reversed in all analyses).
-
-```{r 311_setup}
+```{r 311_setup, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
 if(!require("haven")){install.packages("haven");  library(haven)}
 if(!require("here")){install.packages("here");  library(here)}
@@ -24,9 +12,21 @@ set.seed(2016)
 
 d <- read_sav("Data/Goodloser-exp3.sav")
 
-knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", cache = FALSE, warning = FALSE)
-
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
+
+# Numbered answer scale
+
+> This chapter shows the treatment effects for the alternative, numbered answer scale. This scale reads:
+
+> - 1 Most fair  
+  - 2  
+  - 3  
+  - 4  
+  - 5 Least fair
+  
+>  Half of the respondents were asked to answer the post measures of fairness, reasonableness, and willingness to accept the decision with the regular, worded answer scale, while the other half gets this numbered scale in stead (please note that the scales are reversed in all analyses).
+
 
 ##Prepare data
 ```{r 311_main_numbersscale}

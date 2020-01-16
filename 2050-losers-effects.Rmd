@@ -2,7 +2,7 @@
 
 > This chapter explores the first hypothesis in the [pre-registration](GoogLoser_Prereg_3_#16823[16065].pdf) of the experiment: **Individuals that receive an unfavorable outcome express lower fairness perception than individuals that receive a favorable outcome.** The estimation of the Average Marginal Component Effects is based on the function developed by Mikael P. Johannesson, and available on [Github](https://rdrr.io/github/mikajoh/descr2/man/amce.html). 
 
-```{r 205_packages}
+```{r 205_packages, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
 if(!require("haven")){install.packages("haven");  library(haven)}
 if(!require("here")){install.packages("here");  library(here)}
@@ -20,8 +20,7 @@ source("goodloser-utils.R")
 
 d <- read_sav("Data/Goodloser-exp2.sav")
 
-knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", cache = FALSE, warning = FALSE)
-
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
 ##Prepare data

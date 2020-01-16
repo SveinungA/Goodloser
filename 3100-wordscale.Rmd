@@ -1,3 +1,20 @@
+```{r 310_setup, include=FALSE}
+if(!require("broom")){install.packages("broom");  library(broom)}
+if(!require("haven")){install.packages("haven");  library(haven)}
+if(!require("here")){install.packages("here");  library(here)}
+if(!require("knitr")){install.packages("knitr");  library(knitr)}
+options(kableExtra.latex.load_packages = FALSE) 
+if(!require("kableExtra")){install.packages("kableExtra");  library(kableExtra)}
+if(!require("naniar")){install.packages("naniar");  library(naniar)}
+if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
+
+set.seed(2016)
+
+d <- read_sav("Data/Goodloser-exp3.sav")
+
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
+```
+
 # Worded answer scale
 
 > This chapter shows the treatment effects for the answer scale that effects which typically is given to the respondents in the Norwegian Citizen Panel. This scale reads: 
@@ -12,23 +29,6 @@
   
 >  Half of the respondents were asked to answer the post measures of fairness, reasonableness, and willingness to accept the decision with this regular, worded answer scale, while the other half gets an alternative numbered scale in stead (please note that the scales are reversed in all analyses).
 
-```{r 310_setup}
-if(!require("broom")){install.packages("broom");  library(broom)}
-if(!require("haven")){install.packages("haven");  library(haven)}
-if(!require("here")){install.packages("here");  library(here)}
-if(!require("knitr")){install.packages("knitr");  library(knitr)}
-options(kableExtra.latex.load_packages = FALSE) 
-if(!require("kableExtra")){install.packages("kableExtra");  library(kableExtra)}
-if(!require("naniar")){install.packages("naniar");  library(naniar)}
-if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
-
-set.seed(2016)
-
-d <- read_sav("Data/Goodloser-exp3.sav")
-
-knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", cache = FALSE, warning = FALSE)
-
-```
 
 ##Prepare data
 ```{r 310_main_wordscale}
@@ -297,5 +297,6 @@ kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects",
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Outcome favorability" = 2, "Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-wordscale-fairness-nocon.html"))
+
 
 ```

@@ -1,6 +1,6 @@
 # Effects on losers
 
-```{r 105_packages}
+```{r 105_packages, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
 if(!require("haven")){install.packages("haven");  library(haven)}
 if(!require("here")){install.packages("here");  library(here)}
@@ -18,8 +18,7 @@ source("goodloser-utils.R")
 
 d <- read_sav("Data/Goodloser-exp1.sav")
 
-knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", cache = FALSE, warning = FALSE)
-
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
 ##Prepare data

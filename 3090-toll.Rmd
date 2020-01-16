@@ -1,6 +1,6 @@
 #Issue: Road toll
 
-```{r 309_setup}
+```{r 309_setup, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
 if(!require("haven")){install.packages("haven");  library(haven)}
 if(!require("here")){install.packages("here");  library(here)}
@@ -14,8 +14,7 @@ set.seed(2016)
 
 d <- read_sav("Data/Goodloser-exp3.sav")
 
-knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", cache = FALSE, warning = FALSE)
-
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
 ##Main effects

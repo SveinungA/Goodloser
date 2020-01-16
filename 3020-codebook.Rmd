@@ -4,7 +4,7 @@
 
 
 
-```{r 302_setup, cache=FALSE, warning=FALSE}
+```{r 302_setup, include=FALSE}
 if(!require("codebook")){install.packages("codebook");  library(codebook)}
 if(!require("haven")){install.packages("haven");  library(haven)}
 if(!require("knitr")){install.packages("knitr");  library(knitr)}
@@ -13,7 +13,7 @@ if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 if(!require("dplyr")){install.packages("dplyr");  library(dplyr)}
 
 
-knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", cache = FALSE, warning = FALSE, message = FALSE, error = TRUE, echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 
 ```
 

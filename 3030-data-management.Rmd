@@ -2,7 +2,7 @@
 
 >This chapter describes the data management that is conducted prior to any analysis
 
-```{r 303_setup}
+```{r 303_setup, include=FALSE}
 if(!require("codebook")){install.packages("codebook");  library(codebook)}
 if(!require("dplyr")){install.packages("dplyr");  library(dplyr)}
 if(!require("haven")){install.packages("haven");  library(haven)}
@@ -13,8 +13,7 @@ if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 
 d <- read_sav("Data/Goodloser-exp3-orig.sav")
 
-knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", cache = FALSE, warning = FALSE)
-
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
 ##Exclude observations
