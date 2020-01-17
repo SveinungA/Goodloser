@@ -11,7 +11,7 @@ if(!require("kableExtra")){install.packages("kableExtra");  library(kableExtra)}
 if(!require("naniar")){install.packages("naniar");  library(naniar)}
 if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 # The analysis uses custom functions included in the compendium. Install the included pkg with `devtools::install()` or just install from github with:
-if (!require(wiggle)) {  devtools::install_github("mikajoh/wiggle")}
+#if (!require(wiggle)) {  devtools::install_github("mikajoh/wiggle")}
 
 set.seed(2016)
 ## Utils. 
