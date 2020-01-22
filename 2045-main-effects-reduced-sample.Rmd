@@ -1,8 +1,8 @@
-# Main effects
+# Main effects with sample that excludes respondents who fail manipulation check
 
 > This chapter explores the first hypothesis in the [pre-registration](GoogLoser_Prereg_3_#16823[16065].pdf) of the experiment: **Individuals that receive an unfavorable outcome express lower fairness perception than individuals that receive a favorable outcome.** The estimation of the Average Marginal Component Effects is based on the function developed by Mikael P. Johannesson, and available on [Github](https://rdrr.io/github/mikajoh/descr2/man/amce.html). 
 
-```{r 204_packages, include=FALSE}
+```{r 2045_packages, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
 if(!require("haven")){install.packages("haven");  library(haven)}
 if(!require("here")){install.packages("here");  library(here)}
@@ -18,13 +18,13 @@ set.seed(2016)
 ## Utils. 
 source("goodloser-utils.R")
 
-d <- read_sav("Data/Goodloser-exp2.sav")
+d <- read_sav("Data/Goodloser-exp2-exclusive.sav")
 
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
 ##Prepare data
-```{r 204_main}
+```{r 2045_main}
 
 d <- d %>%
   mutate(treatment = lvls_reorder(treatment, c(3, 2, 1, 4, 5)) 
@@ -32,7 +32,7 @@ d <- d %>%
 ``` 
 
 ##Fairness
-```{r 204_post_fairness}
+```{r 2045_post_fairness}
 
 res_main <-  lm(fairness ~ treatment, data = d) 
 res_main <- broom::tidy(res_main)
@@ -64,6 +64,7 @@ fig <-   res_main %>%
   scale_x_continuous(limits = c(-1, 1),
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
+  ggtitle('Treatment effects on fairness perceptions of decision, Study 2 -- Norwegian vignette. Sample: Respondents who pass manipulation check') +
   labs(x = "Change in fairness perception",
        y = "Decision process attributes") +
   theme_bw() +
@@ -72,13 +73,13 @@ fig <-   res_main %>%
 fig
 
 ggsave(
-  here("output", "novig", "figs", "pngs", "exp2-fairness-mainfig.png"),
+  here("output", "novig", "figs", "pngs", "exp2-fairness-mainfig-mcheck.png"),
   plot = fig,
   width = 5.5, height = 2.75
 )
 
 ggsave(
-  here("output", "novig", "figs", "pdfs", "exp2-fairness-mainfig.pdf"),
+  here("output", "novig", "figs", "pdfs", "exp2-fairness-mainfig-mcheck.pdf"),
   plot = fig,
   width = 5.5, height = 2.75
 )
@@ -93,14 +94,14 @@ table <- res_main %>%
                    term == "treatmentSpecific prime" ~ "Specific prime",
                    term == "treatmentWinner" ~ "Winner"))
 
-kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 2 -- Norwegian vignette. Sample: Respondents who pass manipulation check", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
-  cat(., file = here("output", "novig", "tbls", "html",  "tbl-fairness-novig.html"))
+  cat(., file = here("output", "novig", "tbls", "html",  "tbl-fairness-novig-mcheck.html"))
 ```
        
 ##Willingnes to accept
 
-```{r 204_post_accept}
+```{r 2045_post_accept}
 
 res_main <-  lm(accept ~ treatment, data = d) 
 res_main <- broom::tidy(res_main)
@@ -132,6 +133,7 @@ fig <-   res_main %>%
   scale_x_continuous(limits = c(-1, 1),
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
+  ggtitle('Treatment effects on willingness to accept outcome, Study 2 -- Norwegian vignette. Sample: Respondents who pass manipulation check') +
   labs(x = "Change in willingness to accept outcome",
        y = "Decision process attributes") +
   theme_bw() +
@@ -140,13 +142,13 @@ fig <-   res_main %>%
 fig
 
 ggsave(
-  here("output", "novig", "figs", "pngs", "exp2-accept-mainfig.png"),
+  here("output", "novig", "figs", "pngs", "exp2-accept-mainfig-mcheck.png"),
   plot = fig,
   width = 5.5, height = 2.75
 )
 
 ggsave(
-  here("output", "novig", "figs", "pdfs", "exp2-accept-mainfig.pdf"),
+  here("output", "novig", "figs", "pdfs", "exp2-accept-mainfig-mcheck.pdf"),
   plot = fig,
   width = 5.5, height = 2.75
 )
@@ -161,15 +163,15 @@ table <- res_main %>%
                    term == "treatmentSpecific prime" ~ "Specific prime",
                    term == "treatmentWinner" ~ "Winner"))
 
-kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 2 -- Norwegian vignette. Sample: Respondents who pass manipulation check.", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  %>% 
-  cat(., file = here("output", "novig", "tbls", "html",  "tbl-accept-novig.html"))
+  cat(., file = here("output", "novig", "tbls", "html",  "tbl-accept-novig-mcheck.html"))
 ```
 
 ##Trust in politician
 
 
-```{r 204_post_trust}
+```{r 2045_post_trust}
 
 res_main <-  lm(trust ~ treatment, data = d) 
 res_main <- broom::tidy(res_main)
@@ -201,21 +203,22 @@ fig <-   res_main %>%
   scale_x_continuous(limits = c(-1, 1),
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
-  labs(x = "Change in trust in politician",
-       y = "Decision process attributes") +
+  labs(title = 'Treatment effects on trust in politicians, Study 2 -- Norwegian vignette.', 
+       subtitle = 'Sample: Respondents who pass manipulation check',
+       caption = '1 to 5 answer scale where 1 is lowest and 5 is highest') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+  theme(plot.title = element_text(size= 9, face = 'bold'), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
 ggsave(
-  here("output", "novig", "figs", "pngs", "exp2-trust-mainfig.png"),
+  here("output", "novig", "figs", "pngs", "exp2-trust-mainfig-mcheck.png"),
   plot = fig,
   width = 5.5, height = 2.75
 )
 
 ggsave(
-  here("output", "novig", "figs", "pdfs", "exp2-trust-mainfig.pdf"),
+  here("output", "novig", "figs", "pdfs", "exp2-trust-mainfig-mcheck.pdf"),
   plot = fig,
   width = 5.5, height = 2.75
 )
@@ -230,7 +233,7 @@ table <- res_main %>%
                    term == "treatmentSpecific prime" ~ "Specific prime",
                    term == "treatmentWinner" ~ "Winner"))
 
-kable(table, booktabs = TRUE, caption = "Treatment effects on trust in politician, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on trust in politician, Study 2 -- Norwegian vignette. Sample: Respondents who pass manipulation check.", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  %>% 
-  cat(., file = here("output", "novig", "tbls", "html",  "tbl-trust-novig.html"))
+  cat(., file = here("output", "novig", "tbls", "html",  "tbl-trust-novig-mcheck.html"))
 ```

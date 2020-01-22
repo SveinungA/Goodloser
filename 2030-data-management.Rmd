@@ -116,7 +116,7 @@ write_csv(d, "Data/Goodloser-exp2.csv")
 Loser_redux <- d %>%
   filter(mcheck_favorability == "Correct")
 
-#Save file with the redux good loser data set
+#Save file with the good loser data set that excludes respondents who fail manipulation check
 
 write_sav(Loser_redux, "Data/Goodloser-exp2-exclusive.sav")
 write_csv(Loser_redux, "Data/Goodloser-exp2-exclusive.csv")
