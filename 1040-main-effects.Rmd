@@ -44,7 +44,7 @@ labels <- data.frame(
   term = c(
     "favorabilityUnfavorable"
   ),
-  label = c( "Loser")
+  label = c( "Unfavorable outcome")
 )
 #Figure
 fig <-   res_main %>%
@@ -60,10 +60,12 @@ fig <-   res_main %>%
   scale_x_continuous(limits = c(-1, 1),
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
-  labs(x = "Change in fairness perceptions between decision winner and losers",
-       y = "Decision process attributes") +
+  labs(x = "Change in fairness perceptions",
+       y = "",
+       title = 'Outcome favorability effect on fairness perceptions',
+       caption = 'Reference category: Respondents with favorable outcome.') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
+  theme(plot.title = element_text(size = 9), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
@@ -86,9 +88,9 @@ table <- res_main %>%
                     term == "favorabilityUnfavorable" ~ "Unfavorable outcome")
          )
 
-kable(table, booktabs = TRUE, caption = "Difference fairness perceptions of decision between winners and losers, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Fairness perceptions moderated by outcome favorability, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
-  cat(., file = here("output", "swevig", "tbls", "html",  "tbl-fairness-diff-swevig.html"))
+  cat(., file = here("output", "swevig", "tbls", "html",  "tbl-fairness-outfav-swevig.html"))
 ```
 
 ###Priming effects
@@ -122,22 +124,23 @@ fig <-   res_main %>%
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
   labs(x = "Change in fairness perception",
-       y = "Decision process attributes") +
+       y = "",
+       title = "Treatment effects on fairness perceptions of decision, Study 1 -- Swedish vignette") +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
+  theme(plot.title = element_text(size=9), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
 ggsave(
   here("output", "swevig", "figs", "pngs", "exp1-fairness-mainfig.png"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 ggsave(
   here("output", "swevig", "figs", "pdfs", "exp1-fairness-mainfig.pdf"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 
@@ -183,7 +186,7 @@ fig <-   res_main %>%
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
   labs(x = "Change in justice perception",
-       y = "Decision process attributes") +
+       y = "") +
   theme_bw() +
   theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
   theme(panel.spacing = unit(0.5, "lines"))

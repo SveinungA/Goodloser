@@ -63,10 +63,12 @@ fig <-   res_main %>%
   scale_x_continuous(limits = c(-1, 1),
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
-  labs(x = "Change in fairness perception among losers",
-       y = "Decision process attributes") +
+  labs(x = "Change in fairness perception",
+       y = "",
+      title = 'Treatment effects on fairness perceptions, Study 2 -- Norwegian vignette.', 
+     subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+  theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
@@ -127,23 +129,25 @@ fig <-   res_main %>%
   scale_x_continuous(limits = c(-1, 1),
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
-  labs(x = "Change in willingness to accept outcome among losers",
-       y = "Decision process attributes") +
+  labs(x = "Change in willingness to accept outcome",
+      y = "",
+      title = 'Treatment effects on willingness to accept outcome, Study 2 -- Norwegian vignette.', 
+     subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+  theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
 ggsave(
   here("output", "novig", "figs", "pngs", "exp2-accept-losers.png"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 ggsave(
   here("output", "novig", "figs", "pdfs", "exp2-accept-losers.pdf"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 
@@ -192,10 +196,12 @@ fig <-   res_main %>%
   scale_x_continuous(limits = c(-1, 1),
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
-  labs(x = "Change in willingness to accept outcome among losers",
-       y = "Decision process attributes") +
+  labs(x = "Change in trust in politicians",
+     y = "",
+      title = 'Treatment effects on trust in politicians, Study 2 -- Norwegian vignette.', 
+     subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+  theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 

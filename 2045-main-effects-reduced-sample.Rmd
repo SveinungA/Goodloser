@@ -64,11 +64,12 @@ fig <-   res_main %>%
   scale_x_continuous(limits = c(-1, 1),
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
-  ggtitle('Treatment effects on fairness perceptions of decision, Study 2 -- Norwegian vignette. Sample: Respondents who pass manipulation check') +
-  labs(x = "Change in fairness perception",
-       y = "Decision process attributes") +
+  labs(x = "Change in fairness perceptions",
+       y = "",
+       title = 'Treatment effects on fairness perceptions of decision, Study 2 -- Norwegian vignette.',
+       subtitle = 'Sample: Respondents who pass manipulation check.') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+  theme(plot.title = element_text(size=9), plot.subtitle = element_text(size = 8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
@@ -130,27 +131,31 @@ fig <-   res_main %>%
    geom_errorbarh(height = 0) +
   geom_point() +
   geom_vline(aes(xintercept = 0), linetype = "dotted") +
-  scale_x_continuous(limits = c(-1, 1),
+  scale_x_continuous(limits = c(-1.2, 1.2),
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
-  ggtitle('Treatment effects on willingness to accept outcome, Study 2 -- Norwegian vignette. Sample: Respondents who pass manipulation check') +
-  labs(x = "Change in willingness to accept outcome",
-       y = "Decision process attributes") +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+  theme(plot.title = element_text(size= 9), plot.subtitle = element_text(size = 8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+  theme(panel.spacing = unit(0.5, "lines")) +
+labs(x = "Change in willingness to accept outcome",
+       y = "", 
+     title = 'Treatment effects on willingness to accept outcome, Study 2 -- Norwegian vignette.', 
+     subtitle = 'Sample: Respondents who pass manipulation check') +
+  theme_bw() +
+  theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
 ggsave(
   here("output", "novig", "figs", "pngs", "exp2-accept-mainfig-mcheck.png"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 ggsave(
   here("output", "novig", "figs", "pdfs", "exp2-accept-mainfig-mcheck.pdf"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 
@@ -203,11 +208,12 @@ fig <-   res_main %>%
   scale_x_continuous(limits = c(-1, 1),
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
-  labs(title = 'Treatment effects on trust in politicians, Study 2 -- Norwegian vignette.', 
-       subtitle = 'Sample: Respondents who pass manipulation check',
-       caption = '1 to 5 answer scale where 1 is lowest and 5 is highest') +
+  labs(x = 'Change in trust in politicians',
+       y = '',
+       title = 'Treatment effects on trust in politicians, Study 2 -- Norwegian vignette.', 
+       subtitle = 'Sample: Respondents who pass manipulation check') +
   theme_bw() +
-  theme(plot.title = element_text(size= 9, face = 'bold'), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+  theme(plot.title = element_text(size= 9), plot.subtitle=element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 

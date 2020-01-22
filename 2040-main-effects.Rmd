@@ -65,22 +65,23 @@ fig <-   res_main %>%
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
   labs(x = "Change in fairness perception",
-       y = "Decision process attributes") +
+       y = "",
+       title = 'Treatment effects on fairness perceptions of decision, Study 2 -- Norwegian vignette.') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+  theme(plot.title = element_text(size=9), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
 ggsave(
   here("output", "novig", "figs", "pngs", "exp2-fairness-mainfig.png"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 6.5, height = 2.75
 )
 
 ggsave(
   here("output", "novig", "figs", "pdfs", "exp2-fairness-mainfig.pdf"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 6.5, height = 2.75
 )
 
 
@@ -133,22 +134,23 @@ fig <-   res_main %>%
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
   labs(x = "Change in willingness to accept outcome",
-       y = "Decision process attributes") +
+       y = "",
+       title = 'Treatment effects on willingness to accept outcome, Study 2 -- Norwegian vignette.') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+  theme(plot.title = element_text(size = 9), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
 ggsave(
   here("output", "novig", "figs", "pngs", "exp2-accept-mainfig.png"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 ggsave(
   here("output", "novig", "figs", "pdfs", "exp2-accept-mainfig.pdf"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 
@@ -202,9 +204,10 @@ fig <-   res_main %>%
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
   labs(x = "Change in trust in politician",
-       y = "Decision process attributes") +
+       y = "",
+       title = 'Treatment effects on trust in politicians, Study 2 -- Norwegian vignette.') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+  theme(plot.title = element_text(size = 9), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
