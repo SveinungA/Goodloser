@@ -119,29 +119,30 @@ fig_amce <-
     expand = c(0, 0)) +
    labs(
     x = "Marginal effect, reasonable decision",
-    y = "Decision process attributes") +
+    y = "",
+    title = 'Average marginal component effects -- Norwegian conjoint experiment.') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),         axis.text.x=element_text(size=rel(0.7))) +
+  theme(plot.title = element_text(size=9), plot.margin = unit(c(2, 2, 2, 2), "mm"), strip.text.y = element_text(angle = 0, size=6),   axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig_amce
 
 ggsave(
   here("output", "nocon", "figs", "pngs", "fig_main_reasonable.png"),
   plot = fig_amce,
-  width = 5.5, height = 2.75
+  width = 6, height = 2.75
 )
 
 ggsave(
   here("output", "nocon", "figs", "pdfs", "fig_main_reasonable.pdf"),
   plot = fig_amce,
-  width = 5.5, height = 2.75
+  width = 6, height = 2.75
 )
 
 #Table
 res_main <- res_main %>% 
   select(value, estimate, std_error, statistic, p_value)
 
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(res_main, booktabs = TRUE, caption = "Average marginal component effects -- Norwegian conjoint experiment.", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Outcome favorability" = 2, "Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2)) %>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-reasonable-nocon.html"))
@@ -186,27 +187,28 @@ fig_amce <-
     expand = c(0, 0)) +
    labs(
     x = "Marginal effect, willingnes to accept decision",
-    y = "Decision process attributes") +
+    y = "",
+    title = 'Average Marginal Component Effects -- Norwegian conjoint experiment') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),         axis.text.x=element_text(size=rel(0.7)))
+  theme(plot.title = element_text(size=9), strip.text.y = element_text(angle=0, size=6), plot.margin = unit(c(2, 2, 2, 2), "mm"),         axis.text.x=element_text(size=rel(0.7)))
 fig_amce
 
 ggsave(
   here("output", "nocon", "figs", "pngs", "fig_main_accept.png"),
   plot = fig_amce,
-  width = 5.5, height = 2.75
+  width = 6, height = 2.75
 )
 ggsave(
   here("output", "nocon", "figs", "pdfs", "fig_main_accept.pdf"),
   plot = fig_amce,
-  width = 5.5, height = 2.75
+  width = 6, height = 2.75
 )
 
 #table
 res_main <- res_main %>% 
   select(value, estimate, std_error, statistic, p_value)
 
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Outcome favorability" = 2, "Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-accept-nocon.html"))
@@ -251,22 +253,23 @@ fig_amce <-
     expand = c(0, 0)) +
    labs(
     x = "Marginal effect, perceived fairness of decision",
-    y = "Decision process attributes") +
+    y = "",
+    title = "Average Marginal Component Effects -- Norwegian conjoint experiment") +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),
+  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), plot.title = element_text(size=9), strip.text.y = element_text(angle=0, size=6),
         axis.text.x=element_text(size=rel(0.7)))
 fig_amce
 
 ggsave(
   here("output", "nocon", "figs", "pngs", "fig_main_fair.png"),
   plot = fig_amce,
-  width = 5.5, height = 4.75
+  width = 6, height = 2.75
 )
 
 ggsave(
   here("output", "nocon", "figs", "pdfs", "fig_main_fair.pdf"),
   plot = fig_amce,
-  width = 5.5, height = 4.75
+  width = 6, height = 2.75
 )
 
 #table

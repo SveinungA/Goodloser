@@ -122,29 +122,30 @@ fig_amce <-
     expand = c(0, 0)) +
    labs(
     x = "Marginal effect, reasonable decision",
-    y = "Decision process attributes") +
+     y = "",
+    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    subtitle = 'Sample: Respondents who evaluated the ban on begging issue') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm")) +
-  theme(panel.spacing = unit(0.5, "lines"))
+  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=5, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
 fig_amce
 
 ggsave(
   here("output", "nocon", "figs", "pngs", "fig_begging_reasonable.png"),
   plot = fig_amce,
-  width = 5.5, height = 2.75
+  width = 6, height = 2.75
 )
 
 ggsave(
   here("output", "nocon", "figs", "pdfs", "fig_begging_reasonable.pdf"),
   plot = fig_amce,
-  width = 5.5, height = 2.75
+  width = 6, height = 2.75
 )
 
 #Table
 res_main <- res_main %>% 
   select(value, estimate, std_error, statistic, p_value)
 
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(res_main, booktabs = TRUE, caption =  'Average Marginal Component Effect -- Norwegian conjoint experiment', col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Outcome favorability" = 2, "Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-begging-reasonable-nocon.html"))
@@ -189,21 +190,23 @@ fig_amce <-
     expand = c(0, 0)) +
    labs(
     x = "Marginal effect, willingnes to accept decision",
-    y = "Decision process attributes") +
+        y = "",
+    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    subtitle = 'Sample: Respondents who evaluated the ban on begging issue') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"))
+  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=5, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
 fig_amce
 
 ggsave(
   here("output", "nocon", "figs", "pngs", "fig_begging_accept.png"),
   plot = fig_amce,
-  width = 5.5, height = 2.75
+  width = 6, height = 2.75
 )
 
 ggsave(
   here("output", "nocon", "figs", "pdfs", "fig_begging_accept.pdf"),
   plot = fig_amce,
-  width = 5.5, height = 2.75
+  width = 6, height = 2.75
 )
 
 #table
@@ -211,7 +214,7 @@ res_main <- res_main %>%
   select(value, estimate, std_error, statistic, p_value)
 
 
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+kable(res_main, booktabs = TRUE, caption =  'Average Marginal Component Effect -- Norwegian conjoint experiment', col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Outcome favorability" = 2, "Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-begging-accept-nocon.html"))
@@ -256,21 +259,23 @@ fig_amce <-
     expand = c(0, 0)) +
    labs(
     x = "Marginal effect, perceived fairness of decision",
-    y = "Decision process attributes") +
+       y = "",
+    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    subtitle = 'Sample: Respondents who evaluated the ban on begging issue') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"))
+  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=5, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
 fig_amce
 
 ggsave(
   here("output", "nocon", "figs", "pngs", "fig_begging_fair.png"),
   plot = fig_amce,
-  width = 5.5, height = 2.75
+  width = 6, height = 2.75
 )
 
 ggsave(
   here("output", "nocon", "figs", "pdfs", "fig_begging_fair.pdf"),
   plot = fig_amce,
-  width = 5.5, height = 2.75
+  width = 6, height = 2.75
 )
 
 #table
@@ -278,7 +283,7 @@ res_main <- res_main %>%
   select(value, estimate, std_error, statistic, p_value)
 
 
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+kable(res_main, booktabs = TRUE, caption = 'Average Marginal Component Effect -- Norwegian conjoint experiment', col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Outcome favorability" = 2, "Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-bgging-fairness-nocon.html"))

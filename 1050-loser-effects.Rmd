@@ -61,22 +61,24 @@ fig <-   res_main %>%
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
   labs(x = "Change in fairness perception",
-       y = "Decision process attributes") +
+       y = "",
+       title = "Treatment effects on fairness perceptions of decision, Study 1 -- Swedish vignette",
+       subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
+  theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
 ggsave(
   here("output", "swevig", "figs", "pngs", "exp1-fairness-losers.png"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 ggsave(
   here("output", "swevig", "figs", "pdfs", "exp1-fairness-losers.pdf"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 
@@ -122,22 +124,24 @@ fig <-   res_main %>%
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
   labs(x = "Change in justice perception",
-       y = "Decision process attributes") +
+       y = "",
+       title = "Treatment effects on justice perceptions of decision, Study 1 -- Swedish vignette",
+       subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
+  theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
 ggsave(
   here("output", "swevig", "figs", "pngs", "exp1-justice-losers.png"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 ggsave(
   here("output", "swevig", "figs", "pdfs", "exp1-justice-losers.pdf"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 
@@ -184,9 +188,11 @@ fig <-   res_main %>%
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
   labs(x = "Change in decision evaluation",
-       y = "Decision process attributes") +
+       y = "",
+       title = "Treatment effects on decision evaluation, Study 1 -- Swedish vignette",
+       subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+  theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
@@ -246,22 +252,24 @@ fig <-   res_main %>%
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
   labs(x = "Change in willingness to accept outcome",
-       y = "Decision process attributes") +
+       y = "",
+       title = "Treatment effects on willingness to accept decision, Study 1 -- Swedish vignette",
+       subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
+  theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
 ggsave(
   here("output", "swevig", "figs", "pngs", "exp1-accept-losers.png"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 ggsave(
   here("output", "swevig", "figs", "pdfs", "exp1-accept-losers.pdf"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 
@@ -308,9 +316,11 @@ fig <-   res_main %>%
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
   labs(x = "Change in decision compliance",
-       y = "Decision process attributes") +
+       y = "",
+       title = "Treatment effects on decision compliance, Study 1 -- Swedish vignette",
+       subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
+  theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 

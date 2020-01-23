@@ -62,7 +62,7 @@ fig <-   res_main %>%
                      expand = c(0, 0)) +
   labs(x = "Change in fairness perceptions",
        y = "",
-       title = 'Outcome favorability effect on fairness perceptions',
+       title = 'Fairness perceptions moderated by outcome favorability, Study 1 -- Swedish vignette',
        caption = 'Reference category: Respondents with favorable outcome.') +
   theme_bw() +
   theme(plot.title = element_text(size = 9), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
@@ -72,13 +72,13 @@ fig
 ggsave(
   here("output", "swevig", "figs", "pngs", "exp1-fairness-favorability.png"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 ggsave(
   here("output", "swevig", "figs", "pdfs", "exp1-fairness-favorability.pdf"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 #Table
@@ -186,22 +186,23 @@ fig <-   res_main %>%
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
   labs(x = "Change in justice perception",
-       y = "") +
+       y = "",
+       title = 'Treatment effects on justice perceptions of decision, Study 1 -- Swedish vignette') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
+  theme(plot.title = element_text(size=9), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
 ggsave(
   here("output", "swevig", "figs", "pngs", "exp1-justice-mainfig.png"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 ggsave(
   here("output", "swevig", "figs", "pdfs", "exp1-justice-mainfig.pdf"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 
@@ -248,9 +249,10 @@ fig <-   res_main %>%
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
   labs(x = "Change in decision evaluation",
-       y = "Decision process attributes") +
+       y = "",
+       title = 'Treatment effects on decision evaluation, Study 1 -- Swedish vignette') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+  theme(plot.title = element_text(size=9), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
@@ -310,22 +312,23 @@ fig <-   res_main %>%
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
   labs(x = "Change in willingness to accept outcome",
-       y = "Decision process attributes") +
+       y = "", 
+       title = 'Treatment effects on willingness to accept decision, Study 1 -- Swedish vignette') +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
+  theme(plot.title = element_text(size=9), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
 ggsave(
   here("output", "swevig", "figs", "pngs", "exp1-accept-mainfig.png"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 ggsave(
   here("output", "swevig", "figs", "pdfs", "exp1-accept-mainfig.pdf"),
   plot = fig,
-  width = 5.5, height = 2.75
+  width = 7, height = 2.75
 )
 
 
@@ -372,9 +375,10 @@ fig <-   res_main %>%
                      breaks = round(seq(-1, 1, .25), 2),
                      expand = c(0, 0)) +
   labs(x = "Change in decision compliance",
-       y = "Decision process attributes") +
+       y = "",
+       title = "Treatment effects on decision compliance, Study 1 -- Swedish vignette") +
   theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
+  theme(plot.title = element_text(size=9), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
   theme(panel.spacing = unit(0.5, "lines"))
 fig
 
