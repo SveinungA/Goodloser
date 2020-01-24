@@ -9,6 +9,7 @@ if(!require("knitr")){install.packages("knitr");  library(knitr)}
 options(kableExtra.latex.load_packages = FALSE) 
 if(!require("kableExtra")){install.packages("kableExtra");  library(kableExtra)}
 if(!require("naniar")){install.packages("naniar");  library(naniar)}
+if(!require("Stack")){install.packages("Stack");  library(Stack)}
 if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 # The analysis uses custom functions included in the compendium. Install the included pkg with `devtools::install()` or just install from github with:
 #if (!require(wiggle)) {  devtools::install_github("mikajoh/wiggle")}
@@ -128,7 +129,7 @@ fig <-
   geom_point() +
   geom_vline(aes(xintercept = 0), linetype = "dotted") +
   scale_x_continuous(
-    limits = c(-1, 1),
+    limits = c(-1.2, 1.2),
     breaks = round(seq(-1, 1, .1), 2),
     expand = c(0, 0)) +
    labs(
