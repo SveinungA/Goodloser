@@ -31,67 +31,6 @@ d <- d %>%  mutate(treatment = lvls_reorder(treatment, c(3, 2, 1)))
 
 ##Fairness
 
-###Outcome favorability
-
-Winner-loser effect on fairness perceptions
-
-```{r 104_post_fairness_favorability}
-
-res_main <-  lm(fairness ~ favorability, data = d) 
-res_main <- broom::tidy(res_main)
-
-labels <- data.frame(
-  term = c(
-    "favorabilityUnfavorable"
-  ),
-  label = c( "Unfavorable outcome")
-)
-#Figure
-fig <-   res_main %>%
-  filter(term != "(Intercept)") %>% 
-  left_join(labels, by = "term") %>% 
-  
-  ggplot(aes(x = estimate, y = label,
-             xmin = estimate - (2 * std.error),
-             xmax = estimate + (2 * std.error))) +
-   geom_errorbarh(height = 0) +
-  geom_point() +
-  geom_vline(aes(xintercept = 0), linetype = "dotted") +
-  scale_x_continuous(limits = c(-1, 1),
-                     breaks = round(seq(-1, 1, .25), 2),
-                     expand = c(0, 0)) +
-  labs(x = "Change in fairness perceptions",
-       y = "",
-       title = 'Fairness perceptions moderated by outcome favorability, Study 1 -- Swedish vignette',
-       caption = 'Reference category: Respondents with favorable outcome.') +
-  theme_bw() +
-  theme(plot.title = element_text(size = 9), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
-  theme(panel.spacing = unit(0.5, "lines"))
-fig
-
-ggsave(
-  here("output", "swevig", "figs", "pngs", "exp1-fairness-favorability.png"),
-  plot = fig,
-  width = 7, height = 2.75
-)
-
-ggsave(
-  here("output", "swevig", "figs", "pdfs", "exp1-fairness-favorability.pdf"),
-  plot = fig,
-  width = 7, height = 2.75
-)
-
-#Table
-table <- res_main %>% 
-  select(term, estimate, std.error, statistic, p.value) %>% 
-  mutate(term = case_when( term == "(Intercept)" ~ "Not shown",
-                    term == "favorabilityUnfavorable" ~ "Unfavorable outcome")
-         )
-
-kable(table, booktabs = TRUE, caption = "Fairness perceptions moderated by outcome favorability, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
-  cat(., file = here("output", "swevig", "tbls", "html",  "tbl-fairness-outfav-swevig.html"))
-```
 
 ###Priming effects
 
