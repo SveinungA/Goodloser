@@ -104,6 +104,8 @@ res_main_02 <- broom::tidy(res_main_02)%>%
          treatment = 'Study 2 -- Norwegian vignette') %>% 
   rename(std_error = std.error)
 
+source("Functions/amce.R")
+
 res_main_03 <-  main_03 %>%
   amce(post_fair, treat_outfav)  %>% 
   mutate(treatment =  case_when(treatment == "treat_outfav" ~ "Study 3 -- Norwegian conjoint"))
