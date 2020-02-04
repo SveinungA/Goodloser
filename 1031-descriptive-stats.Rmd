@@ -1,0 +1,141 @@
+#Pre-treatment measures and experimental vignette
+
+```{r 1031_packages, include=FALSE}
+if(!require("broom")){install.packages("broom");  library(broom)}
+if(!require("devtools")){install.packages("devtools");  library(devtools)}
+if(!require("haven")){install.packages("haven");  library(haven)}
+if(!require("here")){install.packages("here");  library(here)}
+if(!require("knitr")){install.packages("knitr");  library(knitr)}
+options(kableExtra.latex.load_packages = FALSE) 
+if(!require("kableExtra")){install.packages("kableExtra");  library(kableExtra)}
+if(!require("naniar")){install.packages("naniar");  library(naniar)}
+if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
+
+set.seed(2016)
+## Utils. 
+source("goodloser-utils.R")
+
+d <- read_sav("Data/Goodloser-exp1.sav")
+
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
+
+```
+
+##Pre-treatment measures
+```{r 1031_main}
+
+d %>% group_by(opinion_ban) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100),
+         opinion_ban = case_when(opinion_ban == 'Anti' ~ 'Against ban',
+                                 opinion_ban == 'Pro' ~ 'For ban')) %>%
+  ungroup() %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion on a ban on begging in your municipality?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position")%>% 
+  cat(., file = here("output", "swevig", "tbls", "html", "tbl-begging-pref-swevig.html"))
+
+d %>% mutate(
+     opinion_strength = case_when(
+      opinion_strength == 1 ~ "1 Not important at all",
+      opinion_strength == 2 ~ "2",
+      opinion_strength == 3 ~ "3",
+      opinion_strength == 4 ~ "4",
+      opinion_strength == 5 ~ "5",
+      opinion_strength == 6 ~ "6",
+      opinion_strength == 7 ~ "7 Very important")) %>% 
+  group_by(opinion_strength) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
+  ungroup() %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How important is the issue of ban on begging to you personally?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position")%>% 
+  cat(., file = here("output", "swevig", "tbls", "html", "tbl-begging-importance-swevig.html"))
+```
+
+##Experimental vignette
+
+*Experimental vignette.*
+
+>Imagine that your municipality is about to decide whether begging on the streets should be banned or allowed within the municipal borders. The decision can be made in different ways: One option is that the local political representatives make the decision. Another option is that the citizens of the municipality decide through a referendum. Please image how you would react if this scenario occurred in your municipality: After a debate in the media, the local political representatives decide to ban begging in the municipality. *Treatment text follows.*
+
+```{r 1031_vignette}
+table <- tibble(Treatment = c("No prime", "Lamenting politician", "General prime"), Text = c("Imagine that your municipality is about to decide whether begging on the streets should be banned or allowed within the municipal borders. The decision can be made in different ways: One option is that the local political representatives make the decision. Another option is that the citizens of the municipality decide through a referendum. Please image how you would react if this scenario occurred in your municipality: After a debate in the media, the local political representatives decide to ban begging in the municipality.", 
+                                                                                             "Imagine that your municipality is about to decide whether begging on the streets should be banned or allowed within the municipal borders. The decision can be made in different ways: One option is that the local political representatives make the decision. Another option is that the citizens of the municipality decide through a referendum. Please image how you would react if this scenario occurred in your municipality: After a debate in the media, the local political representatives decide to ban begging in the municipality. After the decision, the leader of one of the parties who where in favor of a ban states that they are disappointed and that the decision was wrong.",
+                                                                                             "Imagine that your municipality is about to decide whether begging on the streets should be banned or allowed within the municipal borders. The decision can be made in different ways: One option is that the local political representatives make the decision. Another option is that the citizens of the municipality decide through a referendum. Please image how you would react if this scenario occurred in your municipality: After a debate in the media, the local political representatives decide to ban begging in the municipality. After the decision, the leader of one of the parties who where in favor of a ban states that they are disappointed and that the decision was wrong, but that's how it is like living in a democracy.")
+                )%>% 
+    mutate_all(linebreak) %>% 
+    kable(booktabs = T, linesep = "", escape = F,  caption = "Vignette treatments and texts, Swedish vignette experiment", col.names = linebreak(c("Treatment", "Text"))) %>% 
+    collapse_rows(columns = 1, latex_hline = "major", valign = "top") %>% 
+  kable_styling(latex_options = c("scale_down", "HOLD_position"))%>% 
+  cat(., file = here("output", "swevig", "tbls", "html", "tbl-vignette-swevig.html"))
+
+```
+
+```{r 1031_outcome_measures}
+
+d %>% mutate(
+  fairness = case_when(
+      fairness == 1 ~ "1 Not fair at all",
+      fairness == 2 ~ "2",
+      fairness == 3 ~ "3",
+      fairness == 4 ~ "4",
+      fairness == 5 ~ "5",
+      fairness == 6 ~ "6",
+      fairness == 7 ~ "7 Very fair")) %>% 
+  group_by(fairness) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What do you think about the way the decision was made?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "swevig", "tbls", "html", "tbl-dv-fairness-swevig.html"))
+
+d %>% mutate(
+   justice = case_when(
+      justice == 1 ~ "1 Not just at all",
+      justice == 2 ~ "2",
+      justice == 3 ~ "3",
+      justice == 4 ~ "4",
+      justice == 5 ~ "5",
+      justice == 6 ~ "6",
+      justice == 7 ~ "7 Very just")) %>% 
+  group_by(justice) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How just do you think the decision procedure was?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "swevig", "tbls", "html", "tbl-dv-justice-swevig.html"))
+
+d %>% mutate(
+     eval = case_when(
+      eval == 1 ~ "1 Very bad",
+      eval == 2 ~ "2",
+      eval == 3 ~ "3",
+      eval == 4 ~ "4",
+      eval == 5 ~ "5",
+      eval == 6 ~ "6",
+      eval == 7 ~ "7 Very good")) %>% 
+  group_by(eval) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What do you think in general about the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "swevig", "tbls", "html", "tbl-dv-evaluation-swevig.html"))
+
+d %>% mutate(
+  comply = case_when(
+      comply == 1 ~ "1 Not willing at all",
+      comply == 2 ~ "2",
+      comply == 3 ~ "3",
+      comply == 4 ~ "4",
+      comply == 5 ~ "5",
+      comply == 6 ~ "6",
+      comply == 7 ~ "7 Very willing")) %>% 
+  group_by(comply) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How willing are you to accept and comply with the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "swevig", "tbls", "html", "tbl-dv-accept-swevig.html"))
+
+```
+
