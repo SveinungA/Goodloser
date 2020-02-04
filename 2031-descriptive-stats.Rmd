@@ -1,0 +1,202 @@
+
+```{r 2031_setup, include=FALSE}
+if(!require("broom")){install.packages("broom");  library(broom)}
+if(!require("haven")){install.packages("haven");  library(haven)}
+if(!require("here")){install.packages("here");  library(here)}
+if(!require("knitr")){install.packages("knitr");  library(knitr)}
+options(kableExtra.latex.load_packages = FALSE) 
+if(!require("kableExtra")){install.packages("kableExtra");  library(kableExtra)}
+if(!require("naniar")){install.packages("naniar");  library(naniar)}
+if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
+# The analysis uses custom functions included in the compendium. Install the included pkg with `devtools::install()` or just install from github with:
+#if (!require(wiggle)) {  devtools::install_github("mikajoh/wiggle")}
+
+set.seed(2016)
+
+d <- read_sav("Data/Goodloser-exp2.sav")
+e <-  read_sav("Data/Goodloser-exp2-itt.sav")
+
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
+```
+
+
+
+```{r 2031_pre}
+
+table <- d %>% mutate(
+  imp_accept_1 = case_when(
+      imp_accept == 1 ~ "Not important at all",
+      imp_accept == 2 ~ "Slightly important",
+      imp_accept == 3 ~ "Somewhat important",
+      imp_accept == 4 ~ "Important",
+      imp_accept == 5 ~ "Very important"),
+   imp_accept_1 = lvls_reorder(factor(imp_accept_1), c(2, 3, 4, 1, 5))) %>% 
+  group_by(imp_accept_1) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion – how important is it to accept the decisions about important social issues after they have been adopted?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-imp-accept.html"))
+
+d %>% mutate(
+  other_accept_1 = case_when(
+      other_accept == 1 ~ "Not at all",
+      other_accept == 2 ~ "Low degree",
+      other_accept == 3 ~ "Some degree",
+      other_accept == 4 ~ "High degree",
+      other_accept == 5 ~ "Very high degree"),
+    other_accept_1 = lvls_reorder(factor(other_accept_1), c(3, 2, 4, 1, 5))) %>% 
+    group_by(other_accept_1) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "To what extent do you think people in Norway are willing to accept the decisions about important social issues after they have been adopted by politicians and the authorities?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-other-accept.html"))
+
+d %>% mutate(
+  self_accept_1 = case_when(
+      self_accept == 1 ~ "Not at all",
+      self_accept == 2 ~ "Low degree",
+      self_accept == 3 ~ "Some degree",
+      self_accept == 4 ~ "High degree",
+      self_accept == 5 ~ "Very high degree"),
+    self_accept_1 = lvls_reorder(factor(self_accept_1), c(3, 2, 4, 1, 5))) %>% 
+  group_by(self_accept_1) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What about you personally – do you live up to this standard (i.e., accept the decisions about important social issues after they have been adopted by politicians and the authorities)?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-self-accept.html"))
+
+d %>% group_by(opinion_ban) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
+  ungroup() %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion on a ban on begging in your municipality?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-begging-pref.html"))
+
+
+d %>% mutate(
+  opinion_strength_1 = case_when(
+      opinion_strength == 1 ~ "Not important at all",
+      opinion_strength == 2 ~ "Slightly important",
+      opinion_strength == 3 ~ "Somewhat important",
+      opinion_strength == 4 ~ "Important",
+      opinion_strength == 5 ~ "Very important"),
+    opinion_strength_1 = lvls_reorder(factor(opinion_strength_1), c(2, 3, 4, 1, 5))) %>% 
+  group_by(opinion_strength_1) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
+  ungroup() %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How important is this issue to you personally?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position")%>% 
+  cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-begging-importance.html"))
+
+
+```
+##Experimental vignette
+
+
+```{r 2031_vignette}
+
+table <- tibble(Preference = c("Pro ban on begging", "Pro ban on begging", "Pro ban on begging", "Pro ban on begging", "Pro ban on begging", "Against ban on begging", "Against ban on begging", "Against ban on begging", "Against ban on begging", "Against ban on begging"), 
+                Treatment = c("No prime", "Lamenting politician", "General prime", "Specific prime", "Winner", "No prime", "Lamenting politician", "General prime", "Specific prime", "Winner"), 
+                Text = c("The majority votes against a ban on begging. That means the council will not ban begging in your municipality.",
+                         "The majority votes against a ban on begging. That means the council will not ban begging in your municipality. After the decision, the leader of one of the parties who where in favor of a ban states that they are disappointed and that the decision was wrong.",
+                         "The majority votes against a ban on begging. That means the council will not ban begging in your municipality. After the decision, the leader of one of the parties who where in favor of a ban states that they are disappointed and that the decision was wrong, but that's how it is like living in a democracy. Sometimes you win, sometimes you lose.",
+                         "The majority votes against a ban on begging. That means the council will not ban begging in your municipality. After the decision, the leader of one of the parties who where in favor of a ban states that they are disappointed and that the decision was wrong, but that it was a fair fight where both sides had the chance to defend their positions.",
+                         "The majority votes for a ban on begging. That means the council will ban begging in your municipality.",
+                         "The majority votes for a ban on begging. That means the council will ban begging in your municipality.", 
+                         "The majority votes for a ban on begging. That means the council will ban begging in your municipality. After the decision, the leader of one of the parties who where in favor of a ban states that they are disappointed and that the decision was wrong.", 
+                         "The majority votes for a ban on begging. That means the council will ban begging in your municipality. After the decision, the leader of one of the parties who where in favor of a ban states that they are disappointed and that the decision was wrong, but that's how it is like living in a democracy. Sometimes you win, sometimes you lose.",
+                         "The majority votes for a ban on begging. That means the council will ban begging in your municipality. After the decision, the leader of one of the partieswho where in favor of a ban states that they are disappointed and that the decision was wrong, but that it was a fair fight where both sides had the chance to defend their positions.",
+                         "The majority votes against a ban on begging. That means the council will not ban begging in your municipality.")
+)
+
+
+  table %>% 
+    mutate_all(linebreak) %>% 
+    kable(booktabs = T, linesep = "", escape = F,  caption = "Video vignette treatment dimensions and values.", col.names = linebreak(c("Preference", "Treatment", "Text"))) %>% 
+    collapse_rows(columns = 1, latex_hline = "major", valign = "top") %>% 
+    
+  kable_styling(latex_options = c("scale_down", "HOLD_position")) %>% 
+        footnote(number =  c('Intro to all respondents: Imagine that your municipality is about to decide whether begging on the streets should be banned or allowed within the municipal borders in the future. This is a controversial decision: Some inhabitants and politicians strongly support the ban, while other inhabitants and politicians are equally strongly against such a ban on begging. Some parties propose a ban on begging. The decision will be made in the municipal council, and follows the normal decision-making procedure. The proposal is  first debated in the council, where all members are welcome to express their position and their arguments. The debate is public, and journalists are present to report on the debate. In the end, the politicians vote on the proposal.',
+                 'Video voice over text (video was subtitled).')) %>% 
+    cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-design.html"))
+
+
+```
+
+##Post-measures
+
+```{r 2031_exp_post}
+d %>% mutate(
+   fairness = case_when(fairness == 1 ~ "Not at all fair",
+                         fairness == 2 ~ "Not very fair",
+                         fairness == 3 ~ "Quite fair",
+                         fairness == 4 ~ "Fair",
+                         fairness == 5 ~ "Very fair"),
+    fairness = lvls_reorder(factor(fairness), c(2, 3, 4, 1, 5))) %>% 
+  group_by(fairness) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "Fairness: What do you think about the way the decision was made?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-fairness-dv.html"))
+
+d %>% mutate(
+   accept = case_when(accept == 1 ~ "Not at all willing",
+                        accept == 2 ~ "Not very willing",
+                        accept == 3 ~ "Quite willing", 
+                        accept == 4 ~ "Willing", 
+                        accept == 5 ~ "Very willing"),
+    accept = lvls_reorder(factor(accept), c(1, 2, 3, 5, 4))) %>% 
+  group_by(accept) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "Acceptance: When you think about the actual outcome of the decision, how willing are you to accept the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-accept-dv.html"))
+
+
+d %>% mutate(
+   trust = case_when(trust == 1 ~ "No trust at all",
+                      trust == 2 ~ "Low trust",
+                      trust == 3 ~ "Some trust",
+                      trust == 4 ~ "High trust",
+                      trust == 5 ~ "Very high trust"),
+    trust = lvls_reorder(factor(trust), c(3, 2 , 4, 1, 5))) %>% 
+  group_by(trust) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "Trust in politicians: Based on what you saw in the video, how much confidence do you have in the politicians who made the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-trust-dv.html"))
+
+
+e %>% mutate(video_report = case_when(video_report == 1 ~ 'I had both sound and images',
+                                      video_report == 2 ~ 'I had sound, but no images',
+                                      video_report == 3 ~ 'I had images, but no sound',
+                                      video_report == 4 ~ 'I had neither sound nor images',
+                                      video_report == 5 ~ 'Something else prevented me from playing the video')) %>% 
+  group_by(video_report) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What was the recording like?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  footnote(general = "The respondents who had both sound and images or images but no sound were kept in the final sample.") %>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-videoreport.html"))
+
+
+d %>% group_by(mcheck_favorability) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "Proportion that correctly or incorrectly identify whether or not the decision outcome was in line with their own preferences.", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-mcheckfavorability.html"))
+
+
+
+```
+
