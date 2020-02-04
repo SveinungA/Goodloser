@@ -59,6 +59,36 @@ d <- d %>%
          trust = -(trust)+6
   )
 
+# Keep a full ITT dataset
+
+e <- d %>%
+  mutate(
+    favorability = case_when(
+    treatment %in% 1:4 ~ "Unfavorable",
+    treatment == 5    ~ "Favorable"),
+    treatment = case_when(
+    .[["treatment"]] == 1 ~ "Lamenting politician",
+    .[["treatment"]] == 2 ~ "Specific prime",
+    .[["treatment"]] == 3 ~ "General Prime",
+    .[["treatment"]] == 4 ~ "Not shown",
+    .[["treatment"]] == 5 ~ "Winner"),
+    opinion_ban = case_when(
+    .[["opinion_ban"]] == 1 ~ "Pro",
+    .[["opinion_ban"]] == 2 ~ "Anti"),
+    responseid = as.numeric(responseid),
+         imp_accept = case_when(imp_accept %in% 4:5 ~ "Important",
+                                imp_accept %in% 1:3 ~ "Not important"),
+         other_accept = case_when(other_accept %in% 4:5 ~ "High degree",
+                                  other_accept %in% 1:3 ~ "Low degree"),
+         self_accept = case_when(self_accept %in% 4:5 ~ "High degree",
+                                 self_accept %in% 1:3 ~ "Low degree"),
+         opinion_strength = case_when(opinion_strength %in% 4:5 ~ "Important",
+                                      opinion_strength %in% 1:3 ~ "Not important")
+  )
+
+write_sav(e, "Data/Goodloser-exp2-itt.sav")
+write_csv(e, "Data/Goodloser-exp2-itt.csv")
+
 
 #Remove respondents who did not see the video properly. Will be used as main data set
 d <- d %>%
