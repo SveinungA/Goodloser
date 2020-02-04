@@ -1,0 +1,197 @@
+
+```{r 3031_setup, include=FALSE}
+if(!require("broom")){install.packages("broom");  library(broom)}
+if(!require("haven")){install.packages("haven");  library(haven)}
+if(!require("here")){install.packages("here");  library(here)}
+if(!require("knitr")){install.packages("knitr");  library(knitr)}
+options(kableExtra.latex.load_packages = FALSE) 
+if(!require("kableExtra")){install.packages("kableExtra");  library(kableExtra)}
+if(!require("naniar")){install.packages("naniar");  library(naniar)}
+if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
+# The analysis uses custom functions included in the compendium. Install the included pkg with `devtools::install()` or just install from github with:
+#if (!require(wiggle)) {  devtools::install_github("mikajoh/wiggle")}
+
+set.seed(2016)
+
+d <- read_sav("Data/Goodloser-exp3.sav")
+
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
+```
+
+##Pre-treatment measures
+
+```{r}
+d <- d %>% 
+  mutate(
+           r13pad1 = case_when(r13pad1 == 1 ~ "In favor",
+                               r13pad1 == 2 ~ "Oppose"),
+           r13pad2 = case_when(r13pad2 == 1 ~ "Not important at all",
+                               r13pad2 == 2 ~ "Slightly important",
+                               r13pad2 == 3 ~ "Somewhat important",
+                               r13pad2 == 4 ~ "Important",
+                               r13pad2 == 5 ~ "Very important"),
+           r13pad2 = lvls_reorder(factor(r13pad2), c(2, 3, 4, 1, 5)),
+           r13pad3 = case_when(r13pad3 == 1 ~ "In favor",
+                               r13pad3 == 2 ~ "Oppose"),
+           r13pad4 = case_when(r13pad4 == 1 ~ "Not important at all",
+                               r13pad4 == 2 ~ "Slightly important",
+                               r13pad4 == 3 ~ "Somewhat important",
+                               r13pad4 == 4 ~ "Important",
+                               r13pad4 == 5 ~ "Very important"),
+           r13pad4 = lvls_reorder(factor(r13pad4), c(2, 3, 4, 1, 5)),
+           r13pad6a = case_when(r13pad6a == 1 ~ "Not fair at all",
+                                r13pad6a == 2 ~ "Slightly fair",
+                                r13pad6a == 3 ~ "Somewhat fair",
+                                r13pad6a == 4 ~ "Fair",
+                                r13pad6a == 5 ~ "Very fair"),
+           r13pad6a = lvls_reorder(factor(r13pad6a), c(2, 3, 4, 1, 5)),
+           r13pad6b = case_when(r13pad6b == 1 ~ "1 Not fair",
+                                r13pad6b == 2 ~ "2 ",
+                                r13pad6b == 3 ~ "3",
+                                r13pad6b == 4 ~ "4",
+                                r13pad6b == 5 ~ "5 Most fair"),
+           r13pad7a = case_when(r13pad7a == 1 ~ "Not reasonable at all",
+                                r13pad7a == 2 ~ "Slightly reasonable",
+                                r13pad7a == 3 ~ "Somewhat reasonable",
+                                r13pad7a == 4 ~ "Reasonable",
+                                r13pad7a == 5 ~ "Very reasonable"),
+           r13pad7a = lvls_reorder(factor(r13pad7a), c(1, 3, 4, 2, 5)),
+           r13pad7b = case_when(r13pad7b == 1 ~ "1 Not reasonable",
+                                r13pad7b == 2 ~ "2 ",
+                                r13pad7b == 3 ~ "3",
+                                r13pad7b == 4 ~ "4",
+                                r13pad7b == 5 ~ "5 Most reasonable"),
+           r13pad8a = case_when(r13pad8a == 1 ~ "Not willing at all",
+                                r13pad8a == 2 ~ "Slightly willing",
+                                r13pad8a == 3 ~ "Somewhat willing",
+                                r13pad8a == 4 ~ "Willing",
+                                r13pad8a == 5 ~ "Very willing"),
+           r13pad8a = lvls_reorder(factor(r13pad8a), c(1, 2, 3, 5, 4)),
+           r13pad8b = case_when(r13pad8b == 1 ~ "1 Not willing",
+                                r13pad8b == 2 ~ "2 ",
+                                r13pad8b == 3 ~ "3",
+                                r13pad8b == 4 ~ "4",
+                                r13pad8b == 5 ~ "5 Most willing")
+  )
+
+d %>% group_by(r13pad1) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
+  ungroup() %>% 
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion on a ban on begging in your municipality?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position")%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-begging-preference.html"))
+
+d %>% group_by(r13pad2) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How important is the issue of begging ban to you?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position")%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-begging-importance.html"))
+
+d %>% group_by(r13pad3) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion on an increase in the tolls for diesel cars in your municipality?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position")%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-toll-preference.html"))
+
+d %>% group_by(r13pad4) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How important is the issue of increased tolls for diesel cars to you?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-toll-preference.html"))
+
+```
+##Experimental vignette
+
+```{r}
+table <- tibble(Treatments = c("Issue", "Issue", "Outcome", "Outcome", "Winning margin", "Winning margin", "Winning margin", "Winner's gloating", "Winner's gloating", rep("Messenger and prime", 7)), 
+                Value = c("Ban on begging", 
+                          "Diesel car road toll",
+                          "Yes",
+                          "No",
+                          "Not shown",
+                          "Small margin",
+                          "Large margin", 
+                          "Not shown", 
+                          "Yes", 
+                          "Not shown", 
+                          "Politician, no prime", 
+                          "Politician,  specific prime",
+                          "Politician, general prime", 
+                          "Newspaper, no prime",
+                          "Newspaper, specific prime", 
+                          "Newspaper, general prime"), 
+                Text = c("in the future, begging on the streets will be banned or permitted in the municipality. This is a controversial decision. Some residents are strong in favour of a ban (the “Yes” side), while other residents are strongly against a ban (the “No” side). Some",
+                         "in the future, diesel cars will pay increased tolls. This is a controversial decision. Some residents are strongly in favour of such an increase (the side), while others are strongly against an increase (the “No” side). Some parties propose such an",
+                         "The Yes side won the vote",
+                         "The No side won the vote",
+                         ".",
+                         "with a slight majority.",
+                         "with a large majority.",
+                         " ",
+                         "Following the decision, a politician on the winning side says that it was a good decision and that common sense prevailed.",
+                         " ",
+                         "The leader of one of the parties that was against the decision says that they are disappointed and that the decision was wrong.",
+                         "The leader of one of the parties that was against the decision says that they are disappointed and that the decision was wrong,  but that it was a fair fight where both sides had the opportunity to argue in favour of their views.",
+                         "The leader of one of the parties that was against the decision says that they are disappointed and that the decision was wrong,  but that is what living in a democracy is all about. Sometimes you win, sometimes you lose.",
+                         "The local newspaper – which was against the decision – writes in an editorial that they are disappointed and that the decision was wrong.",
+                         "The local newspaper – which was against the decision – writes in an editorial that they are disappointed and that the decision was wrong, but that it was a fair fight where both sides had the opportunity to argue in favour of their views.",
+                         "The local newspaper – which was against the decision – writes in an editorial that they are disappointed and that the decision was wrong, but that is what living in a democracy is all about. Sometimes you win, sometimes you lose.")
+)
+
+ table %>% 
+    mutate_all(linebreak) %>% 
+    kable(booktabs = T, linesep = "", escape = F,  caption = "Vignette treatment dimensions and values", col.names = linebreak(c("Preference", "Treatment", "Text"))) %>% 
+    collapse_rows(columns = 1, latex_hline = "major", valign = "top") %>% 
+  kable_styling(latex_options = c("scale_down", "HOLD_position")) %>% 
+   footnote(general = 'Experimental vignette (treatments in {curly brackets}): Below, we have described a hypothetical situation. Please read through the situation carefully and then answer the three questions that follow. Imagine that your municipality must decide on {Issue} The decision will be taken by the municipal council and follow the usual procedures. The proposal will initially be debated by the municipal council where all the members will have the opportunity to express their opinions and arguments regarding the issue. The debate will be public, and journalists will be in attendance to report on the debate. In the end, the politicians will vote on the issue. {Outcome} {[Winning margin} {Winner gloating} {Messenger and prime}') %>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-vignette.html"))
+```
+
+```{r}
+
+d %>% group_by(r13pad6a) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What do you think about the way the decision was made?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-eval-dv1.html"))
+
+d %>% group_by(r13pad6b) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What do you think about the way the decision was made?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-eval-dv2.html"))
+
+d %>% group_by(r13pad7a) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-reasonable-dv1.html"))
+
+d %>% group_by(r13pad7b) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-reasonable-dv2.html"))
+
+
+d %>% group_by(r13pad8a) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "When you think about the actual outcome of the decision, how willing are you to accept the decision?", col.names = linebreak(c("Value", "N", "Percent"))) %>%   kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-accept-dv1.html"))
+
+d %>% group_by(r13pad8b) %>%
+   summarize(N_obs = n()) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
+  kable(booktabs = TRUE, linesep = "", escape = F, caption = "When you think about the actual outcome of the decision, how willing are you to accept the decision?", col.names = linebreak(c("Value", "N", "Percent"))) %>%   kable_styling(latex_options = "HOLD_position") %>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-accept-dv2.html"))
+
+```
