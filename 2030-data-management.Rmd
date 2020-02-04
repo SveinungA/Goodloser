@@ -122,16 +122,5 @@ write_sav(Loser_redux, "Data/Goodloser-exp2-exclusive.sav")
 write_csv(Loser_redux, "Data/Goodloser-exp2-exclusive.csv")
 
 
-#d <- d %>%
-#  mutate(treatment = case_when(
-#    .[["treatment"]] == 1 ~ "minority spokesperson disappointed and against the outcome",
-#    .[["treatment"]] == 2 ~ "minority spokesperson disappointed and against the outcome, but procedure was fair so outcome must be accepted",
-#    .[["treatment"]] == 3 ~ "minority spokesperson disappointed and against the outcome, but losses must be accepted in a democracy",
-#    .[["treatment"]] == 4 ~ "control - no additional information",
-#    .[["treatment"]] == 5 ~ "winner control - no additional information")
-#  )
-    
-
-
 
 ```
