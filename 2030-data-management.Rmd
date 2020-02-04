@@ -62,6 +62,7 @@ d <- d %>%
 # Keep a full ITT dataset
 
 e <- d %>%
+  filter(!is.na(treatment))%>%
   mutate(
     favorability = case_when(
     treatment %in% 1:4 ~ "Unfavorable",
