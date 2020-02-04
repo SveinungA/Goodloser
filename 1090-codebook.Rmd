@@ -6,7 +6,7 @@
 if(!require("codebook")){install.packages("codebook");  library(codebook)}
 if(!require("haven")){install.packages("haven");  library(haven)}
 
-knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE, cache = TRUE)
 ```
 
 ```{r 102_codebook}
