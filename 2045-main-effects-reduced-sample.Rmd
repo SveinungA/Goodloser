@@ -41,18 +41,16 @@ labels <- data.frame(
   term = c(
     "treatmentLamenting politician",
     "treatmentGeneral Prime",
-    "treatmentSpecific prime",
-    "treatmentWinner"
-    
+    "treatmentSpecific prime"
   ),
   label = c( "Lamenting politician",
              "General prime",
-             "Specific prime",
-             "Winner")
+             "Specific prime")
 )
 #Figure
 fig <-   res_main %>%
-  filter(term != "(Intercept)") %>% 
+  filter(term != "(Intercept)",
+         term != 'treatmentWinner') %>% 
   left_join(labels, by = "term") %>% 
   
   ggplot(aes(x = estimate, y = label,
@@ -89,11 +87,13 @@ ggsave(
 #Table
 table <- res_main %>% 
   select(term, estimate, std.error, statistic, p.value) %>% 
-  mutate(term = case_when( term == "(Intercept)" ~ "Not shown",
+  mutate(term = case_when( term == "(Intercept)" ~ "Not shown (Intercept)",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
                    term == "treatmentGeneral Prime" ~ "General prime", 
                    term == "treatmentSpecific prime" ~ "Specific prime",
                    term == "treatmentWinner" ~ "Winner"))
+
+kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 2 -- Norwegian vignette. Sample: Respondents who pass manipulation check", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2)
 
 kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 2 -- Norwegian vignette. Sample: Respondents who pass manipulation check", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
@@ -111,18 +111,17 @@ labels <- data.frame(
   term = c(
     "treatmentLamenting politician",
     "treatmentGeneral Prime",
-    "treatmentSpecific prime",
-    "treatmentWinner"
-    
+    "treatmentSpecific prime"
+
   ),
   label = c( "Lamenting politician",
              "General prime",
-             "Specific prime",
-             "Winner")
+             "Specific prime")
 )
 #Figure
 fig <-   res_main %>%
-  filter(term != "(Intercept)") %>% 
+  filter(term != "(Intercept)",
+         term!= 'treatmentWinner') %>% 
   left_join(labels, by = "term") %>% 
   
   ggplot(aes(x = estimate, y = label,
@@ -162,11 +161,13 @@ ggsave(
 #Table
 table <- res_main %>% 
   select(term, estimate, std.error, statistic, p.value) %>% 
-  mutate(term = case_when( term == "(Intercept)" ~ "Not shown",
+  mutate(term = case_when( term == "(Intercept)" ~ "Not shown (Intercept)",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
                    term == "treatmentGeneral Prime" ~ "General prime", 
                    term == "treatmentSpecific prime" ~ "Specific prime",
                    term == "treatmentWinner" ~ "Winner"))
+
+kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 2 -- Norwegian vignette. Sample: Respondents who pass manipulation check.", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2)
 
 kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 2 -- Norwegian vignette. Sample: Respondents who pass manipulation check.", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  %>% 
@@ -185,18 +186,16 @@ labels <- data.frame(
   term = c(
     "treatmentLamenting politician",
     "treatmentGeneral Prime",
-    "treatmentSpecific prime",
-    "treatmentWinner"
-    
+    "treatmentSpecific prime"
   ),
   label = c( "Lamenting politician",
              "General prime",
-             "Specific prime",
-             "Winner")
+             "Specific prime")
 )
 #Figure
 fig <-   res_main %>%
-  filter(term != "(Intercept)") %>% 
+  filter(term != "(Intercept)",
+         term != 'treatmentWinner') %>% 
   left_join(labels, by = "term") %>% 
   
   ggplot(aes(x = estimate, y = label,
@@ -233,11 +232,14 @@ ggsave(
 #Table
 table <- res_main %>% 
   select(term, estimate, std.error, statistic, p.value) %>% 
-  mutate(term = case_when( term == "(Intercept)" ~ "Not shown",
+  mutate(term = case_when( term == "(Intercept)" ~ "Not shown (Intercept)",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
                    term == "treatmentGeneral Prime" ~ "General prime", 
                    term == "treatmentSpecific prime" ~ "Specific prime",
                    term == "treatmentWinner" ~ "Winner"))
+
+
+kable(table, booktabs = TRUE, caption = "Treatment effects on trust in politician, Study 2 -- Norwegian vignette. Sample: Respondents who pass manipulation check.", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) 
 
 kable(table, booktabs = TRUE, caption = "Treatment effects on trust in politician, Study 2 -- Norwegian vignette. Sample: Respondents who pass manipulation check.", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  %>% 

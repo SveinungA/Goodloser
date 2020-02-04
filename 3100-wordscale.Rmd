@@ -106,7 +106,7 @@ main_01 <- main_01 %>%
 source("Functions/amce.R")
 
 res_main <-  main_01 %>%
-  amce(post_reasonable, treat_outfav, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger) 
+  amce(post_reasonable, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger) 
   
 res_main <- res_main %>% 
   mutate(
@@ -114,7 +114,7 @@ res_main <- res_main %>%
             treatment == "treat_winningmargin" ~ "Winning\nmargin",
             treatment == "treat_winnergloat" ~ "Winner\ngloats",
             treatment == "treat_prime" ~ "Democratic\nprime",
-            treatment == "treat_messenger" ~ "Primer")
+            treatment == "treat_messenger" ~ "Messenger")
 )
 
 #Figure
@@ -162,7 +162,11 @@ res_main <- res_main %>%
 
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint study", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- group_rows(index = c("Outcome favorability" = 2, "Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))%>% 
+ group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint study", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-wordscale-reasonable-nocon.html"))
 
 ```
@@ -174,7 +178,7 @@ kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -
 source("Functions/amce.R")
 
 res_main <-  main_01 %>%
-  amce(post_accept, treat_outfav, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger) 
+  amce(post_accept, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger) 
   
 
 res_main <- res_main %>% 
@@ -183,7 +187,7 @@ res_main <- res_main %>%
             treatment == "treat_winningmargin" ~ "Winning\nmargin",
             treatment == "treat_winnergloat" ~ "Winner\ngloats",
             treatment == "treat_prime" ~ "Democratic\nprime",
-            treatment == "treat_messenger" ~ "Primer")
+            treatment == "treat_messenger" ~ "Messenger")
 )
 
 #Figure
@@ -231,7 +235,11 @@ res_main <- res_main %>%
 
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint study", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- group_rows(index = c("Outcome favorability" = 2, "Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))%>% 
+ group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint study", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-wordscale-accept-nocon.html"))
 
 ```
@@ -243,7 +251,7 @@ kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -
 source("Functions/amce.R")
 
 res_main <-  main_01 %>%
-  amce(post_fair, treat_outfav, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger)
+  amce(post_fair, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger)
   
 res_main <- res_main %>% 
   mutate(
@@ -251,7 +259,7 @@ res_main <- res_main %>%
             treatment == "treat_winningmargin" ~ "Winning\nmargin",
             treatment == "treat_winnergloat" ~ "Winner\ngloats",
             treatment == "treat_prime" ~ "Democratic\nprime",
-            treatment == "treat_messenger" ~ "Primer")
+            treatment == "treat_messenger" ~ "Messenger")
 )
 
 #Figure
@@ -300,7 +308,7 @@ res_main <- res_main %>%
 
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint study", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- group_rows(index = c("Outcome favorability" = 2, "Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Primer" = 2))%>% 
+ group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-wordscale-fairness-nocon.html"))
 
 
