@@ -77,13 +77,13 @@ e <- d %>%
     .[["opinion_ban"]] == 1 ~ "Pro",
     .[["opinion_ban"]] == 2 ~ "Anti"),
     responseid = as.numeric(responseid),
-         imp_accept = case_when(imp_accept %in% 4:5 ~ "Important",
+         imp_accept2 = case_when(imp_accept %in% 4:5 ~ "Important",
                                 imp_accept %in% 1:3 ~ "Not important"),
-         other_accept = case_when(other_accept %in% 4:5 ~ "High degree",
+         other_accept2 = case_when(other_accept %in% 4:5 ~ "High degree",
                                   other_accept %in% 1:3 ~ "Low degree"),
-         self_accept = case_when(self_accept %in% 4:5 ~ "High degree",
+         self_accept2 = case_when(self_accept %in% 4:5 ~ "High degree",
                                  self_accept %in% 1:3 ~ "Low degree"),
-         opinion_strength = case_when(opinion_strength %in% 4:5 ~ "Important",
+         opinion_strength2 = case_when(opinion_strength %in% 4:5 ~ "Important",
                                       opinion_strength %in% 1:3 ~ "Not important")
   )
 
@@ -126,13 +126,13 @@ d <- d %>%
     .[["opinion_ban"]] == 1 ~ "Pro",
     .[["opinion_ban"]] == 2 ~ "Anti"),
     responseid = as.numeric(responseid),
-         imp_accept = case_when(imp_accept %in% 4:5 ~ "Important",
+         imp_accept2 = case_when(imp_accept %in% 4:5 ~ "Important",
                                 imp_accept %in% 1:3 ~ "Not important"),
-         other_accept = case_when(other_accept %in% 4:5 ~ "High degree",
+         other_accept2 = case_when(other_accept %in% 4:5 ~ "High degree",
                                   other_accept %in% 1:3 ~ "Low degree"),
-         self_accept = case_when(self_accept %in% 4:5 ~ "High degree",
+         self_accept2 = case_when(self_accept %in% 4:5 ~ "High degree",
                                  self_accept %in% 1:3 ~ "Low degree"),
-         opinion_strength = case_when(opinion_strength %in% 4:5 ~ "Important",
+         opinion_strength2 = case_when(opinion_strength %in% 4:5 ~ "Important",
                                       opinion_strength %in% 1:3 ~ "Not important")
   )
 #Save file with the main data set
