@@ -4,19 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Data management | The Good Loser</title>
-  <meta name="description" content="Chapter 8 Data management | The Good Loser" />
+  <title>Chapter 6 Data management | The Good Loser</title>
+  <meta name="description" content="Chapter 6 Data management | The Good Loser" />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Data management | The Good Loser" />
+  <meta property="og:title" content="Chapter 6 Data management | The Good Loser" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="loser-picture.png" />
   
-  
+  <meta name="github-repo" content="SveinungA/Goodloser" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Data management | The Good Loser" />
+  <meta name="twitter:title" content="Chapter 6 Data management | The Good Loser" />
   
   
   <meta name="twitter:image" content="loser-picture.png" />
@@ -24,14 +24,14 @@
 <meta name="author" content="Peter Esaiasson, Sveinung Arnesen, and Hannah Werner" />
 
 
-<meta name="date" content="2020-01-15" />
+<meta name="date" content="2020-02-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="codebook-1.html"/>
+<link rel="prev" href="codebook.html"/>
 <link rel="next" href="main-effects-1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
@@ -73,7 +74,6 @@
 <script src="libs/selectize-0.12.0/selectize.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -93,7 +93,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -156,103 +156,102 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
-<li class="chapter" data-level="2" data-path="codebook.html"><a href="codebook.html"><i class="fa fa-check"></i><b>2</b> Codebook</a><ul>
-<li class="chapter" data-level="2.0.1" data-path="codebook.html"><a href="codebook.html#metadata"><i class="fa fa-check"></i><b>2.0.1</b> Metadata</a></li>
-<li class="chapter" data-level="2.1" data-path="codebook.html"><a href="codebook.html#variables"><i class="fa fa-check"></i><b>2.1</b> Variables</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="codebook.html"><a href="codebook.html#Q64"><i class="fa fa-check"></i><b>2.1.1</b> Q64</a></li>
-<li class="chapter" data-level="2.1.2" data-path="codebook.html"><a href="codebook.html#Q63"><i class="fa fa-check"></i><b>2.1.2</b> Q63</a></li>
-<li class="chapter" data-level="2.1.3" data-path="codebook.html"><a href="codebook.html#S3_1_1"><i class="fa fa-check"></i><b>2.1.3</b> S3_1_1</a></li>
-<li class="chapter" data-level="2.1.4" data-path="codebook.html"><a href="codebook.html#S3_2_1"><i class="fa fa-check"></i><b>2.1.4</b> S3_2_1</a></li>
-<li class="chapter" data-level="2.1.5" data-path="codebook.html"><a href="codebook.html#S3_4_1_1"><i class="fa fa-check"></i><b>2.1.5</b> S3_4_1_1</a></li>
-<li class="chapter" data-level="2.1.6" data-path="codebook.html"><a href="codebook.html#S3_4_1_2"><i class="fa fa-check"></i><b>2.1.6</b> S3_4_1_2</a></li>
-<li class="chapter" data-level="2.1.7" data-path="codebook.html"><a href="codebook.html#S3_5_1"><i class="fa fa-check"></i><b>2.1.7</b> S3_5_1</a></li>
-<li class="chapter" data-level="2.1.8" data-path="codebook.html"><a href="codebook.html#S3_6_1_1"><i class="fa fa-check"></i><b>2.1.8</b> S3_6_1_1</a></li>
-<li class="chapter" data-level="2.1.9" data-path="codebook.html"><a href="codebook.html#S3_6_1_2"><i class="fa fa-check"></i><b>2.1.9</b> S3_6_1_2</a></li>
-<li class="chapter" data-level="2.1.10" data-path="codebook.html"><a href="codebook.html#S3_7_1_1"><i class="fa fa-check"></i><b>2.1.10</b> S3_7_1_1</a></li>
-<li class="chapter" data-level="2.1.11" data-path="codebook.html"><a href="codebook.html#S3_7_1_2"><i class="fa fa-check"></i><b>2.1.11</b> S3_7_1_2</a></li>
-<li class="chapter" data-level="2.1.12" data-path="codebook.html"><a href="codebook.html#S3_8_1_1"><i class="fa fa-check"></i><b>2.1.12</b> S3_8_1_1</a></li>
-<li class="chapter" data-level="2.1.13" data-path="codebook.html"><a href="codebook.html#S3_8_1_2"><i class="fa fa-check"></i><b>2.1.13</b> S3_8_1_2</a></li>
-<li class="chapter" data-level="2.1.14" data-path="codebook.html"><a href="codebook.html#Studie3sel"><i class="fa fa-check"></i><b>2.1.14</b> Studie3sel</a></li>
+<li class="part"><span><b>I STUDY I: SWEDISH VIGNETTE</b></span></li>
+<li class="chapter" data-level="2" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>2</b> Data management</a></li>
+<li class="chapter" data-level="3" data-path="main-effects.html"><a href="main-effects.html"><i class="fa fa-check"></i><b>3</b> Main effects</a></li>
+<li class="chapter" data-level="4" data-path="effects-on-losers.html"><a href="effects-on-losers.html"><i class="fa fa-check"></i><b>4</b> Effects on losers</a></li>
+<li class="chapter" data-level="5" data-path="codebook.html"><a href="codebook.html"><i class="fa fa-check"></i><b>5</b> Codebook</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="codebook.html"><a href="codebook.html#metadata"><i class="fa fa-check"></i><b>5.0.1</b> Metadata</a></li>
+<li class="chapter" data-level="5.1" data-path="codebook.html"><a href="codebook.html#variables"><i class="fa fa-check"></i><b>5.1</b> Variables</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="codebook.html"><a href="codebook.html#Q64"><i class="fa fa-check"></i><b>5.1.1</b> Q64</a></li>
+<li class="chapter" data-level="5.1.2" data-path="codebook.html"><a href="codebook.html#Q63"><i class="fa fa-check"></i><b>5.1.2</b> Q63</a></li>
+<li class="chapter" data-level="5.1.3" data-path="codebook.html"><a href="codebook.html#S3_1_1"><i class="fa fa-check"></i><b>5.1.3</b> S3_1_1</a></li>
+<li class="chapter" data-level="5.1.4" data-path="codebook.html"><a href="codebook.html#S3_2_1"><i class="fa fa-check"></i><b>5.1.4</b> S3_2_1</a></li>
+<li class="chapter" data-level="5.1.5" data-path="codebook.html"><a href="codebook.html#S3_4_1_1"><i class="fa fa-check"></i><b>5.1.5</b> S3_4_1_1</a></li>
+<li class="chapter" data-level="5.1.6" data-path="codebook.html"><a href="codebook.html#S3_4_1_2"><i class="fa fa-check"></i><b>5.1.6</b> S3_4_1_2</a></li>
+<li class="chapter" data-level="5.1.7" data-path="codebook.html"><a href="codebook.html#S3_5_1"><i class="fa fa-check"></i><b>5.1.7</b> S3_5_1</a></li>
+<li class="chapter" data-level="5.1.8" data-path="codebook.html"><a href="codebook.html#S3_6_1_1"><i class="fa fa-check"></i><b>5.1.8</b> S3_6_1_1</a></li>
+<li class="chapter" data-level="5.1.9" data-path="codebook.html"><a href="codebook.html#S3_6_1_2"><i class="fa fa-check"></i><b>5.1.9</b> S3_6_1_2</a></li>
+<li class="chapter" data-level="5.1.10" data-path="codebook.html"><a href="codebook.html#S3_7_1_1"><i class="fa fa-check"></i><b>5.1.10</b> S3_7_1_1</a></li>
+<li class="chapter" data-level="5.1.11" data-path="codebook.html"><a href="codebook.html#S3_7_1_2"><i class="fa fa-check"></i><b>5.1.11</b> S3_7_1_2</a></li>
+<li class="chapter" data-level="5.1.12" data-path="codebook.html"><a href="codebook.html#S3_8_1_1"><i class="fa fa-check"></i><b>5.1.12</b> S3_8_1_1</a></li>
+<li class="chapter" data-level="5.1.13" data-path="codebook.html"><a href="codebook.html#S3_8_1_2"><i class="fa fa-check"></i><b>5.1.13</b> S3_8_1_2</a></li>
+<li class="chapter" data-level="5.1.14" data-path="codebook.html"><a href="codebook.html#Studie3sel"><i class="fa fa-check"></i><b>5.1.14</b> Studie3sel</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="codebook.html"><a href="codebook.html#missingness-report"><i class="fa fa-check"></i><b>2.2</b> Missingness report</a></li>
-<li class="chapter" data-level="2.3" data-path="codebook.html"><a href="codebook.html#codebook-table"><i class="fa fa-check"></i><b>2.3</b> Codebook table</a></li>
+<li class="chapter" data-level="5.2" data-path="codebook.html"><a href="codebook.html#missingness-report"><i class="fa fa-check"></i><b>5.2</b> Missingness report</a></li>
+<li class="chapter" data-level="5.3" data-path="codebook.html"><a href="codebook.html#codebook-table"><i class="fa fa-check"></i><b>5.3</b> Codebook table</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>3</b> Data management</a></li>
-<li class="chapter" data-level="4" data-path="main-effects.html"><a href="main-effects.html"><i class="fa fa-check"></i><b>4</b> Main effects</a></li>
-<li class="chapter" data-level="5" data-path="effects-on-losers.html"><a href="effects-on-losers.html"><i class="fa fa-check"></i><b>5</b> Effects on losers</a></li>
-<li class="chapter" data-level="6" data-path="effects-on-winners.html"><a href="effects-on-winners.html"><i class="fa fa-check"></i><b>6</b> Effects on winners</a></li>
-<li class="chapter" data-level="7" data-path="codebook-1.html"><a href="codebook-1.html"><i class="fa fa-check"></i><b>7</b> Codebook</a><ul>
-<li class="chapter" data-level="7.0.1" data-path="codebook-1.html"><a href="codebook-1.html#metadata-1"><i class="fa fa-check"></i><b>7.0.1</b> Metadata</a></li>
-<li class="chapter" data-level="7.1" data-path="codebook-1.html"><a href="codebook-1.html#variables-1"><i class="fa fa-check"></i><b>7.1</b> Variables</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="codebook-1.html"><a href="codebook-1.html#responseid"><i class="fa fa-check"></i><b>7.1.1</b> responseid</a></li>
-<li class="chapter" data-level="7.1.2" data-path="codebook-1.html"><a href="codebook-1.html#r9pad1"><i class="fa fa-check"></i><b>7.1.2</b> r9pad1</a></li>
-<li class="chapter" data-level="7.1.3" data-path="codebook-1.html"><a href="codebook-1.html#r9pad2"><i class="fa fa-check"></i><b>7.1.3</b> r9pad2</a></li>
-<li class="chapter" data-level="7.1.4" data-path="codebook-1.html"><a href="codebook-1.html#r9pad3"><i class="fa fa-check"></i><b>7.1.4</b> r9pad3</a></li>
-<li class="chapter" data-level="7.1.5" data-path="codebook-1.html"><a href="codebook-1.html#r10panelpad"><i class="fa fa-check"></i><b>7.1.5</b> r10panelpad</a></li>
-<li class="chapter" data-level="7.1.6" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1"><i class="fa fa-check"></i><b>7.1.6</b> r10pad1</a></li>
-<li class="chapter" data-level="7.1.7" data-path="codebook-1.html"><a href="codebook-1.html#r10pad2"><i class="fa fa-check"></i><b>7.1.7</b> r10pad2</a></li>
-<li class="chapter" data-level="7.1.8" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3_mobil"><i class="fa fa-check"></i><b>7.1.8</b> r10pad3_mobil</a></li>
-<li class="chapter" data-level="7.1.9" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3a_ran"><i class="fa fa-check"></i><b>7.1.9</b> r10pad3a_ran</a></li>
-<li class="chapter" data-level="7.1.10" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3b_ran"><i class="fa fa-check"></i><b>7.1.10</b> r10pad3b_ran</a></li>
-<li class="chapter" data-level="7.1.11" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3ended"><i class="fa fa-check"></i><b>7.1.11</b> r10pad3ended</a></li>
-<li class="chapter" data-level="7.1.12" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3error"><i class="fa fa-check"></i><b>7.1.12</b> r10pad3error</a></li>
-<li class="chapter" data-level="7.1.13" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3paused"><i class="fa fa-check"></i><b>7.1.13</b> r10pad3paused</a></li>
-<li class="chapter" data-level="7.1.14" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3played"><i class="fa fa-check"></i><b>7.1.14</b> r10pad3played</a></li>
-<li class="chapter" data-level="7.1.15" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3_timespent"><i class="fa fa-check"></i><b>7.1.15</b> r10pad3_timespent</a></li>
-<li class="chapter" data-level="7.1.16" data-path="codebook-1.html"><a href="codebook-1.html#r10pad4"><i class="fa fa-check"></i><b>7.1.16</b> r10pad4</a></li>
-<li class="chapter" data-level="7.1.17" data-path="codebook-1.html"><a href="codebook-1.html#r10pad4_comment"><i class="fa fa-check"></i><b>7.1.17</b> r10pad4_comment</a></li>
-<li class="chapter" data-level="7.1.18" data-path="codebook-1.html"><a href="codebook-1.html#r10pad5"><i class="fa fa-check"></i><b>7.1.18</b> r10pad5</a></li>
-<li class="chapter" data-level="7.1.19" data-path="codebook-1.html"><a href="codebook-1.html#r10pad6"><i class="fa fa-check"></i><b>7.1.19</b> r10pad6</a></li>
-<li class="chapter" data-level="7.1.20" data-path="codebook-1.html"><a href="codebook-1.html#r10pad7"><i class="fa fa-check"></i><b>7.1.20</b> r10pad7</a></li>
-<li class="chapter" data-level="7.1.21" data-path="codebook-1.html"><a href="codebook-1.html#r10pad8"><i class="fa fa-check"></i><b>7.1.21</b> r10pad8</a></li>
-<li class="chapter" data-level="7.1.22" data-path="codebook-1.html"><a href="codebook-1.html#r10pad9"><i class="fa fa-check"></i><b>7.1.22</b> r10pad9</a></li>
-<li class="chapter" data-level="7.1.23" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_1"><i class="fa fa-check"></i><b>7.1.23</b> r10pad1_9_backward_1</a></li>
-<li class="chapter" data-level="7.1.24" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_2"><i class="fa fa-check"></i><b>7.1.24</b> r10pad1_9_backward_2</a></li>
-<li class="chapter" data-level="7.1.25" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_3"><i class="fa fa-check"></i><b>7.1.25</b> r10pad1_9_backward_3</a></li>
-<li class="chapter" data-level="7.1.26" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_4"><i class="fa fa-check"></i><b>7.1.26</b> r10pad1_9_backward_4</a></li>
-<li class="chapter" data-level="7.1.27" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_5"><i class="fa fa-check"></i><b>7.1.27</b> r10pad1_9_backward_5</a></li>
-<li class="chapter" data-level="7.1.28" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_6"><i class="fa fa-check"></i><b>7.1.28</b> r10pad1_9_backward_6</a></li>
-<li class="chapter" data-level="7.1.29" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_7"><i class="fa fa-check"></i><b>7.1.29</b> r10pad1_9_backward_7</a></li>
-<li class="chapter" data-level="7.1.30" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_8"><i class="fa fa-check"></i><b>7.1.30</b> r10pad1_9_backward_8</a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="codebook-1.html"><a href="codebook-1.html#missingness-report-1"><i class="fa fa-check"></i><b>7.2</b> Missingness report</a></li>
-<li class="chapter" data-level="7.3" data-path="codebook-1.html"><a href="codebook-1.html#codebook-table-1"><i class="fa fa-check"></i><b>7.3</b> Codebook table</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="data-management-1.html"><a href="data-management-1.html"><i class="fa fa-check"></i><b>8</b> Data management</a></li>
-<li class="chapter" data-level="9" data-path="main-effects-1.html"><a href="main-effects-1.html"><i class="fa fa-check"></i><b>9</b> Main effects</a></li>
+<li class="part"><span><b>II STUDY II: NORWEGIAN VIGNETTE</b></span></li>
+<li class="chapter" data-level="6" data-path="data-management-1.html"><a href="data-management-1.html"><i class="fa fa-check"></i><b>6</b> Data management</a></li>
+<li class="chapter" data-level="7" data-path="main-effects-1.html"><a href="main-effects-1.html"><i class="fa fa-check"></i><b>7</b> Main effects</a></li>
+<li class="chapter" data-level="8" data-path="main-effects-with-sample-that-excludes-respondents-who-fail-manipulation-check.html"><a href="main-effects-with-sample-that-excludes-respondents-who-fail-manipulation-check.html"><i class="fa fa-check"></i><b>8</b> Main effects with sample that excludes respondents who fail manipulation check</a></li>
+<li class="chapter" data-level="9" data-path="main-effects-with-full-itt-sample.html"><a href="main-effects-with-full-itt-sample.html"><i class="fa fa-check"></i><b>9</b> Main effects with full ITT sample</a></li>
 <li class="chapter" data-level="10" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html"><i class="fa fa-check"></i><b>10</b> Effects on losers</a></li>
-<li class="chapter" data-level="11" data-path="codebook-2.html"><a href="codebook-2.html"><i class="fa fa-check"></i><b>11</b> Codebook</a><ul>
-<li class="chapter" data-level="11.0.1" data-path="codebook-2.html"><a href="codebook-2.html#metadata-2"><i class="fa fa-check"></i><b>11.0.1</b> Metadata</a></li>
-<li class="chapter" data-level="11.1" data-path="codebook-2.html"><a href="codebook-2.html#variables-2"><i class="fa fa-check"></i><b>11.1</b> Variables</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="codebook-1.html"><a href="codebook-1.html#responseid"><i class="fa fa-check"></i><b>11.1.1</b> responseid</a></li>
-<li class="chapter" data-level="11.1.2" data-path="codebook-2.html"><a href="codebook-2.html#r13pad1"><i class="fa fa-check"></i><b>11.1.2</b> r13pad1</a></li>
-<li class="chapter" data-level="11.1.3" data-path="codebook-2.html"><a href="codebook-2.html#r13pad2"><i class="fa fa-check"></i><b>11.1.3</b> r13pad2</a></li>
-<li class="chapter" data-level="11.1.4" data-path="codebook-2.html"><a href="codebook-2.html#r13pad3"><i class="fa fa-check"></i><b>11.1.4</b> r13pad3</a></li>
-<li class="chapter" data-level="11.1.5" data-path="codebook-2.html"><a href="codebook-2.html#r13pad4"><i class="fa fa-check"></i><b>11.1.5</b> r13pad4</a></li>
-<li class="chapter" data-level="11.1.6" data-path="codebook-2.html"><a href="codebook-2.html#r13pad5_avsender"><i class="fa fa-check"></i><b>11.1.6</b> r13pad5_avsender</a></li>
-<li class="chapter" data-level="11.1.7" data-path="codebook-2.html"><a href="codebook-2.html#r13pad5_sak"><i class="fa fa-check"></i><b>11.1.7</b> r13pad5_sak</a></li>
-<li class="chapter" data-level="11.1.8" data-path="codebook-2.html"><a href="codebook-2.html#r13pad5_utfall"><i class="fa fa-check"></i><b>11.1.8</b> r13pad5_utfall</a></li>
-<li class="chapter" data-level="11.1.9" data-path="codebook-2.html"><a href="codebook-2.html#r13pad5_vinner"><i class="fa fa-check"></i><b>11.1.9</b> r13pad5_vinner</a></li>
-<li class="chapter" data-level="11.1.10" data-path="codebook-2.html"><a href="codebook-2.html#r13pad5_vinnermargin"><i class="fa fa-check"></i><b>11.1.10</b> r13pad5_vinnermargin</a></li>
-<li class="chapter" data-level="11.1.11" data-path="codebook-2.html"><a href="codebook-2.html#r13pad6_ran"><i class="fa fa-check"></i><b>11.1.11</b> r13pad6_ran</a></li>
-<li class="chapter" data-level="11.1.12" data-path="codebook-2.html"><a href="codebook-2.html#r13pad6a"><i class="fa fa-check"></i><b>11.1.12</b> r13pad6a</a></li>
-<li class="chapter" data-level="11.1.13" data-path="codebook-2.html"><a href="codebook-2.html#r13pad6b"><i class="fa fa-check"></i><b>11.1.13</b> r13pad6b</a></li>
-<li class="chapter" data-level="11.1.14" data-path="codebook-2.html"><a href="codebook-2.html#r13pad7a"><i class="fa fa-check"></i><b>11.1.14</b> r13pad7a</a></li>
-<li class="chapter" data-level="11.1.15" data-path="codebook-2.html"><a href="codebook-2.html#r13pad7b"><i class="fa fa-check"></i><b>11.1.15</b> r13pad7b</a></li>
-<li class="chapter" data-level="11.1.16" data-path="codebook-2.html"><a href="codebook-2.html#r13pad8a"><i class="fa fa-check"></i><b>11.1.16</b> r13pad8a</a></li>
-<li class="chapter" data-level="11.1.17" data-path="codebook-2.html"><a href="codebook-2.html#r13pad8b"><i class="fa fa-check"></i><b>11.1.17</b> r13pad8b</a></li>
-<li class="chapter" data-level="11.1.18" data-path="codebook-2.html"><a href="codebook-2.html#Scale_time"><i class="fa fa-check"></i><b>11.1.18</b> Scale_time</a></li>
-<li class="chapter" data-level="11.1.19" data-path="codebook-2.html"><a href="codebook-2.html#time"><i class="fa fa-check"></i><b>11.1.19</b> time</a></li>
+<li class="chapter" data-level="11" data-path="codebook-1.html"><a href="codebook-1.html"><i class="fa fa-check"></i><b>11</b> Codebook</a><ul>
+<li class="chapter" data-level="11.0.1" data-path="codebook-1.html"><a href="codebook-1.html#metadata-1"><i class="fa fa-check"></i><b>11.0.1</b> Metadata</a></li>
+<li class="chapter" data-level="11.1" data-path="codebook-1.html"><a href="codebook-1.html#variables-1"><i class="fa fa-check"></i><b>11.1</b> Variables</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="codebook.html"><a href="codebook.html#Q64"><i class="fa fa-check"></i><b>11.1.1</b> Q64</a></li>
+<li class="chapter" data-level="11.1.2" data-path="codebook.html"><a href="codebook.html#Q63"><i class="fa fa-check"></i><b>11.1.2</b> Q63</a></li>
+<li class="chapter" data-level="11.1.3" data-path="codebook.html"><a href="codebook.html#S3_1_1"><i class="fa fa-check"></i><b>11.1.3</b> S3_1_1</a></li>
+<li class="chapter" data-level="11.1.4" data-path="codebook.html"><a href="codebook.html#S3_2_1"><i class="fa fa-check"></i><b>11.1.4</b> S3_2_1</a></li>
+<li class="chapter" data-level="11.1.5" data-path="codebook.html"><a href="codebook.html#S3_4_1_1"><i class="fa fa-check"></i><b>11.1.5</b> S3_4_1_1</a></li>
+<li class="chapter" data-level="11.1.6" data-path="codebook.html"><a href="codebook.html#S3_4_1_2"><i class="fa fa-check"></i><b>11.1.6</b> S3_4_1_2</a></li>
+<li class="chapter" data-level="11.1.7" data-path="codebook.html"><a href="codebook.html#S3_5_1"><i class="fa fa-check"></i><b>11.1.7</b> S3_5_1</a></li>
+<li class="chapter" data-level="11.1.8" data-path="codebook.html"><a href="codebook.html#S3_6_1_1"><i class="fa fa-check"></i><b>11.1.8</b> S3_6_1_1</a></li>
+<li class="chapter" data-level="11.1.9" data-path="codebook.html"><a href="codebook.html#S3_6_1_2"><i class="fa fa-check"></i><b>11.1.9</b> S3_6_1_2</a></li>
+<li class="chapter" data-level="11.1.10" data-path="codebook.html"><a href="codebook.html#S3_7_1_1"><i class="fa fa-check"></i><b>11.1.10</b> S3_7_1_1</a></li>
+<li class="chapter" data-level="11.1.11" data-path="codebook.html"><a href="codebook.html#S3_7_1_2"><i class="fa fa-check"></i><b>11.1.11</b> S3_7_1_2</a></li>
+<li class="chapter" data-level="11.1.12" data-path="codebook.html"><a href="codebook.html#S3_8_1_1"><i class="fa fa-check"></i><b>11.1.12</b> S3_8_1_1</a></li>
+<li class="chapter" data-level="11.1.13" data-path="codebook.html"><a href="codebook.html#S3_8_1_2"><i class="fa fa-check"></i><b>11.1.13</b> S3_8_1_2</a></li>
+<li class="chapter" data-level="11.1.14" data-path="codebook.html"><a href="codebook.html#Studie3sel"><i class="fa fa-check"></i><b>11.1.14</b> Studie3sel</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="codebook-2.html"><a href="codebook-2.html#missingness-report-2"><i class="fa fa-check"></i><b>11.2</b> Missingness report</a></li>
-<li class="chapter" data-level="11.3" data-path="codebook-2.html"><a href="codebook-2.html#codebook-table-2"><i class="fa fa-check"></i><b>11.3</b> Codebook table</a></li>
+<li class="chapter" data-level="11.2" data-path="codebook-1.html"><a href="codebook-1.html#missingness-report-1"><i class="fa fa-check"></i><b>11.2</b> Missingness report</a></li>
+<li class="chapter" data-level="11.3" data-path="codebook-1.html"><a href="codebook-1.html#codebook-table-1"><i class="fa fa-check"></i><b>11.3</b> Codebook table</a></li>
 </ul></li>
+<li class="part"><span><b>III STUDY III: NORWEGIAN CONJOINT</b></span></li>
 <li class="chapter" data-level="12" data-path="data-management-2.html"><a href="data-management-2.html"><i class="fa fa-check"></i><b>12</b> Data management</a></li>
 <li class="chapter" data-level="13" data-path="main-effects-2.html"><a href="main-effects-2.html"><i class="fa fa-check"></i><b>13</b> Main effects</a></li>
 <li class="chapter" data-level="14" data-path="effects-on-losers-2.html"><a href="effects-on-losers-2.html"><i class="fa fa-check"></i><b>14</b> Effects on losers</a></li>
-<li class="chapter" data-level="15" data-path="effects-on-winners-1.html"><a href="effects-on-winners-1.html"><i class="fa fa-check"></i><b>15</b> Effects on winners</a></li>
-<li class="chapter" data-level="16" data-path="worded-answer-scale.html"><a href="worded-answer-scale.html"><i class="fa fa-check"></i><b>16</b> Worded answer scale</a></li>
-<li class="chapter" data-level="17" data-path="numbered-answer-scale.html"><a href="numbered-answer-scale.html"><i class="fa fa-check"></i><b>17</b> Numbered answer scale</a></li>
+<li class="chapter" data-level="15" data-path="worded-answer-scale.html"><a href="worded-answer-scale.html"><i class="fa fa-check"></i><b>15</b> Worded answer scale</a></li>
+<li class="chapter" data-level="16" data-path="numbered-answer-scale.html"><a href="numbered-answer-scale.html"><i class="fa fa-check"></i><b>16</b> Numbered answer scale</a></li>
+<li class="chapter" data-level="17" data-path="codebook-2.html"><a href="codebook-2.html"><i class="fa fa-check"></i><b>17</b> Codebook</a><ul>
+<li class="chapter" data-level="17.0.1" data-path="codebook-2.html"><a href="codebook-2.html#metadata-2"><i class="fa fa-check"></i><b>17.0.1</b> Metadata</a></li>
+<li class="chapter" data-level="17.1" data-path="codebook-2.html"><a href="codebook-2.html#variables-2"><i class="fa fa-check"></i><b>17.1</b> Variables</a><ul>
+<li class="chapter" data-level="17.1.1" data-path="codebook-2.html"><a href="codebook-2.html#responseid"><i class="fa fa-check"></i><b>17.1.1</b> responseid</a></li>
+<li class="chapter" data-level="17.1.2" data-path="codebook-2.html"><a href="codebook-2.html#r9pad1"><i class="fa fa-check"></i><b>17.1.2</b> r9pad1</a></li>
+<li class="chapter" data-level="17.1.3" data-path="codebook-2.html"><a href="codebook-2.html#r9pad2"><i class="fa fa-check"></i><b>17.1.3</b> r9pad2</a></li>
+<li class="chapter" data-level="17.1.4" data-path="codebook-2.html"><a href="codebook-2.html#r9pad3"><i class="fa fa-check"></i><b>17.1.4</b> r9pad3</a></li>
+<li class="chapter" data-level="17.1.5" data-path="codebook-2.html"><a href="codebook-2.html#r10panelpad"><i class="fa fa-check"></i><b>17.1.5</b> r10panelpad</a></li>
+<li class="chapter" data-level="17.1.6" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1"><i class="fa fa-check"></i><b>17.1.6</b> r10pad1</a></li>
+<li class="chapter" data-level="17.1.7" data-path="codebook-2.html"><a href="codebook-2.html#r10pad2"><i class="fa fa-check"></i><b>17.1.7</b> r10pad2</a></li>
+<li class="chapter" data-level="17.1.8" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3_mobil"><i class="fa fa-check"></i><b>17.1.8</b> r10pad3_mobil</a></li>
+<li class="chapter" data-level="17.1.9" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3a_ran"><i class="fa fa-check"></i><b>17.1.9</b> r10pad3a_ran</a></li>
+<li class="chapter" data-level="17.1.10" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3b_ran"><i class="fa fa-check"></i><b>17.1.10</b> r10pad3b_ran</a></li>
+<li class="chapter" data-level="17.1.11" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3ended"><i class="fa fa-check"></i><b>17.1.11</b> r10pad3ended</a></li>
+<li class="chapter" data-level="17.1.12" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3error"><i class="fa fa-check"></i><b>17.1.12</b> r10pad3error</a></li>
+<li class="chapter" data-level="17.1.13" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3paused"><i class="fa fa-check"></i><b>17.1.13</b> r10pad3paused</a></li>
+<li class="chapter" data-level="17.1.14" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3played"><i class="fa fa-check"></i><b>17.1.14</b> r10pad3played</a></li>
+<li class="chapter" data-level="17.1.15" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3_timespent"><i class="fa fa-check"></i><b>17.1.15</b> r10pad3_timespent</a></li>
+<li class="chapter" data-level="17.1.16" data-path="codebook-2.html"><a href="codebook-2.html#r10pad4"><i class="fa fa-check"></i><b>17.1.16</b> r10pad4</a></li>
+<li class="chapter" data-level="17.1.17" data-path="codebook-2.html"><a href="codebook-2.html#r10pad4_comment"><i class="fa fa-check"></i><b>17.1.17</b> r10pad4_comment</a></li>
+<li class="chapter" data-level="17.1.18" data-path="codebook-2.html"><a href="codebook-2.html#r10pad5"><i class="fa fa-check"></i><b>17.1.18</b> r10pad5</a></li>
+<li class="chapter" data-level="17.1.19" data-path="codebook-2.html"><a href="codebook-2.html#r10pad6"><i class="fa fa-check"></i><b>17.1.19</b> r10pad6</a></li>
+<li class="chapter" data-level="17.1.20" data-path="codebook-2.html"><a href="codebook-2.html#r10pad7"><i class="fa fa-check"></i><b>17.1.20</b> r10pad7</a></li>
+<li class="chapter" data-level="17.1.21" data-path="codebook-2.html"><a href="codebook-2.html#r10pad8"><i class="fa fa-check"></i><b>17.1.21</b> r10pad8</a></li>
+<li class="chapter" data-level="17.1.22" data-path="codebook-2.html"><a href="codebook-2.html#r10pad9"><i class="fa fa-check"></i><b>17.1.22</b> r10pad9</a></li>
+<li class="chapter" data-level="17.1.23" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_1"><i class="fa fa-check"></i><b>17.1.23</b> r10pad1_9_backward_1</a></li>
+<li class="chapter" data-level="17.1.24" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_2"><i class="fa fa-check"></i><b>17.1.24</b> r10pad1_9_backward_2</a></li>
+<li class="chapter" data-level="17.1.25" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_3"><i class="fa fa-check"></i><b>17.1.25</b> r10pad1_9_backward_3</a></li>
+<li class="chapter" data-level="17.1.26" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_4"><i class="fa fa-check"></i><b>17.1.26</b> r10pad1_9_backward_4</a></li>
+<li class="chapter" data-level="17.1.27" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_5"><i class="fa fa-check"></i><b>17.1.27</b> r10pad1_9_backward_5</a></li>
+<li class="chapter" data-level="17.1.28" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_6"><i class="fa fa-check"></i><b>17.1.28</b> r10pad1_9_backward_6</a></li>
+<li class="chapter" data-level="17.1.29" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_7"><i class="fa fa-check"></i><b>17.1.29</b> r10pad1_9_backward_7</a></li>
+<li class="chapter" data-level="17.1.30" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_8"><i class="fa fa-check"></i><b>17.1.30</b> r10pad1_9_backward_8</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="codebook-2.html"><a href="codebook-2.html#missingness-report-2"><i class="fa fa-check"></i><b>17.2</b> Missingness report</a></li>
+<li class="chapter" data-level="17.3" data-path="codebook-2.html"><a href="codebook-2.html#codebook-table-2"><i class="fa fa-check"></i><b>17.3</b> Codebook table</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="outcome-favorability-effect-across-the-three-experiments.html"><a href="outcome-favorability-effect-across-the-three-experiments.html"><i class="fa fa-check"></i><b>18</b> Outcome favorability effect across the three experiments</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -274,123 +273,147 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="data-management-1" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> Data management</h1>
+<h1><span class="header-section-number">Chapter 6</span> Data management</h1>
 <blockquote>
 <p>This chapter describes the data management that is conducted prior to any analysis</p>
 </blockquote>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb185-2" data-line-number="2"><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;imp_accept&quot;</span>=<span class="st"> &quot;r9pad1&quot;</span>,</a>
-<a class="sourceLine" id="cb185-3" data-line-number="3">          <span class="st">&quot;other_accept&quot;</span> =<span class="st"> &quot;r9pad2&quot;</span>,</a>
-<a class="sourceLine" id="cb185-4" data-line-number="4">          <span class="st">&quot;self_accept&quot;</span> =<span class="st"> &quot;r9pad3&quot;</span>,</a>
-<a class="sourceLine" id="cb185-5" data-line-number="5">          <span class="st">&quot;opinion_ban&quot;</span> =<span class="st"> &quot;r10pad1&quot;</span>,</a>
-<a class="sourceLine" id="cb185-6" data-line-number="6">          <span class="st">&quot;opinion_strength&quot;</span> =<span class="st"> &quot;r10pad2&quot;</span>,</a>
-<a class="sourceLine" id="cb185-7" data-line-number="7">          <span class="st">&quot;video_mobile&quot;</span> =<span class="st"> &quot;r10pad3_mobil&quot;</span>,</a>
-<a class="sourceLine" id="cb185-8" data-line-number="8">          <span class="st">&quot;video_proban_treat&quot;</span> =<span class="st"> &quot;r10pad3a_ran&quot;</span>,</a>
-<a class="sourceLine" id="cb185-9" data-line-number="9">          <span class="st">&quot;video_antiban_treat&quot;</span> =<span class="st"> &quot;r10pad3b_ran&quot;</span>,</a>
-<a class="sourceLine" id="cb185-10" data-line-number="10">          <span class="st">&quot;video_ended&quot;</span> =<span class="st"> &quot;r10pad3ended&quot;</span>,</a>
-<a class="sourceLine" id="cb185-11" data-line-number="11">          <span class="st">&quot;video_error&quot;</span> =<span class="st"> &quot;r10pad3error&quot;</span>,</a>
-<a class="sourceLine" id="cb185-12" data-line-number="12">          <span class="st">&quot;video_paused&quot;</span> =<span class="st"> &quot;r10pad3paused&quot;</span>,</a>
-<a class="sourceLine" id="cb185-13" data-line-number="13">          <span class="st">&quot;video_played&quot;</span> =<span class="st"> &quot;r10pad3played&quot;</span>,</a>
-<a class="sourceLine" id="cb185-14" data-line-number="14">          <span class="st">&quot;video_timespent&quot;</span> =<span class="st"> &quot;r10pad3_timespent&quot;</span>,</a>
-<a class="sourceLine" id="cb185-15" data-line-number="15">          <span class="st">&quot;video_report&quot;</span> =<span class="st"> &quot;r10pad4&quot;</span>,</a>
-<a class="sourceLine" id="cb185-16" data-line-number="16">          <span class="st">&quot;fairness&quot;</span> =<span class="st"> &quot;r10pad5&quot;</span>,</a>
-<a class="sourceLine" id="cb185-17" data-line-number="17">          <span class="st">&quot;accept&quot;</span> =<span class="st"> &quot;r10pad6&quot;</span>,</a>
-<a class="sourceLine" id="cb185-18" data-line-number="18">          <span class="st">&quot;trust&quot;</span> =<span class="st"> &quot;r10pad7&quot;</span>,</a>
-<a class="sourceLine" id="cb185-19" data-line-number="19">          <span class="st">&quot;check_outcome&quot;</span> =<span class="st"> &quot;r10pad8&quot;</span>,</a>
-<a class="sourceLine" id="cb185-20" data-line-number="20">          <span class="st">&quot;check_politician&quot;</span> =<span class="st"> &quot;r10pad9&quot;</span></a>
-<a class="sourceLine" id="cb185-21" data-line-number="21">  )</a>
-<a class="sourceLine" id="cb185-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb185-23" data-line-number="23"><span class="co">#Merge treatments with ban and no ban outcomes          </span></a>
-<a class="sourceLine" id="cb185-24" data-line-number="24">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb185-25" data-line-number="25"><span class="st">  </span><span class="kw">gather</span>(video, treatment, video_proban_treat<span class="op">:</span>video_antiban_treat)</a>
-<a class="sourceLine" id="cb185-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb185-27" data-line-number="27"><span class="co">#Make NA the respondents with values 98 (Not asked) or 97 (No answer) for entire dataset. (Checked with command &#39;sum(is.na(Loser$video_timespent)) that no values on that </span></a>
-<a class="sourceLine" id="cb185-28" data-line-number="28"><span class="co">#variable has value 97 or 98)</span></a>
-<a class="sourceLine" id="cb185-29" data-line-number="29">d[d <span class="op">==</span><span class="st"> </span><span class="dv">97</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb185-30" data-line-number="30">d[d <span class="op">==</span><span class="st"> </span><span class="dv">98</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb185-31" data-line-number="31"></a>
-<a class="sourceLine" id="cb185-32" data-line-number="32"><span class="co">#Reverse scales</span></a>
-<a class="sourceLine" id="cb185-33" data-line-number="33">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb185-34" data-line-number="34"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">imp_accept =</span> <span class="op">-</span>(imp_accept)<span class="op">+</span><span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb185-35" data-line-number="35">         <span class="dt">other_accept =</span> <span class="op">-</span>(other_accept)<span class="op">+</span><span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb185-36" data-line-number="36">         <span class="dt">self_accept =</span> <span class="op">-</span>(self_accept)<span class="op">+</span><span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb185-37" data-line-number="37">         <span class="dt">opinion_strength =</span> <span class="op">-</span>(opinion_strength)<span class="op">+</span><span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb185-38" data-line-number="38">         <span class="dt">fairness =</span> <span class="op">-</span>(fairness)<span class="op">+</span><span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb185-39" data-line-number="39">         <span class="dt">accept =</span> <span class="op">-</span>(accept)<span class="op">+</span><span class="dv">6</span>,</a>
-<a class="sourceLine" id="cb185-40" data-line-number="40">         <span class="dt">trust =</span> <span class="op">-</span>(trust)<span class="op">+</span><span class="dv">6</span></a>
-<a class="sourceLine" id="cb185-41" data-line-number="41">  )</a>
-<a class="sourceLine" id="cb185-42" data-line-number="42"></a>
-<a class="sourceLine" id="cb185-43" data-line-number="43"></a>
-<a class="sourceLine" id="cb185-44" data-line-number="44"><span class="co">#Remove respondents who did not see the video properly. Will be used as main data set</span></a>
-<a class="sourceLine" id="cb185-45" data-line-number="45">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb185-46" data-line-number="46"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(treatment))<span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Keep all who where assigned to a video treatment</span></a>
-<a class="sourceLine" id="cb185-47" data-line-number="47"><span class="st">  </span><span class="kw">filter</span>(video_timespent <span class="op">%in%</span><span class="st"> </span><span class="dv">60</span><span class="op">:</span><span class="dv">300</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Keep only those who stayed with the video for more than 60 seconds and less than 300 seconds</span></a>
-<a class="sourceLine" id="cb185-48" data-line-number="48"><span class="st">  </span><span class="kw">filter</span>(video_report <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)) <span class="co">#Keep only those who reported that they had sound and picture or picture but no sound</span></a>
-<a class="sourceLine" id="cb185-49" data-line-number="49"></a>
-<a class="sourceLine" id="cb185-50" data-line-number="50"><span class="co">##Create manipulation check variable that measures whether the respondents correctly identify whether the outcome was favorable or unfavorable to them</span></a>
-<a class="sourceLine" id="cb185-51" data-line-number="51">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb185-52" data-line-number="52"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">favorability =</span> <span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb185-53" data-line-number="53">    treatment <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Unfavorable&quot;</span>,</a>
-<a class="sourceLine" id="cb185-54" data-line-number="54">    treatment <span class="op">==</span><span class="st"> </span><span class="dv">5</span>    <span class="op">~</span><span class="st"> &quot;Favorable&quot;</span></a>
-<a class="sourceLine" id="cb185-55" data-line-number="55">  )</a>
-<a class="sourceLine" id="cb185-56" data-line-number="56">  )<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb185-57" data-line-number="57"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mcheck_favorability =</span> <span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb185-58" data-line-number="58">    <span class="kw">is.na</span>(favorability) <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span>,</a>
-<a class="sourceLine" id="cb185-59" data-line-number="59">    favorability<span class="op">==</span><span class="st">&quot;Favorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Correct&quot;</span>,</a>
-<a class="sourceLine" id="cb185-60" data-line-number="60">    favorability<span class="op">==</span><span class="st">&quot;Unfavorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Correct&quot;</span>,</a>
-<a class="sourceLine" id="cb185-61" data-line-number="61">    favorability <span class="op">%in%</span><span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span>,</a>
-<a class="sourceLine" id="cb185-62" data-line-number="62">    favorability<span class="op">==</span><span class="st">&quot;Favorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span>,</a>
-<a class="sourceLine" id="cb185-63" data-line-number="63">    favorability<span class="op">==</span><span class="st">&quot;Unfavorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span></a>
-<a class="sourceLine" id="cb185-64" data-line-number="64">  )</a>
-<a class="sourceLine" id="cb185-65" data-line-number="65">  ) </a>
-<a class="sourceLine" id="cb185-66" data-line-number="66"></a>
-<a class="sourceLine" id="cb185-67" data-line-number="67"><span class="co">#Label values on treatment variable</span></a>
-<a class="sourceLine" id="cb185-68" data-line-number="68">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb185-69" data-line-number="69"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> <span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb185-70" data-line-number="70">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Lamenting politician&quot;</span>,</a>
-<a class="sourceLine" id="cb185-71" data-line-number="71">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Specific prime&quot;</span>,</a>
-<a class="sourceLine" id="cb185-72" data-line-number="72">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;General Prime&quot;</span>,</a>
-<a class="sourceLine" id="cb185-73" data-line-number="73">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Not shown&quot;</span>,</a>
-<a class="sourceLine" id="cb185-74" data-line-number="74">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Winner&quot;</span>),</a>
-<a class="sourceLine" id="cb185-75" data-line-number="75">    <span class="dt">opinion_ban =</span> <span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb185-76" data-line-number="76">    .[[<span class="st">&quot;opinion_ban&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Pro&quot;</span>,</a>
-<a class="sourceLine" id="cb185-77" data-line-number="77">    .[[<span class="st">&quot;opinion_ban&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Anti&quot;</span>),</a>
-<a class="sourceLine" id="cb185-78" data-line-number="78">    <span class="dt">responseid =</span> <span class="kw">as.numeric</span>(responseid),</a>
-<a class="sourceLine" id="cb185-79" data-line-number="79">         <span class="dt">imp_accept =</span> <span class="kw">case_when</span>(imp_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Important&quot;</span>,</a>
-<a class="sourceLine" id="cb185-80" data-line-number="80">                                imp_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Not important&quot;</span>),</a>
-<a class="sourceLine" id="cb185-81" data-line-number="81">         <span class="dt">other_accept =</span> <span class="kw">case_when</span>(other_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;High degree&quot;</span>,</a>
-<a class="sourceLine" id="cb185-82" data-line-number="82">                                  other_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Low degree&quot;</span>),</a>
-<a class="sourceLine" id="cb185-83" data-line-number="83">         <span class="dt">self_accept =</span> <span class="kw">case_when</span>(self_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;High degree&quot;</span>,</a>
-<a class="sourceLine" id="cb185-84" data-line-number="84">                                 self_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Low degree&quot;</span>),</a>
-<a class="sourceLine" id="cb185-85" data-line-number="85">         <span class="dt">opinion_strength =</span> <span class="kw">case_when</span>(opinion_strength <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Important&quot;</span>,</a>
-<a class="sourceLine" id="cb185-86" data-line-number="86">                                      opinion_strength <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Not important&quot;</span>)</a>
-<a class="sourceLine" id="cb185-87" data-line-number="87">  )</a>
-<a class="sourceLine" id="cb185-88" data-line-number="88"><span class="co">#Save file with the main data set</span></a>
-<a class="sourceLine" id="cb185-89" data-line-number="89"><span class="kw">write_sav</span>(d, <span class="st">&quot;Data/Goodloser-exp2.sav&quot;</span>)</a>
-<a class="sourceLine" id="cb185-90" data-line-number="90"><span class="kw">write_csv</span>(d, <span class="st">&quot;Data/Goodloser-exp2.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb185-91" data-line-number="91"></a>
-<a class="sourceLine" id="cb185-92" data-line-number="92"><span class="co">#----------------------------------------------------</span></a>
-<a class="sourceLine" id="cb185-93" data-line-number="93"><span class="co">#Prepare redux data set, where respondents who fail the manipulation check are excluded</span></a>
-<a class="sourceLine" id="cb185-94" data-line-number="94"><span class="co">#----------------------------------------------------</span></a>
-<a class="sourceLine" id="cb185-95" data-line-number="95"></a>
-<a class="sourceLine" id="cb185-96" data-line-number="96"><span class="co">#Create a separate data set where also those who fail the manipulation check are excluded.</span></a>
-<a class="sourceLine" id="cb185-97" data-line-number="97">Loser_redux &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb185-98" data-line-number="98"><span class="st">  </span><span class="kw">filter</span>(mcheck_favorability <span class="op">==</span><span class="st"> &quot;Correct&quot;</span>)</a>
-<a class="sourceLine" id="cb185-99" data-line-number="99"></a>
-<a class="sourceLine" id="cb185-100" data-line-number="100"><span class="co">#Save file with the redux good loser data set</span></a>
-<a class="sourceLine" id="cb185-101" data-line-number="101"></a>
-<a class="sourceLine" id="cb185-102" data-line-number="102"><span class="kw">write_sav</span>(Loser_redux, <span class="st">&quot;Data/Goodloser-exp2-exclusive.sav&quot;</span>)</a>
-<a class="sourceLine" id="cb185-103" data-line-number="103"><span class="kw">write_csv</span>(Loser_redux, <span class="st">&quot;Data/Goodloser-exp2-exclusive.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb185-104" data-line-number="104"></a>
-<a class="sourceLine" id="cb185-105" data-line-number="105"></a>
-<a class="sourceLine" id="cb185-106" data-line-number="106"><span class="co">#d &lt;- d %&gt;%</span></a>
-<a class="sourceLine" id="cb185-107" data-line-number="107"><span class="co">#  mutate(treatment = case_when(</span></a>
-<a class="sourceLine" id="cb185-108" data-line-number="108"><span class="co">#    .[[&quot;treatment&quot;]] == 1 ~ &quot;minority spokesperson disappointed and against the outcome&quot;,</span></a>
-<a class="sourceLine" id="cb185-109" data-line-number="109"><span class="co">#    .[[&quot;treatment&quot;]] == 2 ~ &quot;minority spokesperson disappointed and against the outcome, but procedure was fair so outcome must be accepted&quot;,</span></a>
-<a class="sourceLine" id="cb185-110" data-line-number="110"><span class="co">#    .[[&quot;treatment&quot;]] == 3 ~ &quot;minority spokesperson disappointed and against the outcome, but losses must be accepted in a democracy&quot;,</span></a>
-<a class="sourceLine" id="cb185-111" data-line-number="111"><span class="co">#    .[[&quot;treatment&quot;]] == 4 ~ &quot;control - no additional information&quot;,</span></a>
-<a class="sourceLine" id="cb185-112" data-line-number="112"><span class="co">#    .[[&quot;treatment&quot;]] == 5 ~ &quot;winner control - no additional information&quot;)</span></a>
-<a class="sourceLine" id="cb185-113" data-line-number="113"><span class="co">#  )</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw">rename</span>(<span class="st">&quot;imp_accept&quot;</span>=<span class="st"> &quot;r9pad1&quot;</span>,</a>
+<a class="sourceLine" id="cb4-3" title="3">          <span class="st">&quot;other_accept&quot;</span> =<span class="st"> &quot;r9pad2&quot;</span>,</a>
+<a class="sourceLine" id="cb4-4" title="4">          <span class="st">&quot;self_accept&quot;</span> =<span class="st"> &quot;r9pad3&quot;</span>,</a>
+<a class="sourceLine" id="cb4-5" title="5">          <span class="st">&quot;opinion_ban&quot;</span> =<span class="st"> &quot;r10pad1&quot;</span>,</a>
+<a class="sourceLine" id="cb4-6" title="6">          <span class="st">&quot;opinion_strength&quot;</span> =<span class="st"> &quot;r10pad2&quot;</span>,</a>
+<a class="sourceLine" id="cb4-7" title="7">          <span class="st">&quot;video_mobile&quot;</span> =<span class="st"> &quot;r10pad3_mobil&quot;</span>,</a>
+<a class="sourceLine" id="cb4-8" title="8">          <span class="st">&quot;video_proban_treat&quot;</span> =<span class="st"> &quot;r10pad3a_ran&quot;</span>,</a>
+<a class="sourceLine" id="cb4-9" title="9">          <span class="st">&quot;video_antiban_treat&quot;</span> =<span class="st"> &quot;r10pad3b_ran&quot;</span>,</a>
+<a class="sourceLine" id="cb4-10" title="10">          <span class="st">&quot;video_ended&quot;</span> =<span class="st"> &quot;r10pad3ended&quot;</span>,</a>
+<a class="sourceLine" id="cb4-11" title="11">          <span class="st">&quot;video_error&quot;</span> =<span class="st"> &quot;r10pad3error&quot;</span>,</a>
+<a class="sourceLine" id="cb4-12" title="12">          <span class="st">&quot;video_paused&quot;</span> =<span class="st"> &quot;r10pad3paused&quot;</span>,</a>
+<a class="sourceLine" id="cb4-13" title="13">          <span class="st">&quot;video_played&quot;</span> =<span class="st"> &quot;r10pad3played&quot;</span>,</a>
+<a class="sourceLine" id="cb4-14" title="14">          <span class="st">&quot;video_timespent&quot;</span> =<span class="st"> &quot;r10pad3_timespent&quot;</span>,</a>
+<a class="sourceLine" id="cb4-15" title="15">          <span class="st">&quot;video_report&quot;</span> =<span class="st"> &quot;r10pad4&quot;</span>,</a>
+<a class="sourceLine" id="cb4-16" title="16">          <span class="st">&quot;fairness&quot;</span> =<span class="st"> &quot;r10pad5&quot;</span>,</a>
+<a class="sourceLine" id="cb4-17" title="17">          <span class="st">&quot;accept&quot;</span> =<span class="st"> &quot;r10pad6&quot;</span>,</a>
+<a class="sourceLine" id="cb4-18" title="18">          <span class="st">&quot;trust&quot;</span> =<span class="st"> &quot;r10pad7&quot;</span>,</a>
+<a class="sourceLine" id="cb4-19" title="19">          <span class="st">&quot;check_outcome&quot;</span> =<span class="st"> &quot;r10pad8&quot;</span>,</a>
+<a class="sourceLine" id="cb4-20" title="20">          <span class="st">&quot;check_politician&quot;</span> =<span class="st"> &quot;r10pad9&quot;</span></a>
+<a class="sourceLine" id="cb4-21" title="21">  )</a>
+<a class="sourceLine" id="cb4-22" title="22"></a>
+<a class="sourceLine" id="cb4-23" title="23"><span class="co">#Merge treatments with ban and no ban outcomes          </span></a>
+<a class="sourceLine" id="cb4-24" title="24">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-25" title="25"><span class="st">  </span><span class="kw">gather</span>(video, treatment, video_proban_treat<span class="op">:</span>video_antiban_treat)</a>
+<a class="sourceLine" id="cb4-26" title="26"></a>
+<a class="sourceLine" id="cb4-27" title="27"><span class="co">#Make NA the respondents with values 98 (Not asked) or 97 (No answer) for entire dataset. (Checked with command &#39;sum(is.na(Loser$video_timespent)) that no values on that </span></a>
+<a class="sourceLine" id="cb4-28" title="28"><span class="co">#variable has value 97 or 98)</span></a>
+<a class="sourceLine" id="cb4-29" title="29">d[d <span class="op">==</span><span class="st"> </span><span class="dv">97</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb4-30" title="30">d[d <span class="op">==</span><span class="st"> </span><span class="dv">98</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb4-31" title="31"></a>
+<a class="sourceLine" id="cb4-32" title="32"><span class="co">#Reverse scales</span></a>
+<a class="sourceLine" id="cb4-33" title="33">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-34" title="34"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">imp_accept =</span> <span class="op">-</span>(imp_accept)<span class="op">+</span><span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb4-35" title="35">         <span class="dt">other_accept =</span> <span class="op">-</span>(other_accept)<span class="op">+</span><span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb4-36" title="36">         <span class="dt">self_accept =</span> <span class="op">-</span>(self_accept)<span class="op">+</span><span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb4-37" title="37">         <span class="dt">opinion_strength =</span> <span class="op">-</span>(opinion_strength)<span class="op">+</span><span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb4-38" title="38">         <span class="dt">fairness =</span> <span class="op">-</span>(fairness)<span class="op">+</span><span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb4-39" title="39">         <span class="dt">accept =</span> <span class="op">-</span>(accept)<span class="op">+</span><span class="dv">6</span>,</a>
+<a class="sourceLine" id="cb4-40" title="40">         <span class="dt">trust =</span> <span class="op">-</span>(trust)<span class="op">+</span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb4-41" title="41">  )</a>
+<a class="sourceLine" id="cb4-42" title="42"></a>
+<a class="sourceLine" id="cb4-43" title="43"><span class="co"># Keep a full ITT dataset</span></a>
+<a class="sourceLine" id="cb4-44" title="44"></a>
+<a class="sourceLine" id="cb4-45" title="45">e &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-46" title="46"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(treatment))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-47" title="47"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb4-48" title="48">    <span class="dt">favorability =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb4-49" title="49">    treatment <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Unfavorable&quot;</span>,</a>
+<a class="sourceLine" id="cb4-50" title="50">    treatment <span class="op">==</span><span class="st"> </span><span class="dv">5</span>    <span class="op">~</span><span class="st"> &quot;Favorable&quot;</span>),</a>
+<a class="sourceLine" id="cb4-51" title="51">    <span class="dt">treatment =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb4-52" title="52">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Lamenting politician&quot;</span>,</a>
+<a class="sourceLine" id="cb4-53" title="53">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Specific prime&quot;</span>,</a>
+<a class="sourceLine" id="cb4-54" title="54">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;General Prime&quot;</span>,</a>
+<a class="sourceLine" id="cb4-55" title="55">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Not shown&quot;</span>,</a>
+<a class="sourceLine" id="cb4-56" title="56">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Winner&quot;</span>),</a>
+<a class="sourceLine" id="cb4-57" title="57">    <span class="dt">opinion_ban =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb4-58" title="58">    .[[<span class="st">&quot;opinion_ban&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Pro&quot;</span>,</a>
+<a class="sourceLine" id="cb4-59" title="59">    .[[<span class="st">&quot;opinion_ban&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Anti&quot;</span>),</a>
+<a class="sourceLine" id="cb4-60" title="60">    <span class="dt">responseid =</span> <span class="kw">as.numeric</span>(responseid),</a>
+<a class="sourceLine" id="cb4-61" title="61">         <span class="dt">imp_accept2 =</span> <span class="kw">case_when</span>(imp_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Important&quot;</span>,</a>
+<a class="sourceLine" id="cb4-62" title="62">                                imp_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Not important&quot;</span>),</a>
+<a class="sourceLine" id="cb4-63" title="63">         <span class="dt">other_accept2 =</span> <span class="kw">case_when</span>(other_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;High degree&quot;</span>,</a>
+<a class="sourceLine" id="cb4-64" title="64">                                  other_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Low degree&quot;</span>),</a>
+<a class="sourceLine" id="cb4-65" title="65">         <span class="dt">self_accept2 =</span> <span class="kw">case_when</span>(self_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;High degree&quot;</span>,</a>
+<a class="sourceLine" id="cb4-66" title="66">                                 self_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Low degree&quot;</span>),</a>
+<a class="sourceLine" id="cb4-67" title="67">         <span class="dt">opinion_strength2 =</span> <span class="kw">case_when</span>(opinion_strength <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Important&quot;</span>,</a>
+<a class="sourceLine" id="cb4-68" title="68">                                      opinion_strength <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Not important&quot;</span>)</a>
+<a class="sourceLine" id="cb4-69" title="69">  )</a>
+<a class="sourceLine" id="cb4-70" title="70"></a>
+<a class="sourceLine" id="cb4-71" title="71"><span class="kw">write_sav</span>(e, <span class="st">&quot;Data/Goodloser-exp2-itt.sav&quot;</span>)</a>
+<a class="sourceLine" id="cb4-72" title="72"><span class="kw">write_csv</span>(e, <span class="st">&quot;Data/Goodloser-exp2-itt.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb4-73" title="73"></a>
+<a class="sourceLine" id="cb4-74" title="74"></a>
+<a class="sourceLine" id="cb4-75" title="75"><span class="co">#Remove respondents who did not see the video properly. Will be used as main data set</span></a>
+<a class="sourceLine" id="cb4-76" title="76">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-77" title="77"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(treatment))<span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Keep all who where assigned to a video treatment</span></a>
+<a class="sourceLine" id="cb4-78" title="78"><span class="st">  </span><span class="kw">filter</span>(video_timespent <span class="op">%in%</span><span class="st"> </span><span class="dv">60</span><span class="op">:</span><span class="dv">300</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Keep only those who stayed with the video for more than 60 seconds and less than 300 seconds</span></a>
+<a class="sourceLine" id="cb4-79" title="79"><span class="st">  </span><span class="kw">filter</span>(video_report <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)) <span class="co">#Keep only those who reported that they had sound and picture or picture but no sound</span></a>
+<a class="sourceLine" id="cb4-80" title="80"></a>
+<a class="sourceLine" id="cb4-81" title="81"><span class="co">##Create manipulation check variable that measures whether the respondents correctly identify whether the outcome was favorable or unfavorable to them</span></a>
+<a class="sourceLine" id="cb4-82" title="82">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-83" title="83"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">favorability =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb4-84" title="84">    treatment <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Unfavorable&quot;</span>,</a>
+<a class="sourceLine" id="cb4-85" title="85">    treatment <span class="op">==</span><span class="st"> </span><span class="dv">5</span>    <span class="op">~</span><span class="st"> &quot;Favorable&quot;</span></a>
+<a class="sourceLine" id="cb4-86" title="86">  )</a>
+<a class="sourceLine" id="cb4-87" title="87">  )<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-88" title="88"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mcheck_favorability =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb4-89" title="89">    <span class="kw">is.na</span>(favorability) <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span>,</a>
+<a class="sourceLine" id="cb4-90" title="90">    favorability<span class="op">==</span><span class="st">&quot;Favorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Correct&quot;</span>,</a>
+<a class="sourceLine" id="cb4-91" title="91">    favorability<span class="op">==</span><span class="st">&quot;Unfavorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Correct&quot;</span>,</a>
+<a class="sourceLine" id="cb4-92" title="92">    favorability <span class="op">%in%</span><span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span>,</a>
+<a class="sourceLine" id="cb4-93" title="93">    favorability<span class="op">==</span><span class="st">&quot;Favorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span>,</a>
+<a class="sourceLine" id="cb4-94" title="94">    favorability<span class="op">==</span><span class="st">&quot;Unfavorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span></a>
+<a class="sourceLine" id="cb4-95" title="95">  )</a>
+<a class="sourceLine" id="cb4-96" title="96">  ) </a>
+<a class="sourceLine" id="cb4-97" title="97"></a>
+<a class="sourceLine" id="cb4-98" title="98"><span class="co">#Label values on treatment variable</span></a>
+<a class="sourceLine" id="cb4-99" title="99">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-100" title="100"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb4-101" title="101">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Lamenting politician&quot;</span>,</a>
+<a class="sourceLine" id="cb4-102" title="102">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Specific prime&quot;</span>,</a>
+<a class="sourceLine" id="cb4-103" title="103">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;General Prime&quot;</span>,</a>
+<a class="sourceLine" id="cb4-104" title="104">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Not shown&quot;</span>,</a>
+<a class="sourceLine" id="cb4-105" title="105">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Winner&quot;</span>),</a>
+<a class="sourceLine" id="cb4-106" title="106">    <span class="dt">opinion_ban =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb4-107" title="107">    .[[<span class="st">&quot;opinion_ban&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Pro&quot;</span>,</a>
+<a class="sourceLine" id="cb4-108" title="108">    .[[<span class="st">&quot;opinion_ban&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Anti&quot;</span>),</a>
+<a class="sourceLine" id="cb4-109" title="109">    <span class="dt">responseid =</span> <span class="kw">as.numeric</span>(responseid),</a>
+<a class="sourceLine" id="cb4-110" title="110">         <span class="dt">imp_accept2 =</span> <span class="kw">case_when</span>(imp_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Important&quot;</span>,</a>
+<a class="sourceLine" id="cb4-111" title="111">                                imp_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Not important&quot;</span>),</a>
+<a class="sourceLine" id="cb4-112" title="112">         <span class="dt">other_accept2 =</span> <span class="kw">case_when</span>(other_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;High degree&quot;</span>,</a>
+<a class="sourceLine" id="cb4-113" title="113">                                  other_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Low degree&quot;</span>),</a>
+<a class="sourceLine" id="cb4-114" title="114">         <span class="dt">self_accept2 =</span> <span class="kw">case_when</span>(self_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;High degree&quot;</span>,</a>
+<a class="sourceLine" id="cb4-115" title="115">                                 self_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Low degree&quot;</span>),</a>
+<a class="sourceLine" id="cb4-116" title="116">         <span class="dt">opinion_strength2 =</span> <span class="kw">case_when</span>(opinion_strength <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Important&quot;</span>,</a>
+<a class="sourceLine" id="cb4-117" title="117">                                      opinion_strength <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Not important&quot;</span>)</a>
+<a class="sourceLine" id="cb4-118" title="118">  )</a>
+<a class="sourceLine" id="cb4-119" title="119"><span class="co">#Save file with the main data set</span></a>
+<a class="sourceLine" id="cb4-120" title="120"><span class="kw">write_sav</span>(d, <span class="st">&quot;Data/Goodloser-exp2.sav&quot;</span>)</a>
+<a class="sourceLine" id="cb4-121" title="121"><span class="kw">write_csv</span>(d, <span class="st">&quot;Data/Goodloser-exp2.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb4-122" title="122"></a>
+<a class="sourceLine" id="cb4-123" title="123"><span class="co">#----------------------------------------------------</span></a>
+<a class="sourceLine" id="cb4-124" title="124"><span class="co">#Prepare redux data set, where respondents who fail the manipulation check are excluded</span></a>
+<a class="sourceLine" id="cb4-125" title="125"><span class="co">#----------------------------------------------------</span></a>
+<a class="sourceLine" id="cb4-126" title="126"></a>
+<a class="sourceLine" id="cb4-127" title="127"><span class="co">#Create a separate data set where also those who fail the manipulation check are excluded.</span></a>
+<a class="sourceLine" id="cb4-128" title="128">Loser_redux &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-129" title="129"><span class="st">  </span><span class="kw">filter</span>(mcheck_favorability <span class="op">==</span><span class="st"> &quot;Correct&quot;</span>)</a>
+<a class="sourceLine" id="cb4-130" title="130"></a>
+<a class="sourceLine" id="cb4-131" title="131"><span class="co">#Save file with the good loser data set that excludes respondents who fail manipulation check</span></a>
+<a class="sourceLine" id="cb4-132" title="132"></a>
+<a class="sourceLine" id="cb4-133" title="133"><span class="kw">write_sav</span>(Loser_redux, <span class="st">&quot;Data/Goodloser-exp2-exclusive.sav&quot;</span>)</a>
+<a class="sourceLine" id="cb4-134" title="134"><span class="kw">write_csv</span>(Loser_redux, <span class="st">&quot;Data/Goodloser-exp2-exclusive.csv&quot;</span>)</a></code></pre></div>
+
+<p>##Experimental vignette</p>
+<p>##Post-measures</p>
 
 </div>
             </section>
@@ -398,7 +421,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="codebook-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="codebook.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="main-effects-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

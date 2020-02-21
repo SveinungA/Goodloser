@@ -13,7 +13,7 @@
   
   <meta property="og:image" content="loser-picture.png" />
   
-  
+  <meta name="github-repo" content="SveinungA/Goodloser" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 14 Effects on losers | The Good Loser" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Peter Esaiasson, Sveinung Arnesen, and Hannah Werner" />
 
 
-<meta name="date" content="2020-01-15" />
+<meta name="date" content="2020-02-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="main-effects-2.html"/>
-<link rel="next" href="effects-on-winners-1.html"/>
+<link rel="next" href="worded-answer-scale.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
 <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
@@ -73,7 +74,6 @@
 <script src="libs/selectize-0.12.0/selectize.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -93,7 +93,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -156,103 +156,102 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
-<li class="chapter" data-level="2" data-path="codebook.html"><a href="codebook.html"><i class="fa fa-check"></i><b>2</b> Codebook</a><ul>
-<li class="chapter" data-level="2.0.1" data-path="codebook.html"><a href="codebook.html#metadata"><i class="fa fa-check"></i><b>2.0.1</b> Metadata</a></li>
-<li class="chapter" data-level="2.1" data-path="codebook.html"><a href="codebook.html#variables"><i class="fa fa-check"></i><b>2.1</b> Variables</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="codebook.html"><a href="codebook.html#Q64"><i class="fa fa-check"></i><b>2.1.1</b> Q64</a></li>
-<li class="chapter" data-level="2.1.2" data-path="codebook.html"><a href="codebook.html#Q63"><i class="fa fa-check"></i><b>2.1.2</b> Q63</a></li>
-<li class="chapter" data-level="2.1.3" data-path="codebook.html"><a href="codebook.html#S3_1_1"><i class="fa fa-check"></i><b>2.1.3</b> S3_1_1</a></li>
-<li class="chapter" data-level="2.1.4" data-path="codebook.html"><a href="codebook.html#S3_2_1"><i class="fa fa-check"></i><b>2.1.4</b> S3_2_1</a></li>
-<li class="chapter" data-level="2.1.5" data-path="codebook.html"><a href="codebook.html#S3_4_1_1"><i class="fa fa-check"></i><b>2.1.5</b> S3_4_1_1</a></li>
-<li class="chapter" data-level="2.1.6" data-path="codebook.html"><a href="codebook.html#S3_4_1_2"><i class="fa fa-check"></i><b>2.1.6</b> S3_4_1_2</a></li>
-<li class="chapter" data-level="2.1.7" data-path="codebook.html"><a href="codebook.html#S3_5_1"><i class="fa fa-check"></i><b>2.1.7</b> S3_5_1</a></li>
-<li class="chapter" data-level="2.1.8" data-path="codebook.html"><a href="codebook.html#S3_6_1_1"><i class="fa fa-check"></i><b>2.1.8</b> S3_6_1_1</a></li>
-<li class="chapter" data-level="2.1.9" data-path="codebook.html"><a href="codebook.html#S3_6_1_2"><i class="fa fa-check"></i><b>2.1.9</b> S3_6_1_2</a></li>
-<li class="chapter" data-level="2.1.10" data-path="codebook.html"><a href="codebook.html#S3_7_1_1"><i class="fa fa-check"></i><b>2.1.10</b> S3_7_1_1</a></li>
-<li class="chapter" data-level="2.1.11" data-path="codebook.html"><a href="codebook.html#S3_7_1_2"><i class="fa fa-check"></i><b>2.1.11</b> S3_7_1_2</a></li>
-<li class="chapter" data-level="2.1.12" data-path="codebook.html"><a href="codebook.html#S3_8_1_1"><i class="fa fa-check"></i><b>2.1.12</b> S3_8_1_1</a></li>
-<li class="chapter" data-level="2.1.13" data-path="codebook.html"><a href="codebook.html#S3_8_1_2"><i class="fa fa-check"></i><b>2.1.13</b> S3_8_1_2</a></li>
-<li class="chapter" data-level="2.1.14" data-path="codebook.html"><a href="codebook.html#Studie3sel"><i class="fa fa-check"></i><b>2.1.14</b> Studie3sel</a></li>
+<li class="part"><span><b>I STUDY I: SWEDISH VIGNETTE</b></span></li>
+<li class="chapter" data-level="2" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>2</b> Data management</a></li>
+<li class="chapter" data-level="3" data-path="main-effects.html"><a href="main-effects.html"><i class="fa fa-check"></i><b>3</b> Main effects</a></li>
+<li class="chapter" data-level="4" data-path="effects-on-losers.html"><a href="effects-on-losers.html"><i class="fa fa-check"></i><b>4</b> Effects on losers</a></li>
+<li class="chapter" data-level="5" data-path="codebook.html"><a href="codebook.html"><i class="fa fa-check"></i><b>5</b> Codebook</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="codebook.html"><a href="codebook.html#metadata"><i class="fa fa-check"></i><b>5.0.1</b> Metadata</a></li>
+<li class="chapter" data-level="5.1" data-path="codebook.html"><a href="codebook.html#variables"><i class="fa fa-check"></i><b>5.1</b> Variables</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="codebook.html"><a href="codebook.html#Q64"><i class="fa fa-check"></i><b>5.1.1</b> Q64</a></li>
+<li class="chapter" data-level="5.1.2" data-path="codebook.html"><a href="codebook.html#Q63"><i class="fa fa-check"></i><b>5.1.2</b> Q63</a></li>
+<li class="chapter" data-level="5.1.3" data-path="codebook.html"><a href="codebook.html#S3_1_1"><i class="fa fa-check"></i><b>5.1.3</b> S3_1_1</a></li>
+<li class="chapter" data-level="5.1.4" data-path="codebook.html"><a href="codebook.html#S3_2_1"><i class="fa fa-check"></i><b>5.1.4</b> S3_2_1</a></li>
+<li class="chapter" data-level="5.1.5" data-path="codebook.html"><a href="codebook.html#S3_4_1_1"><i class="fa fa-check"></i><b>5.1.5</b> S3_4_1_1</a></li>
+<li class="chapter" data-level="5.1.6" data-path="codebook.html"><a href="codebook.html#S3_4_1_2"><i class="fa fa-check"></i><b>5.1.6</b> S3_4_1_2</a></li>
+<li class="chapter" data-level="5.1.7" data-path="codebook.html"><a href="codebook.html#S3_5_1"><i class="fa fa-check"></i><b>5.1.7</b> S3_5_1</a></li>
+<li class="chapter" data-level="5.1.8" data-path="codebook.html"><a href="codebook.html#S3_6_1_1"><i class="fa fa-check"></i><b>5.1.8</b> S3_6_1_1</a></li>
+<li class="chapter" data-level="5.1.9" data-path="codebook.html"><a href="codebook.html#S3_6_1_2"><i class="fa fa-check"></i><b>5.1.9</b> S3_6_1_2</a></li>
+<li class="chapter" data-level="5.1.10" data-path="codebook.html"><a href="codebook.html#S3_7_1_1"><i class="fa fa-check"></i><b>5.1.10</b> S3_7_1_1</a></li>
+<li class="chapter" data-level="5.1.11" data-path="codebook.html"><a href="codebook.html#S3_7_1_2"><i class="fa fa-check"></i><b>5.1.11</b> S3_7_1_2</a></li>
+<li class="chapter" data-level="5.1.12" data-path="codebook.html"><a href="codebook.html#S3_8_1_1"><i class="fa fa-check"></i><b>5.1.12</b> S3_8_1_1</a></li>
+<li class="chapter" data-level="5.1.13" data-path="codebook.html"><a href="codebook.html#S3_8_1_2"><i class="fa fa-check"></i><b>5.1.13</b> S3_8_1_2</a></li>
+<li class="chapter" data-level="5.1.14" data-path="codebook.html"><a href="codebook.html#Studie3sel"><i class="fa fa-check"></i><b>5.1.14</b> Studie3sel</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="codebook.html"><a href="codebook.html#missingness-report"><i class="fa fa-check"></i><b>2.2</b> Missingness report</a></li>
-<li class="chapter" data-level="2.3" data-path="codebook.html"><a href="codebook.html#codebook-table"><i class="fa fa-check"></i><b>2.3</b> Codebook table</a></li>
+<li class="chapter" data-level="5.2" data-path="codebook.html"><a href="codebook.html#missingness-report"><i class="fa fa-check"></i><b>5.2</b> Missingness report</a></li>
+<li class="chapter" data-level="5.3" data-path="codebook.html"><a href="codebook.html#codebook-table"><i class="fa fa-check"></i><b>5.3</b> Codebook table</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>3</b> Data management</a></li>
-<li class="chapter" data-level="4" data-path="main-effects.html"><a href="main-effects.html"><i class="fa fa-check"></i><b>4</b> Main effects</a></li>
-<li class="chapter" data-level="5" data-path="effects-on-losers.html"><a href="effects-on-losers.html"><i class="fa fa-check"></i><b>5</b> Effects on losers</a></li>
-<li class="chapter" data-level="6" data-path="effects-on-winners.html"><a href="effects-on-winners.html"><i class="fa fa-check"></i><b>6</b> Effects on winners</a></li>
-<li class="chapter" data-level="7" data-path="codebook-1.html"><a href="codebook-1.html"><i class="fa fa-check"></i><b>7</b> Codebook</a><ul>
-<li class="chapter" data-level="7.0.1" data-path="codebook-1.html"><a href="codebook-1.html#metadata-1"><i class="fa fa-check"></i><b>7.0.1</b> Metadata</a></li>
-<li class="chapter" data-level="7.1" data-path="codebook-1.html"><a href="codebook-1.html#variables-1"><i class="fa fa-check"></i><b>7.1</b> Variables</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="codebook-1.html"><a href="codebook-1.html#responseid"><i class="fa fa-check"></i><b>7.1.1</b> responseid</a></li>
-<li class="chapter" data-level="7.1.2" data-path="codebook-1.html"><a href="codebook-1.html#r9pad1"><i class="fa fa-check"></i><b>7.1.2</b> r9pad1</a></li>
-<li class="chapter" data-level="7.1.3" data-path="codebook-1.html"><a href="codebook-1.html#r9pad2"><i class="fa fa-check"></i><b>7.1.3</b> r9pad2</a></li>
-<li class="chapter" data-level="7.1.4" data-path="codebook-1.html"><a href="codebook-1.html#r9pad3"><i class="fa fa-check"></i><b>7.1.4</b> r9pad3</a></li>
-<li class="chapter" data-level="7.1.5" data-path="codebook-1.html"><a href="codebook-1.html#r10panelpad"><i class="fa fa-check"></i><b>7.1.5</b> r10panelpad</a></li>
-<li class="chapter" data-level="7.1.6" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1"><i class="fa fa-check"></i><b>7.1.6</b> r10pad1</a></li>
-<li class="chapter" data-level="7.1.7" data-path="codebook-1.html"><a href="codebook-1.html#r10pad2"><i class="fa fa-check"></i><b>7.1.7</b> r10pad2</a></li>
-<li class="chapter" data-level="7.1.8" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3_mobil"><i class="fa fa-check"></i><b>7.1.8</b> r10pad3_mobil</a></li>
-<li class="chapter" data-level="7.1.9" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3a_ran"><i class="fa fa-check"></i><b>7.1.9</b> r10pad3a_ran</a></li>
-<li class="chapter" data-level="7.1.10" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3b_ran"><i class="fa fa-check"></i><b>7.1.10</b> r10pad3b_ran</a></li>
-<li class="chapter" data-level="7.1.11" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3ended"><i class="fa fa-check"></i><b>7.1.11</b> r10pad3ended</a></li>
-<li class="chapter" data-level="7.1.12" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3error"><i class="fa fa-check"></i><b>7.1.12</b> r10pad3error</a></li>
-<li class="chapter" data-level="7.1.13" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3paused"><i class="fa fa-check"></i><b>7.1.13</b> r10pad3paused</a></li>
-<li class="chapter" data-level="7.1.14" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3played"><i class="fa fa-check"></i><b>7.1.14</b> r10pad3played</a></li>
-<li class="chapter" data-level="7.1.15" data-path="codebook-1.html"><a href="codebook-1.html#r10pad3_timespent"><i class="fa fa-check"></i><b>7.1.15</b> r10pad3_timespent</a></li>
-<li class="chapter" data-level="7.1.16" data-path="codebook-1.html"><a href="codebook-1.html#r10pad4"><i class="fa fa-check"></i><b>7.1.16</b> r10pad4</a></li>
-<li class="chapter" data-level="7.1.17" data-path="codebook-1.html"><a href="codebook-1.html#r10pad4_comment"><i class="fa fa-check"></i><b>7.1.17</b> r10pad4_comment</a></li>
-<li class="chapter" data-level="7.1.18" data-path="codebook-1.html"><a href="codebook-1.html#r10pad5"><i class="fa fa-check"></i><b>7.1.18</b> r10pad5</a></li>
-<li class="chapter" data-level="7.1.19" data-path="codebook-1.html"><a href="codebook-1.html#r10pad6"><i class="fa fa-check"></i><b>7.1.19</b> r10pad6</a></li>
-<li class="chapter" data-level="7.1.20" data-path="codebook-1.html"><a href="codebook-1.html#r10pad7"><i class="fa fa-check"></i><b>7.1.20</b> r10pad7</a></li>
-<li class="chapter" data-level="7.1.21" data-path="codebook-1.html"><a href="codebook-1.html#r10pad8"><i class="fa fa-check"></i><b>7.1.21</b> r10pad8</a></li>
-<li class="chapter" data-level="7.1.22" data-path="codebook-1.html"><a href="codebook-1.html#r10pad9"><i class="fa fa-check"></i><b>7.1.22</b> r10pad9</a></li>
-<li class="chapter" data-level="7.1.23" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_1"><i class="fa fa-check"></i><b>7.1.23</b> r10pad1_9_backward_1</a></li>
-<li class="chapter" data-level="7.1.24" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_2"><i class="fa fa-check"></i><b>7.1.24</b> r10pad1_9_backward_2</a></li>
-<li class="chapter" data-level="7.1.25" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_3"><i class="fa fa-check"></i><b>7.1.25</b> r10pad1_9_backward_3</a></li>
-<li class="chapter" data-level="7.1.26" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_4"><i class="fa fa-check"></i><b>7.1.26</b> r10pad1_9_backward_4</a></li>
-<li class="chapter" data-level="7.1.27" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_5"><i class="fa fa-check"></i><b>7.1.27</b> r10pad1_9_backward_5</a></li>
-<li class="chapter" data-level="7.1.28" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_6"><i class="fa fa-check"></i><b>7.1.28</b> r10pad1_9_backward_6</a></li>
-<li class="chapter" data-level="7.1.29" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_7"><i class="fa fa-check"></i><b>7.1.29</b> r10pad1_9_backward_7</a></li>
-<li class="chapter" data-level="7.1.30" data-path="codebook-1.html"><a href="codebook-1.html#r10pad1_9_backward_8"><i class="fa fa-check"></i><b>7.1.30</b> r10pad1_9_backward_8</a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="codebook-1.html"><a href="codebook-1.html#missingness-report-1"><i class="fa fa-check"></i><b>7.2</b> Missingness report</a></li>
-<li class="chapter" data-level="7.3" data-path="codebook-1.html"><a href="codebook-1.html#codebook-table-1"><i class="fa fa-check"></i><b>7.3</b> Codebook table</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="data-management-1.html"><a href="data-management-1.html"><i class="fa fa-check"></i><b>8</b> Data management</a></li>
-<li class="chapter" data-level="9" data-path="main-effects-1.html"><a href="main-effects-1.html"><i class="fa fa-check"></i><b>9</b> Main effects</a></li>
+<li class="part"><span><b>II STUDY II: NORWEGIAN VIGNETTE</b></span></li>
+<li class="chapter" data-level="6" data-path="data-management-1.html"><a href="data-management-1.html"><i class="fa fa-check"></i><b>6</b> Data management</a></li>
+<li class="chapter" data-level="7" data-path="main-effects-1.html"><a href="main-effects-1.html"><i class="fa fa-check"></i><b>7</b> Main effects</a></li>
+<li class="chapter" data-level="8" data-path="main-effects-with-sample-that-excludes-respondents-who-fail-manipulation-check.html"><a href="main-effects-with-sample-that-excludes-respondents-who-fail-manipulation-check.html"><i class="fa fa-check"></i><b>8</b> Main effects with sample that excludes respondents who fail manipulation check</a></li>
+<li class="chapter" data-level="9" data-path="main-effects-with-full-itt-sample.html"><a href="main-effects-with-full-itt-sample.html"><i class="fa fa-check"></i><b>9</b> Main effects with full ITT sample</a></li>
 <li class="chapter" data-level="10" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html"><i class="fa fa-check"></i><b>10</b> Effects on losers</a></li>
-<li class="chapter" data-level="11" data-path="codebook-2.html"><a href="codebook-2.html"><i class="fa fa-check"></i><b>11</b> Codebook</a><ul>
-<li class="chapter" data-level="11.0.1" data-path="codebook-2.html"><a href="codebook-2.html#metadata-2"><i class="fa fa-check"></i><b>11.0.1</b> Metadata</a></li>
-<li class="chapter" data-level="11.1" data-path="codebook-2.html"><a href="codebook-2.html#variables-2"><i class="fa fa-check"></i><b>11.1</b> Variables</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="codebook-1.html"><a href="codebook-1.html#responseid"><i class="fa fa-check"></i><b>11.1.1</b> responseid</a></li>
-<li class="chapter" data-level="11.1.2" data-path="codebook-2.html"><a href="codebook-2.html#r13pad1"><i class="fa fa-check"></i><b>11.1.2</b> r13pad1</a></li>
-<li class="chapter" data-level="11.1.3" data-path="codebook-2.html"><a href="codebook-2.html#r13pad2"><i class="fa fa-check"></i><b>11.1.3</b> r13pad2</a></li>
-<li class="chapter" data-level="11.1.4" data-path="codebook-2.html"><a href="codebook-2.html#r13pad3"><i class="fa fa-check"></i><b>11.1.4</b> r13pad3</a></li>
-<li class="chapter" data-level="11.1.5" data-path="codebook-2.html"><a href="codebook-2.html#r13pad4"><i class="fa fa-check"></i><b>11.1.5</b> r13pad4</a></li>
-<li class="chapter" data-level="11.1.6" data-path="codebook-2.html"><a href="codebook-2.html#r13pad5_avsender"><i class="fa fa-check"></i><b>11.1.6</b> r13pad5_avsender</a></li>
-<li class="chapter" data-level="11.1.7" data-path="codebook-2.html"><a href="codebook-2.html#r13pad5_sak"><i class="fa fa-check"></i><b>11.1.7</b> r13pad5_sak</a></li>
-<li class="chapter" data-level="11.1.8" data-path="codebook-2.html"><a href="codebook-2.html#r13pad5_utfall"><i class="fa fa-check"></i><b>11.1.8</b> r13pad5_utfall</a></li>
-<li class="chapter" data-level="11.1.9" data-path="codebook-2.html"><a href="codebook-2.html#r13pad5_vinner"><i class="fa fa-check"></i><b>11.1.9</b> r13pad5_vinner</a></li>
-<li class="chapter" data-level="11.1.10" data-path="codebook-2.html"><a href="codebook-2.html#r13pad5_vinnermargin"><i class="fa fa-check"></i><b>11.1.10</b> r13pad5_vinnermargin</a></li>
-<li class="chapter" data-level="11.1.11" data-path="codebook-2.html"><a href="codebook-2.html#r13pad6_ran"><i class="fa fa-check"></i><b>11.1.11</b> r13pad6_ran</a></li>
-<li class="chapter" data-level="11.1.12" data-path="codebook-2.html"><a href="codebook-2.html#r13pad6a"><i class="fa fa-check"></i><b>11.1.12</b> r13pad6a</a></li>
-<li class="chapter" data-level="11.1.13" data-path="codebook-2.html"><a href="codebook-2.html#r13pad6b"><i class="fa fa-check"></i><b>11.1.13</b> r13pad6b</a></li>
-<li class="chapter" data-level="11.1.14" data-path="codebook-2.html"><a href="codebook-2.html#r13pad7a"><i class="fa fa-check"></i><b>11.1.14</b> r13pad7a</a></li>
-<li class="chapter" data-level="11.1.15" data-path="codebook-2.html"><a href="codebook-2.html#r13pad7b"><i class="fa fa-check"></i><b>11.1.15</b> r13pad7b</a></li>
-<li class="chapter" data-level="11.1.16" data-path="codebook-2.html"><a href="codebook-2.html#r13pad8a"><i class="fa fa-check"></i><b>11.1.16</b> r13pad8a</a></li>
-<li class="chapter" data-level="11.1.17" data-path="codebook-2.html"><a href="codebook-2.html#r13pad8b"><i class="fa fa-check"></i><b>11.1.17</b> r13pad8b</a></li>
-<li class="chapter" data-level="11.1.18" data-path="codebook-2.html"><a href="codebook-2.html#Scale_time"><i class="fa fa-check"></i><b>11.1.18</b> Scale_time</a></li>
-<li class="chapter" data-level="11.1.19" data-path="codebook-2.html"><a href="codebook-2.html#time"><i class="fa fa-check"></i><b>11.1.19</b> time</a></li>
+<li class="chapter" data-level="11" data-path="codebook-1.html"><a href="codebook-1.html"><i class="fa fa-check"></i><b>11</b> Codebook</a><ul>
+<li class="chapter" data-level="11.0.1" data-path="codebook-1.html"><a href="codebook-1.html#metadata-1"><i class="fa fa-check"></i><b>11.0.1</b> Metadata</a></li>
+<li class="chapter" data-level="11.1" data-path="codebook-1.html"><a href="codebook-1.html#variables-1"><i class="fa fa-check"></i><b>11.1</b> Variables</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="codebook.html"><a href="codebook.html#Q64"><i class="fa fa-check"></i><b>11.1.1</b> Q64</a></li>
+<li class="chapter" data-level="11.1.2" data-path="codebook.html"><a href="codebook.html#Q63"><i class="fa fa-check"></i><b>11.1.2</b> Q63</a></li>
+<li class="chapter" data-level="11.1.3" data-path="codebook.html"><a href="codebook.html#S3_1_1"><i class="fa fa-check"></i><b>11.1.3</b> S3_1_1</a></li>
+<li class="chapter" data-level="11.1.4" data-path="codebook.html"><a href="codebook.html#S3_2_1"><i class="fa fa-check"></i><b>11.1.4</b> S3_2_1</a></li>
+<li class="chapter" data-level="11.1.5" data-path="codebook.html"><a href="codebook.html#S3_4_1_1"><i class="fa fa-check"></i><b>11.1.5</b> S3_4_1_1</a></li>
+<li class="chapter" data-level="11.1.6" data-path="codebook.html"><a href="codebook.html#S3_4_1_2"><i class="fa fa-check"></i><b>11.1.6</b> S3_4_1_2</a></li>
+<li class="chapter" data-level="11.1.7" data-path="codebook.html"><a href="codebook.html#S3_5_1"><i class="fa fa-check"></i><b>11.1.7</b> S3_5_1</a></li>
+<li class="chapter" data-level="11.1.8" data-path="codebook.html"><a href="codebook.html#S3_6_1_1"><i class="fa fa-check"></i><b>11.1.8</b> S3_6_1_1</a></li>
+<li class="chapter" data-level="11.1.9" data-path="codebook.html"><a href="codebook.html#S3_6_1_2"><i class="fa fa-check"></i><b>11.1.9</b> S3_6_1_2</a></li>
+<li class="chapter" data-level="11.1.10" data-path="codebook.html"><a href="codebook.html#S3_7_1_1"><i class="fa fa-check"></i><b>11.1.10</b> S3_7_1_1</a></li>
+<li class="chapter" data-level="11.1.11" data-path="codebook.html"><a href="codebook.html#S3_7_1_2"><i class="fa fa-check"></i><b>11.1.11</b> S3_7_1_2</a></li>
+<li class="chapter" data-level="11.1.12" data-path="codebook.html"><a href="codebook.html#S3_8_1_1"><i class="fa fa-check"></i><b>11.1.12</b> S3_8_1_1</a></li>
+<li class="chapter" data-level="11.1.13" data-path="codebook.html"><a href="codebook.html#S3_8_1_2"><i class="fa fa-check"></i><b>11.1.13</b> S3_8_1_2</a></li>
+<li class="chapter" data-level="11.1.14" data-path="codebook.html"><a href="codebook.html#Studie3sel"><i class="fa fa-check"></i><b>11.1.14</b> Studie3sel</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="codebook-2.html"><a href="codebook-2.html#missingness-report-2"><i class="fa fa-check"></i><b>11.2</b> Missingness report</a></li>
-<li class="chapter" data-level="11.3" data-path="codebook-2.html"><a href="codebook-2.html#codebook-table-2"><i class="fa fa-check"></i><b>11.3</b> Codebook table</a></li>
+<li class="chapter" data-level="11.2" data-path="codebook-1.html"><a href="codebook-1.html#missingness-report-1"><i class="fa fa-check"></i><b>11.2</b> Missingness report</a></li>
+<li class="chapter" data-level="11.3" data-path="codebook-1.html"><a href="codebook-1.html#codebook-table-1"><i class="fa fa-check"></i><b>11.3</b> Codebook table</a></li>
 </ul></li>
+<li class="part"><span><b>III STUDY III: NORWEGIAN CONJOINT</b></span></li>
 <li class="chapter" data-level="12" data-path="data-management-2.html"><a href="data-management-2.html"><i class="fa fa-check"></i><b>12</b> Data management</a></li>
 <li class="chapter" data-level="13" data-path="main-effects-2.html"><a href="main-effects-2.html"><i class="fa fa-check"></i><b>13</b> Main effects</a></li>
 <li class="chapter" data-level="14" data-path="effects-on-losers-2.html"><a href="effects-on-losers-2.html"><i class="fa fa-check"></i><b>14</b> Effects on losers</a></li>
-<li class="chapter" data-level="15" data-path="effects-on-winners-1.html"><a href="effects-on-winners-1.html"><i class="fa fa-check"></i><b>15</b> Effects on winners</a></li>
-<li class="chapter" data-level="16" data-path="worded-answer-scale.html"><a href="worded-answer-scale.html"><i class="fa fa-check"></i><b>16</b> Worded answer scale</a></li>
-<li class="chapter" data-level="17" data-path="numbered-answer-scale.html"><a href="numbered-answer-scale.html"><i class="fa fa-check"></i><b>17</b> Numbered answer scale</a></li>
+<li class="chapter" data-level="15" data-path="worded-answer-scale.html"><a href="worded-answer-scale.html"><i class="fa fa-check"></i><b>15</b> Worded answer scale</a></li>
+<li class="chapter" data-level="16" data-path="numbered-answer-scale.html"><a href="numbered-answer-scale.html"><i class="fa fa-check"></i><b>16</b> Numbered answer scale</a></li>
+<li class="chapter" data-level="17" data-path="codebook-2.html"><a href="codebook-2.html"><i class="fa fa-check"></i><b>17</b> Codebook</a><ul>
+<li class="chapter" data-level="17.0.1" data-path="codebook-2.html"><a href="codebook-2.html#metadata-2"><i class="fa fa-check"></i><b>17.0.1</b> Metadata</a></li>
+<li class="chapter" data-level="17.1" data-path="codebook-2.html"><a href="codebook-2.html#variables-2"><i class="fa fa-check"></i><b>17.1</b> Variables</a><ul>
+<li class="chapter" data-level="17.1.1" data-path="codebook-2.html"><a href="codebook-2.html#responseid"><i class="fa fa-check"></i><b>17.1.1</b> responseid</a></li>
+<li class="chapter" data-level="17.1.2" data-path="codebook-2.html"><a href="codebook-2.html#r9pad1"><i class="fa fa-check"></i><b>17.1.2</b> r9pad1</a></li>
+<li class="chapter" data-level="17.1.3" data-path="codebook-2.html"><a href="codebook-2.html#r9pad2"><i class="fa fa-check"></i><b>17.1.3</b> r9pad2</a></li>
+<li class="chapter" data-level="17.1.4" data-path="codebook-2.html"><a href="codebook-2.html#r9pad3"><i class="fa fa-check"></i><b>17.1.4</b> r9pad3</a></li>
+<li class="chapter" data-level="17.1.5" data-path="codebook-2.html"><a href="codebook-2.html#r10panelpad"><i class="fa fa-check"></i><b>17.1.5</b> r10panelpad</a></li>
+<li class="chapter" data-level="17.1.6" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1"><i class="fa fa-check"></i><b>17.1.6</b> r10pad1</a></li>
+<li class="chapter" data-level="17.1.7" data-path="codebook-2.html"><a href="codebook-2.html#r10pad2"><i class="fa fa-check"></i><b>17.1.7</b> r10pad2</a></li>
+<li class="chapter" data-level="17.1.8" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3_mobil"><i class="fa fa-check"></i><b>17.1.8</b> r10pad3_mobil</a></li>
+<li class="chapter" data-level="17.1.9" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3a_ran"><i class="fa fa-check"></i><b>17.1.9</b> r10pad3a_ran</a></li>
+<li class="chapter" data-level="17.1.10" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3b_ran"><i class="fa fa-check"></i><b>17.1.10</b> r10pad3b_ran</a></li>
+<li class="chapter" data-level="17.1.11" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3ended"><i class="fa fa-check"></i><b>17.1.11</b> r10pad3ended</a></li>
+<li class="chapter" data-level="17.1.12" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3error"><i class="fa fa-check"></i><b>17.1.12</b> r10pad3error</a></li>
+<li class="chapter" data-level="17.1.13" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3paused"><i class="fa fa-check"></i><b>17.1.13</b> r10pad3paused</a></li>
+<li class="chapter" data-level="17.1.14" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3played"><i class="fa fa-check"></i><b>17.1.14</b> r10pad3played</a></li>
+<li class="chapter" data-level="17.1.15" data-path="codebook-2.html"><a href="codebook-2.html#r10pad3_timespent"><i class="fa fa-check"></i><b>17.1.15</b> r10pad3_timespent</a></li>
+<li class="chapter" data-level="17.1.16" data-path="codebook-2.html"><a href="codebook-2.html#r10pad4"><i class="fa fa-check"></i><b>17.1.16</b> r10pad4</a></li>
+<li class="chapter" data-level="17.1.17" data-path="codebook-2.html"><a href="codebook-2.html#r10pad4_comment"><i class="fa fa-check"></i><b>17.1.17</b> r10pad4_comment</a></li>
+<li class="chapter" data-level="17.1.18" data-path="codebook-2.html"><a href="codebook-2.html#r10pad5"><i class="fa fa-check"></i><b>17.1.18</b> r10pad5</a></li>
+<li class="chapter" data-level="17.1.19" data-path="codebook-2.html"><a href="codebook-2.html#r10pad6"><i class="fa fa-check"></i><b>17.1.19</b> r10pad6</a></li>
+<li class="chapter" data-level="17.1.20" data-path="codebook-2.html"><a href="codebook-2.html#r10pad7"><i class="fa fa-check"></i><b>17.1.20</b> r10pad7</a></li>
+<li class="chapter" data-level="17.1.21" data-path="codebook-2.html"><a href="codebook-2.html#r10pad8"><i class="fa fa-check"></i><b>17.1.21</b> r10pad8</a></li>
+<li class="chapter" data-level="17.1.22" data-path="codebook-2.html"><a href="codebook-2.html#r10pad9"><i class="fa fa-check"></i><b>17.1.22</b> r10pad9</a></li>
+<li class="chapter" data-level="17.1.23" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_1"><i class="fa fa-check"></i><b>17.1.23</b> r10pad1_9_backward_1</a></li>
+<li class="chapter" data-level="17.1.24" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_2"><i class="fa fa-check"></i><b>17.1.24</b> r10pad1_9_backward_2</a></li>
+<li class="chapter" data-level="17.1.25" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_3"><i class="fa fa-check"></i><b>17.1.25</b> r10pad1_9_backward_3</a></li>
+<li class="chapter" data-level="17.1.26" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_4"><i class="fa fa-check"></i><b>17.1.26</b> r10pad1_9_backward_4</a></li>
+<li class="chapter" data-level="17.1.27" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_5"><i class="fa fa-check"></i><b>17.1.27</b> r10pad1_9_backward_5</a></li>
+<li class="chapter" data-level="17.1.28" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_6"><i class="fa fa-check"></i><b>17.1.28</b> r10pad1_9_backward_6</a></li>
+<li class="chapter" data-level="17.1.29" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_7"><i class="fa fa-check"></i><b>17.1.29</b> r10pad1_9_backward_7</a></li>
+<li class="chapter" data-level="17.1.30" data-path="codebook-2.html"><a href="codebook-2.html#r10pad1_9_backward_8"><i class="fa fa-check"></i><b>17.1.30</b> r10pad1_9_backward_8</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="codebook-2.html"><a href="codebook-2.html#missingness-report-2"><i class="fa fa-check"></i><b>17.2</b> Missingness report</a></li>
+<li class="chapter" data-level="17.3" data-path="codebook-2.html"><a href="codebook-2.html#codebook-table-2"><i class="fa fa-check"></i><b>17.3</b> Codebook table</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="outcome-favorability-effect-across-the-three-experiments.html"><a href="outcome-favorability-effect-across-the-three-experiments.html"><i class="fa fa-check"></i><b>18</b> Outcome favorability effect across the three experiments</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -278,293 +277,2132 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>This chapter explores the second hypothesis in the <a href="GoogLoser_Prereg_3_#16823%5B16065%5D.pdf">pre-registration</a> of the experiment: ** Individuals that receive an unfavorable outcome and a procedural prime express higher fairness perceptions than individuals that receive an unfavorable outcome and no procedural prime.** There is no support for this hypothesis in the analysis of the results.</p>
 </blockquote>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;broom&quot;</span>)){<span class="kw">install.packages</span>(<span class="st">&quot;broom&quot;</span>);  <span class="kw">library</span>(broom)}</a>
-<a class="sourceLine" id="cb283-2" data-line-number="2"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;haven&quot;</span>)){<span class="kw">install.packages</span>(<span class="st">&quot;haven&quot;</span>);  <span class="kw">library</span>(haven)}</a>
-<a class="sourceLine" id="cb283-3" data-line-number="3"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;here&quot;</span>)){<span class="kw">install.packages</span>(<span class="st">&quot;here&quot;</span>);  <span class="kw">library</span>(here)}</a>
-<a class="sourceLine" id="cb283-4" data-line-number="4"><span class="kw">options</span>(<span class="dt">kableExtra.latex.load_packages =</span> <span class="ot">FALSE</span>) </a>
-<a class="sourceLine" id="cb283-5" data-line-number="5"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;kableExtra&quot;</span>)){<span class="kw">install.packages</span>(<span class="st">&quot;kableExtra&quot;</span>);  <span class="kw">library</span>(kableExtra)}</a>
-<a class="sourceLine" id="cb283-6" data-line-number="6"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;knitr&quot;</span>)){<span class="kw">install.packages</span>(<span class="st">&quot;knitr&quot;</span>);  <span class="kw">library</span>(knitr)}</a>
-<a class="sourceLine" id="cb283-7" data-line-number="7"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;naniar&quot;</span>)){<span class="kw">install.packages</span>(<span class="st">&quot;naniar&quot;</span>);  <span class="kw">library</span>(naniar)}</a>
-<a class="sourceLine" id="cb283-8" data-line-number="8"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;tidyverse&quot;</span>)){<span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>);  <span class="kw">library</span>(tidyverse)}</a>
-<a class="sourceLine" id="cb283-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb283-10" data-line-number="10"><span class="kw">set.seed</span>(<span class="dv">2016</span>)</a>
-<a class="sourceLine" id="cb283-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb283-12" data-line-number="12">d &lt;-<span class="st"> </span><span class="kw">read_sav</span>(<span class="st">&quot;Data/Goodloser-exp3.sav&quot;</span>)</a>
-<a class="sourceLine" id="cb283-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb283-14" data-line-number="14">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">TRUE</span>, <span class="dt">knitr.kable.NA =</span> <span class="st">&quot;&quot;</span>, <span class="dt">cache =</span> <span class="ot">FALSE</span>, <span class="dt">warning =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>##Prepare data</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1">main_<span class="dv">01</span> &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb284-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rsp_id =</span> <span class="kw">as.numeric</span>(responseid),</a>
-<a class="sourceLine" id="cb284-3" data-line-number="3">         <span class="dt">rsp_beg =</span> <span class="kw">case_when</span>(r13pad1 <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;In favour of ban on begging&quot;</span>,</a>
-<a class="sourceLine" id="cb284-4" data-line-number="4">                             r13pad1 <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Against ban on begging&quot;</span>),</a>
-<a class="sourceLine" id="cb284-5" data-line-number="5">         <span class="dt">rsp_beg_imp =</span> <span class="kw">case_when</span>(r13pad2 <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Important&quot;</span>,</a>
-<a class="sourceLine" id="cb284-6" data-line-number="6">                                  r13pad2 <span class="op">%in%</span><span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Not important&quot;</span>),</a>
-<a class="sourceLine" id="cb284-7" data-line-number="7">         <span class="dt">rsp_toll =</span> <span class="kw">case_when</span>(r13pad3 <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;In favour of road toll increase of diesel cars&quot;</span>,</a>
-<a class="sourceLine" id="cb284-8" data-line-number="8">                              r13pad3 <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Against road toll increase of diesel cars&quot;</span>),</a>
-<a class="sourceLine" id="cb284-9" data-line-number="9">         <span class="dt">rsp_toll_imp =</span> <span class="kw">case_when</span>(r13pad4 <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Important&quot;</span>,</a>
-<a class="sourceLine" id="cb284-10" data-line-number="10">                                  r13pad4 <span class="op">%in%</span><span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Not important&quot;</span>),</a>
-<a class="sourceLine" id="cb284-11" data-line-number="11">         <span class="dt">treat_outcome =</span> <span class="kw">case_when</span>(r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;The Yes side won the vote&quot;</span>,</a>
-<a class="sourceLine" id="cb284-12" data-line-number="12">                                 r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;The No side won the vote&quot;</span>),</a>
-<a class="sourceLine" id="cb284-13" data-line-number="13">        <span class="dt">treat_outfav =</span> <span class="kw">case_when</span>(r13pad5_sak <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>r13pad1 <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Favorable outcome&quot;</span>,</a>
-<a class="sourceLine" id="cb284-14" data-line-number="14">                                  r13pad5_sak <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>r13pad1 <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Favorable outcome&quot;</span>,</a>
-<a class="sourceLine" id="cb284-15" data-line-number="15">                                  r13pad5_sak <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>r13pad1 <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Unfavorable outcome&quot;</span>,</a>
-<a class="sourceLine" id="cb284-16" data-line-number="16">                                  r13pad5_sak <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>r13pad1 <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Unfavorable outcome&quot;</span>,</a>
-<a class="sourceLine" id="cb284-17" data-line-number="17">                                  r13pad5_sak <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>r13pad3 <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Favorable outcome&quot;</span>,</a>
-<a class="sourceLine" id="cb284-18" data-line-number="18">                                  r13pad5_sak <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>r13pad3 <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Favorable outcome&quot;</span>,</a>
-<a class="sourceLine" id="cb284-19" data-line-number="19">                                  r13pad5_sak <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>r13pad3 <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Unfavorable outcome&quot;</span>,</a>
-<a class="sourceLine" id="cb284-20" data-line-number="20">                                  r13pad5_sak <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>r13pad3 <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>r13pad5_utfall <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Unfavorable outcome&quot;</span>),</a>
-<a class="sourceLine" id="cb284-21" data-line-number="21">         <span class="dt">treat_issue =</span> <span class="kw">case_when</span>(r13pad5_sak <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Ban on begging&quot;</span>,</a>
-<a class="sourceLine" id="cb284-22" data-line-number="22">                               r13pad5_sak <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Road toll increase of diesel cars&quot;</span>),</a>
-<a class="sourceLine" id="cb284-23" data-line-number="23">         <span class="dt">treat_winningmargin =</span> <span class="kw">case_when</span>(r13pad5_vinnermargin <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Not shown&quot;</span>,</a>
-<a class="sourceLine" id="cb284-24" data-line-number="24">                                       r13pad5_vinnermargin <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Slight majority&quot;</span>,</a>
-<a class="sourceLine" id="cb284-25" data-line-number="25">                                       r13pad5_vinnermargin <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Large majority&quot;</span>),</a>
-<a class="sourceLine" id="cb284-26" data-line-number="26">         <span class="dt">treat_winnergloat =</span> <span class="kw">case_when</span>(r13pad5_vinner <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Not shown&quot;</span>,</a>
-<a class="sourceLine" id="cb284-27" data-line-number="27">                                     r13pad5_vinner <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Winning politician gloats&quot;</span>),</a>
-<a class="sourceLine" id="cb284-28" data-line-number="28">        <span class="dt">treat_prime =</span> <span class="kw">case_when</span>(r13pad5_avsender <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;No prime&quot;</span>,</a>
-<a class="sourceLine" id="cb284-29" data-line-number="29">                               r13pad5_avsender <span class="op">==</span><span class="st"> </span><span class="dv">2</span>  <span class="op">|</span><span class="st"> </span>r13pad5_avsender <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;No prime&quot;</span>,</a>
-<a class="sourceLine" id="cb284-30" data-line-number="30">                               r13pad5_avsender <span class="op">==</span><span class="st"> </span><span class="dv">3</span>  <span class="op">|</span><span class="st"> </span>r13pad5_avsender <span class="op">==</span><span class="st"> </span><span class="dv">6</span> <span class="op">~</span><span class="st"> &quot;Specific prime&quot;</span>,</a>
-<a class="sourceLine" id="cb284-31" data-line-number="31">                               r13pad5_avsender <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">|</span><span class="st"> </span>r13pad5_avsender <span class="op">==</span><span class="st"> </span><span class="dv">7</span> <span class="op">~</span><span class="st"> &quot;General prime&quot;</span>),</a>
-<a class="sourceLine" id="cb284-32" data-line-number="32">         <span class="dt">treat_messenger =</span> <span class="kw">case_when</span>(r13pad5_avsender <span class="op">%in%</span><span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Political leader&quot;</span>,</a>
-<a class="sourceLine" id="cb284-33" data-line-number="33">                                   r13pad5_avsender <span class="op">%in%</span><span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">7</span> <span class="op">~</span><span class="st"> &quot;Local newspaper&quot;</span>),</a>
-<a class="sourceLine" id="cb284-34" data-line-number="34">         <span class="dt">post_fair =</span> <span class="kw">case_when</span>(r13pad6a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>r13pad6b <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> </span><span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb284-35" data-line-number="35">                          r13pad6a <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">|</span><span class="st"> </span>r13pad6b <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> </span><span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb284-36" data-line-number="36">                          r13pad6a <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">|</span><span class="st"> </span>r13pad6b <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb284-37" data-line-number="37">                          r13pad6a <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">|</span><span class="st"> </span>r13pad6b <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb284-38" data-line-number="38">                          r13pad6a <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">|</span><span class="st"> </span>r13pad6b <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb284-39" data-line-number="39">          <span class="dt">post_reasonable =</span> <span class="kw">case_when</span>(r13pad7a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>r13pad7b <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> </span><span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb284-40" data-line-number="40">                          r13pad7a <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">|</span><span class="st"> </span>r13pad7b <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> </span><span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb284-41" data-line-number="41">                          r13pad7a <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">|</span><span class="st"> </span>r13pad7b <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb284-42" data-line-number="42">                          r13pad7a <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">|</span><span class="st"> </span>r13pad7b <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb284-43" data-line-number="43">                          r13pad7a <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">|</span><span class="st"> </span>r13pad7b <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb284-44" data-line-number="44">          <span class="dt">post_accept =</span> <span class="kw">case_when</span>(r13pad8a <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">|</span><span class="st"> </span>r13pad8b <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> </span><span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb284-45" data-line-number="45">                          r13pad8a <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">|</span><span class="st"> </span>r13pad8b <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> </span><span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb284-46" data-line-number="46">                          r13pad8a <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">|</span><span class="st"> </span>r13pad8b <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb284-47" data-line-number="47">                          r13pad8a <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">|</span><span class="st"> </span>r13pad8b <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb284-48" data-line-number="48">                          r13pad8a <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">|</span><span class="st"> </span>r13pad8b <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb284-49" data-line-number="49"></a>
-<a class="sourceLine" id="cb284-50" data-line-number="50">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb284-51" data-line-number="51"><span class="st">                  </span><span class="kw">replace_with_na_all</span>(<span class="dt">condition =</span> <span class="op">~</span>.x <span class="op">==</span><span class="st"> </span><span class="dv">98</span> )<span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Recode 98 (not asked) as missing</span></a>
-<a class="sourceLine" id="cb284-52" data-line-number="52"><span class="st">                 </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(r13pad6_ran)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb284-53" data-line-number="53"><span class="st">                </span><span class="kw">mutate</span>(<span class="dt">treat_winningmargin =</span> <span class="kw">lvls_reorder</span>(treat_winningmargin, <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)), </a>
-<a class="sourceLine" id="cb284-54" data-line-number="54">               <span class="dt">treat_prime =</span> <span class="kw">lvls_reorder</span>(treat_prime, <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb284-55" data-line-number="55">                )</a></code></pre></div>
-<pre><code>## Error: `idx` must contain one integer for each level of `f`</code></pre>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" data-line-number="1">    main_<span class="dv">01</span> &lt;-<span class="st"> </span>main_<span class="dv">01</span> <span class="op">%&gt;%</span><span class="st">   </span></a>
-<a class="sourceLine" id="cb286-2" data-line-number="2"><span class="st">      </span><span class="kw">filter</span>(treat_outfav <span class="op">==</span><span class="st"> &quot;Unfavorable outcome&quot;</span>)</a></code></pre></div>
 <p>###Number of losers</p>
 <p>The number of respondents with an unfavorable decision outcome is 1365</p>
-<p>##Reasonable</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;Functions/amce.R&quot;</span>)</a></code></pre></div>
-<pre><code>## Error in file(filename, &quot;r&quot;, encoding = encoding): cannot open the connection</code></pre>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1">res_main &lt;-<span class="st">  </span>main_<span class="dv">01</span> <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb289-2" data-line-number="2"><span class="st">  </span><span class="kw">amce</span>(post_reasonable, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger) </a></code></pre></div>
-<pre><code>## Error in amce(., post_reasonable, treat_winningmargin, treat_winnergloat, : object &#39;treat_winningmargin&#39; not found</code></pre>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1">res_main &lt;-<span class="st"> </span>res_main <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb291-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb291-3" data-line-number="3">  <span class="dt">treatment =</span>  <span class="kw">case_when</span>(treatment <span class="op">==</span><span class="st"> &quot;treat_outfav&quot;</span> <span class="op">~</span><span class="st"> &quot;Outcome</span><span class="ch">\n</span><span class="st">favor-</span><span class="ch">\n</span><span class="st">ability&quot;</span>,</a>
-<a class="sourceLine" id="cb291-4" data-line-number="4">            treatment <span class="op">==</span><span class="st"> &quot;treat_winningmargin&quot;</span> <span class="op">~</span><span class="st"> &quot;Winning</span><span class="ch">\n</span><span class="st">margin&quot;</span>,</a>
-<a class="sourceLine" id="cb291-5" data-line-number="5">            treatment <span class="op">==</span><span class="st"> &quot;treat_winnergloat&quot;</span> <span class="op">~</span><span class="st"> &quot;Winner</span><span class="ch">\n</span><span class="st">gloats&quot;</span>,</a>
-<a class="sourceLine" id="cb291-6" data-line-number="6">            treatment <span class="op">==</span><span class="st"> &quot;treat_prime&quot;</span> <span class="op">~</span><span class="st"> &quot;Democratic</span><span class="ch">\n</span><span class="st">prime&quot;</span>,</a>
-<a class="sourceLine" id="cb291-7" data-line-number="7">            treatment <span class="op">==</span><span class="st"> &quot;treat_messenger&quot;</span> <span class="op">~</span><span class="st"> &quot;Primer&quot;</span>)</a>
-<a class="sourceLine" id="cb291-8" data-line-number="8">)</a></code></pre></div>
-<pre><code>## Error in eval_tidy(pair$lhs, env = default_env): object &#39;treatment&#39; not found</code></pre>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1"><span class="co">#Figure</span></a>
-<a class="sourceLine" id="cb293-2" data-line-number="2">fig_amce &lt;-</a>
-<a class="sourceLine" id="cb293-3" data-line-number="3"><span class="st">  </span>res_main <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb293-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> estimate, <span class="dt">y =</span> value)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb293-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_grid</span>(</a>
-<a class="sourceLine" id="cb293-6" data-line-number="6">    treatment <span class="op">~</span><span class="st"> </span>.,</a>
-<a class="sourceLine" id="cb293-7" data-line-number="7">    <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>,</a>
-<a class="sourceLine" id="cb293-8" data-line-number="8">    <span class="dt">space =</span> <span class="st">&quot;free_y&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb293-9" data-line-number="9"><span class="st">  </span><span class="kw">geom_errorbarh</span>(</a>
-<a class="sourceLine" id="cb293-10" data-line-number="10">    <span class="kw">aes</span>(<span class="dt">xmin =</span> estimate <span class="op">-</span><span class="st"> </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>std_error),</a>
-<a class="sourceLine" id="cb293-11" data-line-number="11">        <span class="dt">xmax =</span> estimate <span class="op">+</span><span class="st"> </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>std_error)),</a>
-<a class="sourceLine" id="cb293-12" data-line-number="12">    <span class="dt">height =</span> <span class="dv">0</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb293-13" data-line-number="13"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb293-14" data-line-number="14"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>), <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb293-15" data-line-number="15"><span class="st">  </span><span class="kw">scale_x_continuous</span>(</a>
-<a class="sourceLine" id="cb293-16" data-line-number="16">    <span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb293-17" data-line-number="17">    <span class="dt">breaks =</span> <span class="kw">round</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">.1</span>), <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb293-18" data-line-number="18">    <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb293-19" data-line-number="19"><span class="st">   </span><span class="kw">labs</span>(</a>
-<a class="sourceLine" id="cb293-20" data-line-number="20">    <span class="dt">x =</span> <span class="st">&quot;Marginal effect, reasonable decision&quot;</span>,</a>
-<a class="sourceLine" id="cb293-21" data-line-number="21">    <span class="dt">y =</span> <span class="st">&quot;Decision process attributes&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb293-22" data-line-number="22"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb293-23" data-line-number="23"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.margin =</span> <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="st">&quot;mm&quot;</span>),         <span class="dt">axis.text.x=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="kw">rel</span>(<span class="fl">0.7</span>))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb293-24" data-line-number="24"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;lines&quot;</span>))</a>
-<a class="sourceLine" id="cb293-25" data-line-number="25">fig_amce</a></code></pre></div>
-<pre><code>## Error: At least one layer must contain all faceting variables: `treatment`.
-## * Plot is missing `treatment`
-## * Layer 1 is missing `treatment`
-## * Layer 2 is missing `treatment`
-## * Layer 3 is missing `treatment`</code></pre>
-<p><img src="Goodloser-appendix_files/figure-html/cb_d_cb_d_cb_d_305_post_reasonable_loser-1.png" width="672" /></p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1"><span class="kw">ggsave</span>(</a>
-<a class="sourceLine" id="cb295-2" data-line-number="2">  <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;nocon&quot;</span>, <span class="st">&quot;figs&quot;</span>, <span class="st">&quot;pngs&quot;</span>, <span class="st">&quot;fig_losers_reasonable.png&quot;</span>),</a>
-<a class="sourceLine" id="cb295-3" data-line-number="3">  <span class="dt">plot =</span> fig_amce,</a>
-<a class="sourceLine" id="cb295-4" data-line-number="4">  <span class="dt">width =</span> <span class="fl">5.5</span>, <span class="dt">height =</span> <span class="fl">2.75</span></a>
-<a class="sourceLine" id="cb295-5" data-line-number="5">)</a></code></pre></div>
-<pre><code>## Error: At least one layer must contain all faceting variables: `treatment`.
-## * Plot is missing `treatment`
-## * Layer 1 is missing `treatment`
-## * Layer 2 is missing `treatment`
-## * Layer 3 is missing `treatment`</code></pre>
-<pre><code>## Error in grDevices::dev.off(): QuartzBitmap_Output - unable to open file &#39;/Users/macorg/Documents/GitHub/Goodlosergit/Analysis/Bookdown-goodloser/output/nocon/figs/pngs/fig_losers_reasonable.png&#39;</code></pre>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1"><span class="kw">ggsave</span>(</a>
-<a class="sourceLine" id="cb298-2" data-line-number="2">  <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;nocon&quot;</span>, <span class="st">&quot;figs&quot;</span>, <span class="st">&quot;pdfs&quot;</span>, <span class="st">&quot;fig_losers_reasonable.pdf&quot;</span>),</a>
-<a class="sourceLine" id="cb298-3" data-line-number="3">  <span class="dt">plot =</span> fig_amce,</a>
-<a class="sourceLine" id="cb298-4" data-line-number="4">  <span class="dt">width =</span> <span class="fl">5.5</span>, <span class="dt">height =</span> <span class="fl">2.75</span></a>
-<a class="sourceLine" id="cb298-5" data-line-number="5">)</a></code></pre></div>
-<pre><code>## Error in grDevices::pdf(file = filename, ..., version = version): cannot open file &#39;/Users/macorg/Documents/GitHub/Goodlosergit/Analysis/Bookdown-goodloser/output/nocon/figs/pdfs/fig_losers_reasonable.pdf&#39;</code></pre>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1"><span class="co">#Table</span></a>
-<a class="sourceLine" id="cb300-2" data-line-number="2">res_main &lt;-<span class="st"> </span>res_main <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb300-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(value, estimate, std_error, statistic, p_value)</a></code></pre></div>
-<pre><code>## Error in .f(.x[[i]], ...): object &#39;value&#39; not found</code></pre>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1"><span class="kw">kable</span>(res_main, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">caption =</span> <span class="st">&quot;Average Marginal Component Effects&quot;</span>, <span class="dt">col.names =</span> <span class="kw">linebreak</span>(<span class="kw">c</span>(<span class="st">&quot;Treatment value&quot;</span>, <span class="st">&quot;Estimate&quot;</span>, <span class="st">&quot;Std. Error&quot;</span>, <span class="st">&quot;t-statistic&quot;</span>, <span class="st">&quot;p value&quot;</span>))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb302-2" data-line-number="2"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;responsive&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb302-3" data-line-number="3"><span class="st"> </span><span class="kw">group_rows</span>(<span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;Winning margin&quot;</span> =<span class="st"> </span><span class="dv">3</span>, <span class="st">&quot;Winner gloating&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Good loser prime&quot;</span> =<span class="st"> </span><span class="dv">4</span>, <span class="st">&quot;Primer&quot;</span> =<span class="st"> </span><span class="dv">2</span>))</a></code></pre></div>
-<pre><code>## Error in xml_children(kable_tbody)[[i]]: subscript out of bounds</code></pre>
-<p>##Willingnes to accept</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;Functions/amce.R&quot;</span>)</a></code></pre></div>
-<pre><code>## Error in file(filename, &quot;r&quot;, encoding = encoding): cannot open the connection</code></pre>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1">res_main &lt;-<span class="st">  </span>main_<span class="dv">01</span> <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb306-2" data-line-number="2"><span class="st">  </span><span class="kw">amce</span>(post_accept, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger) </a></code></pre></div>
-<pre><code>## Error in amce(., post_accept, treat_winningmargin, treat_winnergloat, : object &#39;treat_winningmargin&#39; not found</code></pre>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1">res_main &lt;-<span class="st"> </span>res_main <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb308-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb308-3" data-line-number="3">  <span class="dt">treatment =</span>  <span class="kw">case_when</span>(treatment <span class="op">==</span><span class="st"> &quot;treat_outfav&quot;</span> <span class="op">~</span><span class="st"> &quot;Outcome</span><span class="ch">\n</span><span class="st">favor-</span><span class="ch">\n</span><span class="st">ability&quot;</span>,</a>
-<a class="sourceLine" id="cb308-4" data-line-number="4">            treatment <span class="op">==</span><span class="st"> &quot;treat_winningmargin&quot;</span> <span class="op">~</span><span class="st"> &quot;Winning</span><span class="ch">\n</span><span class="st">margin&quot;</span>,</a>
-<a class="sourceLine" id="cb308-5" data-line-number="5">            treatment <span class="op">==</span><span class="st"> &quot;treat_winnergloat&quot;</span> <span class="op">~</span><span class="st"> &quot;Winner</span><span class="ch">\n</span><span class="st">gloats&quot;</span>,</a>
-<a class="sourceLine" id="cb308-6" data-line-number="6">            treatment <span class="op">==</span><span class="st"> &quot;treat_prime&quot;</span> <span class="op">~</span><span class="st"> &quot;Democratic</span><span class="ch">\n</span><span class="st">prime&quot;</span>,</a>
-<a class="sourceLine" id="cb308-7" data-line-number="7">            treatment <span class="op">==</span><span class="st"> &quot;treat_messenger&quot;</span> <span class="op">~</span><span class="st"> &quot;Primer&quot;</span>)</a>
-<a class="sourceLine" id="cb308-8" data-line-number="8">)</a></code></pre></div>
-<pre><code>## Error in eval_tidy(pair$lhs, env = default_env): object &#39;treatment&#39; not found</code></pre>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1"><span class="co">#Figure</span></a>
-<a class="sourceLine" id="cb310-2" data-line-number="2">fig_amce &lt;-</a>
-<a class="sourceLine" id="cb310-3" data-line-number="3"><span class="st">  </span>res_main <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb310-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> estimate, <span class="dt">y =</span> value)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb310-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_grid</span>(</a>
-<a class="sourceLine" id="cb310-6" data-line-number="6">    treatment <span class="op">~</span><span class="st"> </span>.,</a>
-<a class="sourceLine" id="cb310-7" data-line-number="7">    <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>,</a>
-<a class="sourceLine" id="cb310-8" data-line-number="8">    <span class="dt">space =</span> <span class="st">&quot;free_y&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb310-9" data-line-number="9"><span class="st">  </span><span class="kw">geom_errorbarh</span>(</a>
-<a class="sourceLine" id="cb310-10" data-line-number="10">    <span class="kw">aes</span>(<span class="dt">xmin =</span> estimate <span class="op">-</span><span class="st"> </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>std_error),</a>
-<a class="sourceLine" id="cb310-11" data-line-number="11">        <span class="dt">xmax =</span> estimate <span class="op">+</span><span class="st"> </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>std_error)),</a>
-<a class="sourceLine" id="cb310-12" data-line-number="12">    <span class="dt">height =</span> <span class="dv">0</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb310-13" data-line-number="13"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb310-14" data-line-number="14"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>), <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb310-15" data-line-number="15"><span class="st">  </span><span class="kw">scale_x_continuous</span>(</a>
-<a class="sourceLine" id="cb310-16" data-line-number="16">    <span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb310-17" data-line-number="17">    <span class="dt">breaks =</span> <span class="kw">round</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">.1</span>), <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb310-18" data-line-number="18">    <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb310-19" data-line-number="19"><span class="st">   </span><span class="kw">labs</span>(</a>
-<a class="sourceLine" id="cb310-20" data-line-number="20">    <span class="dt">x =</span> <span class="st">&quot;Marginal effect, willingnes to accept decision&quot;</span>,</a>
-<a class="sourceLine" id="cb310-21" data-line-number="21">    <span class="dt">y =</span> <span class="st">&quot;Decision process attributes&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb310-22" data-line-number="22"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb310-23" data-line-number="23"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.margin =</span> <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="st">&quot;mm&quot;</span>),         <span class="dt">axis.text.x=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="kw">rel</span>(<span class="fl">0.7</span>)))</a>
-<a class="sourceLine" id="cb310-24" data-line-number="24">fig_amce</a></code></pre></div>
-<pre><code>## Error: At least one layer must contain all faceting variables: `treatment`.
-## * Plot is missing `treatment`
-## * Layer 1 is missing `treatment`
-## * Layer 2 is missing `treatment`
-## * Layer 3 is missing `treatment`</code></pre>
-<p><img src="Goodloser-appendix_files/figure-html/cb_d_cb_d_cb_d_305_post_accept_loser-1.png" width="672" /></p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1"><span class="kw">ggsave</span>(</a>
-<a class="sourceLine" id="cb312-2" data-line-number="2">  <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;nocon&quot;</span>, <span class="st">&quot;figs&quot;</span>, <span class="st">&quot;pngs&quot;</span>, <span class="st">&quot;fig_losers_accept.png&quot;</span>),</a>
-<a class="sourceLine" id="cb312-3" data-line-number="3">  <span class="dt">plot =</span> fig_amce,</a>
-<a class="sourceLine" id="cb312-4" data-line-number="4">  <span class="dt">width =</span> <span class="fl">5.5</span>, <span class="dt">height =</span> <span class="fl">4.75</span></a>
-<a class="sourceLine" id="cb312-5" data-line-number="5">)</a></code></pre></div>
-<pre><code>## Error: At least one layer must contain all faceting variables: `treatment`.
-## * Plot is missing `treatment`
-## * Layer 1 is missing `treatment`
-## * Layer 2 is missing `treatment`
-## * Layer 3 is missing `treatment`</code></pre>
-<pre><code>## Error in grDevices::dev.off(): QuartzBitmap_Output - unable to open file &#39;/Users/macorg/Documents/GitHub/Goodlosergit/Analysis/Bookdown-goodloser/output/nocon/figs/pngs/fig_losers_accept.png&#39;</code></pre>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1"><span class="kw">ggsave</span>(</a>
-<a class="sourceLine" id="cb315-2" data-line-number="2">  <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;nocon&quot;</span>, <span class="st">&quot;figs&quot;</span>, <span class="st">&quot;pdfs&quot;</span>, <span class="st">&quot;fig_losers_accept.pdf&quot;</span>),</a>
-<a class="sourceLine" id="cb315-3" data-line-number="3">  <span class="dt">plot =</span> fig_amce,</a>
-<a class="sourceLine" id="cb315-4" data-line-number="4">  <span class="dt">width =</span> <span class="fl">5.5</span>, <span class="dt">height =</span> <span class="fl">4.75</span></a>
-<a class="sourceLine" id="cb315-5" data-line-number="5">)</a></code></pre></div>
-<pre><code>## Error in grDevices::pdf(file = filename, ..., version = version): cannot open file &#39;/Users/macorg/Documents/GitHub/Goodlosergit/Analysis/Bookdown-goodloser/output/nocon/figs/pdfs/fig_losers_accept.pdf&#39;</code></pre>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1"><span class="co">#table</span></a>
-<a class="sourceLine" id="cb317-2" data-line-number="2">res_main &lt;-<span class="st"> </span>res_main <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb317-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(value, estimate, std_error, statistic, p_value)</a></code></pre></div>
-<pre><code>## Error in .f(.x[[i]], ...): object &#39;value&#39; not found</code></pre>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1"><span class="kw">kable</span>(res_main, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">caption =</span> <span class="st">&quot;Average Marginal Component Effects&quot;</span>, <span class="dt">col.names =</span> <span class="kw">linebreak</span>(<span class="kw">c</span>(<span class="st">&quot;Treatment value&quot;</span>, <span class="st">&quot;Estimate&quot;</span>, <span class="st">&quot;Std. Error&quot;</span>, <span class="st">&quot;t-statistic&quot;</span>, <span class="st">&quot;p value&quot;</span>))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb319-2" data-line-number="2"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;responsive&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb319-3" data-line-number="3"><span class="st"> </span><span class="kw">group_rows</span>(<span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;Winning margin&quot;</span> =<span class="st"> </span><span class="dv">3</span>, <span class="st">&quot;Winner gloating&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Good loser prime&quot;</span> =<span class="st"> </span><span class="dv">4</span>, <span class="st">&quot;Primer&quot;</span> =<span class="st"> </span><span class="dv">2</span>))</a></code></pre></div>
-<pre><code>## Error in xml_children(kable_tbody)[[i]]: subscript out of bounds</code></pre>
+##Reasonable
+<img src="Goodloser-appendix_files/figure-html/cb_d_305_post_reasonable_loser-1.png" width="672" />
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:305_post_reasonable_loser)Average Marginal Component Effects
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Treatment value
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t-statistic
+</th>
+<th style="text-align:right;">
+p value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winning margin</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Slight majority
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Large majority
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winner gloating</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Winning politician gloats
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.29
+</td>
+<td style="text-align:right;">
+0.77
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Good loser prime</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+No prime
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.43
+</td>
+<td style="text-align:right;">
+0.66
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Specific prime
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+1.37
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+General prime
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+1.84
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Messenger</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Local newspaper
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Political leader
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+</tr>
+</tbody>
+</table>
+##Willingnes to accept
+<img src="Goodloser-appendix_files/figure-html/cb_d_305_post_accept_loser-1.png" width="672" />
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:305_post_accept_loser)Average Marginal Component Effects – Norwegian conjoint experiment
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Treatment value
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t-statistic
+</th>
+<th style="text-align:right;">
+p value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winning margin</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Slight majority
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+-0.68
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Large majority
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+-0.75
+</td>
+<td style="text-align:right;">
+0.45
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winner gloating</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Winning politician gloats
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Good loser prime</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+No prime
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+<td style="text-align:right;">
+0.41
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Specific prime
+</td>
+<td style="text-align:right;">
+0.19
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+1.78
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+General prime
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+1.58
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Messenger</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Local newspaper
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Political leader
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.56
+</td>
+<td style="text-align:right;">
+0.58
+</td>
+</tr>
+</tbody>
+</table>
 <p>##Fairness perceptions</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;Functions/amce.R&quot;</span>)</a></code></pre></div>
-<pre><code>## Error in file(filename, &quot;r&quot;, encoding = encoding): cannot open the connection</code></pre>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" data-line-number="1">res_main &lt;-<span class="st">  </span>main_<span class="dv">01</span> <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb323-2" data-line-number="2"><span class="st">  </span><span class="kw">amce</span>(post_fair, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger) </a></code></pre></div>
-<pre><code>## Error in amce(., post_fair, treat_winningmargin, treat_winnergloat, treat_prime, : object &#39;treat_winningmargin&#39; not found</code></pre>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" data-line-number="1">res_main &lt;-<span class="st"> </span>res_main <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb325-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb325-3" data-line-number="3">  <span class="dt">treatment =</span>  <span class="kw">case_when</span>(treatment <span class="op">==</span><span class="st"> &quot;treat_outfav&quot;</span> <span class="op">~</span><span class="st"> &quot;Outcome</span><span class="ch">\n</span><span class="st">favor-</span><span class="ch">\n</span><span class="st">ability&quot;</span>,</a>
-<a class="sourceLine" id="cb325-4" data-line-number="4">            treatment <span class="op">==</span><span class="st"> &quot;treat_winningmargin&quot;</span> <span class="op">~</span><span class="st"> &quot;Winning</span><span class="ch">\n</span><span class="st">margin&quot;</span>,</a>
-<a class="sourceLine" id="cb325-5" data-line-number="5">            treatment <span class="op">==</span><span class="st"> &quot;treat_winnergloat&quot;</span> <span class="op">~</span><span class="st"> &quot;Winner</span><span class="ch">\n</span><span class="st">gloats&quot;</span>,</a>
-<a class="sourceLine" id="cb325-6" data-line-number="6">            treatment <span class="op">==</span><span class="st"> &quot;treat_prime&quot;</span> <span class="op">~</span><span class="st"> &quot;Democratic</span><span class="ch">\n</span><span class="st">prime&quot;</span>,</a>
-<a class="sourceLine" id="cb325-7" data-line-number="7">            treatment <span class="op">==</span><span class="st"> &quot;treat_messenger&quot;</span> <span class="op">~</span><span class="st"> &quot;Primer&quot;</span>)</a>
-<a class="sourceLine" id="cb325-8" data-line-number="8">)</a></code></pre></div>
-<pre><code>## Error in eval_tidy(pair$lhs, env = default_env): object &#39;treatment&#39; not found</code></pre>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb327-1" data-line-number="1"><span class="co">#Figure</span></a>
-<a class="sourceLine" id="cb327-2" data-line-number="2">fig_amce &lt;-</a>
-<a class="sourceLine" id="cb327-3" data-line-number="3"><span class="st">  </span>res_main <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb327-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> estimate, <span class="dt">y =</span> value)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb327-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_grid</span>(</a>
-<a class="sourceLine" id="cb327-6" data-line-number="6">    treatment <span class="op">~</span><span class="st"> </span>.,</a>
-<a class="sourceLine" id="cb327-7" data-line-number="7">    <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>,</a>
-<a class="sourceLine" id="cb327-8" data-line-number="8">    <span class="dt">space =</span> <span class="st">&quot;free_y&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb327-9" data-line-number="9"><span class="st">  </span><span class="kw">geom_errorbarh</span>(</a>
-<a class="sourceLine" id="cb327-10" data-line-number="10">    <span class="kw">aes</span>(<span class="dt">xmin =</span> estimate <span class="op">-</span><span class="st"> </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>std_error),</a>
-<a class="sourceLine" id="cb327-11" data-line-number="11">        <span class="dt">xmax =</span> estimate <span class="op">+</span><span class="st"> </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>std_error)),</a>
-<a class="sourceLine" id="cb327-12" data-line-number="12">    <span class="dt">height =</span> <span class="dv">0</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb327-13" data-line-number="13"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb327-14" data-line-number="14"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>), <span class="dt">linetype =</span> <span class="st">&quot;dotted&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb327-15" data-line-number="15"><span class="st">  </span><span class="kw">scale_x_continuous</span>(</a>
-<a class="sourceLine" id="cb327-16" data-line-number="16">    <span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb327-17" data-line-number="17">    <span class="dt">breaks =</span> <span class="kw">round</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">.1</span>), <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb327-18" data-line-number="18">    <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb327-19" data-line-number="19"><span class="st">   </span><span class="kw">labs</span>(</a>
-<a class="sourceLine" id="cb327-20" data-line-number="20">    <span class="dt">x =</span> <span class="st">&quot;Marginal effect, perceived fairness of decision&quot;</span>,</a>
-<a class="sourceLine" id="cb327-21" data-line-number="21">    <span class="dt">y =</span> <span class="st">&quot;Decision process attributes&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb327-22" data-line-number="22"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb327-23" data-line-number="23"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.margin =</span> <span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="st">&quot;mm&quot;</span>),</a>
-<a class="sourceLine" id="cb327-24" data-line-number="24">        <span class="dt">axis.text.x=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="kw">rel</span>(<span class="fl">0.7</span>)))</a>
-<a class="sourceLine" id="cb327-25" data-line-number="25">fig_amce</a></code></pre></div>
-<pre><code>## Error: At least one layer must contain all faceting variables: `treatment`.
-## * Plot is missing `treatment`
-## * Layer 1 is missing `treatment`
-## * Layer 2 is missing `treatment`
-## * Layer 3 is missing `treatment`</code></pre>
-<p><img src="Goodloser-appendix_files/figure-html/cb_d_cb_d_cb_d_305_post_fair_loser-1.png" width="672" /></p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" data-line-number="1"><span class="kw">ggsave</span>(</a>
-<a class="sourceLine" id="cb329-2" data-line-number="2">  <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;nocon&quot;</span>, <span class="st">&quot;figs&quot;</span>, <span class="st">&quot;pngs&quot;</span>, <span class="st">&quot;fig_losers_fair.png&quot;</span>),</a>
-<a class="sourceLine" id="cb329-3" data-line-number="3">  <span class="dt">plot =</span> fig_amce,</a>
-<a class="sourceLine" id="cb329-4" data-line-number="4">  <span class="dt">width =</span> <span class="fl">5.5</span>, <span class="dt">height =</span> <span class="fl">4.75</span></a>
-<a class="sourceLine" id="cb329-5" data-line-number="5">)</a></code></pre></div>
-<pre><code>## Error: At least one layer must contain all faceting variables: `treatment`.
-## * Plot is missing `treatment`
-## * Layer 1 is missing `treatment`
-## * Layer 2 is missing `treatment`
-## * Layer 3 is missing `treatment`</code></pre>
-<pre><code>## Error in grDevices::dev.off(): QuartzBitmap_Output - unable to open file &#39;/Users/macorg/Documents/GitHub/Goodlosergit/Analysis/Bookdown-goodloser/output/nocon/figs/pngs/fig_losers_fair.png&#39;</code></pre>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" data-line-number="1"><span class="kw">ggsave</span>(</a>
-<a class="sourceLine" id="cb332-2" data-line-number="2"> <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;nocon&quot;</span>, <span class="st">&quot;figs&quot;</span>, <span class="st">&quot;pdfs&quot;</span>, <span class="st">&quot;fig_losers_fair.pdf&quot;</span>),</a>
-<a class="sourceLine" id="cb332-3" data-line-number="3">  <span class="dt">plot =</span> fig_amce,</a>
-<a class="sourceLine" id="cb332-4" data-line-number="4">  <span class="dt">width =</span> <span class="fl">5.5</span>, <span class="dt">height =</span> <span class="fl">4.75</span></a>
-<a class="sourceLine" id="cb332-5" data-line-number="5">)</a></code></pre></div>
-<pre><code>## Error in grDevices::pdf(file = filename, ..., version = version): cannot open file &#39;/Users/macorg/Documents/GitHub/Goodlosergit/Analysis/Bookdown-goodloser/output/nocon/figs/pdfs/fig_losers_fair.pdf&#39;</code></pre>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" data-line-number="1"><span class="co">#table</span></a>
-<a class="sourceLine" id="cb334-2" data-line-number="2">res_main &lt;-<span class="st"> </span>res_main <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb334-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(value, estimate, std_error, statistic, p_value)</a></code></pre></div>
-<pre><code>## Error in .f(.x[[i]], ...): object &#39;value&#39; not found</code></pre>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" data-line-number="1"><span class="kw">kable</span>(res_main, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">caption =</span> <span class="st">&quot;Average Marginal Component Effects&quot;</span>, <span class="dt">col.names =</span> <span class="kw">linebreak</span>(<span class="kw">c</span>(<span class="st">&quot;Treatment value&quot;</span>, <span class="st">&quot;Estimate&quot;</span>, <span class="st">&quot;Std. Error&quot;</span>, <span class="st">&quot;t-statistic&quot;</span>, <span class="st">&quot;p value&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb336-2" data-line-number="2"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;responsive&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb336-3" data-line-number="3"><span class="st"> </span><span class="kw">group_rows</span>(<span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;Winning margin&quot;</span> =<span class="st"> </span><span class="dv">3</span>, <span class="st">&quot;Winner gloating&quot;</span> =<span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Good loser prime&quot;</span> =<span class="st"> </span><span class="dv">4</span>, <span class="st">&quot;Primer&quot;</span> =<span class="st"> </span><span class="dv">2</span>))</a></code></pre></div>
-<pre><code>## Error in xml_children(kable_tbody)[[i]]: subscript out of bounds</code></pre>
+<img src="Goodloser-appendix_files/figure-html/cb_d_305_post_fair_loser-1.png" width="672" />
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:305_post_fair_loser)Average Marginal Component Effect – Norwegian conjoint experiment
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Treatment value
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t-statistic
+</th>
+<th style="text-align:right;">
+p value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winning margin</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Slight majority
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+-0.53
+</td>
+<td style="text-align:right;">
+0.59
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Large majority
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+-0.09
+</td>
+<td style="text-align:right;">
+0.93
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winner gloating</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Winning politician gloats
+</td>
+<td style="text-align:right;">
+-0.02
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-0.34
+</td>
+<td style="text-align:right;">
+0.74
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Good loser prime</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+No prime
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+2.52
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Specific prime
+</td>
+<td style="text-align:right;">
+0.29
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+2.98
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+General prime
+</td>
+<td style="text-align:right;">
+0.31
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+3.14
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Messenger</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Local newspaper
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Political leader
+</td>
+<td style="text-align:right;">
+-0.02
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+-0.26
+</td>
+<td style="text-align:right;">
+0.79
+</td>
+</tr>
+</tbody>
+</table>
+
+<p>#Issue: Ban on begging</p>
+<p>##Main effects</p>
+<p>###Prepare data</p>
+###Reasonable decision
+<img src="Goodloser-appendix_files/figure-html/cb_d_308_begging_post_reasonable-1.png" width="672" />
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:308_begging_post_reasonable)Average Marginal Component Effect – Norwegian conjoint experiment
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Treatment value
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t-statistic
+</th>
+<th style="text-align:right;">
+p value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winning margin</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Slight majority
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Large majority
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+1.43
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winner gloating</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Winning politician gloats
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.88
+</td>
+<td style="text-align:right;">
+0.38
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Good loser prime</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+No prime
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+1.70
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Specific prime
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+General prime
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+1.78
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Messenger</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Local newspaper
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Political leader
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.80
+</td>
+</tr>
+</tbody>
+</table>
+###Willingnes to accept
+<img src="Goodloser-appendix_files/figure-html/cb_d_308_begging_post_accept-1.png" width="672" />
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:308_begging_post_accept)Average Marginal Component Effect – Norwegian conjoint experiment
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Treatment value
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t-statistic
+</th>
+<th style="text-align:right;">
+p value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winning margin</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Slight majority
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-0.89
+</td>
+<td style="text-align:right;">
+0.37
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Large majority
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.48
+</td>
+<td style="text-align:right;">
+0.63
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winner gloating</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Winning politician gloats
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+1.69
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Good loser prime</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+No prime
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Specific prime
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+-0.03
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+General prime
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.41
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Messenger</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Local newspaper
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Political leader
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+</tr>
+</tbody>
+</table>
+###Fairness perceptions
+<img src="Goodloser-appendix_files/figure-html/cb_d_308_begging_post_fair-1.png" width="672" />
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:308_begging_post_fair)Average Marginal Component Effect – Norwegian conjoint experiment
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Treatment value
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t-statistic
+</th>
+<th style="text-align:right;">
+p value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winning margin</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Slight majority
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-0.62
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Large majority
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.59
+</td>
+<td style="text-align:right;">
+0.56
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winner gloating</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Winning politician gloats
+</td>
+<td style="text-align:right;">
+-0.02
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-0.41
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Good loser prime</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+No prime
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+2.59
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Specific prime
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+2.08
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+General prime
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+2.53
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Messenger</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Local newspaper
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Political leader
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+1.16
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+</tbody>
+</table>
+
+<p>#Issue: Road toll</p>
+<p>##Main effects</p>
+<p>###Prepare data</p>
+###Reasonable decision
+<img src="Goodloser-appendix_files/figure-html/cb_d_309_toll_post_reasonable-1.png" width="672" />
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:309_toll_post_reasonable)Average Marginal Component Effects – Norwegian conjoint experiment
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Treatment value
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t-statistic
+</th>
+<th style="text-align:right;">
+p value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winning margin</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Slight majority
+</td>
+<td style="text-align:right;">
+-0.0192
+</td>
+<td style="text-align:right;">
+0.0810
+</td>
+<td style="text-align:right;">
+-0.2368
+</td>
+<td style="text-align:right;">
+0.8128
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Large majority
+</td>
+<td style="text-align:right;">
+-0.0213
+</td>
+<td style="text-align:right;">
+0.0816
+</td>
+<td style="text-align:right;">
+-0.2611
+</td>
+<td style="text-align:right;">
+0.7941
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winner gloating</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Winning politician gloats
+</td>
+<td style="text-align:right;">
+0.0170
+</td>
+<td style="text-align:right;">
+0.0666
+</td>
+<td style="text-align:right;">
+0.2559
+</td>
+<td style="text-align:right;">
+0.7981
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Good loser prime</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+No prime
+</td>
+<td style="text-align:right;">
+0.0251
+</td>
+<td style="text-align:right;">
+0.1090
+</td>
+<td style="text-align:right;">
+0.2305
+</td>
+<td style="text-align:right;">
+0.8177
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Specific prime
+</td>
+<td style="text-align:right;">
+0.2030
+</td>
+<td style="text-align:right;">
+0.1106
+</td>
+<td style="text-align:right;">
+1.8347
+</td>
+<td style="text-align:right;">
+0.0668
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+General prime
+</td>
+<td style="text-align:right;">
+0.2781
+</td>
+<td style="text-align:right;">
+0.1091
+</td>
+<td style="text-align:right;">
+2.5480
+</td>
+<td style="text-align:right;">
+0.0109
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Messenger</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Local newspaper
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Political leader
+</td>
+<td style="text-align:right;">
+0.0049
+</td>
+<td style="text-align:right;">
+0.0864
+</td>
+<td style="text-align:right;">
+0.0570
+</td>
+<td style="text-align:right;">
+0.9546
+</td>
+</tr>
+</tbody>
+</table>
+###Willingnes to accept
+<img src="Goodloser-appendix_files/figure-html/cb_d_309_toll_post_accept-1.png" width="672" />
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:309_toll_post_accept)Average Marginal Component Effects – Norwegian conjoint experiment
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Treatment value
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t-statistic
+</th>
+<th style="text-align:right;">
+p value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winning margin</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Slight majority
+</td>
+<td style="text-align:right;">
+-0.0427
+</td>
+<td style="text-align:right;">
+0.0757
+</td>
+<td style="text-align:right;">
+-0.5644
+</td>
+<td style="text-align:right;">
+0.5726
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Large majority
+</td>
+<td style="text-align:right;">
+-0.0167
+</td>
+<td style="text-align:right;">
+0.0764
+</td>
+<td style="text-align:right;">
+-0.2190
+</td>
+<td style="text-align:right;">
+0.8267
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winner gloating</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Winning politician gloats
+</td>
+<td style="text-align:right;">
+0.0198
+</td>
+<td style="text-align:right;">
+0.0623
+</td>
+<td style="text-align:right;">
+0.3176
+</td>
+<td style="text-align:right;">
+0.7508
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Good loser prime</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+No prime
+</td>
+<td style="text-align:right;">
+0.0574
+</td>
+<td style="text-align:right;">
+0.1017
+</td>
+<td style="text-align:right;">
+0.5648
+</td>
+<td style="text-align:right;">
+0.5723
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Specific prime
+</td>
+<td style="text-align:right;">
+0.3041
+</td>
+<td style="text-align:right;">
+0.1031
+</td>
+<td style="text-align:right;">
+2.9487
+</td>
+<td style="text-align:right;">
+0.0032
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+General prime
+</td>
+<td style="text-align:right;">
+0.2621
+</td>
+<td style="text-align:right;">
+0.1018
+</td>
+<td style="text-align:right;">
+2.5746
+</td>
+<td style="text-align:right;">
+0.0101
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Messenger</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Local newspaper
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Political leader
+</td>
+<td style="text-align:right;">
+0.0225
+</td>
+<td style="text-align:right;">
+0.0793
+</td>
+<td style="text-align:right;">
+0.2836
+</td>
+<td style="text-align:right;">
+0.7768
+</td>
+</tr>
+</tbody>
+</table>
+###Fairness perceptions
+<img src="Goodloser-appendix_files/figure-html/cb_d_309_toll_post_fair-1.png" width="672" />
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+(#tab:309_toll_post_fair)Average Marginal Component Effects – Norwegian conjoint experiment
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Treatment value
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t-statistic
+</th>
+<th style="text-align:right;">
+p value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="3">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winning margin</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Slight majority
+</td>
+<td style="text-align:right;">
+-0.0014
+</td>
+<td style="text-align:right;">
+0.0714
+</td>
+<td style="text-align:right;">
+-0.0200
+</td>
+<td style="text-align:right;">
+0.9841
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Large majority
+</td>
+<td style="text-align:right;">
+0.0189
+</td>
+<td style="text-align:right;">
+0.0720
+</td>
+<td style="text-align:right;">
+0.2622
+</td>
+<td style="text-align:right;">
+0.7932
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Winner gloating</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Winning politician gloats
+</td>
+<td style="text-align:right;">
+0.0582
+</td>
+<td style="text-align:right;">
+0.0587
+</td>
+<td style="text-align:right;">
+0.9921
+</td>
+<td style="text-align:right;">
+0.3213
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Good loser prime</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Not shown
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+No prime
+</td>
+<td style="text-align:right;">
+0.2510
+</td>
+<td style="text-align:right;">
+0.0960
+</td>
+<td style="text-align:right;">
+2.6155
+</td>
+<td style="text-align:right;">
+0.0090
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Specific prime
+</td>
+<td style="text-align:right;">
+0.3589
+</td>
+<td style="text-align:right;">
+0.0973
+</td>
+<td style="text-align:right;">
+3.6875
+</td>
+<td style="text-align:right;">
+0.0002
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+General prime
+</td>
+<td style="text-align:right;">
+0.3670
+</td>
+<td style="text-align:right;">
+0.0960
+</td>
+<td style="text-align:right;">
+3.8212
+</td>
+<td style="text-align:right;">
+0.0001
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Messenger</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Local newspaper
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left: 2em;" indentlevel="1">
+Political leader
+</td>
+<td style="text-align:right;">
+-0.0385
+</td>
+<td style="text-align:right;">
+0.0743
+</td>
+<td style="text-align:right;">
+-0.5175
+</td>
+<td style="text-align:right;">
+0.6049
+</td>
+</tr>
+</tbody>
+</table>
 
 </div>
             </section>
@@ -573,7 +2411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="main-effects-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="effects-on-winners-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="worded-answer-scale.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
