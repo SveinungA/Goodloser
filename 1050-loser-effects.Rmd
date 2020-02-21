@@ -18,7 +18,51 @@ source("goodloser-utils.R")
 
 d <- read_sav("Data/Goodloser-exp1.sav")
 
+d <- d %>% mutate(treatment = lvls_reorder(treatment, c(3, 2 , 1)))
+
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
+```
+
+##Interaction treatment effect on fairness with outcome favorability
+```{r 1050_int_outfav}
+res <- lm(fairness ~ treatment*favorability, data = d)
+fig <- summary(margins(res, at = list(favorability = c('Favorable', 'Unfavorable')))) %>% 
+  filter(factor == 'treatmentGeneral prime') %>% 
+
+    ggplot(aes(x = AME, y = favorability,
+               xmin = AME - (2 * SE) ,
+               xmax = AME + (2 * SE))) +
+  coord_flip() +
+   geom_errorbarh(height = 0) +
+  geom_point() +
+  geom_vline(aes(xintercept = 0), linetype = "dotted") +
+   scale_x_continuous(limits = c(-0.5, 2),
+                     breaks = round(seq(-1, 2, 0.5), 1),
+                     expand = c(0, 0)) +
+  scale_y_discrete() +
+  
+  labs(x = 'Average marginal treatment effect',
+       y = "Outcome favorability",
+       title = "Conditional effect of outcome favorability on general prime treatment, Study 1.",
+       subtitle = 'Outcome measure: Fairness perception of decision. ') +
+  theme_bw() +
+  theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(1))) +
+  theme(panel.spacing = unit(0.5, "lines"))
+fig
+
+ggsave(
+  here("output", "swevig", "figs", "pngs", "exp1-fairness-outfav.png"),
+  plot = fig,
+  width = 7, height = 2.75
+)
+
+ggsave(
+  here("output", "swevig", "figs", "pdfs", "exp1-fairness-outfav.pdf"),
+  plot = fig,
+  width = 7, height = 2.75
+)
+
+
 ```
 
 ##Prepare data
@@ -26,9 +70,7 @@ knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, messag
 Select only respondents who receive an unfavorable outcome
 ```{r 105_main}
 d <- d %>% 
-  filter(favorability == "Unfavorable") %>% 
-  mutate(treatment = lvls_reorder(treatment, c(3, 2, 1)))
-                   
+  filter(favorability == "Unfavorable") 
 ``` 
 
 ##Fairness
@@ -364,3 +406,4 @@ kable(table, booktabs = TRUE, caption = "Treatment effects on decision complianc
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-losers-compliance-swevig.html"))
 ```
+
