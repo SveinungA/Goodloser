@@ -18,7 +18,7 @@ set.seed(2016)
 
 d1 <- read_sav("Data/Goodloser-exp1.sav")
 d2 <- read_sav("Data/Goodloser-exp2.sav")
-d3 <- read_sav("Data/Goodloser-exp3.sav")
+d3 <- read_sav("Data/Goodloser-exp3-orig.sav")
 
 
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
@@ -96,13 +96,15 @@ res_main_01 <-  lm(fairness ~ favorability, data = d1)
 res_main_01 <- broom::tidy(res_main_01) %>% 
   mutate(value = case_when(term=='favorabilityUnfavorable' ~ 'Unfavorable outcome'),
          treatment = 'Study 1 -- Swedish vignette')%>% 
-  rename(std_error = std.error)
+  rename(std_error = std.error,
+         p_value = p.value)
 
 res_main_02 <-  lm(fairness ~ favorability, data = d2) 
 res_main_02 <- broom::tidy(res_main_02)%>% 
   mutate(value = case_when(term=='favorabilityUnfavorable' ~ 'Unfavorable outcome'),
          treatment = 'Study 2 -- Norwegian vignette') %>% 
-  rename(std_error = std.error)
+  rename(std_error = std.error,
+         p_value = p.value)
 
 source("Functions/amce.R")
 
@@ -115,7 +117,7 @@ res_main <- Stack(res_main, res_main_03)
 
 res_main <- res_main %>%
   filter(value=='Unfavorable outcome') %>% 
-  select(estimate, std_error, statistic, value, treatment)
+  select(treatment, estimate, std_error, statistic, value, p_value)
 
 fig <-
   res_main %>%
@@ -154,6 +156,16 @@ ggsave(
   plot = fig,
   width = 5.5, height = 2.75
 )
+
+res_main <- res_main %>% select(-value)
+#for bookdown
+kable(res_main, booktabs = TRUE, caption = "The outcome favorability effect in three experiments", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) 
+#save to file
+kable(res_main, booktabs = TRUE, caption = "The outcome favorability effect in three experiments", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-outfav-fair.html"))
+
 
 ```
 

@@ -7,6 +7,7 @@ if(!require("here")){install.packages("here");  library(here)}
 if(!require("knitr")){install.packages("knitr");  library(knitr)}
 options(kableExtra.latex.load_packages = FALSE) 
 if(!require("kableExtra")){install.packages("kableExtra");  library(kableExtra)}
+if(!require("margins")){install.packages("margins"); library(margins)}
 if(!require("naniar")){install.packages("naniar");  library(naniar)}
 if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 # The analysis uses custom functions included in the compendium. Install the included pkg with `devtools::install()` or just install from github with:
@@ -23,8 +24,9 @@ d <- d %>% mutate(treatment = lvls_reorder(treatment, c(3, 2 , 1)))
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
-##Interaction treatment effect on fairness with outcome favorability
-```{r 1050_int_outfav}
+<!--```{r 1050_int_outfav}
+## Interaction treatment effect on fairness with outcome favorability
+
 res <- lm(fairness ~ treatment*favorability, data = d)
 fig <- summary(margins(res, at = list(favorability = c('Favorable', 'Unfavorable')))) %>% 
   filter(factor == 'treatmentGeneral prime') %>% 
@@ -51,7 +53,7 @@ fig <- summary(margins(res, at = list(favorability = c('Favorable', 'Unfavorable
 fig
 
 ggsave(
-  here("output", "swevig", "figs", "pngs", "exp1-fairness-outfav.png"),
+ here("output", "swevig", "figs", "pngs", "exp1-fairness-outfav.png"),
   plot = fig,
   width = 7, height = 2.75
 )
@@ -61,19 +63,27 @@ ggsave(
   plot = fig,
   width = 7, height = 2.75
 )
+table <- res %>% 
+  select(term, estimate, std.error, statistic, p.value)
+
+#for bookdown
+kable(table, booktabs = TRUE, caption = "Conditional effect of outcome favorability on general prime treatment, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
+#save to file
+kable(table, booktabs = TRUE, caption = "Conditional effect of outcome favorability on general prime treatment, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+  cat(., file = here("output", "swevig", "tbls", "html",  "tbl-fairness-outfav-swevig.html"))
+
+``` -->
 
 
-```
-
-##Prepare data
-
-Select only respondents who receive an unfavorable outcome
 ```{r 105_main}
+#Filter on respondents who receive an unfavorable outcome
 d <- d %>% 
   filter(favorability == "Unfavorable") 
 ``` 
 
-##Fairness
+## Fairness
 ```{r 105_post_fairness}
 
 res_main <-  lm(fairness ~ treatment, data = d) 
@@ -132,14 +142,15 @@ table <- res_main %>%
                    term == "treatmentGeneral prime" ~ "General prime")
          )
 
+#for bookdown
 kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
-
+#save to file
 kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-losers-fairness-swevig.html"))
 ```
-##Justice
+## Justice
 ```{r 105_post_justice}
 
 res_main <-  lm(justice ~ treatment, data = d) 
@@ -197,16 +208,16 @@ table <- res_main %>%
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
                    term == "treatmentGeneral prime" ~ "General prime")
          )
-
+#for bookdown
 kable(table, booktabs = TRUE, caption = "Treatment effects on justice perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) 
-
+#save to file
 kable(table, booktabs = TRUE, caption = "Treatment effects on justice perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-losers-justice-swevig.html"))
 ```
 
-##Decision evaluation
+## Decision evaluation
 ```{r 105_post_eval}
 
 res_main <-  lm(eval ~ treatment, data = d) 
@@ -264,16 +275,16 @@ table <- res_main %>%
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
                    term == "treatmentGeneral prime" ~ "General prime")
          )
-
+#for bookdown
 kable(table, booktabs = TRUE, caption = "Treatment effects on decision evaluation, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
-
+#save to file
 kable(table, booktabs = TRUE, caption = "Treatment effects on decision evaluation, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-evaluation-fairness-swevig.html"))
 ```
 
-##Willingness to accept
+## Willingness to accept
 ```{r 105_post_accept}
 
 res_main <-  lm(accept ~ treatment, data = d) 
@@ -331,16 +342,16 @@ table <- res_main %>%
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
                    term == "treatmentGeneral prime" ~ "General prime")
          )
-
+#for bookdown
 kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
-
+#save to file
 kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-losers-acceptance-swevig.html"))
 ```
 
-##Compliance
+## Compliance
 ```{r 105_post_comply}
 
 res_main <-  lm(comply ~ treatment, data = d) 
@@ -390,7 +401,6 @@ ggsave(
   width = 5.5, height = 2.75
 )
 
-
 #Table
 table <- res_main %>% 
   select(term, estimate, std.error, statistic, p.value) %>% 
@@ -398,10 +408,10 @@ table <- res_main %>%
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
                    term == "treatmentGeneral prime" ~ "General prime")
          )
-
+#for bookdown
 kable(table, booktabs = TRUE, caption = "Treatment effects on decision compliance, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
-
+#save to file
 kable(table, booktabs = TRUE, caption = "Treatment effects on decision compliance, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-losers-compliance-swevig.html"))

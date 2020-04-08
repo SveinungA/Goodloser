@@ -1,7 +1,5 @@
 # Main effects
 
-> This chapter explores the first hypothesis in the [pre-registration](GoogLoser_Prereg_3_#16823[16065].pdf) of the experiment: **Individuals that receive an unfavorable outcome express lower fairness perception than individuals that receive a favorable outcome.** The estimation of the Average Marginal Component Effects is based on the function developed by Mikael P. Johannesson, and available on [Github](https://rdrr.io/github/mikajoh/descr2/man/amce.html). 
-
 ```{r 204_packages, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
 if(!require("haven")){install.packages("haven");  library(haven)}
@@ -23,15 +21,15 @@ d <- read_sav("Data/Goodloser-exp2.sav")
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
-##Prepare data
 ```{r 204_main}
+#Prepare data
 
 d <- d %>%
   mutate(treatment = lvls_reorder(treatment, c(3, 2, 1, 4, 5)) 
   )
 ``` 
 
-##Fairness
+## Fairness
 ```{r 204_post_fairness}
 
 res_main <-  lm(fairness ~ treatment, data = d) 
@@ -85,12 +83,12 @@ ggsave(
 
 #Table
 table <- res_main %>% 
+    filter(term != 'treatmentWinner') %>% 
   select(term, estimate, std.error, statistic, p.value) %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Not shown (Intercept)",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
                    term == "treatmentGeneral Prime" ~ "General prime", 
-                   term == "treatmentSpecific prime" ~ "Specific prime",
-                   term == "treatmentWinner" ~ "Winner"))
+                   term == "treatmentSpecific prime" ~ "Specific prime"))
 
 kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) 
@@ -100,7 +98,7 @@ kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptio
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-fairness-novig.html"))
 ```
        
-##Willingnes to accept
+## Willingnes to accept
 
 ```{r 204_post_accept}
 
@@ -156,11 +154,11 @@ ggsave(
 #Table
 table <- res_main %>% 
   select(term, estimate, std.error, statistic, p.value) %>% 
+    filter(term != 'treatmentWinner') %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Not shown (Intercept)",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
                    term == "treatmentGeneral Prime" ~ "General prime", 
-                   term == "treatmentSpecific prime" ~ "Specific prime",
-                   term == "treatmentWinner" ~ "Winner"))
+                   term == "treatmentSpecific prime" ~ "Specific prime"))
 
 kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
@@ -170,9 +168,7 @@ kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to acc
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-accept-novig.html"))
 ```
 
-##Trust in politician
-
-
+## Trust in politician
 ```{r 204_post_trust}
 
 res_main <-  lm(trust ~ treatment, data = d) 
@@ -225,12 +221,12 @@ ggsave(
 
 #Table
 table <- res_main %>% 
+    filter(term != 'treatmentWinner') %>% 
   select(term, estimate, std.error, statistic, p.value) %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Not shown (Intercept)",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
                    term == "treatmentGeneral Prime" ~ "General prime", 
-                   term == "treatmentSpecific prime" ~ "Specific prime",
-                   term == "treatmentWinner" ~ "Winner"))
+                   term == "treatmentSpecific prime" ~ "Specific prime"))
 
 kable(table, booktabs = TRUE, caption = "Treatment effects on trust in politician, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))

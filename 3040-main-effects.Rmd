@@ -1,7 +1,5 @@
 # Main effects
 
-> This chapter explores the first hypothesis in the [pre-registration](GoogLoser_Prereg_3_#16823[16065].pdf) of the experiment: **Individuals that receive an unfavorable outcome express lower fairness perception than individuals that receive a favorable outcome.** The estimation of the Average Marginal Component Effects is based on the function developed by Mikael P. Johannesson, and available on [Github](https://rdrr.io/github/mikajoh/descr2/man/amce.html). 
-
 ```{r 304_setup, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
 if(!require("haven")){install.packages("haven");  library(haven)}
@@ -16,13 +14,13 @@ if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 
 set.seed(2016)
 
-d <- read_sav("Data/Goodloser-exp3.sav")
+d <- read_sav("Data/Goodloser-exp3-orig.sav")
 
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
-##Prepare data
 ```{r 304_main}
+#Prepare data
 
 main_01 <- d %>% 
   mutate(rsp_id = as.numeric(responseid),
@@ -83,7 +81,7 @@ main_01 <- d %>%
         )
 ``` 
 
-##Reasonable decision
+## Reasonable decision
 ```{r 304_post_reasonable}
 source("Functions/amce.R")
 
@@ -152,7 +150,7 @@ kable(res_main, booktabs = TRUE, caption = "Average marginal component effects -
 
 ```
        
-##Willingnes to accept
+## Willingnes to accept
 ```{r 304_post_accept}
 
 
@@ -221,7 +219,7 @@ kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -
 
 ```
 
-##Fairness perceptions
+## Fairness perceptions
 ```{r 304_post_fair}
 
 

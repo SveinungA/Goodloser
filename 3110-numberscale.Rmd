@@ -1,3 +1,4 @@
+# Numbered answer scale
 ```{r 311_setup, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
 if(!require("haven")){install.packages("haven");  library(haven)}
@@ -10,12 +11,11 @@ if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 
 set.seed(2016)
 
-d <- read_sav("Data/Goodloser-exp3.sav")
+d <- read_sav("Data/Goodloser-exp3-orig.sav")
 
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
-# Numbered answer scale
 
 > This chapter shows the treatment effects for the alternative, numbered answer scale. This scale reads:
 
@@ -28,8 +28,8 @@ knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, messag
 >  Half of the respondents were asked to answer the post measures of fairness, reasonableness, and willingness to accept the decision with the regular, worded answer scale, while the other half gets this numbered scale in stead (please note that the scales are reversed in all analyses).
 
 
-##Prepare data
 ```{r 311_main_numbersscale}
+#Prepare data
 
 main_01 <- d %>% 
   mutate(rsp_id = as.numeric(responseid),
@@ -97,7 +97,7 @@ main_01 <- main_01 %>%
 ``` 
 
 
-##Reasonable decision
+## Reasonable decision
 ```{r 311_post_reasonable_numberscale}
 
 
@@ -158,16 +158,19 @@ ggsave(
 res_main <- res_main %>% 
   select(value, estimate, std_error, statistic, p_value)
 
+#for bookdown
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
+#save to file
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-numberscale-reasonable-nocon.html"))
-
 ```
        
-##Willingnes to accept
+## Willingnes to accept
 ```{r 311_post_accept_numberscale}
-
 
 source("Functions/amce.R")
 
@@ -228,6 +231,11 @@ res_main <- res_main %>%
   select(value, estimate, std_error, statistic, p_value)
 
 
+#for bookdown
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
+#save to file
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
@@ -235,9 +243,8 @@ kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -
 
 ```
 
-##Fairness perceptions
+## Fairness perceptions
 ```{r 311_post_fair_numberscale}
-
 
 source("Functions/amce.R")
 

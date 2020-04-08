@@ -1,8 +1,8 @@
 # Data management
 
->This chapter describes the data management that is conducted prior to any analysis.
+>Script for data management that is conducted prior to any analysis.
 
-```{r 103_setup, include=FALSE}
+```{r 103_setup}
 if(!require("haven")){install.packages("haven");  library(haven)}
 if(!require("knitr")){install.packages("knitr");  library(knitr)}
 if(!require("naniar")){install.packages("naniar");  library(naniar)}

@@ -1,8 +1,8 @@
 # Data management
 
->This chapter describes the data management that is conducted prior to any analysis
+>Script for data management that is conducted prior to any analysis.
 
-```{r 203_manage, include=FALSE}
+```{r 203_manage}
 if(!require("dplyr")){install.packages("dplyr");  library(dplyr)}
 if(!require("haven")){install.packages("haven");  library(haven)}
 if(!require("knitr")){install.packages("knitr");  library(knitr)}
@@ -15,7 +15,7 @@ d <- read_sav("Data/Goodloser-exp2-orig.sav")
 knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
-```{r 203_prepare}
+```{r 203_prepare, echo=TRUE}
 
 d <- d %>%
   rename("imp_accept"= "r9pad1",

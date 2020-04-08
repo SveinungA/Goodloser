@@ -19,20 +19,14 @@ source("goodloser-utils.R")
 
 d <- read_sav("Data/Goodloser-exp1.sav")
 
-knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
+d <- d %>%  mutate(treatment = lvls_reorder(treatment, c(3, 2, 1)))
 
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
-##Prepare data
-```{r 104_main}
-d <- d %>%  mutate(treatment = lvls_reorder(treatment, c(3, 2, 1)))
-                   
-``` 
+## Fairness
 
-##Fairness
-
-
-###Priming effects
+### Priming effects
 
 ```{r 104_post_fairness}
 
@@ -91,11 +85,15 @@ table <- res_main %>%
                    term == "treatmentGeneral prime" ~ "General prime")
          )
 
+#for bookdown
+kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
+#save to file
 kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  %>% 
   cat(., file = here("output", "swevig", "tbls", "html", "tbl-fairness-swevig.html"))
 ```
-##Justice
+## Justice
 ```{r 104_post_justice}
 
 res_main <-  lm(justice ~ treatment, data = d) 
@@ -153,12 +151,16 @@ table <- res_main %>%
                    term == "treatmentGeneral prime" ~ "General prime")
          )
 
+#for bookdown
+kable(table, booktabs = TRUE, caption = "Treatment effects on justice perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
+#save to file
 kable(table, booktabs = TRUE, caption = "Treatment effects on justice perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-justice-swevig.html"))
 ```
 
-##Decision evaluation
+## Decision evaluation
 ```{r 104_post_eval}
 
 res_main <-  lm(eval ~ treatment, data = d) 
@@ -216,12 +218,16 @@ table <- res_main %>%
                    term == "treatmentGeneral prime" ~ "General prime")
          )
 
+#for bookdown
+kable(table, booktabs = TRUE, caption = "Treatment effects on decision evaluation, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) 
+#save to file
 kable(table, booktabs = TRUE, caption = "Treatment effects on decision evaluation, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-evaluation-swevig.html"))
 ```
 
-##Willingness to accept
+## Willingness to accept
 ```{r 104_post_accept}
 
 res_main <-  lm(accept ~ treatment, data = d) 
@@ -279,12 +285,16 @@ table <- res_main %>%
                    term == "treatmentGeneral prime" ~ "General prime")
          )
 
+#for bookdown
+kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) 
+#save to file
 kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-acceptance-swevig.html"))
 ```
 
-##Compliance
+## Compliance
 ```{r 104_post_comply}
 
 res_main <-  lm(comply ~ treatment, data = d) 
@@ -342,6 +352,10 @@ table <- res_main %>%
                    term == "treatmentGeneral prime" ~ "General prime")
          )
 
+#for bookdown
+kable(table, booktabs = TRUE, caption = "Treatment effects on decision compliance, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) 
+#save to file
 kable(table, booktabs = TRUE, caption = "Treatment effects on decision compliance, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-compliance-swevig.html"))

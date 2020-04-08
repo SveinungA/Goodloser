@@ -1,5 +1,5 @@
 
-##Moderating effects of issue importance on losers
+# Moderating effects of issue importance on losers
 
 ```{r 1045_packages, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
@@ -58,27 +58,70 @@ fig <- summary(margins(res, at = list(opinion_strength = 1:7)))  %>%
 fig
 
 ggsave(
-  here("output", "swevig", "figs", "pngs", "exp1-fairness-importance-int-losers.png"),
+  here("output", "swevig", "figs", "pngs", "exp1-fairness-importance-int-generalprime-losers.png"),
   plot = fig,
   width = 7, height = 2.75
 )
 
 ggsave(
-  here("output", "swevig", "figs", "pdfs", "exp1-fairness-importance-int-losers.pdf"),
+  here("output", "swevig", "figs", "pdfs", "exp1-fairness-importance-int-generalprime-losers.pdf"),
   plot = fig,
   width = 7, height = 2.75
 )
+
+
+fig <- summary(margins(res, at = list(opinion_strength = 1:7)))  %>% 
+  filter(factor == 'treatmentLamenting politician') %>% 
+
+    ggplot(aes(x = AME, y = opinion_strength,
+               xmin = AME - (2 * SE) ,
+               xmax = AME + (2 * SE))) +
+  coord_flip() +
+   geom_errorbarh(height = 0) +
+  geom_point() +
+  geom_vline(aes(xintercept = 0), linetype = "dotted") +
+  scale_x_continuous(limits = c(-1, 2),
+                     breaks = round(seq(-1, 2, 0.5), 1),
+                     expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0.5, 7.5),
+                     breaks = round(seq(-1, 7, 1), 1),
+                     expand = c(0, 0)) +
   
-  
+  labs(x = 'Average marginal treatment effect',
+       y = "Importance attached to issue of ban on begging",
+       title = "Conditional effect of issue importance on lamenting politician treatment.",
+       subtitle = 'Outcome measure: Fairness perception of decision. Sample: Respondents with unfavorable outcome.') +
+  theme_bw() +
+  theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+  theme(panel.spacing = unit(0.5, "lines"))
+fig
+
+ggsave(
+  here("output", "swevig", "figs", "pngs", "exp1-fairness-importance-int-lamenting-losers.png"),
+  plot = fig,
+  width = 7, height = 2.75
+)
+
+ggsave(
+  here("output", "swevig", "figs", "pdfs", "exp1-fairness-importance-int-lamenting-losers.pdf"),
+  plot = fig,
+  width = 7, height = 2.75
+)
+    
 table <- summary(margins(res, at = list(opinion_strength = 1:7))) %>%
    filter(factor == 'treatmentGeneral prime' | factor == 'treatmentLamenting politician') %>% 
   mutate(factor = case_when(
   factor == 'opinion_strength' ~ 'Issue importance',
   factor == 'treatmentGeneral prime' ~ 'General prime',
   factor == 'treatmentLamenting politician' ~ 'Lamenting politician')) %>% 
-  rename('Lamenting politician' = 'opinion_strength')
+  rename('Issue importance' = 'opinion_strength')
 
-kable(table, booktabs = TRUE, caption = "Moderating effects of issue importance on experimental treatment, Study 1 -- Swedish vignette", digits = 2, col.names = linebreak(c("Factor", 'Lamenting politician', "AME", "SE", "z-statistic", "p value", 'Lower', 'Upper'))) %>% 
+#for bookdown
+kable(table, booktabs = TRUE, caption = "Moderating effects of issue importance on experimental treatment, Study 1 -- Swedish vignette", digits = 2, col.names = linebreak(c("Factor", 'Issue importance', "AME", "SE", "z-statistic", "p value", 'Lower', 'Upper'))) %>% 
+  kable_styling(latex_options = "HOLD_position")   %>% 
+  footnote(general = 'Sample: Respondents with unfavorable outcome.')
+#save to file
+kable(table, booktabs = TRUE, caption = "Moderating effects of issue importance on experimental treatment, Study 1 -- Swedish vignette", digits = 2, col.names = linebreak(c("Factor", 'Issue importance', "AME", "SE", "z-statistic", "p value", 'Lower', 'Upper'))) %>% 
   kable_styling(latex_options = "HOLD_position")   %>% 
   footnote(general = 'Sample: Respondents with unfavorable outcome.') %>% 
   cat(., file = here("output", "swevig", "tbls", "html", "tbl-exp1-fairness-importance-int-losers.html"))
@@ -93,7 +136,6 @@ table <- d %>% mutate(
                                opinion_strength %in% 5:7 ~ "Important")
   )
 table <- lm(fairness ~ treatment*opinion_strength, data = table)
-summary(margins(table))
 table <-  broom::tidy(table)
 
 table <- table %>% 
@@ -104,14 +146,17 @@ table <- table %>%
                     term == "opinion_strengthNot important" ~ "Issue not important to respondent",
                     term == "treatmentLamenting politician:opinion_strengthNot important" ~ "Lamenting politician w/ issue not important to respondent",
                     term == "treatmentGeneral prime:opinion_strengthNot important" ~ "General prime w/ issue not important to respondent")
-         ) %>% 
-  rename('Lamenting politician' = 'opinion_strength')
+         ) 
+ # rename('Lamenting politician' = 'opinion_strength')
 
-
-
+#for bookdown
 kable(table, booktabs = TRUE, caption = "Moderating effects of issue importance, Study 1 -- Swedish vignette", digits = 2, col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>% 
   kable_styling(latex_options = "HOLD_position") %>%
   footnote(general = 'Sample: Respondents with unfavorable outcome.')
+#save to file
+kable(table, booktabs = TRUE, caption = "Moderating effects of issue importance, Study 1 -- Swedish vignette", digits = 2, col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value"))) %>% 
+  kable_styling(latex_options = "HOLD_position") %>%
+  footnote(general = 'Sample: Respondents with unfavorable outcome.') %>% 
    cat(., file = here("output", "swevig", "tbls", "html", "tbl-exp1-fairness-importance-int2-losers.html"))
   
 

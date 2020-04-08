@@ -1,4 +1,4 @@
-
+# Pre-treatment, vignette, post-treatment
 ```{r 3031_setup, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
 if(!require("haven")){install.packages("haven");  library(haven)}
@@ -13,13 +13,13 @@ if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 
 set.seed(2016)
 
-d <- read_sav("Data/Goodloser-exp3.sav")
+d <- read_sav("Data/Goodloser-exp3-orig.sav")
 
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
+The experiment was fielded in Norway during the fall of 2018 through the 13th wave of [Norwegian Citizen Panel (NCP)](https://www.uib.no/medborger). The NCP  is a research-purpose internet panel with over 6000 active participants. It is based on a probability sample of the general Norwegian population above the age of 18 drawn from the Norwegian National Registry. The survey is based on a online questionnaire with postal recruitment. Panel members complete a questionnaire three times a year of 15 minutes each. The NCP is a core component of The Digital Social Science Core Facilities (DIGSSCORE), and  was established in 2013 as a collaboration between several departments at the Faculty of Social Sciences at the University of Bergen and NORCE -- Norwegian Research Centre. We refer to the [documentation report](Data/ncp-wave13-documentation.pdf) for further details on technical aspects of the survey, panel recruitment, response rates of the 13th wave, and representativeness. For details about the data collected in this project and the NCP at large, we refer to the [codebook for the Waves 1-13](Data/ncp-wave13-codebook.pdf).
 
-##Pre-treatment measures
-
+## Pre-treatment measures
 ```{r}
 d <- d %>% 
   mutate(
@@ -74,38 +74,54 @@ d <- d %>%
                                 r13pad8b == 5 ~ "5 Most willing")
   )
 
-d %>% group_by(r13pad1) %>%
+table <- d %>% group_by(r13pad1) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
-  ungroup() %>% 
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion on a ban on begging in your municipality?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  ungroup()
+#for bookdown
+  kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion on a ban on begging in your municipality?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position")
+  #save to file
+  kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion on a ban on begging in your municipality?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position")%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-begging-preference.html"))
 
-d %>% group_by(r13pad2) %>%
+table <- d %>% group_by(r13pad2) %>%
    summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How important is the issue of begging ban to you?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
+
+  #for bookdown
+kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How important is the issue of begging ban to you?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position")
+#save to file
+kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How important is the issue of begging ban to you?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position")%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-begging-importance.html"))
 
-d %>% group_by(r13pad3) %>%
+table <- d %>% group_by(r13pad3) %>%
    summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion on an increase in the tolls for diesel cars in your municipality?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
+#for bookdown
+  kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion on an increase in the tolls for diesel cars in your municipality?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position")
+  #save to file
+  kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion on an increase in the tolls for diesel cars in your municipality?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position")%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-toll-preference.html"))
 
-d %>% group_by(r13pad4) %>%
+table <- d %>% group_by(r13pad4) %>%
    summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How important is the issue of increased tolls for diesel cars to you?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100))
+#for bookdown
+  kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How important is the issue of increased tolls for diesel cars to you?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position") 
+  #save to file
+  kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How important is the issue of increased tolls for diesel cars to you?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-toll-preference.html"))
-
 ```
-##Experimental vignette
 
+## Experimental vignette
 ```{r}
 table <- tibble(Treatments = c("Issue", "Issue", "Outcome", "Outcome", "Winning margin", "Winning margin", "Winning margin", "Winner's gloating", "Winner's gloating", rep("Messenger and prime", 7)), 
                 Value = c("Ban on begging", 
@@ -142,6 +158,15 @@ table <- tibble(Treatments = c("Issue", "Issue", "Outcome", "Outcome", "Winning 
                          "The local newspaper – which was against the decision – writes in an editorial that they are disappointed and that the decision was wrong, but that is what living in a democracy is all about. Sometimes you win, sometimes you lose.")
 )
 
+#for bookdown
+ table %>% 
+    mutate_all(linebreak) %>% 
+    kable(booktabs = T, linesep = "", escape = F,  caption = "Vignette treatment dimensions and values", col.names = linebreak(c("Preference", "Treatment", "Text"))) %>% 
+    collapse_rows(columns = 1, latex_hline = "major", valign = "top") %>% 
+  kable_styling(latex_options = c("scale_down", "HOLD_position")) %>% 
+   footnote(general = 'Experimental vignette (treatments in {curly brackets}): Below, we have described a hypothetical situation. Please read through the situation carefully and then answer the three questions that follow. Imagine that your municipality must decide on {Issue} The decision will be taken by the municipal council and follow the usual procedures. The proposal will initially be debated by the municipal council where all the members will have the opportunity to express their opinions and arguments regarding the issue. The debate will be public, and journalists will be in attendance to report on the debate. In the end, the politicians will vote on the issue. {Outcome} {[Winning margin} {Winner gloating} {Messenger and prime}') 
+ 
+ #save to file
  table %>% 
     mutate_all(linebreak) %>% 
     kable(booktabs = T, linesep = "", escape = F,  caption = "Vignette treatment dimensions and values", col.names = linebreak(c("Preference", "Treatment", "Text"))) %>% 
@@ -153,45 +178,68 @@ table <- tibble(Treatments = c("Issue", "Issue", "Outcome", "Outcome", "Winning 
 
 ```{r}
 
-d %>% group_by(r13pad6a) %>%
+table <- d %>% group_by(r13pad6a) %>%
    summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What do you think about the way the decision was made?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
+#for bookdown
+  kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What do you think about the way the decision was made?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position")  
+#save to file
+  kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What do you think about the way the decision was made?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-eval-dv1.html"))
 
-d %>% group_by(r13pad6b) %>%
+table <- d %>% group_by(r13pad6b) %>%
    summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What do you think about the way the decision was made?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100))
+#for bookdown
+ kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What do you think about the way the decision was made?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position")
+ #save to file
+  kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What do you think about the way the decision was made?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-eval-dv2.html"))
 
-d %>% group_by(r13pad7a) %>%
+table <- d %>% group_by(r13pad7a) %>%
    summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
+#for bookdown
+   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position")
+#save to file
+   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-reasonable-dv1.html"))
 
-d %>% group_by(r13pad7b) %>%
+table <- d %>% group_by(r13pad7b) %>%
    summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
+#for bookdown
+  kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  kable_styling(latex_options = "HOLD_position")
+  
+#save to file
+  kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-reasonable-dv2.html"))
 
 
-d %>% group_by(r13pad8a) %>%
+table <- d %>% group_by(r13pad8a) %>%
    summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "When you think about the actual outcome of the decision, how willing are you to accept the decision?", col.names = linebreak(c("Value", "N", "Percent"))) %>%   kable_styling(latex_options = "HOLD_position") %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100))
+#for bookdown
+   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "When you think about the actual outcome of the decision, how willing are you to accept the decision?", col.names = linebreak(c("Value", "N", "Percent"))) %>%   kable_styling(latex_options = "HOLD_position")
+#save to file
+   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "When you think about the actual outcome of the decision, how willing are you to accept the decision?", col.names = linebreak(c("Value", "N", "Percent"))) %>%   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-accept-dv1.html"))
 
-d %>% group_by(r13pad8b) %>%
+table <- d %>% group_by(r13pad8b) %>%
    summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "When you think about the actual outcome of the decision, how willing are you to accept the decision?", col.names = linebreak(c("Value", "N", "Percent"))) %>%   kable_styling(latex_options = "HOLD_position") %>% 
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
+#for bookdown
+  kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "When you think about the actual outcome of the decision, how willing are you to accept the decision?", col.names = linebreak(c("Value", "N", "Percent"))) %>%   kable_styling(latex_options = "HOLD_position")
+#save to file
+  kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "When you think about the actual outcome of the decision, how willing are you to accept the decision?", col.names = linebreak(c("Value", "N", "Percent"))) %>%   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-accept-dv2.html"))
 
 ```

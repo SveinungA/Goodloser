@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 16 Pre-treatment, vignette, post-treatment | The Good Loser</title>
+  <meta name="description" content="Chapter 16 Pre-treatment, vignette, post-treatment | The Good Loser" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 16 Pre-treatment, vignette, post-treatment | The Good Loser" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="loser-picture.png" />
+  
+  <meta name="github-repo" content="SveinungA/Goodloser" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 16 Pre-treatment, vignette, post-treatment | The Good Loser" />
+  
+  
+  <meta name="twitter:image" content="loser-picture.png" />
+
+<meta name="author" content="Peter Esaiasson, Sveinung Arnesen, and Hannah Werner" />
+
+
+<meta name="date" content="2020-04-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-management-2.html"/>
+<link rel="next" href="main-effects-2.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Good Loser Project</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="part"><span><b>I STUDY I: SWEDISH VIGNETTE</b></span></li>
+<li class="chapter" data-level="2" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>2</b> Data management</a></li>
+<li class="chapter" data-level="3" data-path="pre-treatment-measures-and-experimental-vignette.html"><a href="pre-treatment-measures-and-experimental-vignette.html"><i class="fa fa-check"></i><b>3</b> Pre-treatment measures and experimental vignette</a><ul>
+<li class="chapter" data-level="3.1" data-path="pre-treatment-measures-and-experimental-vignette.html"><a href="pre-treatment-measures-and-experimental-vignette.html#pre-treatment-measures"><i class="fa fa-check"></i><b>3.1</b> Pre-treatment measures</a></li>
+<li class="chapter" data-level="3.2" data-path="pre-treatment-measures-and-experimental-vignette.html"><a href="pre-treatment-measures-and-experimental-vignette.html#experimental-vignette"><i class="fa fa-check"></i><b>3.2</b> Experimental vignette</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="main-effects.html"><a href="main-effects.html"><i class="fa fa-check"></i><b>4</b> Main effects</a><ul>
+<li class="chapter" data-level="4.1" data-path="main-effects.html"><a href="main-effects.html#fairness"><i class="fa fa-check"></i><b>4.1</b> Fairness</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="main-effects.html"><a href="main-effects.html#priming-effects"><i class="fa fa-check"></i><b>4.1.1</b> Priming effects</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="main-effects.html"><a href="main-effects.html#justice"><i class="fa fa-check"></i><b>4.2</b> Justice</a></li>
+<li class="chapter" data-level="4.3" data-path="main-effects.html"><a href="main-effects.html#decision-evaluation"><i class="fa fa-check"></i><b>4.3</b> Decision evaluation</a></li>
+<li class="chapter" data-level="4.4" data-path="main-effects.html"><a href="main-effects.html#willingness-to-accept"><i class="fa fa-check"></i><b>4.4</b> Willingness to accept</a></li>
+<li class="chapter" data-level="4.5" data-path="main-effects.html"><a href="main-effects.html#compliance"><i class="fa fa-check"></i><b>4.5</b> Compliance</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="moderating-effects-of-issue-importance-on-losers.html"><a href="moderating-effects-of-issue-importance-on-losers.html"><i class="fa fa-check"></i><b>5</b> Moderating effects of issue importance on losers</a></li>
+<li class="chapter" data-level="6" data-path="effects-on-losers.html"><a href="effects-on-losers.html"><i class="fa fa-check"></i><b>6</b> Effects on losers</a><ul>
+<li class="chapter" data-level="6.1" data-path="effects-on-losers.html"><a href="effects-on-losers.html#fairness-1"><i class="fa fa-check"></i><b>6.1</b> Fairness</a></li>
+<li class="chapter" data-level="6.2" data-path="effects-on-losers.html"><a href="effects-on-losers.html#justice-1"><i class="fa fa-check"></i><b>6.2</b> Justice</a></li>
+<li class="chapter" data-level="6.3" data-path="effects-on-losers.html"><a href="effects-on-losers.html#decision-evaluation-1"><i class="fa fa-check"></i><b>6.3</b> Decision evaluation</a></li>
+<li class="chapter" data-level="6.4" data-path="effects-on-losers.html"><a href="effects-on-losers.html#willingness-to-accept-1"><i class="fa fa-check"></i><b>6.4</b> Willingness to accept</a></li>
+<li class="chapter" data-level="6.5" data-path="effects-on-losers.html"><a href="effects-on-losers.html#compliance-1"><i class="fa fa-check"></i><b>6.5</b> Compliance</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="codebook.html"><a href="codebook.html"><i class="fa fa-check"></i><b>7</b> Codebook</a><ul>
+<li class="chapter" data-level="7.0.1" data-path="codebook.html"><a href="codebook.html#metadata"><i class="fa fa-check"></i><b>7.0.1</b> Metadata</a></li>
+<li class="chapter" data-level="7.1" data-path="codebook.html"><a href="codebook.html#variables"><i class="fa fa-check"></i><b>7.1</b> Variables</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="codebook.html"><a href="codebook.html#Q64"><i class="fa fa-check"></i><b>7.1.1</b> Q64</a></li>
+<li class="chapter" data-level="7.1.2" data-path="codebook.html"><a href="codebook.html#Q63"><i class="fa fa-check"></i><b>7.1.2</b> Q63</a></li>
+<li class="chapter" data-level="7.1.3" data-path="codebook.html"><a href="codebook.html#S3_1_1"><i class="fa fa-check"></i><b>7.1.3</b> S3_1_1</a></li>
+<li class="chapter" data-level="7.1.4" data-path="codebook.html"><a href="codebook.html#S3_2_1"><i class="fa fa-check"></i><b>7.1.4</b> S3_2_1</a></li>
+<li class="chapter" data-level="7.1.5" data-path="codebook.html"><a href="codebook.html#S3_4_1_1"><i class="fa fa-check"></i><b>7.1.5</b> S3_4_1_1</a></li>
+<li class="chapter" data-level="7.1.6" data-path="codebook.html"><a href="codebook.html#S3_4_1_2"><i class="fa fa-check"></i><b>7.1.6</b> S3_4_1_2</a></li>
+<li class="chapter" data-level="7.1.7" data-path="codebook.html"><a href="codebook.html#S3_5_1"><i class="fa fa-check"></i><b>7.1.7</b> S3_5_1</a></li>
+<li class="chapter" data-level="7.1.8" data-path="codebook.html"><a href="codebook.html#S3_6_1_1"><i class="fa fa-check"></i><b>7.1.8</b> S3_6_1_1</a></li>
+<li class="chapter" data-level="7.1.9" data-path="codebook.html"><a href="codebook.html#S3_6_1_2"><i class="fa fa-check"></i><b>7.1.9</b> S3_6_1_2</a></li>
+<li class="chapter" data-level="7.1.10" data-path="codebook.html"><a href="codebook.html#S3_7_1_1"><i class="fa fa-check"></i><b>7.1.10</b> S3_7_1_1</a></li>
+<li class="chapter" data-level="7.1.11" data-path="codebook.html"><a href="codebook.html#S3_7_1_2"><i class="fa fa-check"></i><b>7.1.11</b> S3_7_1_2</a></li>
+<li class="chapter" data-level="7.1.12" data-path="codebook.html"><a href="codebook.html#S3_8_1_1"><i class="fa fa-check"></i><b>7.1.12</b> S3_8_1_1</a></li>
+<li class="chapter" data-level="7.1.13" data-path="codebook.html"><a href="codebook.html#S3_8_1_2"><i class="fa fa-check"></i><b>7.1.13</b> S3_8_1_2</a></li>
+<li class="chapter" data-level="7.1.14" data-path="codebook.html"><a href="codebook.html#Studie3sel"><i class="fa fa-check"></i><b>7.1.14</b> Studie3sel</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="codebook.html"><a href="codebook.html#missingness-report"><i class="fa fa-check"></i><b>7.2</b> Missingness report</a></li>
+<li class="chapter" data-level="7.3" data-path="codebook.html"><a href="codebook.html#codebook-table"><i class="fa fa-check"></i><b>7.3</b> Codebook table</a></li>
+</ul></li>
+<li class="part"><span><b>II STUDY II: NORWEGIAN VIGNETTE</b></span></li>
+<li class="chapter" data-level="8" data-path="data-management-1.html"><a href="data-management-1.html"><i class="fa fa-check"></i><b>8</b> Data management</a></li>
+<li class="chapter" data-level="9" data-path="pre-treatment-vignette-post-treatment.html"><a href="pre-treatment-vignette-post-treatment.html"><i class="fa fa-check"></i><b>9</b> Pre-treatment, vignette, post-treatment</a><ul>
+<li class="chapter" data-level="9.1" data-path="pre-treatment-vignette-post-treatment.html"><a href="pre-treatment-vignette-post-treatment.html#pre-treatment-measures-1"><i class="fa fa-check"></i><b>9.1</b> Pre-treatment measures</a></li>
+<li class="chapter" data-level="9.2" data-path="pre-treatment-vignette-post-treatment.html"><a href="pre-treatment-vignette-post-treatment.html#experimental-vignette-1"><i class="fa fa-check"></i><b>9.2</b> Experimental vignette</a></li>
+<li class="chapter" data-level="9.3" data-path="pre-treatment-vignette-post-treatment.html"><a href="pre-treatment-vignette-post-treatment.html#post-measures"><i class="fa fa-check"></i><b>9.3</b> Post-measures</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="main-effects-1.html"><a href="main-effects-1.html"><i class="fa fa-check"></i><b>10</b> Main effects</a><ul>
+<li class="chapter" data-level="10.1" data-path="main-effects-1.html"><a href="main-effects-1.html#fairness-2"><i class="fa fa-check"></i><b>10.1</b> Fairness</a></li>
+<li class="chapter" data-level="10.2" data-path="main-effects-1.html"><a href="main-effects-1.html#willingnes-to-accept"><i class="fa fa-check"></i><b>10.2</b> Willingnes to accept</a></li>
+<li class="chapter" data-level="10.3" data-path="main-effects-1.html"><a href="main-effects-1.html#trust-in-politician"><i class="fa fa-check"></i><b>10.3</b> Trust in politician</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="main-effects-with-reduced-sample.html"><a href="main-effects-with-reduced-sample.html"><i class="fa fa-check"></i><b>11</b> Main effects with reduced sample</a><ul>
+<li class="chapter" data-level="11.1" data-path="main-effects-with-reduced-sample.html"><a href="main-effects-with-reduced-sample.html#fairness-3"><i class="fa fa-check"></i><b>11.1</b> Fairness</a></li>
+<li class="chapter" data-level="11.2" data-path="main-effects-with-reduced-sample.html"><a href="main-effects-with-reduced-sample.html#willingnes-to-accept-1"><i class="fa fa-check"></i><b>11.2</b> Willingnes to accept</a></li>
+<li class="chapter" data-level="11.3" data-path="main-effects-with-reduced-sample.html"><a href="main-effects-with-reduced-sample.html#trust-in-politician-1"><i class="fa fa-check"></i><b>11.3</b> Trust in politician</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="main-effects-with-full-itt-sample.html"><a href="main-effects-with-full-itt-sample.html"><i class="fa fa-check"></i><b>12</b> Main effects with full ITT sample</a><ul>
+<li class="chapter" data-level="12.1" data-path="main-effects-with-full-itt-sample.html"><a href="main-effects-with-full-itt-sample.html#fairness-4"><i class="fa fa-check"></i><b>12.1</b> Fairness</a></li>
+<li class="chapter" data-level="12.2" data-path="main-effects-with-full-itt-sample.html"><a href="main-effects-with-full-itt-sample.html#willingnes-to-accept-2"><i class="fa fa-check"></i><b>12.2</b> Willingnes to accept</a></li>
+<li class="chapter" data-level="12.3" data-path="main-effects-with-full-itt-sample.html"><a href="main-effects-with-full-itt-sample.html#trust-in-politician-2"><i class="fa fa-check"></i><b>12.3</b> Trust in politician</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html"><i class="fa fa-check"></i><b>13</b> Effects on losers</a><ul>
+<li class="chapter" data-level="13.1" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html#fairness-5"><i class="fa fa-check"></i><b>13.1</b> Fairness</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html#fairness-moderated-by-issue-importance"><i class="fa fa-check"></i><b>13.1.1</b> Fairness moderated by issue importance</a></li>
+<li class="chapter" data-level="13.1.2" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html#fairness-moderated-by-good-loser-norm"><i class="fa fa-check"></i><b>13.1.2</b> Fairness moderated by good loser norm</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html#willingnes-to-accept-3"><i class="fa fa-check"></i><b>13.2</b> Willingnes to accept</a></li>
+<li class="chapter" data-level="13.3" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html#trust-in-politician-3"><i class="fa fa-check"></i><b>13.3</b> Trust in politician</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="codebook-1.html"><a href="codebook-1.html"><i class="fa fa-check"></i><b>14</b> Codebook</a><ul>
+<li class="chapter" data-level="14.0.1" data-path="codebook-1.html"><a href="codebook-1.html#metadata-1"><i class="fa fa-check"></i><b>14.0.1</b> Metadata</a></li>
+<li class="chapter" data-level="14.1" data-path="codebook-1.html"><a href="codebook-1.html#variables-1"><i class="fa fa-check"></i><b>14.1</b> Variables</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="codebook.html"><a href="codebook.html#Q64"><i class="fa fa-check"></i><b>14.1.1</b> Q64</a></li>
+<li class="chapter" data-level="14.1.2" data-path="codebook.html"><a href="codebook.html#Q63"><i class="fa fa-check"></i><b>14.1.2</b> Q63</a></li>
+<li class="chapter" data-level="14.1.3" data-path="codebook.html"><a href="codebook.html#S3_1_1"><i class="fa fa-check"></i><b>14.1.3</b> S3_1_1</a></li>
+<li class="chapter" data-level="14.1.4" data-path="codebook.html"><a href="codebook.html#S3_2_1"><i class="fa fa-check"></i><b>14.1.4</b> S3_2_1</a></li>
+<li class="chapter" data-level="14.1.5" data-path="codebook.html"><a href="codebook.html#S3_4_1_1"><i class="fa fa-check"></i><b>14.1.5</b> S3_4_1_1</a></li>
+<li class="chapter" data-level="14.1.6" data-path="codebook.html"><a href="codebook.html#S3_4_1_2"><i class="fa fa-check"></i><b>14.1.6</b> S3_4_1_2</a></li>
+<li class="chapter" data-level="14.1.7" data-path="codebook.html"><a href="codebook.html#S3_5_1"><i class="fa fa-check"></i><b>14.1.7</b> S3_5_1</a></li>
+<li class="chapter" data-level="14.1.8" data-path="codebook.html"><a href="codebook.html#S3_6_1_1"><i class="fa fa-check"></i><b>14.1.8</b> S3_6_1_1</a></li>
+<li class="chapter" data-level="14.1.9" data-path="codebook.html"><a href="codebook.html#S3_6_1_2"><i class="fa fa-check"></i><b>14.1.9</b> S3_6_1_2</a></li>
+<li class="chapter" data-level="14.1.10" data-path="codebook.html"><a href="codebook.html#S3_7_1_1"><i class="fa fa-check"></i><b>14.1.10</b> S3_7_1_1</a></li>
+<li class="chapter" data-level="14.1.11" data-path="codebook.html"><a href="codebook.html#S3_7_1_2"><i class="fa fa-check"></i><b>14.1.11</b> S3_7_1_2</a></li>
+<li class="chapter" data-level="14.1.12" data-path="codebook.html"><a href="codebook.html#S3_8_1_1"><i class="fa fa-check"></i><b>14.1.12</b> S3_8_1_1</a></li>
+<li class="chapter" data-level="14.1.13" data-path="codebook.html"><a href="codebook.html#S3_8_1_2"><i class="fa fa-check"></i><b>14.1.13</b> S3_8_1_2</a></li>
+<li class="chapter" data-level="14.1.14" data-path="codebook.html"><a href="codebook.html#Studie3sel"><i class="fa fa-check"></i><b>14.1.14</b> Studie3sel</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="codebook-1.html"><a href="codebook-1.html#missingness-report-1"><i class="fa fa-check"></i><b>14.2</b> Missingness report</a></li>
+<li class="chapter" data-level="14.3" data-path="codebook-1.html"><a href="codebook-1.html#codebook-table-1"><i class="fa fa-check"></i><b>14.3</b> Codebook table</a></li>
+</ul></li>
+<li class="part"><span><b>III STUDY III: NORWEGIAN CONJOINT</b></span></li>
+<li class="chapter" data-level="15" data-path="data-management-2.html"><a href="data-management-2.html"><i class="fa fa-check"></i><b>15</b> Data management</a><ul>
+<li class="chapter" data-level="15.1" data-path="data-management-2.html"><a href="data-management-2.html#exclude-observations"><i class="fa fa-check"></i><b>15.1</b> Exclude observations</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="pre-treatment-vignette-post-treatment-1.html"><a href="pre-treatment-vignette-post-treatment-1.html"><i class="fa fa-check"></i><b>16</b> Pre-treatment, vignette, post-treatment</a><ul>
+<li class="chapter" data-level="16.1" data-path="pre-treatment-vignette-post-treatment-1.html"><a href="pre-treatment-vignette-post-treatment-1.html#pre-treatment-measures-2"><i class="fa fa-check"></i><b>16.1</b> Pre-treatment measures</a></li>
+<li class="chapter" data-level="16.2" data-path="pre-treatment-vignette-post-treatment-1.html"><a href="pre-treatment-vignette-post-treatment-1.html#experimental-vignette-2"><i class="fa fa-check"></i><b>16.2</b> Experimental vignette</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="main-effects-2.html"><a href="main-effects-2.html"><i class="fa fa-check"></i><b>17</b> Main effects</a><ul>
+<li class="chapter" data-level="17.1" data-path="main-effects-2.html"><a href="main-effects-2.html#reasonable-decision"><i class="fa fa-check"></i><b>17.1</b> Reasonable decision</a></li>
+<li class="chapter" data-level="17.2" data-path="main-effects-2.html"><a href="main-effects-2.html#willingnes-to-accept-4"><i class="fa fa-check"></i><b>17.2</b> Willingnes to accept</a></li>
+<li class="chapter" data-level="17.3" data-path="main-effects-2.html"><a href="main-effects-2.html#fairness-perceptions"><i class="fa fa-check"></i><b>17.3</b> Fairness perceptions</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="effects-on-losers-2.html"><a href="effects-on-losers-2.html"><i class="fa fa-check"></i><b>18</b> Effects on losers</a><ul>
+<li class="chapter" data-level="18.0.1" data-path="effects-on-losers-2.html"><a href="effects-on-losers-2.html#number-of-losers"><i class="fa fa-check"></i><b>18.0.1</b> Number of losers</a></li>
+<li class="chapter" data-level="18.1" data-path="effects-on-losers-2.html"><a href="effects-on-losers-2.html#reasonable"><i class="fa fa-check"></i><b>18.1</b> Reasonable</a></li>
+<li class="chapter" data-level="18.2" data-path="effects-on-losers-2.html"><a href="effects-on-losers-2.html#willingnes-to-accept-5"><i class="fa fa-check"></i><b>18.2</b> Willingnes to accept</a></li>
+<li class="chapter" data-level="18.3" data-path="effects-on-losers-2.html"><a href="effects-on-losers-2.html#fairness-perceptions-1"><i class="fa fa-check"></i><b>18.3</b> Fairness perceptions</a><ul>
+<li class="chapter" data-level="18.3.1" data-path="effects-on-losers-2.html"><a href="effects-on-losers-2.html#interacted-with-issue-importance"><i class="fa fa-check"></i><b>18.3.1</b> Interacted with issue importance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="issue-ban-on-begging.html"><a href="issue-ban-on-begging.html"><i class="fa fa-check"></i><b>19</b> Issue: Ban on begging</a><ul>
+<li class="chapter" data-level="19.1" data-path="issue-ban-on-begging.html"><a href="issue-ban-on-begging.html#main-effects-3"><i class="fa fa-check"></i><b>19.1</b> Main effects</a><ul>
+<li class="chapter" data-level="19.1.1" data-path="issue-ban-on-begging.html"><a href="issue-ban-on-begging.html#reasonable-decision-1"><i class="fa fa-check"></i><b>19.1.1</b> Reasonable decision</a></li>
+<li class="chapter" data-level="19.1.2" data-path="issue-ban-on-begging.html"><a href="issue-ban-on-begging.html#willingnes-to-accept-6"><i class="fa fa-check"></i><b>19.1.2</b> Willingnes to accept</a></li>
+<li class="chapter" data-level="19.1.3" data-path="issue-ban-on-begging.html"><a href="issue-ban-on-begging.html#fairness-perceptions-2"><i class="fa fa-check"></i><b>19.1.3</b> Fairness perceptions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="issue-road-toll.html"><a href="issue-road-toll.html"><i class="fa fa-check"></i><b>20</b> Issue: Road toll</a><ul>
+<li class="chapter" data-level="20.1" data-path="issue-road-toll.html"><a href="issue-road-toll.html#main-effects-4"><i class="fa fa-check"></i><b>20.1</b> Main effects</a><ul>
+<li class="chapter" data-level="20.1.1" data-path="issue-road-toll.html"><a href="issue-road-toll.html#reasonable-decision-2"><i class="fa fa-check"></i><b>20.1.1</b> Reasonable decision</a></li>
+<li class="chapter" data-level="20.1.2" data-path="issue-road-toll.html"><a href="issue-road-toll.html#willingnes-to-accept-7"><i class="fa fa-check"></i><b>20.1.2</b> Willingnes to accept</a></li>
+<li class="chapter" data-level="20.1.3" data-path="issue-road-toll.html"><a href="issue-road-toll.html#fairness-perceptions-3"><i class="fa fa-check"></i><b>20.1.3</b> Fairness perceptions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="worded-answer-scale.html"><a href="worded-answer-scale.html"><i class="fa fa-check"></i><b>21</b> Worded answer scale</a><ul>
+<li class="chapter" data-level="21.1" data-path="worded-answer-scale.html"><a href="worded-answer-scale.html#reasonable-decision-3"><i class="fa fa-check"></i><b>21.1</b> Reasonable decision</a></li>
+<li class="chapter" data-level="21.2" data-path="worded-answer-scale.html"><a href="worded-answer-scale.html#willingnes-to-accept-8"><i class="fa fa-check"></i><b>21.2</b> Willingnes to accept</a></li>
+<li class="chapter" data-level="21.3" data-path="worded-answer-scale.html"><a href="worded-answer-scale.html#fairness-perceptions-4"><i class="fa fa-check"></i><b>21.3</b> Fairness perceptions</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="numbered-answer-scale.html"><a href="numbered-answer-scale.html"><i class="fa fa-check"></i><b>22</b> Numbered answer scale</a><ul>
+<li class="chapter" data-level="22.1" data-path="numbered-answer-scale.html"><a href="numbered-answer-scale.html#reasonable-decision-4"><i class="fa fa-check"></i><b>22.1</b> Reasonable decision</a></li>
+<li class="chapter" data-level="22.2" data-path="numbered-answer-scale.html"><a href="numbered-answer-scale.html#willingnes-to-accept-9"><i class="fa fa-check"></i><b>22.2</b> Willingnes to accept</a></li>
+<li class="chapter" data-level="22.3" data-path="numbered-answer-scale.html"><a href="numbered-answer-scale.html#fairness-perceptions-5"><i class="fa fa-check"></i><b>22.3</b> Fairness perceptions</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="codebook-2.html"><a href="codebook-2.html"><i class="fa fa-check"></i><b>23</b> Codebook</a><ul>
+<li class="chapter" data-level="23.0.1" data-path="codebook-2.html"><a href="codebook-2.html#metadata-2"><i class="fa fa-check"></i><b>23.0.1</b> Metadata</a></li>
+<li class="chapter" data-level="23.1" data-path="codebook-2.html"><a href="codebook-2.html#variables-2"><i class="fa fa-check"></i><b>23.1</b> Variables</a><ul>
+<li class="chapter" data-level="23.1.1" data-path="codebook.html"><a href="codebook.html#Q64"><i class="fa fa-check"></i><b>23.1.1</b> Q64</a></li>
+<li class="chapter" data-level="23.1.2" data-path="codebook.html"><a href="codebook.html#Q63"><i class="fa fa-check"></i><b>23.1.2</b> Q63</a></li>
+<li class="chapter" data-level="23.1.3" data-path="codebook.html"><a href="codebook.html#S3_1_1"><i class="fa fa-check"></i><b>23.1.3</b> S3_1_1</a></li>
+<li class="chapter" data-level="23.1.4" data-path="codebook.html"><a href="codebook.html#S3_2_1"><i class="fa fa-check"></i><b>23.1.4</b> S3_2_1</a></li>
+<li class="chapter" data-level="23.1.5" data-path="codebook.html"><a href="codebook.html#S3_4_1_1"><i class="fa fa-check"></i><b>23.1.5</b> S3_4_1_1</a></li>
+<li class="chapter" data-level="23.1.6" data-path="codebook.html"><a href="codebook.html#S3_4_1_2"><i class="fa fa-check"></i><b>23.1.6</b> S3_4_1_2</a></li>
+<li class="chapter" data-level="23.1.7" data-path="codebook.html"><a href="codebook.html#S3_5_1"><i class="fa fa-check"></i><b>23.1.7</b> S3_5_1</a></li>
+<li class="chapter" data-level="23.1.8" data-path="codebook.html"><a href="codebook.html#S3_6_1_1"><i class="fa fa-check"></i><b>23.1.8</b> S3_6_1_1</a></li>
+<li class="chapter" data-level="23.1.9" data-path="codebook.html"><a href="codebook.html#S3_6_1_2"><i class="fa fa-check"></i><b>23.1.9</b> S3_6_1_2</a></li>
+<li class="chapter" data-level="23.1.10" data-path="codebook.html"><a href="codebook.html#S3_7_1_1"><i class="fa fa-check"></i><b>23.1.10</b> S3_7_1_1</a></li>
+<li class="chapter" data-level="23.1.11" data-path="codebook.html"><a href="codebook.html#S3_7_1_2"><i class="fa fa-check"></i><b>23.1.11</b> S3_7_1_2</a></li>
+<li class="chapter" data-level="23.1.12" data-path="codebook.html"><a href="codebook.html#S3_8_1_1"><i class="fa fa-check"></i><b>23.1.12</b> S3_8_1_1</a></li>
+<li class="chapter" data-level="23.1.13" data-path="codebook.html"><a href="codebook.html#S3_8_1_2"><i class="fa fa-check"></i><b>23.1.13</b> S3_8_1_2</a></li>
+<li class="chapter" data-level="23.1.14" data-path="codebook.html"><a href="codebook.html#Studie3sel"><i class="fa fa-check"></i><b>23.1.14</b> Studie3sel</a></li>
+</ul></li>
+<li class="chapter" data-level="23.2" data-path="codebook-2.html"><a href="codebook-2.html#missingness-report-2"><i class="fa fa-check"></i><b>23.2</b> Missingness report</a></li>
+<li class="chapter" data-level="23.3" data-path="codebook-2.html"><a href="codebook-2.html#codebook-table-2"><i class="fa fa-check"></i><b>23.3</b> Codebook table</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="outcome-favorability-effect-across-the-three-experiments.html"><a href="outcome-favorability-effect-across-the-three-experiments.html"><i class="fa fa-check"></i><b>24</b> Outcome favorability effect across the three experiments</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Good Loser</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="pre-treatment-vignette-post-treatment-1" class="section level1">
+<h1><span class="header-section-number">Chapter 16</span> Pre-treatment, vignette, post-treatment</h1>
+<p>The experiment was fielded in Norway during the fall of 2018 through the 13th wave of <a href="https://www.uib.no/medborger">Norwegian Citizen Panel (NCP)</a>. The NCP is a research-purpose internet panel with over 6000 active participants. It is based on a probability sample of the general Norwegian population above the age of 18 drawn from the Norwegian National Registry. The survey is based on a online questionnaire with postal recruitment. Panel members complete a questionnaire three times a year of 15 minutes each. The NCP is a core component of The Digital Social Science Core Facilities (DIGSSCORE), and was established in 2013 as a collaboration between several departments at the Faculty of Social Sciences at the University of Bergen and NORCE – Norwegian Research Centre. We refer to the <a href="Data/ncp-wave13-documentation.pdf">documentation report</a> for further details on technical aspects of the survey, panel recruitment, response rates of the 13th wave, and representativeness. For details about the data collected in this project and the NCP at large, we refer to the <a href="Data/ncp-wave13-codebook.pdf">codebook for the Waves 1-13</a>.</p>
+<div id="pre-treatment-measures-2" class="section level2">
+<h2><span class="header-section-number">16.1</span> Pre-treatment measures</h2>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-2">Table 16.1: </span>What is your opinion on a ban on begging in your municipality?
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Value
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+In favor
+</td>
+<td style="text-align:right;">
+1691
+</td>
+<td style="text-align:right;">
+60
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Oppose
+</td>
+<td style="text-align:right;">
+1092
+</td>
+<td style="text-align:right;">
+39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-2">Table 16.1: </span>How important is the issue of begging ban to you?
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Value
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Not important at all
+</td>
+<td style="text-align:right;">
+178
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Slightly important
+</td>
+<td style="text-align:right;">
+526
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Somewhat important
+</td>
+<td style="text-align:right;">
+908
+</td>
+<td style="text-align:right;">
+32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Important
+</td>
+<td style="text-align:right;">
+1002
+</td>
+<td style="text-align:right;">
+36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Very important
+</td>
+<td style="text-align:right;">
+194
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-2">Table 16.1: </span>What is your opinion on an increase in the tolls for diesel cars in your municipality?
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Value
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+In favor
+</td>
+<td style="text-align:right;">
+697
+</td>
+<td style="text-align:right;">
+25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Oppose
+</td>
+<td style="text-align:right;">
+2085
+</td>
+<td style="text-align:right;">
+74
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-2">Table 16.1: </span>How important is the issue of increased tolls for diesel cars to you?
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Value
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Not important at all
+</td>
+<td style="text-align:right;">
+484
+</td>
+<td style="text-align:right;">
+17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Slightly important
+</td>
+<td style="text-align:right;">
+771
+</td>
+<td style="text-align:right;">
+27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Somewhat important
+</td>
+<td style="text-align:right;">
+746
+</td>
+<td style="text-align:right;">
+26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Important
+</td>
+<td style="text-align:right;">
+603
+</td>
+<td style="text-align:right;">
+21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Very important
+</td>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="experimental-vignette-2" class="section level2">
+<h2><span class="header-section-number">16.2</span> Experimental vignette</h2>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-3">Table 16.2: </span>Vignette treatment dimensions and values
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Preference
+</th>
+<th style="text-align:left;">
+Treatment
+</th>
+<th style="text-align:left;">
+Text
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="2">
+Issue
+</td>
+<td style="text-align:left;">
+Ban on begging
+</td>
+<td style="text-align:left;">
+in the future, begging on the streets will be banned or permitted in the municipality. This is a controversial decision. Some residents are strong in favour of a ban (the “Yes” side), while other residents are strongly against a ban (the “No” side). Some
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Diesel car road toll
+</td>
+<td style="text-align:left;">
+in the future, diesel cars will pay increased tolls. This is a controversial decision. Some residents are strongly in favour of such an increase (the side), while others are strongly against an increase (the “No” side). Some parties propose such an
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="2">
+Outcome
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+The Yes side won the vote
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+The No side won the vote
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="3">
+Winning margin
+</td>
+<td style="text-align:left;">
+Not shown
+</td>
+<td style="text-align:left;">
+.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Small margin
+</td>
+<td style="text-align:left;">
+with a slight majority.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Large margin
+</td>
+<td style="text-align:left;">
+with a large majority.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="2">
+Winner’s gloating
+</td>
+<td style="text-align:left;">
+Not shown
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Following the decision, a politician on the winning side says that it was a good decision and that common sense prevailed.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="7">
+Messenger and prime
+</td>
+<td style="text-align:left;">
+Not shown
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Politician, no prime
+</td>
+<td style="text-align:left;">
+The leader of one of the parties that was against the decision says that they are disappointed and that the decision was wrong.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Politician, specific prime
+</td>
+<td style="text-align:left;">
+The leader of one of the parties that was against the decision says that they are disappointed and that the decision was wrong, but that it was a fair fight where both sides had the opportunity to argue in favour of their views.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Politician, general prime
+</td>
+<td style="text-align:left;">
+The leader of one of the parties that was against the decision says that they are disappointed and that the decision was wrong, but that is what living in a democracy is all about. Sometimes you win, sometimes you lose.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Newspaper, no prime
+</td>
+<td style="text-align:left;">
+The local newspaper – which was against the decision – writes in an editorial that they are disappointed and that the decision was wrong.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Newspaper, specific prime
+</td>
+<td style="text-align:left;">
+The local newspaper – which was against the decision – writes in an editorial that they are disappointed and that the decision was wrong, but that it was a fair fight where both sides had the opportunity to argue in favour of their views.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Newspaper, general prime
+</td>
+<td style="text-align:left;">
+The local newspaper – which was against the decision – writes in an editorial that they are disappointed and that the decision was wrong, but that is what living in a democracy is all about. Sometimes you win, sometimes you lose.
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-style: italic;">Note: </span>
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup></sup> Experimental vignette (treatments in {curly brackets}): Below, we have described a hypothetical situation. Please read through the situation carefully and then answer the three questions that follow. Imagine that your municipality must decide on {Issue} The decision will be taken by the municipal council and follow the usual procedures. The proposal will initially be debated by the municipal council where all the members will have the opportunity to express their opinions and arguments regarding the issue. The debate will be public, and journalists will be in attendance to report on the debate. In the end, the politicians will vote on the issue. {Outcome} {[Winning margin} {Winner gloating} {Messenger and prime}
+</td>
+</tr>
+</tfoot>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-4">Table 16.3: </span>What do you think about the way the decision was made?
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Value
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Not fair at all
+</td>
+<td style="text-align:right;">
+251
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Slightly fair
+</td>
+<td style="text-align:right;">
+864
+</td>
+<td style="text-align:right;">
+31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Somewhat fair
+</td>
+<td style="text-align:right;">
+204
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fair
+</td>
+<td style="text-align:right;">
+85
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Very fair
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1369
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-4">Table 16.3: </span>What do you think about the way the decision was made?
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Value
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1 Not fair
+</td>
+<td style="text-align:right;">
+584
+</td>
+<td style="text-align:right;">
+21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+413
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+223
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5 Most fair
+</td>
+<td style="text-align:right;">
+55
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1482
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-4">Table 16.3: </span>How reasonable do you think the decision was?
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Value
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Not reasonable at all
+</td>
+<td style="text-align:right;">
+182
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Slightly reasonable
+</td>
+<td style="text-align:right;">
+719
+</td>
+<td style="text-align:right;">
+26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Somewhat reasonable
+</td>
+<td style="text-align:right;">
+247
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Reasonable
+</td>
+<td style="text-align:right;">
+207
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Very reasonable
+</td>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1374
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-4">Table 16.3: </span>How reasonable do you think the decision was?
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Value
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1 Not reasonable
+</td>
+<td style="text-align:right;">
+430
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+363
+</td>
+<td style="text-align:right;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+313
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:right;">
+123
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5 Most reasonable
+</td>
+<td style="text-align:right;">
+98
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1492
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-4">Table 16.3: </span>When you think about the actual outcome of the decision, how willing are you to accept the decision?
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Value
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Not willing at all
+</td>
+<td style="text-align:right;">
+294
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Slightly willing
+</td>
+<td style="text-align:right;">
+740
+</td>
+<td style="text-align:right;">
+26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Somewhat willing
+</td>
+<td style="text-align:right;">
+232
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Willing
+</td>
+<td style="text-align:right;">
+138
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Very willing
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1368
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-4">Table 16.3: </span>When you think about the actual outcome of the decision, how willing are you to accept the decision?
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Value
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+Percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1 Not willing
+</td>
+<td style="text-align:right;">
+571
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+397
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+216
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:right;">
+77
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5 Most willing
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1486
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-management-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="main-effects-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Goodloser-appendix.pdf", "Goodloser-appendix.epub"],
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

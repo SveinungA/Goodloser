@@ -1,6 +1,5 @@
 # Main effects with full ITT sample
 
-
 ```{r 2046_packages, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
 if(!require("haven")){install.packages("haven");  library(haven)}
@@ -22,15 +21,15 @@ d <- read_sav("Data/Goodloser-exp2-itt.sav")
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
-##Prepare data
 ```{r 2046_main}
+#Prepare data
 
 d <- d %>%
   mutate(treatment = lvls_reorder(treatment, c(3, 2, 1, 4, 5)) 
   )
 ``` 
 
-##Fairness
+## Fairness
 ```{r 2046_post_fairness}
 
 res_main <-  lm(fairness ~ treatment, data = d) 
@@ -86,11 +85,11 @@ ggsave(
 #Table
 table <- res_main %>% 
   select(term, estimate, std.error, statistic, p.value) %>% 
+    filter(term != 'treatmentWinner') %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Not shown (Intercept)",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
                    term == "treatmentGeneral Prime" ~ "General prime", 
-                   term == "treatmentSpecific prime" ~ "Specific prime",
-                   term == "treatmentWinner" ~ "Winner"))
+                   term == "treatmentSpecific prime" ~ "Specific prime"))
 
 kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 2 -- Norwegian vignette. 'Sample: Full ITT sample.'", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2)
 
@@ -99,8 +98,7 @@ kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptio
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-fairness-novig-itt.html"))
 ```
        
-##Willingnes to accept
-
+## Willingnes to accept
 ```{r 2046_post_accept}
 
 res_main <-  lm(accept ~ treatment, data = d) 
@@ -160,11 +158,11 @@ ggsave(
 #Table
 table <- res_main %>% 
   select(term, estimate, std.error, statistic, p.value) %>% 
+    filter(term != 'treatmentWinner') %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Not shown (Intercept)",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
                    term == "treatmentGeneral Prime" ~ "General prime", 
-                   term == "treatmentSpecific prime" ~ "Specific prime",
-                   term == "treatmentWinner" ~ "Winner"))
+                   term == "treatmentSpecific prime" ~ "Specific prime"))
 
 kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 2 -- Norwegian vignette. Sample: Full ITT sample.", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2)
 
@@ -173,9 +171,7 @@ kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to acc
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-accept-novig-itt.html"))
 ```
 
-##Trust in politician
-
-
+## Trust in politician
 ```{r 2046_post_trust}
 
 res_main <-  lm(trust ~ treatment, data = d) 
@@ -230,12 +226,12 @@ ggsave(
 
 #Table
 table <- res_main %>% 
+    filter(term != 'treatmentWinner') %>% 
   select(term, estimate, std.error, statistic, p.value) %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Not shown (Intercept)",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
                    term == "treatmentGeneral Prime" ~ "General prime", 
-                   term == "treatmentSpecific prime" ~ "Specific prime",
-                   term == "treatmentWinner" ~ "Winner"))
+                   term == "treatmentSpecific prime" ~ "Specific prime"))
 
 
 kable(table, booktabs = TRUE, caption = "Treatment effects on trust in politician, Study 2 -- Norwegian vignette. Sample: Full ITT sample.", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) 
