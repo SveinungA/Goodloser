@@ -34,7 +34,7 @@ header-includes:
 # Preface
 
 This is the analysis report for the  *Good Loser Project* by [Peter Esaiasson](https://www.gu.se/omuniversitetet/personal/?userId=xesape), [Hannah Werner](http://www.uva.nl/profiel/w/e/h.i.werner/h.i.werner.html), and [Sveinung Arnesen](http://frosty-bose-c7f82c.netlify.com/). 
-The study comprises three survey embedded experiments; one video vignette experiment in Norway, one text vignette experiment in Sweden, and one conjoint experiment in Norway. The study has been presented at the Barcelona-Gothenburg-Bergen workshop on Experiments in Political Science in 2018, and will be presented at the 2019 Conference of the Midwestern Political Science Association in Chicago, USA.
+The study comprises three survey embedded experiments; one video vignette experiment in Norway, one text vignette experiment in Sweden, and one conjoint experiment in Norway. The study has been presented at the Barcelona-Gothenburg-Bergen workshop on Experiments in Political Science in 2018, and at the 2019 Conference of the Midwestern Political Science Association in Chicago, USA.
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages

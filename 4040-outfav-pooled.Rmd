@@ -169,3 +169,57 @@ kable(res_main, booktabs = TRUE, caption = "The outcome favorability effect in t
 
 ```
 
+```{r 4044_outfav_issue}
+res_main <-  main_03 %>%
+  amce(post_fair, treat_outfav, subgroup = 'treat_issue') 
+
+res_main <- res_main %>%
+  filter(value=='Unfavorable outcome') %>% 
+  select(treatment, estimate, std_error, statistic, value, p_value, treat_issue)
+
+fig <-
+  res_main %>%
+  ggplot(aes(x = estimate, y = value)) +
+    geom_errorbarh(
+    aes(xmin = estimate - (2 * std_error),
+        xmax = estimate + (2 * std_error),
+        colour = factor(treat_issue)),
+    height = 0) +
+  geom_point(aes(colour = factor(treat_issue))) +
+  geom_vline(aes(xintercept = 0), linetype = "dotted") +
+  scale_x_continuous(
+    limits = c(-1.2, 1.2),
+    breaks = round(seq(-1, 1, .1), 2),
+    expand = c(0, 0)) +
+   labs(
+    x = "Marginal effect, fairness perception",
+    y = "",
+    title = 'The outcome favorability by political issue, Study 3 -- Norwegian conjoint') +
+  theme_bw() +
+  theme(plot.title = element_text(size=11), plot.margin = unit(c(2, 2, 2, 2), "mm"), strip.text.y = element_text(angle = 0, size=6),   axis.text.x=element_text(size=rel(0.6))) +
+  theme(panel.spacing = unit(0.5, "lines"))
+fig
+
+ggsave(
+  here("output", "outfav-fair-study3-issue.png"),
+  plot = fig,
+  width = 5.5, height = 2.75
+)
+
+ggsave(
+  here("output", "outfav-fair-study3-issue.pdf"),
+  plot = fig,
+  width = 5.5, height = 2.75
+)
+
+res_main <- res_main %>% select(-value) %>% 
+  mutate(treatment = case_when(treatment=='treat_outfav' ~ 'Unfavorable outcome'))
+#for bookdown
+kable(res_main, booktabs = TRUE, caption = "The outcome favorability effect in three experiments", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value", "Issue")), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) 
+#save to file
+kable(res_main, booktabs = TRUE, caption = "The outcome favorability effect in three experiments", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value", "Issue")), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-outfav-fair-study3-issue.html"))
+
+```

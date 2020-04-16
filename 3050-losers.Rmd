@@ -49,7 +49,7 @@ main_01 <- d %>%
          treat_winnergloat = case_when(r13pad5_vinner == 1 ~ "Not shown",
                                      r13pad5_vinner == 2 ~ "Winning politician gloats"),
         treat_prime = case_when(r13pad5_avsender == 1 ~ "Not shown",
-                               r13pad5_avsender == 2  | r13pad5_avsender == 5 ~ "No prime",
+                               r13pad5_avsender == 2  | r13pad5_avsender == 5 ~ "Lamenting politician",
                                r13pad5_avsender == 3  | r13pad5_avsender == 6 ~ "Specific prime",
                                r13pad5_avsender == 4 | r13pad5_avsender == 7 ~ "General prime"),
          treat_messenger = case_when(r13pad5_avsender %in% 3:4 ~ "Political leader",
@@ -82,7 +82,11 @@ main_01 <- d %>%
     main_01 <- main_01 %>%   
       filter(treat_outfav == "Unfavorable outcome")
     
-    main_02 <- main_01 %>% pivot_longer(cols= contains('_imp'), names_to = 'variable', values_to = 'importance', values_drop_na = TRUE)
+    main_02 <- main_01 %>% pivot_longer(cols= c(contains('_imp')), names_to = 'variable', values_to = 'importance')
+                                        
+    main_02 <- main_02 %>% 
+      filter(c(treat_issue == "Ban on begging" & variable == "rsp_beg_imp") | treat_issue == "Road toll increase of diesel cars" & variable == "rsp_toll_imp")
+            
 ``` 
 
 ### Number of losers 
@@ -150,11 +154,11 @@ res_main <- res_main %>%
 
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
+ kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
   
   kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
+ kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-reasonable-nocon.html"))
 
 ```
@@ -221,11 +225,11 @@ res_main <- res_main %>%
 
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
+ kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
 
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
+ kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-accept-nocon.html"))
 
 ```
@@ -294,11 +298,11 @@ res_main <- res_main %>%
 
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
+ kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
 
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
+  kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-fairness-nocon.html"))
 
 ```
@@ -328,9 +332,10 @@ fig_amce <-
     space = "free_y") +
   geom_errorbarh(
     aes(xmin = estimate - (2 * std_error),
-        xmax = estimate + (2 * std_error)),
+        xmax = estimate + (2 * std_error),
+        colour = factor(importance)),
     height = 0) +
-  geom_point() +
+  geom_point(aes(colour = factor(importance))) +
   geom_vline(aes(xintercept = 0), linetype = "dotted") +
   scale_x_continuous(
     limits = c(-1, 1),

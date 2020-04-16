@@ -1,6 +1,6 @@
 # Effects on losers
 
->Main effects with sample of respondents who receive an unfavorable outcome. 
+>Main effects with ITT sample of respondents who receive an unfavorable outcome. 
 
 ```{r 205_packages, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
@@ -19,7 +19,7 @@ set.seed(2016)
 ## Utils. 
 source("goodloser-utils.R")
 
-d <- read_sav("Data/Goodloser-exp2.sav")
+d <- read_sav("Data/Goodloser-exp2-itt.sav")
 
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
@@ -42,19 +42,18 @@ res_main <- broom::tidy(res_main)
 labels <- data.frame(
   term = c(
     "treatmentLamenting politician",
-    "treatmentGeneral Prime",
-    "treatmentSpecific prime"
+    "treatmentSpecific prime",
+    "treatmentGeneral Prime"
     
   ),
   label = c( "Lamenting politician",
-             "General prime",
-             "Specific prime")
+             "Specific prime",
+             "General prime")
 )
 #Figure
 fig <-   res_main %>%
   filter(term != "(Intercept)") %>% 
   left_join(labels, by = "term") %>% 
-  
   ggplot(aes(x = estimate, y = label,
              xmin = estimate - (2 * std.error),
              xmax = estimate + (2 * std.error))) +
@@ -101,6 +100,80 @@ kable(table, booktabs = TRUE, caption = "Treatment effects among losers on fairn
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-losers-fairness-novig.html"))
 ```
+### Fairness II
+> Lamenting politician as reference category
+
+```{r 2055_post_fairness}
+
+e <- d %>%
+    mutate(treatment = lvls_reorder(treatment, c(2, 3, 1, 4)) 
+  )
+
+res_main <-  lm(fairness ~ treatment, data = e) 
+res_main <- broom::tidy(res_main)
+
+labels <- data.frame(
+  term = c(
+    "treatmentGeneral Prime",
+    "treatmentSpecific prime",
+    "treatmentNot shown"
+    
+  ),
+  label = c(  "General prime",
+             "Specific prime",
+             "Not shown")
+)
+#Figure
+fig <-  res_main %>%
+  filter(term != "(Intercept)") %>% 
+  left_join(labels, by = "term") %>% 
+  ggplot(aes(x = estimate, y = label,
+             xmin = estimate - (2 * std.error),
+             xmax = estimate + (2 * std.error))) +
+   geom_errorbarh(height = 0) +
+  geom_point() +
+  geom_vline(aes(xintercept = 0), linetype = "dotted") +
+  scale_x_continuous(limits = c(-1, 1),
+                     breaks = round(seq(-1, 1, .25), 2),
+                     expand = c(0, 0)) +
+  labs(x = "Change in fairness perception",
+       y = "",
+      title = 'Treatment effects on fairness perceptions, Study 2 -- Norwegian vignette.', 
+     subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
+  theme_bw() +
+  theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+  theme(panel.spacing = unit(0.5, "lines"))
+fig
+
+ggsave(
+  here("output", "novig", "figs", "pngs", "exp2-fairness-reflamenting-losers.png"),
+  plot = fig,
+  width = 5.5, height = 2.75
+)
+
+ggsave(
+  here("output", "novig", "figs", "pdfs", "exp2-fairness-reflamenting-losers.pdf"),
+  plot = fig,
+  width = 5.5, height = 2.75
+)
+
+
+#Table
+table <- res_main %>% 
+  select(term, estimate, std.error, statistic, p.value) %>% 
+  mutate(term = case_when( term == "(Intercept)" ~ "Intercept",
+                    term == "treatmentNot shown" ~ "Not shown",
+                   term == "treatmentGeneral Prime" ~ "General prime", 
+                   term == "treatmentSpecific prime" ~ "Specific prime"))
+
+kable(table, booktabs = TRUE, caption = "Treatment effects among losers on fairness perceptions of decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  
+
+kable(table, booktabs = TRUE, caption = "Treatment effects among losers on fairness perceptions of decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  %>% 
+  cat(., file = here("output", "novig", "tbls", "html",  "tbl-losers-fairness-reflamenting-novig.html"))
+```
+
 ### Fairness moderated by issue importance
 ```{r 2050_importance_treatment_fairness}
 res <-  lm(fairness ~ factor(treatment)*opinion_strength, data = d) 
@@ -321,9 +394,8 @@ labels <- data.frame(
 #Figure
 fig <-   res_main %>%
   filter(term != "(Intercept)") %>% 
-  left_join(labels, by = "term") %>% 
-  
-  ggplot(aes(x = estimate, y = label,
+ left_join(labels, by = "term") %>% 
+   ggplot(aes(x = estimate, y = label,
              xmin = estimate - (2 * std.error),
              xmax = estimate + (2 * std.error))) +
    geom_errorbarh(height = 0) +
@@ -390,7 +462,6 @@ labels <- data.frame(
 fig <-   res_main %>%
   filter(term != "(Intercept)") %>% 
   left_join(labels, by = "term") %>% 
-  
   ggplot(aes(x = estimate, y = label,
              xmin = estimate - (2 * std.error),
              xmax = estimate + (2 * std.error))) +

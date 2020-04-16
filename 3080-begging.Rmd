@@ -50,7 +50,7 @@ main_01 <- d %>%
          treat_winnergloat = case_when(r13pad5_vinner == 1 ~ "Not shown",
                                      r13pad5_vinner == 2 ~ "Winning politician gloats"),
         treat_prime = case_when(r13pad5_avsender == 1 ~ "Not shown",
-                               r13pad5_avsender == 2  | r13pad5_avsender == 5 ~ "No prime",
+                               r13pad5_avsender == 2  | r13pad5_avsender == 5 ~ "Lamenting politician",
                                r13pad5_avsender == 3  | r13pad5_avsender == 6 ~ "Specific prime",
                                r13pad5_avsender == 4 | r13pad5_avsender == 7 ~ "General prime"),
          treat_messenger = case_when(r13pad5_avsender %in% 3:4 ~ "Political leader",

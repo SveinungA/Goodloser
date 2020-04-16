@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, messag
 ## Pre-treatment measures
 ```{r 2031_pre}
 
-table <- d %>% mutate(
+table <- e %>% mutate(
   imp_accept_1 = case_when(
       imp_accept == 1 ~ "Not important at all",
       imp_accept == 2 ~ "Slightly important",
@@ -45,7 +45,7 @@ kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What is your 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-imp-accept.html"))
 
-table <- d %>% mutate(
+table <- e %>% mutate(
   other_accept_1 = case_when(
       other_accept == 1 ~ "Not at all",
       other_accept == 2 ~ "Low degree",
@@ -64,7 +64,7 @@ table <- d %>% mutate(
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-other-accept.html"))
 
-table <- d %>% mutate(
+table <- e %>% mutate(
   self_accept_1 = case_when(
       self_accept == 1 ~ "Not at all",
       self_accept == 2 ~ "Low degree",
@@ -84,7 +84,7 @@ table <- d %>% mutate(
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-self-accept.html"))
 
-table <- d %>% group_by(opinion_ban) %>%
+table <- e %>% group_by(opinion_ban) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
   ungroup()  
@@ -97,7 +97,7 @@ kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What is your 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-begging-pref.html"))
 
 
-table <- d %>% mutate(
+table <- e %>% mutate(
   opinion_strength_1 = case_when(
       opinion_strength == 1 ~ "Not important at all",
       opinion_strength == 2 ~ "Slightly important",
@@ -161,7 +161,7 @@ table <- tibble(Preference = c("Pro ban on begging", "Pro ban on begging", "Pro 
 
 ## Post-measures
 ```{r 2031_exp_post}
-table <- d %>% mutate(
+table <- e %>% mutate(
    fairness = case_when(fairness == 1 ~ "Not at all fair",
                          fairness == 2 ~ "Not very fair",
                          fairness == 3 ~ "Quite fair",
@@ -180,7 +180,7 @@ table <- d %>% mutate(
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-fairness-dv.html"))
 
-table <- d %>% mutate(
+table <- e %>% mutate(
    accept = case_when(accept == 1 ~ "Not at all willing",
                         accept == 2 ~ "Not very willing",
                         accept == 3 ~ "Quite willing", 
@@ -200,7 +200,7 @@ kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "Acceptance: W
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-accept-dv.html"))
 
 
-table <- d %>% mutate(
+table <- e %>% mutate(
    trust = case_when(trust == 1 ~ "No trust at all",
                       trust == 2 ~ "Low trust",
                       trust == 3 ~ "Some trust",
@@ -231,25 +231,23 @@ table <- e %>% mutate(video_report = case_when(video_report == 1 ~ 'I had both s
 
 #for bookdown
 kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What was the recording like?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
-  footnote(general = "The respondents who had both sound and images or images but no sound were kept in the final sample.") %>% 
   kable_styling(latex_options = "HOLD_position") 
 #save to file
 kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What was the recording like?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
-  footnote(general = "The respondents who had both sound and images or images but no sound were kept in the final sample.") %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-videoreport.html"))
 
-table <- d %>% group_by(mcheck_favorability) %>%
-   summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
-  
-#for bookdown
-kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "Proportion that correctly or incorrectly identify whether or not the decision outcome was in line with their own preferences.", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
-  kable_styling(latex_options = "HOLD_position") 
-#save to file
-kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "Proportion that correctly or incorrectly identify whether or not the decision outcome was in line with their own preferences.", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
-  kable_styling(latex_options = "HOLD_position") %>% 
-  cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-mcheckfavorability.html"))
+#  table <- e %>% group_by(mcheck_favorability) %>%
+#    summarize(N_obs = n()) %>%
+#  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100))
+# 
+# #for bookdown
+# kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "Proportion that correctly or incorrectly identify whether or not the decision outcome was in line with their own preferences.", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+#   kable_styling(latex_options = "HOLD_position") 
+# #save to file
+# kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "Proportion that correctly or incorrectly identify whether or not the decision outcome was in line with their own preferences.", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+#   kable_styling(latex_options = "HOLD_position") %>% 
+#   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-mcheckfavorability.html"))
 
 ```
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Peter Esaiasson, Sveinung Arnesen, and Hannah Werner" />
 
 
-<meta name="date" content="2020-04-08" />
+<meta name="date" content="2020-04-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -150,7 +150,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="moderating-effects-of-issue-importance-on-losers.html"><a href="moderating-effects-of-issue-importance-on-losers.html"><i class="fa fa-check"></i><b>5</b> Moderating effects of issue importance on losers</a></li>
 <li class="chapter" data-level="6" data-path="effects-on-losers.html"><a href="effects-on-losers.html"><i class="fa fa-check"></i><b>6</b> Effects on losers</a><ul>
-<li class="chapter" data-level="6.1" data-path="effects-on-losers.html"><a href="effects-on-losers.html#fairness-1"><i class="fa fa-check"></i><b>6.1</b> Fairness</a></li>
+<li class="chapter" data-level="6.1" data-path="effects-on-losers.html"><a href="effects-on-losers.html#fairness-1"><i class="fa fa-check"></i><b>6.1</b> Fairness</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="effects-on-losers.html"><a href="effects-on-losers.html#fairness-ii"><i class="fa fa-check"></i><b>6.1.1</b> Fairness II</a></li>
+</ul></li>
 <li class="chapter" data-level="6.2" data-path="effects-on-losers.html"><a href="effects-on-losers.html#justice-1"><i class="fa fa-check"></i><b>6.2</b> Justice</a></li>
 <li class="chapter" data-level="6.3" data-path="effects-on-losers.html"><a href="effects-on-losers.html#decision-evaluation-1"><i class="fa fa-check"></i><b>6.3</b> Decision evaluation</a></li>
 <li class="chapter" data-level="6.4" data-path="effects-on-losers.html"><a href="effects-on-losers.html#willingness-to-accept-1"><i class="fa fa-check"></i><b>6.4</b> Willingness to accept</a></li>
@@ -201,8 +203,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html"><i class="fa fa-check"></i><b>13</b> Effects on losers</a><ul>
 <li class="chapter" data-level="13.1" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html#fairness-5"><i class="fa fa-check"></i><b>13.1</b> Fairness</a><ul>
-<li class="chapter" data-level="13.1.1" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html#fairness-moderated-by-issue-importance"><i class="fa fa-check"></i><b>13.1.1</b> Fairness moderated by issue importance</a></li>
-<li class="chapter" data-level="13.1.2" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html#fairness-moderated-by-good-loser-norm"><i class="fa fa-check"></i><b>13.1.2</b> Fairness moderated by good loser norm</a></li>
+<li class="chapter" data-level="13.1.1" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html#fairness-ii-1"><i class="fa fa-check"></i><b>13.1.1</b> Fairness II</a></li>
+<li class="chapter" data-level="13.1.2" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html#fairness-moderated-by-issue-importance"><i class="fa fa-check"></i><b>13.1.2</b> Fairness moderated by issue importance</a></li>
+<li class="chapter" data-level="13.1.3" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html#fairness-moderated-by-good-loser-norm"><i class="fa fa-check"></i><b>13.1.3</b> Fairness moderated by good loser norm</a></li>
 </ul></li>
 <li class="chapter" data-level="13.2" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html#willingnes-to-accept-3"><i class="fa fa-check"></i><b>13.2</b> Willingnes to accept</a></li>
 <li class="chapter" data-level="13.3" data-path="effects-on-losers-1.html"><a href="effects-on-losers-1.html#trust-in-politician-3"><i class="fa fa-check"></i><b>13.3</b> Trust in politician</a></li>
@@ -362,98 +365,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb16-40" title="40">         <span class="dt">trust =</span> <span class="op">-</span>(trust)<span class="op">+</span><span class="dv">6</span></a>
 <a class="sourceLine" id="cb16-41" title="41">  )</a>
 <a class="sourceLine" id="cb16-42" title="42"></a>
-<a class="sourceLine" id="cb16-43" title="43"><span class="co"># Keep a full ITT dataset</span></a>
-<a class="sourceLine" id="cb16-44" title="44"></a>
-<a class="sourceLine" id="cb16-45" title="45">e &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-46" title="46"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(treatment))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-47" title="47"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb16-48" title="48">    <span class="dt">favorability =</span> <span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb16-49" title="49">    treatment <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Unfavorable&quot;</span>,</a>
-<a class="sourceLine" id="cb16-50" title="50">    treatment <span class="op">==</span><span class="st"> </span><span class="dv">5</span>    <span class="op">~</span><span class="st"> &quot;Favorable&quot;</span>),</a>
-<a class="sourceLine" id="cb16-51" title="51">    <span class="dt">treatment =</span> <span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb16-52" title="52">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Lamenting politician&quot;</span>,</a>
-<a class="sourceLine" id="cb16-53" title="53">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Specific prime&quot;</span>,</a>
-<a class="sourceLine" id="cb16-54" title="54">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;General Prime&quot;</span>,</a>
-<a class="sourceLine" id="cb16-55" title="55">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Not shown&quot;</span>,</a>
-<a class="sourceLine" id="cb16-56" title="56">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Winner&quot;</span>),</a>
-<a class="sourceLine" id="cb16-57" title="57">    <span class="dt">opinion_ban =</span> <span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb16-58" title="58">    .[[<span class="st">&quot;opinion_ban&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Pro&quot;</span>,</a>
-<a class="sourceLine" id="cb16-59" title="59">    .[[<span class="st">&quot;opinion_ban&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Anti&quot;</span>),</a>
-<a class="sourceLine" id="cb16-60" title="60">    <span class="dt">responseid =</span> <span class="kw">as.numeric</span>(responseid),</a>
-<a class="sourceLine" id="cb16-61" title="61">         <span class="dt">imp_accept2 =</span> <span class="kw">case_when</span>(imp_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Important&quot;</span>,</a>
-<a class="sourceLine" id="cb16-62" title="62">                                imp_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Not important&quot;</span>),</a>
-<a class="sourceLine" id="cb16-63" title="63">         <span class="dt">other_accept2 =</span> <span class="kw">case_when</span>(other_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;High degree&quot;</span>,</a>
-<a class="sourceLine" id="cb16-64" title="64">                                  other_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Low degree&quot;</span>),</a>
-<a class="sourceLine" id="cb16-65" title="65">         <span class="dt">self_accept2 =</span> <span class="kw">case_when</span>(self_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;High degree&quot;</span>,</a>
-<a class="sourceLine" id="cb16-66" title="66">                                 self_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Low degree&quot;</span>),</a>
-<a class="sourceLine" id="cb16-67" title="67">         <span class="dt">opinion_strength2 =</span> <span class="kw">case_when</span>(opinion_strength <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Important&quot;</span>,</a>
-<a class="sourceLine" id="cb16-68" title="68">                                      opinion_strength <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Not important&quot;</span>)</a>
-<a class="sourceLine" id="cb16-69" title="69">  )</a>
-<a class="sourceLine" id="cb16-70" title="70"></a>
-<a class="sourceLine" id="cb16-71" title="71"><span class="kw">write_sav</span>(e, <span class="st">&quot;Data/Goodloser-exp2-itt.sav&quot;</span>)</a>
-<a class="sourceLine" id="cb16-72" title="72"><span class="kw">write_csv</span>(e, <span class="st">&quot;Data/Goodloser-exp2-itt.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb16-73" title="73"></a>
-<a class="sourceLine" id="cb16-74" title="74"></a>
-<a class="sourceLine" id="cb16-75" title="75"><span class="co">#Remove respondents who did not see the video properly. Will be used as main data set</span></a>
-<a class="sourceLine" id="cb16-76" title="76">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-77" title="77"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(treatment))<span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Keep all who where assigned to a video treatment</span></a>
-<a class="sourceLine" id="cb16-78" title="78"><span class="st">  </span><span class="kw">filter</span>(video_timespent <span class="op">%in%</span><span class="st"> </span><span class="dv">60</span><span class="op">:</span><span class="dv">300</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Keep only those who stayed with the video for more than 60 seconds and less than 300 seconds</span></a>
-<a class="sourceLine" id="cb16-79" title="79"><span class="st">  </span><span class="kw">filter</span>(video_report <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)) <span class="co">#Keep only those who reported that they had sound and picture or picture but no sound</span></a>
-<a class="sourceLine" id="cb16-80" title="80"></a>
-<a class="sourceLine" id="cb16-81" title="81"><span class="co">##Create manipulation check variable that measures whether the respondents correctly identify whether the outcome was favorable or unfavorable to them</span></a>
-<a class="sourceLine" id="cb16-82" title="82">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-83" title="83"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">favorability =</span> <span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb16-84" title="84">    treatment <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Unfavorable&quot;</span>,</a>
-<a class="sourceLine" id="cb16-85" title="85">    treatment <span class="op">==</span><span class="st"> </span><span class="dv">5</span>    <span class="op">~</span><span class="st"> &quot;Favorable&quot;</span></a>
-<a class="sourceLine" id="cb16-86" title="86">  )</a>
-<a class="sourceLine" id="cb16-87" title="87">  )<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-88" title="88"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mcheck_favorability =</span> <span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb16-89" title="89">    <span class="kw">is.na</span>(favorability) <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span>,</a>
-<a class="sourceLine" id="cb16-90" title="90">    favorability<span class="op">==</span><span class="st">&quot;Favorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Correct&quot;</span>,</a>
-<a class="sourceLine" id="cb16-91" title="91">    favorability<span class="op">==</span><span class="st">&quot;Unfavorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Correct&quot;</span>,</a>
-<a class="sourceLine" id="cb16-92" title="92">    favorability <span class="op">%in%</span><span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span>,</a>
-<a class="sourceLine" id="cb16-93" title="93">    favorability<span class="op">==</span><span class="st">&quot;Favorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span>,</a>
-<a class="sourceLine" id="cb16-94" title="94">    favorability<span class="op">==</span><span class="st">&quot;Unfavorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span></a>
-<a class="sourceLine" id="cb16-95" title="95">  )</a>
-<a class="sourceLine" id="cb16-96" title="96">  ) </a>
+<a class="sourceLine" id="cb16-43" title="43"></a>
+<a class="sourceLine" id="cb16-44" title="44"><span class="co">##Create manipulation check variable that measures whether the respondents correctly identify whether the outcome was favorable or unfavorable to them</span></a>
+<a class="sourceLine" id="cb16-45" title="45">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-46" title="46"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">favorability =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb16-47" title="47">    treatment <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Unfavorable&quot;</span>,</a>
+<a class="sourceLine" id="cb16-48" title="48">    treatment <span class="op">==</span><span class="st"> </span><span class="dv">5</span>    <span class="op">~</span><span class="st"> &quot;Favorable&quot;</span></a>
+<a class="sourceLine" id="cb16-49" title="49">  )</a>
+<a class="sourceLine" id="cb16-50" title="50">  )<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-51" title="51"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mcheck_favorability =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb16-52" title="52">    <span class="kw">is.na</span>(favorability) <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span>,</a>
+<a class="sourceLine" id="cb16-53" title="53">    favorability<span class="op">==</span><span class="st">&quot;Favorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Correct&quot;</span>,</a>
+<a class="sourceLine" id="cb16-54" title="54">    favorability<span class="op">==</span><span class="st">&quot;Unfavorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Correct&quot;</span>,</a>
+<a class="sourceLine" id="cb16-55" title="55">    favorability <span class="op">%in%</span><span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span>,</a>
+<a class="sourceLine" id="cb16-56" title="56">    favorability<span class="op">==</span><span class="st">&quot;Favorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span>,</a>
+<a class="sourceLine" id="cb16-57" title="57">    favorability<span class="op">==</span><span class="st">&quot;Unfavorable&quot;</span> <span class="op">&amp;</span><span class="st"> </span>check_outcome<span class="op">==</span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Incorrect&quot;</span></a>
+<a class="sourceLine" id="cb16-58" title="58">  )</a>
+<a class="sourceLine" id="cb16-59" title="59">  ) </a>
+<a class="sourceLine" id="cb16-60" title="60"></a>
+<a class="sourceLine" id="cb16-61" title="61"><span class="co">#Label values on treatment variable</span></a>
+<a class="sourceLine" id="cb16-62" title="62">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-63" title="63"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb16-64" title="64">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Lamenting politician&quot;</span>,</a>
+<a class="sourceLine" id="cb16-65" title="65">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Specific prime&quot;</span>,</a>
+<a class="sourceLine" id="cb16-66" title="66">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;General Prime&quot;</span>,</a>
+<a class="sourceLine" id="cb16-67" title="67">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Not shown&quot;</span>,</a>
+<a class="sourceLine" id="cb16-68" title="68">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Winner&quot;</span>),</a>
+<a class="sourceLine" id="cb16-69" title="69">    <span class="dt">opinion_ban =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb16-70" title="70">    .[[<span class="st">&quot;opinion_ban&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Pro&quot;</span>,</a>
+<a class="sourceLine" id="cb16-71" title="71">    .[[<span class="st">&quot;opinion_ban&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Anti&quot;</span>),</a>
+<a class="sourceLine" id="cb16-72" title="72">    <span class="dt">responseid =</span> <span class="kw">as.numeric</span>(responseid),</a>
+<a class="sourceLine" id="cb16-73" title="73">         <span class="dt">imp_accept2 =</span> <span class="kw">case_when</span>(imp_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Important&quot;</span>,</a>
+<a class="sourceLine" id="cb16-74" title="74">                                imp_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Not important&quot;</span>),</a>
+<a class="sourceLine" id="cb16-75" title="75">         <span class="dt">other_accept2 =</span> <span class="kw">case_when</span>(other_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;High degree&quot;</span>,</a>
+<a class="sourceLine" id="cb16-76" title="76">                                  other_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Low degree&quot;</span>),</a>
+<a class="sourceLine" id="cb16-77" title="77">         <span class="dt">self_accept2 =</span> <span class="kw">case_when</span>(self_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;High degree&quot;</span>,</a>
+<a class="sourceLine" id="cb16-78" title="78">                                 self_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Low degree&quot;</span>),</a>
+<a class="sourceLine" id="cb16-79" title="79">         <span class="dt">opinion_strength2 =</span> <span class="kw">case_when</span>(opinion_strength <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Important&quot;</span>,</a>
+<a class="sourceLine" id="cb16-80" title="80">                                      opinion_strength <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Not important&quot;</span>)</a>
+<a class="sourceLine" id="cb16-81" title="81">  )</a>
+<a class="sourceLine" id="cb16-82" title="82"><span class="co">#----------------------------------------------------</span></a>
+<a class="sourceLine" id="cb16-83" title="83"><span class="co">#Prepare data sets with different samples</span></a>
+<a class="sourceLine" id="cb16-84" title="84"><span class="co">#----------------------------------------------------</span></a>
+<a class="sourceLine" id="cb16-85" title="85"></a>
+<a class="sourceLine" id="cb16-86" title="86"><span class="co"># Keep a full ITT dataset</span></a>
+<a class="sourceLine" id="cb16-87" title="87"></a>
+<a class="sourceLine" id="cb16-88" title="88">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-89" title="89"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(treatment)) <span class="co">#Keep all who where assigned to a video treatment</span></a>
+<a class="sourceLine" id="cb16-90" title="90"></a>
+<a class="sourceLine" id="cb16-91" title="91"><span class="kw">write_sav</span>(d, <span class="st">&quot;Data/Goodloser-exp2-itt.sav&quot;</span>)</a>
+<a class="sourceLine" id="cb16-92" title="92"><span class="kw">write_csv</span>(d, <span class="st">&quot;Data/Goodloser-exp2-itt.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb16-93" title="93"></a>
+<a class="sourceLine" id="cb16-94" title="94"><span class="co">#Remove respondents who did not see the video properly. Will be used as main data set</span></a>
+<a class="sourceLine" id="cb16-95" title="95">  d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(video_timespent <span class="op">%in%</span><span class="st"> </span><span class="dv">60</span><span class="op">:</span><span class="dv">300</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Keep only those who stayed with the video for more than 60 seconds and less than 300 seconds</span></a>
+<a class="sourceLine" id="cb16-96" title="96"><span class="st">  </span><span class="kw">filter</span>(video_report <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)) <span class="co">#Keep only those who reported that they had sound and picture or picture but no sound</span></a>
 <a class="sourceLine" id="cb16-97" title="97"></a>
-<a class="sourceLine" id="cb16-98" title="98"><span class="co">#Label values on treatment variable</span></a>
-<a class="sourceLine" id="cb16-99" title="99">d &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-100" title="100"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">treatment =</span> <span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb16-101" title="101">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Lamenting politician&quot;</span>,</a>
-<a class="sourceLine" id="cb16-102" title="102">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Specific prime&quot;</span>,</a>
-<a class="sourceLine" id="cb16-103" title="103">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;General Prime&quot;</span>,</a>
-<a class="sourceLine" id="cb16-104" title="104">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">~</span><span class="st"> &quot;Not shown&quot;</span>,</a>
-<a class="sourceLine" id="cb16-105" title="105">    .[[<span class="st">&quot;treatment&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Winner&quot;</span>),</a>
-<a class="sourceLine" id="cb16-106" title="106">    <span class="dt">opinion_ban =</span> <span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb16-107" title="107">    .[[<span class="st">&quot;opinion_ban&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;Pro&quot;</span>,</a>
-<a class="sourceLine" id="cb16-108" title="108">    .[[<span class="st">&quot;opinion_ban&quot;</span>]] <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">~</span><span class="st"> &quot;Anti&quot;</span>),</a>
-<a class="sourceLine" id="cb16-109" title="109">    <span class="dt">responseid =</span> <span class="kw">as.numeric</span>(responseid),</a>
-<a class="sourceLine" id="cb16-110" title="110">         <span class="dt">imp_accept2 =</span> <span class="kw">case_when</span>(imp_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Important&quot;</span>,</a>
-<a class="sourceLine" id="cb16-111" title="111">                                imp_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Not important&quot;</span>),</a>
-<a class="sourceLine" id="cb16-112" title="112">         <span class="dt">other_accept2 =</span> <span class="kw">case_when</span>(other_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;High degree&quot;</span>,</a>
-<a class="sourceLine" id="cb16-113" title="113">                                  other_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Low degree&quot;</span>),</a>
-<a class="sourceLine" id="cb16-114" title="114">         <span class="dt">self_accept2 =</span> <span class="kw">case_when</span>(self_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;High degree&quot;</span>,</a>
-<a class="sourceLine" id="cb16-115" title="115">                                 self_accept <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Low degree&quot;</span>),</a>
-<a class="sourceLine" id="cb16-116" title="116">         <span class="dt">opinion_strength2 =</span> <span class="kw">case_when</span>(opinion_strength <span class="op">%in%</span><span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">5</span> <span class="op">~</span><span class="st"> &quot;Important&quot;</span>,</a>
-<a class="sourceLine" id="cb16-117" title="117">                                      opinion_strength <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;Not important&quot;</span>)</a>
-<a class="sourceLine" id="cb16-118" title="118">  )</a>
-<a class="sourceLine" id="cb16-119" title="119"><span class="co">#Save file with the main data set</span></a>
-<a class="sourceLine" id="cb16-120" title="120"><span class="kw">write_sav</span>(d, <span class="st">&quot;Data/Goodloser-exp2.sav&quot;</span>)</a>
-<a class="sourceLine" id="cb16-121" title="121"><span class="kw">write_csv</span>(d, <span class="st">&quot;Data/Goodloser-exp2.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb16-122" title="122"></a>
-<a class="sourceLine" id="cb16-123" title="123"><span class="co">#----------------------------------------------------</span></a>
-<a class="sourceLine" id="cb16-124" title="124"><span class="co">#Prepare redux data set, where respondents who fail the manipulation check are excluded</span></a>
-<a class="sourceLine" id="cb16-125" title="125"><span class="co">#----------------------------------------------------</span></a>
-<a class="sourceLine" id="cb16-126" title="126"></a>
-<a class="sourceLine" id="cb16-127" title="127"><span class="co">#Create a separate data set where also those who fail the manipulation check are excluded.</span></a>
-<a class="sourceLine" id="cb16-128" title="128">Loser_redux &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-129" title="129"><span class="st">  </span><span class="kw">filter</span>(mcheck_favorability <span class="op">==</span><span class="st"> &quot;Correct&quot;</span>)</a>
-<a class="sourceLine" id="cb16-130" title="130"></a>
-<a class="sourceLine" id="cb16-131" title="131"><span class="co">#Save file with the good loser data set that excludes respondents who fail manipulation check</span></a>
-<a class="sourceLine" id="cb16-132" title="132"></a>
-<a class="sourceLine" id="cb16-133" title="133"><span class="kw">write_sav</span>(Loser_redux, <span class="st">&quot;Data/Goodloser-exp2-exclusive.sav&quot;</span>)</a>
-<a class="sourceLine" id="cb16-134" title="134"><span class="kw">write_csv</span>(Loser_redux, <span class="st">&quot;Data/Goodloser-exp2-exclusive.csv&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb16-98" title="98"><span class="kw">write_sav</span>(d, <span class="st">&quot;Data/Goodloser-exp2.sav&quot;</span>)</a>
+<a class="sourceLine" id="cb16-99" title="99"><span class="kw">write_csv</span>(d, <span class="st">&quot;Data/Goodloser-exp2.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb16-100" title="100"></a>
+<a class="sourceLine" id="cb16-101" title="101"><span class="co">#Create a separate data set where also those who fail the manipulation check are excluded.</span></a>
+<a class="sourceLine" id="cb16-102" title="102">Loser_redux &lt;-<span class="st"> </span>d <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-103" title="103"><span class="st">  </span><span class="kw">filter</span>(mcheck_favorability <span class="op">==</span><span class="st"> &quot;Correct&quot;</span>)</a>
+<a class="sourceLine" id="cb16-104" title="104"></a>
+<a class="sourceLine" id="cb16-105" title="105"><span class="co">#Save file with the good loser data set that excludes respondents who fail manipulation check</span></a>
+<a class="sourceLine" id="cb16-106" title="106"></a>
+<a class="sourceLine" id="cb16-107" title="107"><span class="kw">write_sav</span>(Loser_redux, <span class="st">&quot;Data/Goodloser-exp2-exclusive.sav&quot;</span>)</a>
+<a class="sourceLine" id="cb16-108" title="108"><span class="kw">write_csv</span>(Loser_redux, <span class="st">&quot;Data/Goodloser-exp2-exclusive.csv&quot;</span>)</a></code></pre></div>
 
 </div>
             </section>

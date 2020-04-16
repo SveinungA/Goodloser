@@ -59,43 +59,6 @@ d <- d %>%
          trust = -(trust)+6
   )
 
-# Keep a full ITT dataset
-
-e <- d %>%
-  filter(!is.na(treatment))%>%
-  mutate(
-    favorability = case_when(
-    treatment %in% 1:4 ~ "Unfavorable",
-    treatment == 5    ~ "Favorable"),
-    treatment = case_when(
-    .[["treatment"]] == 1 ~ "Lamenting politician",
-    .[["treatment"]] == 2 ~ "Specific prime",
-    .[["treatment"]] == 3 ~ "General Prime",
-    .[["treatment"]] == 4 ~ "Not shown",
-    .[["treatment"]] == 5 ~ "Winner"),
-    opinion_ban = case_when(
-    .[["opinion_ban"]] == 1 ~ "Pro",
-    .[["opinion_ban"]] == 2 ~ "Anti"),
-    responseid = as.numeric(responseid),
-         imp_accept2 = case_when(imp_accept %in% 4:5 ~ "Important",
-                                imp_accept %in% 1:3 ~ "Not important"),
-         other_accept2 = case_when(other_accept %in% 4:5 ~ "High degree",
-                                  other_accept %in% 1:3 ~ "Low degree"),
-         self_accept2 = case_when(self_accept %in% 4:5 ~ "High degree",
-                                 self_accept %in% 1:3 ~ "Low degree"),
-         opinion_strength2 = case_when(opinion_strength %in% 4:5 ~ "Important",
-                                      opinion_strength %in% 1:3 ~ "Not important")
-  )
-
-write_sav(e, "Data/Goodloser-exp2-itt.sav")
-write_csv(e, "Data/Goodloser-exp2-itt.csv")
-
-
-#Remove respondents who did not see the video properly. Will be used as main data set
-d <- d %>%
-  filter(!is.na(treatment))%>% #Keep all who where assigned to a video treatment
-  filter(video_timespent %in% 60:300) %>% #Keep only those who stayed with the video for more than 60 seconds and less than 300 seconds
-  filter(video_report %in% c(1, 3)) #Keep only those who reported that they had sound and picture or picture but no sound
 
 ##Create manipulation check variable that measures whether the respondents correctly identify whether the outcome was favorable or unfavorable to them
 d <- d %>%
@@ -135,13 +98,24 @@ d <- d %>%
          opinion_strength2 = case_when(opinion_strength %in% 4:5 ~ "Important",
                                       opinion_strength %in% 1:3 ~ "Not important")
   )
-#Save file with the main data set
+#----------------------------------------------------
+#Prepare data sets with different samples
+#----------------------------------------------------
+
+# Keep a full ITT dataset
+
+d <- d %>%
+  filter(!is.na(treatment)) #Keep all who where assigned to a video treatment
+
+write_sav(d, "Data/Goodloser-exp2-itt.sav")
+write_csv(d, "Data/Goodloser-exp2-itt.csv")
+
+#Remove respondents who did not see the video properly. Will be used as main data set
+  d <- d %>% filter(video_timespent %in% 60:300) %>% #Keep only those who stayed with the video for more than 60 seconds and less than 300 seconds
+  filter(video_report %in% c(1, 3)) #Keep only those who reported that they had sound and picture or picture but no sound
+
 write_sav(d, "Data/Goodloser-exp2.sav")
 write_csv(d, "Data/Goodloser-exp2.csv")
-
-#----------------------------------------------------
-#Prepare redux data set, where respondents who fail the manipulation check are excluded
-#----------------------------------------------------
 
 #Create a separate data set where also those who fail the manipulation check are excluded.
 Loser_redux <- d %>%
@@ -151,7 +125,5 @@ Loser_redux <- d %>%
 
 write_sav(Loser_redux, "Data/Goodloser-exp2-exclusive.sav")
 write_csv(Loser_redux, "Data/Goodloser-exp2-exclusive.csv")
-
-
 
 ```

@@ -1,4 +1,5 @@
 # Main effects
+> Estimated using the main data sample ("Goodloser-exp2.sav")
 
 ```{r 204_packages, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
