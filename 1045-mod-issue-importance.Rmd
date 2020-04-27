@@ -1,5 +1,5 @@
 
-# Moderating effects of issue importance on losers
+## Moderating effects of issue importance on losers
 
 ```{r 1045_packages, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
@@ -50,7 +50,7 @@ fig <- summary(margins(res, at = list(opinion_strength = 1:7)))  %>%
   
   labs(x = 'Average marginal treatment effect',
        y = "Importance attached to issue of ban on begging",
-       title = "Conditional effect of issue importance on general prime treatment.",
+       title = "Conditional effect of issue importance on generic good loser prime treatment.",
        subtitle = 'Outcome measure: Fairness perception of decision. Sample: Respondents with unfavorable outcome.') +
   theme_bw() +
   theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
@@ -112,7 +112,7 @@ table <- summary(margins(res, at = list(opinion_strength = 1:7))) %>%
    filter(factor == 'treatmentGeneral prime' | factor == 'treatmentLamenting politician') %>% 
   mutate(factor = case_when(
   factor == 'opinion_strength' ~ 'Issue importance',
-  factor == 'treatmentGeneral prime' ~ 'General prime',
+  factor == 'treatmentGeneral prime' ~ 'Generic good loser prime',
   factor == 'treatmentLamenting politician' ~ 'Lamenting politician')) %>% 
   rename('Issue importance' = 'opinion_strength')
 
@@ -142,10 +142,10 @@ table <- table %>%
   select(term, estimate, std.error, statistic, p.value) %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Intercept",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
-                    term == "treatmentGeneral prime" ~ "General prime",
+                    term == "treatmentGeneral prime" ~ "Generic good loser prime",
                     term == "opinion_strengthNot important" ~ "Issue not important to respondent",
                     term == "treatmentLamenting politician:opinion_strengthNot important" ~ "Lamenting politician w/ issue not important to respondent",
-                    term == "treatmentGeneral prime:opinion_strengthNot important" ~ "General prime w/ issue not important to respondent")
+                    term == "treatmentGeneral prime:opinion_strengthNot important" ~ "Generic good loser prime w/ issue not important to respondent")
          ) 
  # rename('Lamenting politician' = 'opinion_strength')
 

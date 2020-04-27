@@ -1,8 +1,8 @@
-# Data management
+<!-- # Data management -->
 
->This chapter describes the data management that is conducted prior to any analysis
+<!-- >This chapter describes the data management that is conducted prior to any analysis -->
 
-```{r 303_setup, include=TRUE}
+```{r 303_setup, echo=FALSE}
 if(!require("codebook")){install.packages("codebook");  library(codebook)}
 if(!require("dplyr")){install.packages("dplyr");  library(dplyr)}
 if(!require("haven")){install.packages("haven");  library(haven)}
@@ -13,14 +13,14 @@ if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 
 d <- read_sav("Data/Goodloser-exp3-orig.sav")
 
-knitr::opts_chunk$set(echo = TRUE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
-## Exclude observations
-> Exclude respondents who rush through the experiment. In line with the [pre-registration](GoogLoser_Prereg_3_#16823), these are defined as respondents who spend less than 25 percent of the median time on answering the questions are excluded from the analysis. 
+<!-- ## Exclude observations -->
+<!-- > Exclude respondents who rush through the experiment. In line with the [pre-registration](GoogLoser_Prereg_3_#16823), these are defined as respondents who spend less than 25 percent of the median time on answering the questions are excluded from the analysis.  -->
 
 
-```{r 303_exclude, echo=TRUE}
+```{r 303_exclude, echo=FALSE}
 d <- d %>%
   mutate(median = median(time, na.rm = TRUE)) %>% 
   filter(time >= 0.25*median  )

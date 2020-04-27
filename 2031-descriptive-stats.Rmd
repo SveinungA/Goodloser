@@ -124,7 +124,7 @@ kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How important
 ```{r 2031_vignette}
 
 table <- tibble(Preference = c("Pro ban on begging", "Pro ban on begging", "Pro ban on begging", "Pro ban on begging", "Pro ban on begging", "Against ban on begging", "Against ban on begging", "Against ban on begging", "Against ban on begging", "Against ban on begging"), 
-                Treatment = c("No prime", "Lamenting politician", "General prime", "Specific prime", "Winner", "No prime", "Lamenting politician", "General prime", "Specific prime", "Winner"), 
+                Treatment = c("No prime", "Lamenting politician", "Generic good loser prime", "Specific good loser prime", "Winner", "No prime", "Lamenting politician", "Generic good loser prime", "Specific good loser prime", "Winner"), 
                 Text = c("The majority votes against a ban on begging. That means the council will not ban begging in your municipality.",
                          "The majority votes against a ban on begging. That means the council will not ban begging in your municipality. After the decision, the leader of one of the parties who where in favor of a ban states that they are disappointed and that the decision was wrong.",
                          "The majority votes against a ban on begging. That means the council will not ban begging in your municipality. After the decision, the leader of one of the parties who where in favor of a ban states that they are disappointed and that the decision was wrong, but that's how it is like living in a democracy. Sometimes you win, sometimes you lose.",
