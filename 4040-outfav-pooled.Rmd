@@ -25,7 +25,8 @@ knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, messag
 ```
 
 ```{r 402_prepare}
-d1 <- d1 %>%  mutate(treatment = lvls_reorder(treatment, c(3, 2, 1)))
+d1 <- d1 %>%  mutate(treatment = lvls_reorder(treatment, c(3, 2, 1)),
+                     fairness = fairness/(max(fairness))*5)
 d2 <- d2 %>%
   mutate(treatment = lvls_reorder(treatment, c(3, 2, 1, 4, 5)) 
   )
