@@ -1,6 +1,5 @@
 # Outcome favorability effect across the three experiments
 
-
 ```{r 401_setup, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
 if(!require("haven")){install.packages("haven");  library(haven)}

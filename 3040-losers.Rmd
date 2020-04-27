@@ -54,6 +54,9 @@ main_01 <- d %>%
                                r13pad5_avsender == 4 | r13pad5_avsender == 7 ~ "Generic good loser prime"),
          treat_messenger = case_when(r13pad5_avsender %in% 3:4 ~ "Political leader",
                                    r13pad5_avsender %in% 6:7 ~ "Local newspaper"),
+        treat_scale = case_when(r13pad6_ran == 1 ~ "Worded",
+                          r13pad6_ran == 2 ~ "Numbered"),
+
          post_fair = case_when(r13pad6a == 1 | r13pad6b == 1 ~ 5,
                           r13pad6a == 2 | r13pad6b == 2 ~ 4,
                           r13pad6a == 3 | r13pad6b == 3 ~ 3,
@@ -89,22 +92,25 @@ main_01 <- d %>%
             
 ``` 
 
-Treatment effects on experimental subjects who find the decision outcome to align unfavorably with their own preferences ($N = $ `r main_01 %>% summarise(n())` )
+Treatment effects on experimental subjects who find the decision outcome to align unfavorably with their own preferences ($N = $`r main_01 %>% summarise(n())`)
 
-## Reasonable
-```{r 305_post_reasonable_loser}
+## Fairness perceptions
+
+```{r 305_post_fair_loser}
 
 source("Functions/amce.R")
 
 res_main <-  main_01 %>%
-  amce(post_reasonable, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger) 
+  amce(post_fair, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger, treat_issue, treat_scale) 
   
 res_main <- res_main %>% 
   mutate(
   treatment =  case_when(treatment == "treat_winningmargin" ~ "Winning\nmargin",
             treatment == "treat_winnergloat" ~ "Winner\ngloats",
             treatment == "treat_prime" ~ "Democratic\nprime",
-            treatment == "treat_messenger" ~ "Messenger")
+            treatment == "treat_messenger" ~ "Messenger",
+            treatment == "treat_issue" ~ "Issue",
+            treatment == "treat_scale" ~ "Wording of answer scale")
 )
 
 #Figure
@@ -124,6 +130,522 @@ fig_amce <-
   scale_x_continuous(
     limits = c(-1, 1),
     breaks = round(seq(-1, 1, .1), 2),
+    expand = c(0, 0)) +
+    labs(
+    x = "Marginal effect, fairness perception of decision",
+    y = "",
+    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    subtitle = 'Sample: Respondents who received an unfavorable outcome') +
+  theme_bw() +
+  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=6, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
+fig_amce
+
+
+ggsave(
+  here("output", "nocon", "figs", "pngs", "fig_losers_fair.png"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+ggsave(
+ here("output", "nocon", "figs", "pdfs", "fig_losers_fair.pdf"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+#table
+res_main <- res_main %>% 
+  select(value, estimate, std_error, statistic, p_value)
+
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "Issue" = 2, "Wording of answer scale" = 2))
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+  kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "Issue" = 2, "Wording of answer scale" = 2))%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-fairness-nocon.html"))
+```
+### Conditional AMCEs
+Issue importance
+```{r 306_post_fair_losers_intimportance}
+
+source("Functions/amce.R")
+
+res_main <-  main_02 %>%
+  amce(post_fair, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger, treat_issue, treat_scale, subgroup = 'importance') 
+  
+res_main <- res_main %>% 
+  mutate(
+  treatment =  case_when(treatment == "treat_winningmargin" ~ "Winning\nmargin",
+            treatment == "treat_winnergloat" ~ "Winner\ngloats",
+            treatment == "treat_prime" ~ "Democratic\nprime",
+            treatment == "treat_messenger" ~ "Messenger",
+            treatment == "treat_issue" ~ "Issue",
+            treatment == "treat_scale" ~ "Wording of answer scale")
+)
+
+#Figure
+fig_amce <-
+  res_main %>%
+  ggplot(aes(x = estimate, y = value)) +
+  facet_grid(
+    treatment ~ .,
+    scales = "free_y",
+    space = "free_y") +
+  geom_errorbarh(
+    aes(xmin = estimate - (2 * std_error),
+        xmax = estimate + (2 * std_error),
+        colour = factor(importance)),
+    height = 0) +
+  geom_point(aes(colour = factor(importance))) +
+  geom_vline(aes(xintercept = 0), linetype = "dotted") +
+  scale_x_continuous(
+    limits = c(-1, 1),
+    breaks = round(seq(-1, 1, .2), 2),
+    expand = c(0, 0)) +
+    labs(
+    x = "Marginal effect, fairness perception of decision",
+    y = "",
+    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    subtitle = 'Sample: Respondents who received an unfavorable outcome. Subgroups: Issue importance.') +
+  theme_bw() +
+  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=6, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
+fig_amce
+
+
+ggsave(
+  here("output", "nocon", "figs", "pngs", "fig_losers_fair_importance.png"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+ggsave(
+ here("output", "nocon", "figs", "pdfs", "fig_losers_fair_importance.pdf"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+#table
+res_main <- res_main %>% 
+  select(value, estimate, std_error, statistic, p_value, importance)
+
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value", "Issue importance")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ kableExtra::group_rows(index = c("Winning margin" = 6, "Winner gloating" = 4, "Good loser prime" = 8, "Messenger" = 4, "Issue" = 4, "Wording of answer scale" = 4))
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value", "Issue importance")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ kableExtra::group_rows(index = c("Winning margin" = 6, "Winner gloating" = 4, "Good loser prime" = 8, "Messenger" = 4, "Issue" = 4, "Wording of answer scale" = 4))%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-fairness-importance-nocon.html"))
+```
+
+Issue (ban on begging or road toll)
+```{r 305_post_fair_loser_issue}
+
+source("Functions/amce.R")
+
+res_main <-  main_01 %>%
+  amce(post_fair, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger, treat_issue,treat_scale, subgroup = 'treat_issue') 
+  
+res_main <- res_main %>% 
+  mutate(
+  treatment =  case_when(treatment == "treat_winningmargin" ~ "Winning\nmargin",
+            treatment == "treat_winnergloat" ~ "Winner\ngloats",
+            treatment == "treat_prime" ~ "Democratic\nprime",
+            treatment == "treat_messenger" ~ "Messenger",
+            treatment == "treat_issue" ~ "Issue",
+            treatment == "treat_scale" ~ "Wording of answer scale")
+)
+
+#Figure
+fig_amce <-
+  res_main %>%
+  ggplot(aes(x = estimate, y = value)) +
+  facet_grid(
+    treatment ~ .,
+    scales = "free_y",
+    space = "free_y") +
+   geom_errorbarh(
+    aes(xmin = estimate - (2 * std_error),
+        xmax = estimate + (2 * std_error),
+        colour = factor(treat_issue)),
+    height = 0) +
+  geom_point(aes(colour = factor(treat_issue))) +
+  geom_vline(aes(xintercept = 0), linetype = "dotted") +
+  scale_x_continuous(
+    limits = c(-1, 1),
+    breaks = round(seq(-1, 1, .2), 2),
+    expand = c(0, 0)) +
+    labs(
+    x = "Marginal effect, fairness perception of decision",
+    y = "",
+    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    subtitle = 'Sample: Respondents who received an unfavorable outcome') +
+  theme_bw() +
+  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=6, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
+fig_amce
+
+
+ggsave(
+  here("output", "nocon", "figs", "pngs", "fig_losers_intissue_fair.png"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+ggsave(
+ here("output", "nocon", "figs", "pdfs", "fig_losers_intissue_fair.pdf"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+#table
+res_main <- res_main %>% 
+  select(value, estimate, std_error, statistic, p_value)
+
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "Issue" = 2, "Wording of answer scale" = 2))
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+  kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "Issue" = 2, "Wording of answer scale" = 2))%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-fairness-intissue-nocon.html"))
+```
+Messenger
+```{r 305_post_fair_loser_intmessenger}
+
+source("Functions/amce.R")
+
+res_main <-  main_01 %>%
+  amce(post_fair, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger, treat_issue, treat_scale, subgroup = 'treat_messenger') 
+  
+res_main <- res_main %>% 
+  mutate(
+  treatment =  case_when(treatment == "treat_winningmargin" ~ "Winning\nmargin",
+            treatment == "treat_winnergloat" ~ "Winner\ngloats",
+            treatment == "treat_prime" ~ "Democratic\nprime",
+            treatment == "treat_messenger" ~ "Messenger",
+            treatment == "treat_issue" ~ "Issue",
+            treatment == "treat_scale" ~ "Wording of answer scale")
+)
+
+#Figure
+fig_amce <-
+  res_main %>%
+  ggplot(aes(x = estimate, y = value)) +
+  facet_grid(
+    treatment ~ .,
+    scales = "free_y",
+    space = "free_y") +
+   geom_errorbarh(
+    aes(xmin = estimate - (2 * std_error),
+        xmax = estimate + (2 * std_error),
+        colour = factor(treat_messenger)),
+    height = 0) +
+  geom_point(aes(colour = factor(treat_messenger))) +
+  geom_vline(aes(xintercept = 0), linetype = "dotted") +
+  scale_x_continuous(
+    limits = c(-1, 1),
+    breaks = round(seq(-1, 1, .2), 2),
+    expand = c(0, 0)) +
+    labs(
+    x = "Marginal effect, fairness perception of decision",
+    y = "",
+    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    subtitle = 'Sample: Respondents who received an unfavorable outcome') +
+  theme_bw() +
+  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=6, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
+fig_amce
+
+
+ggsave(
+  here("output", "nocon", "figs", "pngs", "fig_losers_intmessenger_fair.png"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+ggsave(
+ here("output", "nocon", "figs", "pdfs", "fig_losers_intmessenger_fair.pdf"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+#table
+res_main <- res_main %>% 
+  select(value, estimate, std_error, statistic, p_value)
+
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "Issue" = 2, "Wording of answer scale" = 2))
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+  kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "Issue" = 2, "Wording of answer scale" = 2))%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-fairness-intmessenger-nocon.html"))
+```
+
+Winner gloats
+```{r 305_post_fair_loser_intwinnergloat}
+
+source("Functions/amce.R")
+
+res_main <-  main_01 %>%
+  amce(post_fair, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger, treat_issue, treat_scale, subgroup = 'treat_winnergloat') 
+  
+res_main <- res_main %>% 
+  mutate(
+  treatment =  case_when(treatment == "treat_winningmargin" ~ "Winning\nmargin",
+            treatment == "treat_winnergloat" ~ "Winner\ngloats",
+            treatment == "treat_prime" ~ "Democratic\nprime",
+            treatment == "treat_messenger" ~ "Messenger",
+            treatment == "treat_issue" ~ "Issue",
+            treatment == "treat_scale" ~ "Wording of answer scale")
+)
+
+#Figure
+fig_amce <-
+  res_main %>%
+  ggplot(aes(x = estimate, y = value)) +
+  facet_grid(
+    treatment ~ .,
+    scales = "free_y",
+    space = "free_y") +
+   geom_errorbarh(
+    aes(xmin = estimate - (2 * std_error),
+        xmax = estimate + (2 * std_error),
+        colour = factor(treat_winnergloat)),
+    height = 0) +
+  geom_point(aes(colour = factor(treat_winnergloat))) +
+  geom_vline(aes(xintercept = 0), linetype = "dotted") +
+  scale_x_continuous(
+    limits = c(-1, 1),
+    breaks = round(seq(-1, 1, .2), 2),
+    expand = c(0, 0)) +
+    labs(
+    x = "Marginal effect, fairness perception of decision",
+    y = "",
+    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    subtitle = 'Sample: Respondents who received an unfavorable outcome') +
+  theme_bw() +
+  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=6, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
+fig_amce
+
+
+ggsave(
+  here("output", "nocon", "figs", "pngs", "fig_losers_intwinnergloat_fair.png"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+ggsave(
+ here("output", "nocon", "figs", "pdfs", "fig_losers_intwinnergloat_fair.pdf"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+#table
+res_main <- res_main %>% 
+  select(value, estimate, std_error, statistic, p_value)
+
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "Issue" = 2, "Wording of answer scale" = 2))
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+  kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "Issue" = 2, "Wording of answer scale" = 2))%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-fairness-intwinnergloat-nocon.html"))
+```
+
+Winning margin
+```{r 305_post_fair_loser_intwinningmargin}
+
+source("Functions/amce.R")
+
+res_main <-  main_01 %>%
+  amce(post_fair, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger, treat_issue, treat_scale, subgroup = 'treat_winningmargin') 
+  
+res_main <- res_main %>% 
+  mutate(
+  treatment =  case_when(treatment == "treat_winningmargin" ~ "Winning\nmargin",
+            treatment == "treat_winnergloat" ~ "Winner\ngloats",
+            treatment == "treat_prime" ~ "Democratic\nprime",
+            treatment == "treat_messenger" ~ "Messenger",
+            treatment == "treat_issue" ~ "Issue",
+            treatment == "treat_scale" ~ "Wording of answer scale")
+)
+
+#Figure
+fig_amce <-
+  res_main %>%
+  ggplot(aes(x = estimate, y = value)) +
+  facet_grid(
+    treatment ~ .,
+    scales = "free_y",
+    space = "free_y") +
+   geom_errorbarh(
+    aes(xmin = estimate - (2 * std_error),
+        xmax = estimate + (2 * std_error),
+        colour = factor(treat_winningmargin)),
+    height = 0) +
+  geom_point(aes(colour = factor(treat_winningmargin))) +
+  geom_vline(aes(xintercept = 0), linetype = "dotted") +
+  scale_x_continuous(
+    limits = c(-1, 1),
+    breaks = round(seq(-1, 1, .2), 2),
+    expand = c(0, 0)) +
+    labs(
+    x = "Marginal effect, fairness perception of decision",
+    y = "",
+    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    subtitle = 'Sample: Respondents who received an unfavorable outcome') +
+  theme_bw() +
+  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=6, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
+fig_amce
+
+
+ggsave(
+  here("output", "nocon", "figs", "pngs", "fig_losers_intwinningmargin_fair.png"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+ggsave(
+ here("output", "nocon", "figs", "pdfs", "fig_losers_intwinningmargin_fair.pdf"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+#table
+res_main <- res_main %>% 
+  select(value, estimate, std_error, statistic, p_value)
+
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "Issue" = 2, "Wording of answer scale" = 2))
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+  kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "Issue" = 2, "Wording of answer scale" = 2))%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-fairness-intwinningmargin-nocon.html"))
+```
+
+Wording of scale
+```{r 305_post_fair_loser_intscale}
+
+source("Functions/amce.R")
+
+res_main <-  main_01 %>%
+  amce(post_fair, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger, treat_issue, treat_scale, subgroup = 'treat_scale') 
+  
+res_main <- res_main %>% 
+  mutate(
+  treatment =  case_when(treatment == "treat_winningmargin" ~ "Winning\nmargin",
+            treatment == "treat_winnergloat" ~ "Winner\ngloats",
+            treatment == "treat_prime" ~ "Democratic\nprime",
+            treatment == "treat_messenger" ~ "Messenger",
+            treatment == "treat_issue" ~ "Issue",
+            treatment == "treat_scale" ~ "Wording of answer scale")
+)
+
+#Figure
+fig_amce <-
+  res_main %>%
+  ggplot(aes(x = estimate, y = value)) +
+  facet_grid(
+    treatment ~ .,
+    scales = "free_y",
+    space = "free_y") +
+   geom_errorbarh(
+    aes(xmin = estimate - (2 * std_error),
+        xmax = estimate + (2 * std_error),
+        colour = factor(treat_scale)),
+    height = 0) +
+  geom_point(aes(colour = factor(treat_scale))) +
+  geom_vline(aes(xintercept = 0), linetype = "dotted") +
+  scale_x_continuous(
+    limits = c(-1, 1),
+    breaks = round(seq(-1, 1, .2), 2),
+    expand = c(0, 0)) +
+    labs(
+    x = "Marginal effect, fairness perception of decision",
+    y = "",
+    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    subtitle = 'Sample: Respondents who received an unfavorable outcome') +
+  theme_bw() +
+  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=6, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
+fig_amce
+
+
+ggsave(
+  here("output", "nocon", "figs", "pngs", "fig_losers_intscale_fair.png"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+ggsave(
+ here("output", "nocon", "figs", "pdfs", "fig_losers_intscale_fair.pdf"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+#table
+res_main <- res_main %>% 
+  select(value, estimate, std_error, statistic, p_value)
+
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "Issue" = 2, "Wording of answer scale" = 2))
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+  kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "Issue" = 2, "Wording of answer scale" = 2))%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-fairness-intscale-nocon.html"))
+```
+
+## Reasonable
+```{r 305_post_reasonable_loser}
+
+source("Functions/amce.R")
+
+res_main <-  main_01 %>%
+  amce(post_reasonable, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger, treat_issue, treat_scale) 
+  
+res_main <- res_main %>% 
+  mutate(
+  treatment =  case_when(treatment == "treat_winningmargin" ~ "Winning\nmargin",
+            treatment == "treat_winnergloat" ~ "Winner\ngloats",
+            treatment == "treat_prime" ~ "Democratic\nprime",
+            treatment == "treat_messenger" ~ "Messenger",
+            treatment == "treat_issue" ~ "Issue",
+            treatment == "treat_scale" ~ "Wording of answer scale")
+)
+
+#Figure
+fig_amce <-
+  res_main %>%
+  ggplot(aes(x = estimate, y = value)) +
+  facet_grid(
+    treatment ~ .,
+    scales = "free_y",
+    space = "free_y") +
+  geom_errorbarh(
+    aes(xmin = estimate - (2 * std_error),
+        xmax = estimate + (2 * std_error)),
+    height = 0) +
+  geom_point() +
+  geom_vline(aes(xintercept = 0), linetype = "dotted") +
+  scale_x_continuous(
+    limits = c(-1, 1),
+    breaks = round(seq(-1, 1, .2), 2),
     expand = c(0, 0)) +
    labs(
     x = "Marginal effect, reasonable decision",
@@ -153,11 +675,11 @@ res_main <- res_main %>%
 
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
+ kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "Issue" = 2, "Wording of answer scale" = 2))
   
   kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
+ kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "Issue" = 2, "Wording of answer scale" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-reasonable-nocon.html"))
 
 ```
@@ -168,14 +690,16 @@ kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects",
 source("Functions/amce.R")
 
 res_main <-  main_01 %>%
-  amce(post_accept, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger) 
+  amce(post_accept, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger, treat_issue, treat_scale) 
   
 res_main <- res_main %>% 
   mutate(
   treatment =  case_when(treatment == "treat_winningmargin" ~ "Winning\nmargin",
             treatment == "treat_winnergloat" ~ "Winner\ngloats",
             treatment == "treat_prime" ~ "Democratic\nprime",
-            treatment == "treat_messenger" ~ "Messenger")
+            treatment == "treat_messenger" ~ "Messenger",
+            treatment == "treat_issue" ~ "Issue",
+            treatment == "treat_scale" ~ "Wording of answer scale")
 )
 
 #Figure
@@ -194,7 +718,7 @@ fig_amce <-
   geom_vline(aes(xintercept = 0), linetype = "dotted") +
   scale_x_continuous(
     limits = c(-1, 1),
-    breaks = round(seq(-1, 1, .1), 2),
+    breaks = round(seq(-1, 1, .2), 2),
     expand = c(0, 0)) +
    labs(
     x = "Marginal effect, willingnes to accept decision",
@@ -224,158 +748,11 @@ res_main <- res_main %>%
 
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
+ kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "Issue" = 2, "Wording of answer scale" = 2))
 
 kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
+ kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2, "issue" = 2, "Wording of answer scale" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-accept-nocon.html"))
 
 ```
-
-## Fairness perceptions
-
-```{r 305_post_fair_loser}
-
-source("Functions/amce.R")
-
-res_main <-  main_01 %>%
-  amce(post_fair, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger) 
-  
-res_main <- res_main %>% 
-  mutate(
-  treatment =  case_when(treatment == "treat_winningmargin" ~ "Winning\nmargin",
-            treatment == "treat_winnergloat" ~ "Winner\ngloats",
-            treatment == "treat_prime" ~ "Democratic\nprime",
-            treatment == "treat_messenger" ~ "Messenger")
-)
-
-#Figure
-fig_amce <-
-  res_main %>%
-  ggplot(aes(x = estimate, y = value)) +
-  facet_grid(
-    treatment ~ .,
-    scales = "free_y",
-    space = "free_y") +
-  geom_errorbarh(
-    aes(xmin = estimate - (2 * std_error),
-        xmax = estimate + (2 * std_error)),
-    height = 0) +
-  geom_point() +
-  geom_vline(aes(xintercept = 0), linetype = "dotted") +
-  scale_x_continuous(
-    limits = c(-1, 1),
-    breaks = round(seq(-1, 1, .1), 2),
-    expand = c(0, 0)) +
-    labs(
-    x = "Marginal effect, willingnes to accept decision",
-    y = "",
-    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
-    subtitle = 'Sample: Respondents who received an unfavorable outcome') +
-  theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=6, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
-fig_amce
-
-
-ggsave(
-  here("output", "nocon", "figs", "pngs", "fig_losers_fair.png"),
-  plot = fig_amce,
-  width = 6, height = 2.75
-)
-
-ggsave(
- here("output", "nocon", "figs", "pdfs", "fig_losers_fair.pdf"),
-  plot = fig_amce,
-  width = 6, height = 2.75
-)
-
-#table
-res_main <- res_main %>% 
-  select(value, estimate, std_error, statistic, p_value)
-
-
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
-
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
-  kableExtra::group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
-  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-fairness-nocon.html"))
-
-```
-### Interacted with issue importance
-```{r 306_post_fair_losers_importance}
-
-source("Functions/amce.R")
-
-res_main <-  main_02 %>%
-  amce(post_fair, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger, subgroup = 'importance') 
-  
-res_main <- res_main %>% 
-  mutate(
-  treatment =  case_when(treatment == "treat_winningmargin" ~ "Winning\nmargin",
-            treatment == "treat_winnergloat" ~ "Winner\ngloats",
-            treatment == "treat_prime" ~ "Democratic\nprime",
-            treatment == "treat_messenger" ~ "Messenger")
-)
-
-#Figure
-fig_amce <-
-  res_main %>%
-  ggplot(aes(x = estimate, y = value)) +
-  facet_grid(
-    treatment ~ .,
-    scales = "free_y",
-    space = "free_y") +
-  geom_errorbarh(
-    aes(xmin = estimate - (2 * std_error),
-        xmax = estimate + (2 * std_error),
-        colour = factor(importance)),
-    height = 0) +
-  geom_point(aes(colour = factor(importance))) +
-  geom_vline(aes(xintercept = 0), linetype = "dotted") +
-  scale_x_continuous(
-    limits = c(-1, 1),
-    breaks = round(seq(-1, 1, .1), 2),
-    expand = c(0, 0)) +
-    labs(
-    x = "Marginal effect, willingnes to accept decision",
-    y = "",
-    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
-    subtitle = 'Sample: Respondents who received an unfavorable outcome. Subgroups: Issue importance.') +
-  theme_bw() +
-  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=6, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
-fig_amce
-
-
-ggsave(
-  here("output", "nocon", "figs", "pngs", "fig_losers_fair_importance.png"),
-  plot = fig_amce,
-  width = 6, height = 2.75
-)
-
-ggsave(
- here("output", "nocon", "figs", "pdfs", "fig_losers_fair_importance.pdf"),
-  plot = fig_amce,
-  width = 6, height = 2.75
-)
-
-#table
-res_main <- res_main %>% 
-  select(value, estimate, std_error, statistic, p_value, importance)
-
-
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value", "Issue importance")), digits = 2) %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- kableExtra::group_rows(index = c("Winning margin" = 6, "Winner gloating" = 4, "Good loser prime" = 8, "Messenger" = 4))
-
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value", "Issue importance")), digits = 2) %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
- kableExtra::group_rows(index = c("Winning margin" = 6, "Winner gloating" = 4, "Good loser prime" = 8, "Messenger" = 4))%>% 
-  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-losers-fairness-importance-nocon.html"))
-
-
-```
-

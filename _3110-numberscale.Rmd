@@ -1,0 +1,315 @@
+## Numbered answer scale
+```{r 311_setup, include=FALSE}
+if(!require("broom")){install.packages("broom");  library(broom)}
+if(!require("haven")){install.packages("haven");  library(haven)}
+if(!require("here")){install.packages("here");  library(here)}
+if(!require("knitr")){install.packages("knitr");  library(knitr)}
+options(kableExtra.latex.load_packages = FALSE) 
+if(!require("kableExtra")){install.packages("kableExtra");  library(kableExtra)}
+if(!require("naniar")){install.packages("naniar");  library(naniar)}
+if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
+
+set.seed(2016)
+
+d <- read_sav("Data/Goodloser-exp3-orig.sav")
+
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
+```
+
+
+> This subsection shows the treatment effects for the alternative, numbered answer scale. This scale reads:
+
+> - 1 Most fair  
+  - 2  
+  - 3  
+  - 4  
+  - 5 Least fair
+  
+>  Half of the respondents were asked to answer the post measures of fairness, reasonableness, and willingness to accept the decision with the regular, worded answer scale, while the other half gets this numbered scale in stead (please note that the scales are reversed in all analyses).
+
+
+```{r 311_main_numbersscale}
+#Prepare data
+
+main_01 <- d %>% 
+  mutate(rsp_id = as.numeric(responseid),
+         rsp_beg = case_when(r13pad1 == 1 ~ "In favour of ban on begging",
+                             r13pad1 == 2 ~ "Against ban on begging"),
+         rsp_beg_imp = case_when(r13pad2 %in% 1:2 ~ "Important",
+                                  r13pad2 %in% 3:5 ~ "Not important"),
+         rsp_toll = case_when(r13pad3 == 1 ~ "In favour of road toll increase of diesel cars",
+                              r13pad3 == 2 ~ "Against road toll increase of diesel cars"),
+         rsp_toll_imp = case_when(r13pad4 %in% 1:2 ~ "Important",
+                                  r13pad4 %in% 3:5 ~ "Not important"),
+         treat_issue = case_when(r13pad5_sak == 1 ~ "Ban on begging",
+                               r13pad5_sak == 2 ~ "Road toll increase of diesel cars"),
+         treat_outcome = case_when(r13pad5_utfall == 1 ~ "The Yes side won the vote",
+                                 r13pad5_utfall == 2 ~ "The No side won the vote"),
+         treat_outfav = case_when(r13pad5_sak == 1 & r13pad1 == 1 & r13pad5_utfall == 1 ~ "Favorable outcome",
+                                  r13pad5_sak == 1 & r13pad1 == 2 & r13pad5_utfall == 2 ~ "Favorable outcome",
+                                  r13pad5_sak == 1 & r13pad1 == 1 & r13pad5_utfall == 2 ~ "Unfavorable outcome",
+                                  r13pad5_sak == 1 & r13pad1 == 2 & r13pad5_utfall == 1 ~ "Unfavorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 1 & r13pad5_utfall == 1 ~ "Favorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 2 & r13pad5_utfall == 2 ~ "Favorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 1 & r13pad5_utfall == 2 ~ "Unfavorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 2 & r13pad5_utfall == 1 ~ "Unfavorable outcome"),
+         treat_winningmargin = case_when(r13pad5_vinnermargin == 1 ~ "Not shown",
+                                       r13pad5_vinnermargin == 2 ~ "Slight majority",
+                                       r13pad5_vinnermargin == 3 ~ "Large majority"),
+         treat_winnergloat = case_when(r13pad5_vinner == 1 ~ "Not shown",
+                                     r13pad5_vinner == 2 ~ "Winning politician gloats"),
+        treat_prime = case_when(r13pad5_avsender == 1 ~ "Not shown",
+                               r13pad5_avsender == 2  | r13pad5_avsender == 5 ~ "Lamenting politician",
+                               r13pad5_avsender == 3  | r13pad5_avsender == 6 ~ "Specific prime",
+                               r13pad5_avsender == 4 | r13pad5_avsender == 7 ~ "General prime"),
+         treat_messenger = case_when(r13pad5_avsender %in% 3:4 ~ "Political leader",
+                                   r13pad5_avsender %in% 6:7 ~ "Local newspaper"),
+         post_fair = case_when(r13pad6a == 1 | r13pad6b == 1 ~ 5,
+                          r13pad6a == 2 | r13pad6b == 2 ~ 4,
+                          r13pad6a == 3 | r13pad6b == 3 ~ 3,
+                          r13pad6a == 4 | r13pad6b == 4 ~ 2,
+                          r13pad6a == 5 | r13pad6b == 5 ~ 1),
+          post_reasonable = case_when(r13pad7a == 1 | r13pad7b == 1 ~ 5,
+                          r13pad7a == 2 | r13pad7b == 2 ~ 4,
+                          r13pad7a == 3 | r13pad7b == 3 ~ 3,
+                          r13pad7a == 4 | r13pad7b == 4 ~ 2,
+                          r13pad7a == 5 | r13pad7b == 5 ~ 1),
+          post_accept = case_when(r13pad8a == 1 | r13pad8b == 1 ~ 5,
+                          r13pad8a == 2 | r13pad8b == 2 ~ 4,
+                          r13pad8a == 3 | r13pad8b == 3 ~ 3,
+                          r13pad8a == 4 | r13pad8b == 4 ~ 2,
+                          r13pad8a == 5 | r13pad8b == 5 ~ 1),
+        scale = case_when(r13pad6_ran == 1 ~ "Worded",
+                          r13pad6_ran == 2 ~ "Numbered")
+
+  ) %>% 
+
+  replace_with_na_all(condition = ~.x == 98 )%>%  #Recode 98 (not asked) as missing
+  filter(!is.na(r13pad6_ran)) %>%  #Remove NA's
+## We want the value labels in particular order for the tables and figures.
+        mutate(treat_winningmargin = lvls_reorder(treat_winningmargin, c(2, 3, 1)), 
+               treat_prime = lvls_reorder(treat_prime, c(3, 2, 4, 1))
+          )
+  
+main_01 <- main_01 %>%   
+      filter(scale == "Numbered")
+ 
+``` 
+
+
+## Reasonable decision
+```{r 311_post_reasonable_numberscale}
+
+
+source("Functions/amce.R")
+
+res_main <-  main_01 %>%
+  amce(post_reasonable, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger) 
+  
+res_main <- res_main %>% 
+  mutate(
+  treatment =  case_when(treatment == "treat_outfav" ~ "Outcome\nfavor-\nability",
+            treatment == "treat_winningmargin" ~ "Winning\nmargin",
+            treatment == "treat_winnergloat" ~ "Winner\ngloats",
+            treatment == "treat_prime" ~ "Democratic\nprime",
+            treatment == "treat_messenger" ~ "Messenger")
+)
+
+#Figure
+fig_amce <-
+  res_main %>%
+  ggplot(aes(x = estimate, y = value)) +
+  facet_grid(
+    treatment ~ .,
+    scales = "free_y",
+    space = "free_y") +
+  geom_errorbarh(
+    aes(xmin = estimate - (2 * std_error),
+        xmax = estimate + (2 * std_error)),
+    height = 0) +
+  geom_point() +
+  geom_vline(aes(xintercept = 0), linetype = "dotted") +
+  scale_x_continuous(
+    limits = c(-1, 1),
+    breaks = round(seq(-1, 1, .1), 2),
+    expand = c(0, 0)) +
+   labs(
+    x = "Marginal effect, reasonable decision",
+   y = "",
+    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    subtitle = 'Sample: Respondents who received a numbered answer scale') +
+  theme_bw() +
+  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=6, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
+fig_amce
+
+ggsave(
+  here("output", "nocon", "figs", "pngs", "fig_numberscale_reasonable.png"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+ggsave(
+  here("output", "nocon", "figs", "pdfs", "fig_numberscale_reasonable.pdf"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+#Table
+res_main <- res_main %>% 
+  select(value, estimate, std_error, statistic, p_value)
+
+#for bookdown
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
+#save to file
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-numberscale-reasonable-nocon.html"))
+```
+       
+## Willingnes to accept
+```{r 311_post_accept_numberscale}
+
+source("Functions/amce.R")
+
+res_main <-  main_01 %>%
+  amce(post_accept, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger) 
+  
+
+res_main <- res_main %>% 
+  mutate(
+  treatment =  case_when(treatment == "treat_outfav" ~ "Outcome\nfavor-\nability",
+            treatment == "treat_winningmargin" ~ "Winning\nmargin",
+            treatment == "treat_winnergloat" ~ "Winner\ngloats",
+            treatment == "treat_prime" ~ "Democratic\nprime",
+            treatment == "treat_messenger" ~ "Messenger")
+)
+
+#Figure
+fig_amce <-
+  res_main %>%
+  ggplot(aes(x = estimate, y = value)) +
+  facet_grid(
+    treatment ~ .,
+    scales = "free_y",
+    space = "free_y") +
+  geom_errorbarh(
+    aes(xmin = estimate - (2 * std_error),
+        xmax = estimate + (2 * std_error)),
+    height = 0) +
+  geom_point() +
+  geom_vline(aes(xintercept = 0), linetype = "dotted") +
+  scale_x_continuous(
+    limits = c(-1, 1),
+    breaks = round(seq(-1, 1, .1), 2),
+    expand = c(0, 0)) +
+   labs(
+    x = "Marginal effect, willingnes to accept decision",
+   y = "",
+    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    subtitle = 'Sample: Respondents who received a numbered answer scale') +
+  theme_bw() +
+  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=6, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
+fig_amce
+
+ggsave(
+  here("output", "nocon", "figs", "pngs", "fig_numberscale_accept.png"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+ggsave(
+  here("output", "nocon", "figs", "pdfs", "fig_numberscale_accept.pdf"),
+  plot = fig_amce,
+  width = 6, height = 2.75
+)
+
+#table
+res_main <- res_main %>% 
+  select(value, estimate, std_error, statistic, p_value)
+
+
+#for bookdown
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
+#save to file
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-numberscale-accept-nocon.html"))
+
+```
+
+## Fairness perceptions
+```{r 311_post_fair_numberscale}
+
+source("Functions/amce.R")
+
+res_main <-  main_01 %>%
+  amce(post_fair, treat_winningmargin, treat_winnergloat, treat_prime, treat_messenger)
+  
+res_main <- res_main %>% 
+  mutate(
+  treatment =  case_when(treatment == "treat_outfav" ~ "Outcome\nfavor-\nability",
+            treatment == "treat_winningmargin" ~ "Winning\nmargin",
+            treatment == "treat_winnergloat" ~ "Winner\ngloats",
+            treatment == "treat_prime" ~ "Democratic\nprime",
+            treatment == "treat_messenger" ~ "Messenger")
+)
+
+#Figure
+fig_amce <-
+  res_main %>%
+  ggplot(aes(x = estimate, y = value)) +
+  facet_grid(
+    treatment ~ .,
+    scales = "free_y",
+    space = "free_y") +
+  geom_errorbarh(
+    aes(xmin = estimate - (2 * std_error),
+        xmax = estimate + (2 * std_error)),
+    height = 0) +
+  geom_point() +
+  geom_vline(aes(xintercept = 0), linetype = "dotted") +
+  scale_x_continuous(
+    limits = c(-1, 1),
+    breaks = round(seq(-1, 1, .1), 2),
+    expand = c(0, 0)) +
+   labs(
+    x = "Marginal effect, perceived fairness of decision",
+    y = "",
+    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    subtitle = 'Sample: Respondents who received a numbered answer scale') +
+  theme_bw() +
+  theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=6, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
+fig_amce
+
+ggsave(
+  here("output", "nocon", "figs", "pngs", "fig_numberscale_fair.png"),
+  plot = fig_amce,
+  width = 5.5, height = 2.75
+)
+
+ggsave(
+  here("output", "nocon", "figs", "pdfs", "fig_numberscale_fair.pdf"),
+  plot = fig_amce,
+  width = 5.5, height = 2.75
+)
+
+#table
+res_main <- res_main %>% 
+  select(value, estimate, std_error, statistic, p_value)
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
+
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+ group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
+  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-numberscale-fairness-nocon.html"))
+
+```
