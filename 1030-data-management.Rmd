@@ -44,7 +44,6 @@ d <- d %>%
   filter(!is.na(comply)) %>% 
   select(-orig) 
 
-
 ##Create manipulation check variable that measures whether the respondents correctly identify whether the outcome was favorable or unfavorable to them
 d <- d %>%
   mutate(favorability = case_when(

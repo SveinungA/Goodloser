@@ -1,6 +1,5 @@
 # Pre-treatment, vignette, post-treatment
 
-The experiment was fielded in Norway during the spring and fall of 2017 during the 9th and 10th waves of [Norwegian Citizen Panel (NCP)](https://www.uib.no/medborger). The NCP is a research-purpose internet panel with over 6000 active participants. It is based on a probability sample of the general Norwegian population above the age of 18 drawn from the Norwegian National Registry. The survey is based on a online questionnaire with postal recruitment. Panel members complete a questionnaire three times a year of 15 minutes each. The NCP is a core component of The Digital Social Science Core Facilities (DIGSSCORE), and  was established in 2013 as a collaboration between several departments at the Faculty of Social Sciences at the University of Bergen and NORCE -- Norwegian Research Centre. We refer to the [documentation report](Data/ncp-wave13-documentation.pdf) for further details on technical aspects of the survey, panel recruitment, response rates of the 13th wave, and representativeness. For details about the data collected in this project and the NCP at large, we refer to the [codebook for the Waves 1-13](Data/ncp-wave13-codebook.pdf).
 
 ```{r 2031_setup, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
