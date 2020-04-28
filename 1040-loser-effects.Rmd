@@ -10,6 +10,7 @@ options(kableExtra.latex.load_packages = FALSE)
 if(!require("kableExtra")){install.packages("kableExtra");  library(kableExtra)}
 if(!require("margins")){install.packages("margins"); library(margins)}
 if(!require("naniar")){install.packages("naniar");  library(naniar)}
+if(!require("Stack")){install.packages("Stack");  library(Stack)}
 if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 # The analysis uses custom functions included in the compendium. Install the included pkg with `devtools::install()` or just install from github with:
 #if (!require(wiggle)) {  devtools::install_github("mikajoh/wiggle")}
@@ -25,58 +26,25 @@ d <- d %>% mutate(treatment = lvls_reorder(treatment, c(3, 2 , 1)))
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
-<!--```{r 1050_int_outfav}
-## Interaction treatment effect on fairness with outcome favorability
+## Fairness
 
-res <- lm(fairness ~ treatment*favorability, data = d)
-fig <- summary(margins(res, at = list(favorability = c('Favorable', 'Unfavorable')))) %>% 
-  filter(factor == 'treatmentGeneral prime') %>% 
-
-    ggplot(aes(x = AME, y = favorability,
-               xmin = AME - (2 * SE) ,
-               xmax = AME + (2 * SE))) +
-  coord_flip() +
-   geom_errorbarh(height = 0) +
-  geom_point() +
-  geom_vline(aes(xintercept = 0), linetype = "dotted") +
-   scale_x_continuous(limits = c(-0.5, 2),
-                     breaks = round(seq(-1, 2, 0.5), 1),
-                     expand = c(0, 0)) +
-  scale_y_discrete() +
-  
-  labs(x = 'Average marginal treatment effect',
-       y = "Outcome favorability",
-       title = "Conditional effect of outcome favorability on generic good loser prime treatment, Study 1.",
-       subtitle = 'Outcome measure: Fairness perception of decision. ') +
-  theme_bw() +
-  theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(1))) +
-  theme(panel.spacing = unit(0.5, "lines"))
-fig
-
-ggsave(
- here("output", "swevig", "figs", "pngs", "exp1-fairness-outfav.png"),
-  plot = fig,
-  width = 7, height = 2.75
-)
-
-ggsave(
-  here("output", "swevig", "figs", "pdfs", "exp1-fairness-outfav.pdf"),
-  plot = fig,
-  width = 7, height = 2.75
-)
-table <- res %>% 
-  select(term, estimate, std.error, statistic, p.value)
+In the manuscript, we mention that the generic good loser prime for the respondents with an unfavorable outcome is on par with the outcome favorability effect (difference in fairness perceptions between winners and losers). The table below displays the outcome favorability effect, and table 'tab:1055_post_fairness' further below displays the treatment effect of the generic good loser prime,
+```{r 1050_int_outfav}
+table <- lm(fairness ~ favorability, data = d)
+table <- broom::tidy(table)  %>% 
+  mutate(term = case_when(term == 'favorabilityUnfavorable' ~ 'Unfavorable outcome',
+                          term == '(Intercept)' ~ 'Intercept'))
 
 #for bookdown
-kable(table, booktabs = TRUE, caption = "Conditional effect of outcome favorability on generic good loser prime treatment, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Conditional effect of outcome favorability on generic good loser prime treatment, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
 #save to file
-kable(table, booktabs = TRUE, caption = "Conditional effect of outcome favorability on generic good loser prime treatment, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
+kable(table, booktabs = TRUE, caption = "Conditional effect of outcome favorability on generic good loser prime treatment, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>%
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-fairness-outfav-swevig.html"))
+``` 
 
-``` -->
-
+### Fairness I
 
 ```{r 105_main}
 #Filter on respondents who receive an unfavorable outcome
@@ -84,7 +52,6 @@ d <- d %>%
   filter(favorability == "Unfavorable") 
 ``` 
 
-## Fairness
 ```{r 1055_post_fairness}
 
 res_main <-  lm(fairness ~ treatment, data = d) 

@@ -1,4 +1,4 @@
-## Main effects
+# Main effects
 > The focus of this experiment is the respondents with an unfavorable outcome ('losers'). For reference, we here show the estimated effects on all respondents, winners and losers alike.
 
 
@@ -31,7 +31,7 @@ d <- d %>%
   )
 ``` 
 
-### Fairness
+## Fairness
 ```{r 204_post_fairness}
 
 res_main <-  lm(fairness ~ treatment, data = d) 
@@ -99,8 +99,8 @@ kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptio
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-fairness-novig.html"))
 ```
-       
-### Willingnes to accept
+      
+## Willingnes to accept
 
 ```{r 204_post_accept}
 
@@ -170,7 +170,7 @@ kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to acc
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-accept-novig.html"))
 ```
 
-### Trust in politician
+## Trust in politician
 ```{r 204_post_trust}
 
 res_main <-  lm(trust ~ treatment, data = d) 

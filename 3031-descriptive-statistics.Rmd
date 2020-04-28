@@ -175,6 +175,8 @@ table <- tibble(Treatments = c("Issue", "Issue", "Outcome", "Outcome", "Winning 
    footnote(general = 'Experimental vignette (treatments in {curly brackets}): Below, we have described a hypothetical situation. Please read through the situation carefully and then answer the three questions that follow. Imagine that your municipality must decide on {Issue} The decision will be taken by the municipal council and follow the usual procedures. The proposal will initially be debated by the municipal council where all the members will have the opportunity to express their opinions and arguments regarding the issue. The debate will be public, and journalists will be in attendance to report on the debate. In the end, the politicians will vote on the issue. {Outcome} {[Winning margin} {Winner gloating} {Messenger and prime}') %>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-vignette.html"))
 ```
+## Post treatment measures
+Please note that the the respondents were randomly assigned to either a worded answer scale, or a numbered answer scale. This accounts for the high share of NA's in the post treatment distribution tables.
 
 ```{r}
 

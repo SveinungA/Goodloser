@@ -159,7 +159,7 @@ table <- tibble(Preference = c("Pro ban on begging", "Pro ban on begging", "Pro 
 ```
 
 ## Post-measures
-```{r 2031_exp_post, knitr.kable.NA = "NA"}
+```{r 2031_exp_post}
 table <- e %>% mutate(
    fairness = case_when(fairness == 1 ~ "Not at all fair",
                          fairness == 2 ~ "Not very fair",
@@ -236,12 +236,25 @@ kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What was the 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-videoreport.html"))
 
- table <- e %>% group_by(mcheck_favorability) %>%
+ # table <- e %>% group_by(mcheck_favorability) %>%
+ #   summarize(N_obs = n()) %>%
+ #    mutate(Percent_obs = round(N_obs/(sum(N_obs))*100),
+ #        mcheck_favorability = case_when(mcheck_favorability == "" ~ "NA",
+ #                                        mcheck_favorability == "Correct" ~ "Correct",
+ #                                        mcheck_favorability == "Incorrect" ~ "Incorrect")) %>% 
+ #   ungroup() 
+
+table <- e %>%
+  mutate(mcheck_favorability = case_when(
+    favorability=="Favorable" & check_outcome==1 ~ "Correct",
+    favorability=="Unfavorable" & check_outcome==2 ~ "Correct",
+    favorability %in% 3:4 ~ "Incorrect",
+    favorability=="Favorable" & check_outcome==2 ~ "Incorrect",
+    favorability=="Unfavorable" & check_outcome==1 ~ "Incorrect"  )) %>% 
+  group_by(mcheck_favorability) %>%
    summarize(N_obs = n()) %>%
- mutate(Percent_obs = round(N_obs/(sum(N_obs))*100),
-        mcheck_favorability = case_when(mcheck_favorability == "" ~ "NA",
-                                        mcheck_favorability == "Correct" ~ "Correct",
-                                        mcheck_favorability == "Incorrect" ~ "Incorrect"))
+  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100))
+  
 
 #for bookdown
 kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "Proportion that correctly or incorrectly identify whether or not the decision outcome was in line with their own preferences.", col.names = linebreak(c("Value", "N", "Percent"))) %>%

@@ -105,6 +105,7 @@ kable(table, booktabs = T, linesep = "", escape = F,  caption = "Vignette treatm
 
 ```
 
+## Post treatment measures
 ```{r 1031_outcome_measures}
 
 d %>% mutate(

@@ -1,4 +1,4 @@
-## Main effects
+# Main effects
 
 The focus of this experiment is the respondents with an unfavorable outcome ('losers'). For reference, we here show the estimated effects on all respondents, winners and losers alike.
 
@@ -85,7 +85,7 @@ main_01 <- d %>%
         )
 ``` 
 
-### Fairness perceptions
+## Fairness perceptions
 ```{r 304_post_fair}
 
 source("Functions/amce.R")
@@ -156,7 +156,7 @@ kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects",
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-fairness-nocon.html"))
 
 ```
-### Reasonable decision
+## Reasonable decision
 ```{r 304_post_reasonable}
 source("Functions/amce.R")
 
@@ -227,7 +227,7 @@ kable(res_main, booktabs = TRUE, caption = "Average marginal component effects -
 
 ```
        
-### Willingnes to accept
+## Willingnes to accept
 ```{r 304_post_accept}
 
 
