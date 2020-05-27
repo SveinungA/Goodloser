@@ -57,8 +57,9 @@ d %>% mutate(
   group_by(opinion_strength) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
-  ungroup() %>% 
+    ungroup() %>% 
   kable(booktabs = TRUE, linesep = "", escape = F, caption = "How important is the issue of ban on begging to you personally?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
+  footnote(footnote_as_chunk = ) %>% 
   kable_styling(latex_options = "HOLD_position")
 
 #save to file
@@ -106,7 +107,8 @@ kable(table, booktabs = T, linesep = "", escape = F,  caption = "Vignette treatm
 ```
 
 ## Post treatment measures
-```{r 1031_outcome_measures}
+The mean score for the post treatment measure "What do you think about the way the decision was made?" is `r mean(d$fairness)`, and the standard deviation is `r sd(d$fairness)`.
+```{r 1031_outcome_measures_fairness}
 
 d %>% mutate(
   fairness = case_when(
@@ -123,6 +125,7 @@ d %>% mutate(
   kable(booktabs = TRUE, linesep = "", escape = F, caption = "What do you think about the way the decision was made?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
   kable_styling(latex_options = "HOLD_position")
 
+
 d %>% mutate(
   fairness = case_when(
       fairness == 1 ~ "1 Not fair at all",
@@ -138,6 +141,12 @@ d %>% mutate(
   kable(booktabs = TRUE, linesep = "", escape = F, caption = "What do you think about the way the decision was made?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "swevig", "tbls", "html", "tbl-dv-fairness-swevig.html"))
+
+```
+
+The mean score for the post treatment measure "How just do you think the decision procedure was?" is `r mean(d$justice)`, and the standard deviation is `r sd(d$justice)`.
+
+```{r 1031_outcome_measure_justice}
 
 d %>% mutate(
    justice = case_when(
@@ -169,7 +178,10 @@ d %>% mutate(
   kable(booktabs = TRUE, linesep = "", escape = F, caption = "How just do you think the decision procedure was?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "swevig", "tbls", "html", "tbl-dv-justice-swevig.html"))
+```
+The mean score for the post treatment measure "What do you think in general about the decision?" is `r mean(d$eval)`, and the standard deviation is `r sd(d$eval)`.
 
+```{r 1031_outcome_measure_eval}
 d %>% mutate(
      eval = case_when(
       eval == 1 ~ "1 Very bad",
@@ -200,7 +212,10 @@ d %>% mutate(
   kable(booktabs = TRUE, linesep = "", escape = F, caption = "What do you think in general about the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "swevig", "tbls", "html", "tbl-dv-evaluation-swevig.html"))
+```
 
+The mean score for the post treatment measure "How willing are you to accept and comply with the decision?" is `r mean(d$comply)`, and the standard deviation is `r sd(d$comply)`.
+```{r 1031_outcome_measure_comply}
 d %>% mutate(
   comply = case_when(
       comply == 1 ~ "1 Not willing at all",
@@ -216,7 +231,7 @@ d %>% mutate(
   kable(booktabs = TRUE, linesep = "", escape = F, caption = "How willing are you to accept and comply with the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
   kable_styling(latex_options = "HOLD_position")
 
-d %>% mutate(
+t <- d %>% mutate(
   comply = case_when(
       comply == 1 ~ "1 Not willing at all",
       comply == 2 ~ "2",
@@ -228,9 +243,8 @@ d %>% mutate(
   group_by(comply) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How willing are you to accept and comply with the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
+    kable(booktabs = TRUE, linesep = "", escape = F, caption = "How willing are you to accept and comply with the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "swevig", "tbls", "html", "tbl-dv-accept-swevig.html"))
-
 ```
 
