@@ -1,6 +1,4 @@
 # Pre-treatment, vignette, post-treatment
-
-
 ```{r 2031_setup, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
 if(!require("haven")){install.packages("haven");  library(haven)}
@@ -22,8 +20,8 @@ knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, messag
 ```
 
 ## Pre-treatment measures
-```{r 2031_pre}
-
+### Good loser norm I
+```{r 2031_pre1}
 table <- e %>% mutate(
   imp_accept_1 = case_when(
       imp_accept == 1 ~ "Not important at all",
@@ -43,7 +41,11 @@ kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What is your 
 kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion – how important is it to accept the decisions about important social issues after they have been adopted?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-imp-accept.html"))
+```
+The mean score for the pre treatment measure "What is your opinion – how important is it to accept the decisions about important social issues after they have been adopted?" is `r round(mean(e$imp_accept, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$imp_accept, na.rm=T), digits=2)`.
 
+### Good loser norm II
+```{r 2031_pre2}
 table <- e %>% mutate(
   other_accept_1 = case_when(
       other_accept == 1 ~ "Not at all",
@@ -62,7 +64,11 @@ table <- e %>% mutate(
   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "To what extent do you think people in Norway are willing to accept the decisions about important social issues after they have been adopted by politicians and the authorities?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-other-accept.html"))
+```
+The mean score for the pre treatment measure "To what extent do you think people in Norway are willing to accept the decisions about important social issues after they have been adopted by politicians and the authorities?" is `r round(mean(e$other_accept, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$other_accept, na.rm=T), digits=2)`.
 
+### Good loser norm III
+```{r 2031_pre3}
 table <- e %>% mutate(
   self_accept_1 = case_when(
       self_accept == 1 ~ "Not at all",
@@ -82,7 +88,11 @@ table <- e %>% mutate(
   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What about you personally – do you live up to this standard (i.e., accept the decisions about important social issues after they have been adopted by politicians and the authorities)?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-self-accept.html"))
+```
+The mean score for the pre treatment measure "What about you personally – do you live up to this standard (i.e., accept the decisions about important social issues after they have been adopted by politicians and the authorities)?" is `r round(mean(e$self_accept, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$self_accept, na.rm=T), digits=2)`.
 
+### Ban on begging - opinion
+```{r 2031_pre4}
 table <- e %>% group_by(opinion_ban) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
@@ -94,8 +104,10 @@ kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What is your 
    kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion on a ban on begging in your municipality?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-begging-pref.html"))
+```
 
-
+### Ban on begging - importance
+```{r 2031_pre5}
 table <- e %>% mutate(
   opinion_strength_1 = case_when(
       opinion_strength == 1 ~ "Not important at all",
@@ -115,9 +127,9 @@ kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How important
 kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How important is this issue to you personally?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position")%>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-begging-importance.html"))
-
-
 ```
+
+The mean score for the pre treatment measure "How important is this issue to you personally?" is `r round(mean(e$opinion_strength, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$opinion_strength, na.rm=T), digits=2)`.
 
 ## Experimental vignette
 ```{r 2031_vignette}
@@ -159,7 +171,8 @@ table <- tibble(Preference = c("Pro ban on begging", "Pro ban on begging", "Pro 
 ```
 
 ## Post-measures
-```{r 2031_exp_post}
+### Fairness
+```{r 2031_exp_post1}
 table <- e %>% mutate(
    fairness = case_when(fairness == 1 ~ "Not at all fair",
                          fairness == 2 ~ "Not very fair",
@@ -178,7 +191,11 @@ table <- e %>% mutate(
     kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "Fairness: What do you think about the way the decision was made?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-fairness-dv.html"))
+```
+The mean score for the post treatment measure "What do you think about the way the decision was made?" is `r round(mean(e$fairness, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$fairness, na.rm=T), digits=2)`.
 
+### Acceptance
+```{r 2031_post2}
 table <- e %>% mutate(
    accept = case_when(accept == 1 ~ "Not at all willing",
                         accept == 2 ~ "Not very willing",
@@ -197,8 +214,11 @@ kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "Acceptance: W
 kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "Acceptance: When you think about the actual outcome of the decision, how willing are you to accept the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-accept-dv.html"))
+```
+The mean score for the post treatment measure "When you think about the actual outcome of the decision, how willing are you to accept the decision?" is `r round(mean(e$accept, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$accept, na.rm=T), digits=2)`.
 
-
+### Trust in politicians
+```{r 2031_post3}
 table <- e %>% mutate(
    trust = case_when(trust == 1 ~ "No trust at all",
                       trust == 2 ~ "Low trust",
@@ -217,8 +237,11 @@ table <- e %>% mutate(
   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "Trust in politicians: Based on what you saw in the video, how much confidence do you have in the politicians who made the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-novig-trust-dv.html"))
+```
+The mean score for the post treatment measure "Based on what you saw in the video, how much confidence do you have in the politicians who made the decision?" is `r round(mean(e$trust, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$trust, na.rm=T), digits=2)`.
 
-
+### Recording check
+```{r 2031_post4}
 table <- e %>% mutate(video_report = case_when(video_report == 1 ~ 'I had both sound and images',
                                       video_report == 2 ~ 'I had sound, but no images',
                                       video_report == 3 ~ 'I had images, but no sound',
@@ -243,7 +266,10 @@ kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What was the 
  #                                        mcheck_favorability == "Correct" ~ "Correct",
  #                                        mcheck_favorability == "Incorrect" ~ "Incorrect")) %>% 
  #   ungroup() 
+```
 
+### Manipulation check
+```{r 2031_post5}
 table <- e %>%
   mutate(mcheck_favorability = case_when(
     favorability=="Favorable" & check_outcome==1 ~ "Correct",
@@ -255,7 +281,6 @@ table <- e %>%
    summarize(N_obs = n()) %>%
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100))
   
-
 #for bookdown
 kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "Proportion that correctly or incorrectly identify whether or not the decision outcome was in line with their own preferences.", col.names = linebreak(c("Value", "N", "Percent"))) %>%
   kable_styling(latex_options = "HOLD_position")

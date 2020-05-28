@@ -14,13 +14,14 @@ if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 set.seed(2016)
 
 d <- read_sav("Data/Goodloser-exp3-orig.sav")
+e <- read_sav("Data/Goodloser-exp3-orig.sav")
+e <- na_if(e, 97)
+e <- na_if(e, 98)
 
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
-
-## Pre-treatment measures
-```{r}
+```{r 3031_manage_data}
 d <- d %>% 
   mutate(
            r13pad1 = case_when(r13pad1 == 1 ~ "In favor",
@@ -73,7 +74,11 @@ d <- d %>%
                                 r13pad8b == 4 ~ "4",
                                 r13pad8b == 5 ~ "5 Most willing")
   )
+```
 
+## Pre-treatment measures
+### Ban on begging - opinion
+```{r 3031_pre1}
 table <- d %>% group_by(r13pad1) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
@@ -85,7 +90,10 @@ table <- d %>% group_by(r13pad1) %>%
   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion on a ban on begging in your municipality?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position")%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-begging-preference.html"))
+```
 
+### Ban on begging - importance
+```{r 3031_pre2}
 table <- d %>% group_by(r13pad2) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
@@ -97,7 +105,11 @@ kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How important
 kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How important is the issue of begging ban to you?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position")%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-begging-importance.html"))
+```
+The mean score for the pre treatment measure "How important is the issue of begging ban to you?" is `r round(mean(e$r13pad2, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$r13pad2, na.rm=T), digits=2)`.
 
+### Toll on diesel cars - opinion
+```{r 3031_pre3}
 table <- d %>% group_by(r13pad3) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
@@ -108,7 +120,10 @@ table <- d %>% group_by(r13pad3) %>%
   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion on an increase in the tolls for diesel cars in your municipality?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position")%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-toll-preference.html"))
+```
 
+### Toll on diesel cars - importance
+```{r 3031_pre4}
 table <- d %>% group_by(r13pad4) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100))
@@ -120,6 +135,7 @@ table <- d %>% group_by(r13pad4) %>%
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-toll-preference.html"))
 ```
+The mean score for the pre treatment measure "How important is the issue of increased tolls for diesel cars to you?" is `r round(mean(e$r13pad4, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$r13pad4, na.rm=T), digits=2)`.
 
 ## Experimental vignette
 ```{r}
@@ -176,10 +192,11 @@ table <- tibble(Treatments = c("Issue", "Issue", "Outcome", "Outcome", "Winning 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-vignette.html"))
 ```
 ## Post treatment measures
-Please note that the the respondents were randomly assigned to either a worded answer scale, or a numbered answer scale. This accounts for the high share of NA's in the post treatment distribution tables.
+Please note that the the respondents were randomly assigned to either a worded answer scale, or a numbered answer scale. 
+This accounts for the high share of NA's in the post treatment distribution tables.
 
-```{r}
-
+### Evaluation
+```{r 3031_post1}
 table <- d %>% group_by(r13pad6a) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
@@ -201,7 +218,12 @@ table <- d %>% group_by(r13pad6b) %>%
   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What do you think about the way the decision was made?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-eval-dv2.html"))
+```
+The mean score for the pre treatment measure "What do you think about the way the decision was made?" is `r round(mean(e$r13pad6a, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$r13pad6a, na.rm=T), digits=2)` for the worded answer scale.
+For the numbered answer scale, the mean score is `r round(mean(e$r13pad6b, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$r13pad6b, na.rm=T), digits=2)`
 
+### Reasonable decision
+```{r 3031_post2}
 table <- d %>% group_by(r13pad7a) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
@@ -224,8 +246,12 @@ table <- d %>% group_by(r13pad7b) %>%
   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-reasonable-dv2.html"))
+```
+The mean score for the pre treatment measure "How reasonable do you think the decision was?" is `r round(mean(e$r13pad7a, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$r13pad7a, na.rm=T), digits=2)` for the worded answer scale.
+For the numbered answer scale, the mean score is `r round(mean(e$r13pad7b, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$r13pad7b, na.rm=T), digits=2)`
 
-
+### Acceptance
+``` {r 3031_post3}
 table <- d %>% group_by(r13pad8a) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100))
@@ -245,3 +271,5 @@ table <- d %>% group_by(r13pad8b) %>%
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-accept-dv2.html"))
 
 ```
+The mean score for the pre treatment measure "When you think about the actual outcome of the decision, how willing are you to accept the decision?" is `r round(mean(e$r13pad8a, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$r13pad8a, na.rm=T), digits=2)` for the worded answer scale.
+For the numbered answer scale, the mean score is `r round(mean(e$r13pad8b, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$r13pad8b, na.rm=T), digits=2)`
