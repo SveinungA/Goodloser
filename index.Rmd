@@ -1,6 +1,6 @@
 --- 
 title: 'How to be civil about political loss – The importance of good loser messages '
-subtitle: 'Supplementary Material'
+subtitle: 'Supporting Information'
 # author: "Peter Esaiasson, Sveinung Arnesen, and Hannah Werner"
 date: "`r Sys.Date()`"
 cover-image: loser-picture.png
