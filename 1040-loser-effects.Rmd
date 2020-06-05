@@ -28,7 +28,8 @@ knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, messag
 
 ## Fairness
 
-In the manuscript, we mention that the generic good loser prime for the respondents with an unfavorable outcome is on par with the outcome favorability effect (difference in fairness perceptions between winners and losers). The table below displays the outcome favorability effect, and table 'tab:1055_post_fairness' further below displays the treatment effect of the generic good loser prime,
+In the manuscript, we mention that the Generic good loser message for the respondents with an unfavorable outcome is on par with the outcome favorability effect (difference in fairness perceptions between winners and losers). The table below displays the outcome favorability effect, and table 'tab:1055_post_fairness' further below displays the treatment effect of the Generic good loser message.
+
 ```{r 1050_int_outfav}
 table <- lm(fairness ~ favorability, data = d)
 table <- broom::tidy(table)  %>% 
@@ -36,10 +37,10 @@ table <- broom::tidy(table)  %>%
                           term == '(Intercept)' ~ 'Intercept'))
 
 #for bookdown
-kable(table, booktabs = TRUE, caption = "Conditional effect of outcome favorability on generic good loser prime treatment, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+kable(table, booktabs = TRUE, caption = "Conditional effect of outcome favorability on Generic good loser message treatment, Study 1", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
 #save to file
-kable(table, booktabs = TRUE, caption = "Conditional effect of outcome favorability on generic good loser prime treatment, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+kable(table, booktabs = TRUE, caption = "Conditional effect of outcome favorability on Generic good loser message treatment, Study 1", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>%
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-fairness-outfav-swevig.html"))
 ``` 
@@ -65,7 +66,7 @@ labels <- data.frame(
     
   ),
   label = c( "Lamenting politician",
-             "Generic good loser prime",
+             "Generic good loser message",
              "Not shown")
 )
 #Figure
@@ -83,9 +84,7 @@ fig <-   res_main %>%
                      breaks = round(seq(-1.25, 1.25, .25), 2),
                      expand = c(0, 0)) +
   labs(x = "Change in fairness perception",
-       y = "",
-       title = "Treatment effects on fairness perceptions of decision, Study 1 -- Swedish vignette",
-       subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
+       y = "") +
   theme_bw() +
   theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
   theme(panel.spacing = unit(0.5, "lines"))
@@ -109,14 +108,14 @@ table <- res_main %>%
   select(term, estimate, std.error, statistic, p.value) %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Not shown",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
-                   term == "treatmentGeneral prime" ~ "Generic good loser prime")
+                   term == "treatmentGeneral prime" ~ "Generic good loser message")
          )
 
 #for bookdown
-kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 1", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
 #save to file
-kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 1", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-losers-fairness-reflament-swevig.html"))
 ```
@@ -136,7 +135,7 @@ labels <- data.frame(
     
   ),
   label = c( "Not shown",
-             "Generic good loser prime")
+             "Generic good loser message")
 )
 #Figure
 fig <-   res_main %>%
@@ -154,7 +153,7 @@ fig <-   res_main %>%
                      expand = c(0, 0)) +
   labs(x = "Change in fairness perception",
        y = "",
-       title = "Treatment effects on fairness perceptions of decision, Study 1 -- Swedish vignette",
+       title = "Treatment effects on fairness perceptions of decision, Study 1",
        subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
   theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
@@ -179,15 +178,15 @@ table <- res_main %>%
   select(term, estimate, std.error, statistic, p.value) %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Intercept",
                     term == "treatmentNot shown" ~ "Not shown",
-                   term == "treatmentGeneral prime" ~ "Generic good loser prime")
+                   term == "treatmentGeneral prime" ~ "Generic good loser message")
          )
 
 #for bookdown
-kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 1", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   footnote(general = 'Lamenting politician set as reference category.')
 #save to file
-kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on fairness perceptions of decision, Study 1", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   footnote(general = 'Lamenting politician set as reference category.') %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-losers-fairness-swevig.html"))
@@ -206,7 +205,7 @@ labels <- data.frame(
     
   ),
   label = c( "Lamenting politician",
-             "Generic good loser prime")
+             "Generic good loser message")
 )
 #Figure
 fig <-   res_main %>%
@@ -224,7 +223,7 @@ fig <-   res_main %>%
                      expand = c(0, 0)) +
   labs(x = "Change in justice perception",
        y = "",
-       title = "Treatment effects on justice perceptions of decision, Study 1 -- Swedish vignette",
+       title = "Treatment effects on justice perceptions of decision, Study 1",
        subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
   theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
@@ -249,13 +248,13 @@ table <- res_main %>%
   select(term, estimate, std.error, statistic, p.value) %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Not shown",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
-                   term == "treatmentGeneral prime" ~ "Generic good loser prime")
+                   term == "treatmentGeneral prime" ~ "Generic good loser message")
          )
 #for bookdown
-kable(table, booktabs = TRUE, caption = "Treatment effects on justice perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on justice perceptions of decision, Study 1", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) 
 #save to file
-kable(table, booktabs = TRUE, caption = "Treatment effects on justice perceptions of decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on justice perceptions of decision, Study 1", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-losers-justice-swevig.html"))
 ```
@@ -273,7 +272,7 @@ labels <- data.frame(
     
   ),
   label = c( "Lamenting politician",
-             "Generic good loser prime")
+             "Generic good loser message")
 )
 #Figure
 fig <-   res_main %>%
@@ -291,7 +290,7 @@ fig <-   res_main %>%
                      expand = c(0, 0)) +
   labs(x = "Change in decision evaluation",
        y = "",
-       title = "Treatment effects on decision evaluation, Study 1 -- Swedish vignette",
+       title = "Treatment effects on decision evaluation, Study 1",
        subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
   theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
@@ -316,13 +315,13 @@ table <- res_main %>%
   select(term, estimate, std.error, statistic, p.value) %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Not shown",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
-                   term == "treatmentGeneral prime" ~ "Generic good loser prime")
+                   term == "treatmentGeneral prime" ~ "Generic good loser message")
          )
 #for bookdown
-kable(table, booktabs = TRUE, caption = "Treatment effects on decision evaluation, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on decision evaluation, Study 1", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
 #save to file
-kable(table, booktabs = TRUE, caption = "Treatment effects on decision evaluation, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on decision evaluation, Study 1", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-evaluation-fairness-swevig.html"))
 ```
@@ -340,7 +339,7 @@ labels <- data.frame(
     
   ),
   label = c( "Lamenting politician",
-             "Generic good loser prime")
+             "Generic good loser message")
 )
 #Figure
 fig <-   res_main %>%
@@ -358,7 +357,7 @@ fig <-   res_main %>%
                      expand = c(0, 0)) +
   labs(x = "Change in willingness to accept outcome",
        y = "",
-       title = "Treatment effects on willingness to accept decision, Study 1 -- Swedish vignette",
+       title = "Treatment effects on willingness to accept decision, Study 1",
        subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
   theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
@@ -383,13 +382,13 @@ table <- res_main %>%
   select(term, estimate, std.error, statistic, p.value) %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Not shown",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
-                   term == "treatmentGeneral prime" ~ "Generic good loser prime")
+                   term == "treatmentGeneral prime" ~ "Generic good loser message")
          )
 #for bookdown
-kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 1", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
 #save to file
-kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on willingness to accept decision, Study 1", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-losers-acceptance-swevig.html"))
 ```
@@ -407,7 +406,7 @@ labels <- data.frame(
     
   ),
   label = c( "Lamenting politician",
-             "Generic good loser prime")
+             "Generic good loser message")
 )
 #Figure
 fig <-   res_main %>%
@@ -425,7 +424,7 @@ fig <-   res_main %>%
                      expand = c(0, 0)) +
   labs(x = "Change in decision compliance",
        y = "",
-       title = "Treatment effects on decision compliance, Study 1 -- Swedish vignette",
+       title = "Treatment effects on decision compliance, Study 1",
        subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
   theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.6))) +
@@ -449,13 +448,13 @@ table <- res_main %>%
   select(term, estimate, std.error, statistic, p.value) %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Not shown",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
-                   term == "treatmentGeneral prime" ~ "Generic good loser prime")
+                   term == "treatmentGeneral prime" ~ "Generic good loser message")
          )
 #for bookdown
-kable(table, booktabs = TRUE, caption = "Treatment effects on decision compliance, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on decision compliance, Study 1", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
 #save to file
-kable(table, booktabs = TRUE, caption = "Treatment effects on decision compliance, Study 1 -- Swedish vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects on decision compliance, Study 1", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
   cat(., file = here("output", "swevig", "tbls", "html",  "tbl-losers-compliance-swevig.html"))
 ```
