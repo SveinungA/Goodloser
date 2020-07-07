@@ -1,0 +1,26 @@
+# Codebook
+
+> This chapter displays the codebook for the Study 3 data set, generated using the R package "codebook".
+
+
+
+```{r 302_setup, include=FALSE}
+if(!require("codebook")){install.packages("codebook");  library(codebook)}
+if(!require("haven")){install.packages("haven");  library(haven)}
+if(!require("knitr")){install.packages("knitr");  library(knitr)}
+if(!require("openxlsx")){install.packages("openxlsx");  library(openxlsx)}
+if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
+if(!require("dplyr")){install.packages("dplyr");  library(dplyr)}
+
+
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE, cache = TRUE)
+
+```
+
+```{r, 302_codebook}
+d3 <- read_sav("Data/Goodloser-exp3-orig.sav")
+
+d3 <- detect_missings(d3, ninety_nine_problems = TRUE, negative_values_are_missing = TRUE)
+codebook(d3)
+```
+

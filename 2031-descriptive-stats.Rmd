@@ -1,4 +1,5 @@
 # Pre-treatment, vignette, post-treatment
+
 ```{r 2031_setup, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
 if(!require("haven")){install.packages("haven");  library(haven)}
@@ -19,9 +20,18 @@ e <-  read_sav("Data/Goodloser-exp2-itt.sav")
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
+```{r 2031_filter_losers, paged.print=TRUE}
+
+#Filter on respondents who receive an unfavorable outcome
+e <- e %>% 
+  filter(favorability == "Unfavorable") 
+```
+
+The statistics are displayed for the respondents of interest in this study, which is the respondents who end up with observing an unfavorable decision outcome in the experiment.
+
 ## Pre-treatment measures
 ### Good loser norm I
-```{r 2031_pre1}
+```{r 2031_pre1, paged.print=TRUE}
 table <- e %>% mutate(
   imp_accept_1 = case_when(
       imp_accept == 1 ~ "Not important at all",
@@ -276,7 +286,9 @@ table <- e %>%
     favorability=="Unfavorable" & check_outcome==2 ~ "Correct",
     favorability %in% 3:4 ~ "Incorrect",
     favorability=="Favorable" & check_outcome==2 ~ "Incorrect",
-    favorability=="Unfavorable" & check_outcome==1 ~ "Incorrect"  )) %>% 
+    favorability=="Unfavorable" & check_outcome==1 ~ "Incorrect",
+    check_outcome == 3 ~ 'Do not remember',
+    check_outcome == 4 ~ 'Do not know' )) %>% 
   group_by(mcheck_favorability) %>%
    summarize(N_obs = n()) %>%
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100))

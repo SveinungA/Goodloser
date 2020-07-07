@@ -1,4 +1,4 @@
-## Numbered answer scale
+# Numbered answer scale
 ```{r 311_setup, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
 if(!require("haven")){install.packages("haven");  library(haven)}
@@ -12,6 +12,15 @@ if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 set.seed(2016)
 
 d <- read_sav("Data/Goodloser-exp3-orig.sav")
+d <- d %>% mutate(treat_outfav = case_when(r13pad5_sak == 1 & r13pad1 == 1 & r13pad5_utfall == 1 ~ "Favorable outcome",
+                                  r13pad5_sak == 1 & r13pad1 == 2 & r13pad5_utfall == 2 ~ "Favorable outcome",
+                                  r13pad5_sak == 1 & r13pad1 == 1 & r13pad5_utfall == 2 ~ "Unfavorable outcome",
+                                  r13pad5_sak == 1 & r13pad1 == 2 & r13pad5_utfall == 1 ~ "Unfavorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 1 & r13pad5_utfall == 1 ~ "Favorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 2 & r13pad5_utfall == 2 ~ "Favorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 1 & r13pad5_utfall == 2 ~ "Unfavorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 2 & r13pad5_utfall == 1 ~ "Unfavorable outcome"))%>%   
+      filter(treat_outfav == "Unfavorable outcome")
 
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
@@ -136,7 +145,7 @@ fig_amce <-
    labs(
     x = "Marginal effect, reasonable decision",
    y = "",
-    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    title = 'Average Marginal Component Effect -- Study 3',
     subtitle = 'Sample: Respondents who received a numbered answer scale') +
   theme_bw() +
   theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=6, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
@@ -159,11 +168,11 @@ res_main <- res_main %>%
   select(value, estimate, std_error, statistic, p_value)
 
 #for bookdown
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Study 3", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
 #save to file
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effect -- Study 3", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-numberscale-reasonable-nocon.html"))
@@ -208,7 +217,7 @@ fig_amce <-
    labs(
     x = "Marginal effect, willingnes to accept decision",
    y = "",
-    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    title = 'Average Marginal Component Effect -- Study 3',
     subtitle = 'Sample: Respondents who received a numbered answer scale') +
   theme_bw() +
   theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=6, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
@@ -232,11 +241,11 @@ res_main <- res_main %>%
 
 
 #for bookdown
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Study 3", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
 #save to file
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Study 3", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-numberscale-accept-nocon.html"))
@@ -281,7 +290,7 @@ fig_amce <-
    labs(
     x = "Marginal effect, perceived fairness of decision",
     y = "",
-    title = 'Average Marginal Component Effect -- Norwegian conjoint experiment',
+    title = 'Average Marginal Component Effect -- Study 3',
     subtitle = 'Sample: Respondents who received a numbered answer scale') +
   theme_bw() +
   theme(plot.margin = unit(c(2, 2, 2, 2), "mm"),  plot.title = element_text(size=9), plot.subtitle = element_text(size=8), strip.text.y = element_text(size=6, angle=0) ,      axis.text.x=element_text(size=rel(0.7)))
@@ -303,11 +312,11 @@ ggsave(
 res_main <- res_main %>% 
   select(value, estimate, std_error, statistic, p_value)
 
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Study 3", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))
 
-kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Norwegian conjoint experiment", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+kable(res_main, booktabs = TRUE, caption = "Average Marginal Component Effects -- Study 3", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) %>% 
  group_rows(index = c("Winning margin" = 3, "Winner gloating" = 2, "Good loser prime" = 4, "Messenger" = 2))%>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-numberscale-fairness-nocon.html"))

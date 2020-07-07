@@ -1,2 +1,14 @@
 
-# (PART) STUDY III: NORWEGIAN CONJOINT {-}
+# (PART) STUDY III
+
+The third study was also run online on a representative sample of adult Norwegians. 
+We conducted a conjoint experiment with a rating assignment embedded in the 2018 fall wave of the Norwegian Citizen Panel. 
+
+The conjoint design allows us to explore scope conditions of findings. 
+The advantage of conjoint designs, a method increasingly used in experimental political science research [@leeper2020measuring], is the possibility to include a large number of experimental treatments and estimate their effects simultaneously  [@hainmueller2014causal].
+The stimulus material for each respondent consists of randomly combined levels of the given features, resulting in sufficient observations for each feature while only a small share of the possible combinations is actually shown to participants. 
+This enables us to include context variables into our design and to test our relationships of interest across a range of other factors that could potentially interfere with the treatment.
+As a result we gain insights into generalizability and robustness of our findings. 
+Our conjoint design is presented as a text vignette with rating outcome measures like in studies 1 and 2. 
+For similar applications in conjoint designs, see for example Huff and Kertzer [-@huff2018public].
+

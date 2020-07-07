@@ -1,4 +1,3 @@
-# (PART) STUDY I: SWEDISH VIGNETTE {-}
+# (PART) STUDY I {}
 
-
-About Study I -- Swedish vignette: TBA
+The experiment for Study I was fielded in Sweden in the fall of 2017 and spring of 2018 as an add-on to the fifth wave of the European Values Survey (EVS, PI Susanne Wallman Lundåsen). EVS is based on a probability sample of the Swedish population age 18 or older (n = 1194). Interviews were face-to-face. The fieldwork organization was IPSOS, Sweden. For a detailed documentation we refer to https://europeanvaluesstudy.eu/methodology-data-documentation/. Study 1 was one of three experiments included in a paper and pencil leave behind. The return rate of the questionnaire was 85% (n =1019).

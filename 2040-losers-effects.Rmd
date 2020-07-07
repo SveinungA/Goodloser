@@ -11,6 +11,7 @@ options(kableExtra.latex.load_packages = FALSE)
 if(!require("kableExtra")){install.packages("kableExtra");  library(kableExtra)}
 if(!require("margins")){install.packages("margins"); library(margins)}
 if(!require("naniar")){install.packages("naniar");  library(naniar)}
+if(!require("patchwork")){install.packages("patchwork");  library(patchwork)}
 if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 # The analysis uses custom functions included in the compendium. Install the included pkg with `devtools::install()` or just install from github with:
 #if (!require(wiggle)) {  devtools::install_github("mikajoh/wiggle")}
@@ -21,7 +22,7 @@ source("goodloser-utils.R")
 
 d <- read_sav("Data/Goodloser-exp2-itt.sav")
 
-knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE, fig.height = 2)
 ```
 
 ```{r 205_main}
@@ -34,9 +35,12 @@ d <- d %>%
 ``` 
 
 ## Fairness
+
+> Figure 3 in the manuscript:
+
 ```{r 205_post_fairness}
 
-res_main <-  lm(fairness ~ treatment, data = d) 
+res_main <-  lm(fairness ~ treatment, data = d)
 res_main <- broom::tidy(res_main)
 
 labels <- data.frame(
@@ -44,62 +48,63 @@ labels <- data.frame(
     "treatmentLamenting politician",
     "treatmentSpecific prime",
     "treatmentGeneral Prime"
-    
+
   ),
   label = c( "Lamenting politician",
-             "Specific good loser prime",
-             "Generic good loser prime")
+             "Specific good loser message",
+             "Generic good loser message")
 )
-#Figure
-fig <-   res_main %>%
-  filter(term != "(Intercept)") %>% 
-  left_join(labels, by = "term") %>% 
-  ggplot(aes(x = estimate, y = label,
-             xmin = estimate - (2 * std.error),
-             xmax = estimate + (2 * std.error))) +
-   geom_errorbarh(height = 0) +
-  geom_point() +
-  geom_vline(aes(xintercept = 0), linetype = "dotted") +
-  scale_x_continuous(limits = c(-1, 1),
-                     breaks = round(seq(-1, 1, .25), 2),
-                     expand = c(0, 0)) +
-  labs(x = "Change in fairness perception",
-       y = "",
-      title = 'Treatment effects on fairness perceptions, Study 2 -- Norwegian vignette.', 
-     subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
-  theme_bw() +
-  theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
-  theme(panel.spacing = unit(0.5, "lines"))
-fig
-
-ggsave(
-  here("output", "novig", "figs", "pngs", "exp2-fairness-losers.png"),
-  plot = fig,
-  width = 5.5, height = 2.75
-)
-
-ggsave(
-  here("output", "novig", "figs", "pdfs", "exp2-fairness-losers.pdf"),
-  plot = fig,
-  width = 5.5, height = 2.75
-)
+# #Figure
+# fig <-   res_main %>%
+#   filter(term != "(Intercept)") %>%
+#   left_join(labels, by = "term") %>%
+#   ggplot(aes(x = estimate, y = label,
+#              xmin = estimate - (2 * std.error),
+#              xmax = estimate + (2 * std.error))) +
+#    geom_errorbarh(height = 0) +
+#   geom_point() +
+#   geom_vline(aes(xintercept = 0), linetype = "dotted") +
+#   scale_x_continuous(limits = c(-1, 1),
+#                      breaks = round(seq(-1, 1, .25), 2),
+#                      expand = c(0, 0)) +
+#   labs(x = "Change in fairness perception",
+#        y = "",
+#       title = 'Treatment effects on fairness perceptions, Study 2.',
+#      subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
+#   theme_bw() +
+#   theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
+#   theme(panel.spacing = unit(0.5, "lines"))
+# fig
+# 
+# ggsave(
+#   here("output", "novig", "figs", "pngs", "exp2-fairness-losers.png"),
+#   plot = fig,
+#   width = 5.5, height = 2.75
+# )
+# 
+# ggsave(
+#   here("output", "novig", "figs", "pdfs", "exp2-fairness-losers.pdf"),
+#   plot = fig,
+#   width = 5.5, height = 2.75
+# )
 
 
 #Table
-table <- res_main %>% 
-  select(term, estimate, std.error, statistic, p.value) %>% 
+table <- res_main %>%
+  select(term, estimate, std.error, statistic, p.value) %>%
   mutate(term = case_when( term == "(Intercept)" ~ "Not shown (Intercept)",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
-                   term == "treatmentGeneral Prime" ~ "Generic good loser prime", 
-                   term == "treatmentSpecific prime" ~ "Specific good loser prime"))
+                   term == "treatmentGeneral Prime" ~ "Generic good loser message",
+                   term == "treatmentSpecific prime" ~ "Specific good loser message"))
 
-kable(table, booktabs = TRUE, caption = "Treatment effects among losers on fairness perceptions of decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  
+kable(table, booktabs = TRUE, caption = "Treatment effects among losers on fairness perceptions of decision, Study 2", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
 
-kable(table, booktabs = TRUE, caption = "Treatment effects among losers on fairness perceptions of decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects among losers on fairness perceptions of decision, Study 2", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  %>%
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-losers-fairness-novig.html"))
 ```
+
 ### Fairness II
 > Lamenting politician as reference category
 
@@ -119,8 +124,8 @@ labels <- data.frame(
     "treatmentNot shown"
     
   ),
-  label = c(  "Generic good loser prime",
-             "Specific good loser prime",
+  label = c(  "Generic good loser message",
+             "Specific good loser message",
              "Not shown")
 )
 #Figure
@@ -138,7 +143,7 @@ fig <-  res_main %>%
                      expand = c(0, 0)) +
   labs(x = "Change in fairness perception",
        y = "",
-      title = 'Treatment effects on fairness perceptions, Study 2 -- Norwegian vignette.', 
+      title = 'Treatment effects on fairness perceptions, Study 2', 
      subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
   theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
@@ -163,22 +168,22 @@ table <- res_main %>%
   select(term, estimate, std.error, statistic, p.value) %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Intercept",
                     term == "treatmentNot shown" ~ "Not shown",
-                   term == "treatmentGeneral Prime" ~ "Generic good loser prime", 
-                   term == "treatmentSpecific prime" ~ "Specific good loser prime"))
+                   term == "treatmentGeneral Prime" ~ "Generic good loser message", 
+                   term == "treatmentSpecific prime" ~ "Specific good loser message"))
 
-kable(table, booktabs = TRUE, caption = "Treatment effects among losers on fairness perceptions of decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects among losers on fairness perceptions of decision, Study 2", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  
 
-kable(table, booktabs = TRUE, caption = "Treatment effects among losers on fairness perceptions of decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects among losers on fairness perceptions of decision, Study 2", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-losers-fairness-reflamenting-novig.html"))
 ```
 
 ### Fairness moderated by issue importance
-```{r 2050_importance_treatment_fairness}
+```{r 2050_importance_treatment_fairness, fig.height=6}
 res <-  lm(fairness ~ factor(treatment)*opinion_strength, data = d) 
 
-fig <- summary(margins(res, at = list(opinion_strength = 1:5)))  %>% 
+fig1 <- summary(margins(res, at = list(opinion_strength = 1:5)))  %>% 
   filter(factor == 'treatmentGeneral Prime') %>% 
 
     ggplot(aes(x = AME, y = opinion_strength,
@@ -197,12 +202,12 @@ fig <- summary(margins(res, at = list(opinion_strength = 1:5)))  %>%
   
   labs(x = 'Average marginal treatment effect',
        y = "Importance attached to issue of ban on begging",
-       title = "Conditional effect of issue importance on Generic good loser prime treatment.",
+       title = "Conditional effect of issue importance on Generic good loser message treatment.",
        subtitle = 'Outcome measure: Fairness perception of decision. Sample: Respondents with unfavorable outcome.') +
   theme_bw() +
   theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
-fig
+
 
 ggsave(
   here("output", "novig", "figs", "pngs", "exp2-fairness-importance-int-generalprime-losers.png"),
@@ -217,7 +222,7 @@ ggsave(
 )
 
 
-fig <- summary(margins(res, at = list(opinion_strength = 1:5)))  %>% 
+fig2 <- summary(margins(res, at = list(opinion_strength = 1:5)))  %>% 
   filter(factor == 'treatmentLamenting politician') %>% 
 
     ggplot(aes(x = AME, y = opinion_strength,
@@ -241,7 +246,7 @@ fig <- summary(margins(res, at = list(opinion_strength = 1:5)))  %>%
   theme_bw() +
   theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
-fig
+
 
 ggsave(
   here("output", "novig", "figs", "pngs", "exp2-fairness-importance-int-lamenting-losers.png"),
@@ -259,26 +264,29 @@ table <- summary(margins(res, at = list(opinion_strength = 1:5))) %>%
    filter(factor == 'treatmentGeneral Prime' | factor == 'treatmentLamenting politician') %>% 
   mutate(factor = case_when(
   factor == 'opinion_strength' ~ 'Issue importance',
-  factor == 'treatmentGeneral Prime' ~ 'Generic good loser prime',
+  factor == 'treatmentGeneral Prime' ~ 'Generic good loser message',
   factor == 'treatmentLamenting politician' ~ 'Lamenting politician')) %>% 
   rename('Issue importance' = 'opinion_strength')
 
+fig1/fig2
+
 #for bookdown
-kable(table, booktabs = TRUE, caption = "Moderating effects of issue importance on experimental treatment, Study 2 -- Norwegian vignette", digits = 2, col.names = linebreak(c("Factor", 'Issue importance', "AME", "SE", "z-statistic", "p value", 'Lower', 'Upper'))) %>% 
+kable(table, booktabs = TRUE, caption = "Moderating effects of issue importance on experimental treatment, Study 2", digits = 2, col.names = linebreak(c("Factor", 'Issue importance', "AME", "SE", "z-statistic", "p value", 'Lower', 'Upper'))) %>% 
   kable_styling(latex_options = "HOLD_position")   %>% 
   footnote(general = 'Sample: Respondents with unfavorable outcome.')
 #save to file
-kable(table, booktabs = TRUE, caption = "Moderating effects of issue importance on experimental treatment, Study 2 -- Norwegian vignette", digits = 2, col.names = linebreak(c("Factor", 'Issue importance', "AME", "SE", "z-statistic", "p value", 'Lower', 'Upper'))) %>% 
+kable(table, booktabs = TRUE, caption = "Moderating effects of issue importance on experimental treatment, Study 2", digits = 2, col.names = linebreak(c("Factor", 'Issue importance', "AME", "SE", "z-statistic", "p value", 'Lower', 'Upper'))) %>% 
   kable_styling(latex_options = "HOLD_position")   %>% 
   footnote(general = 'Sample: Respondents with unfavorable outcome.') %>% 
   cat(., file = here("output", "novig", "tbls", "html", "tbl-exp2-fairness-importance-int-losers.html"))
   
 ```
-### Fairness moderated by good loser norm
-```{r 2050_norm_treatment_fairness}
+
+### Fairness moderated by good loser norm {norm-mod}
+```{r 2050_norm_treatment_fairness, fig.height=6}
 res <-  lm(fairness ~ factor(treatment)*imp_accept, data = d) 
 
-fig <- summary(margins(res, at = list(imp_accept = 1:5)))  %>% 
+fig1 <- summary(margins(res, at = list(imp_accept = 1:5)))  %>% 
   filter(factor == 'treatmentGeneral Prime') %>% 
 
     ggplot(aes(x = AME, y = imp_accept,
@@ -297,12 +305,12 @@ fig <- summary(margins(res, at = list(imp_accept = 1:5)))  %>%
   
   labs(x = 'Average marginal treatment effect',
        y = "Importance attached to accepting decisions",
-       title = "Conditional effect of good loser norm on generic good loser prime treatment.",
+       title = "Conditional effect of good loser norm on Generic good loser message treatment.",
        subtitle = 'Outcome measure: Fairness perception of decision. Sample: Respondents with unfavorable outcome.') +
   theme_bw() +
   theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
-fig
+
 
 ggsave(
   here("output", "novig", "figs", "pngs", "exp2-fairness-norm-int-generalprime-losers.png"),
@@ -317,7 +325,7 @@ ggsave(
 )
 
 
-fig <- summary(margins(res, at = list(imp_accept = 1:5)))  %>% 
+fig2 <- summary(margins(res, at = list(imp_accept = 1:5)))  %>% 
   filter(factor == 'treatmentLamenting politician') %>% 
 
     ggplot(aes(x = AME, y = imp_accept,
@@ -336,12 +344,12 @@ fig <- summary(margins(res, at = list(imp_accept = 1:5)))  %>%
   
   labs(x = 'Average marginal treatment effect',
        y = "Importance attached to accepting decisions",
-       title = "Conditional effect of good loser norm on generic good loser prime treatment.",
+       title = "Conditional effect of good loser norm on Generic good loser message treatment.",
        subtitle = 'Outcome measure: Fairness perception of decision. Sample: Respondents with unfavorable outcome.') +
   theme_bw() +
   theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
   theme(panel.spacing = unit(0.5, "lines"))
-fig
+
 
 ggsave(
   here("output", "novig", "figs", "pngs", "exp2-fairness-norm-int-lamenting-losers.png"),
@@ -354,21 +362,23 @@ ggsave(
   plot = fig,
   width = 7, height = 2.75
 )
-    
+
+fig1/fig2
+
 table <- summary(margins(res, at = list(imp_accept = 1:5))) %>%
    filter(factor == 'treatmentGeneral Prime' | factor == 'treatmentLamenting politician') %>% 
   mutate(factor = case_when(
   factor == 'imp_accept' ~ 'Norm importance',
-  factor == 'treatmentGeneral Prime' ~ 'Generic good loser prime',
+  factor == 'treatmentGeneral Prime' ~ 'Generic good loser message',
   factor == 'treatmentLamenting politician' ~ 'Lamenting politician')) %>% 
   rename('Norm importance' = 'imp_accept')
 
 #for bookdown
-kable(table, booktabs = TRUE, caption = "Moderating effects of norm importance on experimental treatment, Study 2 -- Norwegian vignette", digits = 2, col.names = linebreak(c("Factor", 'Norm importance', "AME", "SE", "z-statistic", "p value", 'Lower', 'Upper'))) %>% 
+kable(table, booktabs = TRUE, caption = "Moderating effects of norm importance on experimental treatment, Study 2", digits = 2, col.names = linebreak(c("Factor", 'Norm importance', "AME", "SE", "z-statistic", "p value", 'Lower', 'Upper'))) %>% 
   kable_styling(latex_options = "HOLD_position")   %>% 
   footnote(general = 'Sample: Respondents with unfavorable outcome.')
 #save to file
-kable(table, booktabs = TRUE, caption = "Moderating effects of norm importance on experimental treatment, Study 2 -- Norwegian vignette", digits = 2, col.names = linebreak(c("Factor", 'Norm importance', "AME", "SE", "z-statistic", "p value", 'Lower', 'Upper'))) %>% 
+kable(table, booktabs = TRUE, caption = "Moderating effects of norm importance on experimental treatment, Study 2", digits = 2, col.names = linebreak(c("Factor", 'Norm importance', "AME", "SE", "z-statistic", "p value", 'Lower', 'Upper'))) %>% 
   kable_styling(latex_options = "HOLD_position")   %>% 
   footnote(general = 'Sample: Respondents with unfavorable outcome.') %>% 
   cat(., file = here("output", "novig", "tbls", "html", "tbl-exp2-fairness-norm-int-losers.html"))
@@ -388,8 +398,8 @@ labels <- data.frame(
     "treatmentSpecific prime"
   ),
   label = c( "Lamenting politician",
-             "Generic good loser prime",
-             "Specific good loser prime")
+             "Generic good loser message",
+             "Specific good loser message")
 )
 #Figure
 fig <-   res_main %>%
@@ -406,7 +416,7 @@ fig <-   res_main %>%
                      expand = c(0, 0)) +
   labs(x = "Change in willingness to accept outcome",
       y = "",
-      title = 'Treatment effects on willingness to accept outcome, Study 2 -- Norwegian vignette.', 
+      title = 'Treatment effects on willingness to accept outcome, Study 2.', 
      subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
   theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
@@ -431,13 +441,13 @@ table <- res_main %>%
   select(term, estimate, std.error, statistic, p.value) %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Not shown (Intercept)",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
-                   term == "treatmentGeneral Prime" ~ "Generic good loser prime", 
-                   term == "treatmentSpecific prime" ~ "Specific good loser prime"))
+                   term == "treatmentGeneral Prime" ~ "Generic good loser message", 
+                   term == "treatmentSpecific prime" ~ "Specific good loser message"))
 
-kable(table, booktabs = TRUE, caption = "Treatment effects among losers on willingness to accept decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects among losers on willingness to accept decision, Study 2", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  
 
-kable(table, booktabs = TRUE, caption = "Treatment effects among losers on willingness to accept decision, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects among losers on willingness to accept decision, Study 2", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-losers-accept-novig.html"))
 ```
@@ -455,8 +465,8 @@ labels <- data.frame(
     "treatmentSpecific prime"
   ),
   label = c( "Lamenting politician",
-             "Generic good loser prime",
-             "Specific good loser prime")
+             "Generic good loser message",
+             "Specific good loser message")
 )
 #Figure
 fig <-   res_main %>%
@@ -473,7 +483,7 @@ fig <-   res_main %>%
                      expand = c(0, 0)) +
   labs(x = "Change in trust in politicians",
      y = "",
-      title = 'Treatment effects on trust in politicians, Study 2 -- Norwegian vignette.', 
+      title = 'Treatment effects on trust in politicians, Study 2.', 
      subtitle = 'Sample: Respondents who receive an unfavorable outcome.') +
   theme_bw() +
   theme(plot.title = element_text(size=9), plot.subtitle = element_text(size=8), plot.margin = unit(c(2, 2, 2, 2), "mm"), axis.text.x=element_text(size=rel(0.7))) +
@@ -498,13 +508,13 @@ table <- res_main %>%
   select(term, estimate, std.error, statistic, p.value) %>% 
   mutate(term = case_when( term == "(Intercept)" ~ "Not shown (Intercept)",
                     term == "treatmentLamenting politician" ~ "Lamenting politician",
-                   term == "treatmentGeneral Prime" ~ "Generic good loser prime", 
-                   term == "treatmentSpecific prime" ~ "Specific good loser prime"))
+                   term == "treatmentGeneral Prime" ~ "Generic good loser message", 
+                   term == "treatmentSpecific prime" ~ "Specific good loser message"))
 
-kable(table, booktabs = TRUE, caption = "Treatment effects among losers on trust in politician, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects among losers on trust in politician, Study 2", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive")) 
 
-kable(table, booktabs = TRUE, caption = "Treatment effects among losers on trust in politician, Study 2 -- Norwegian vignette", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
+kable(table, booktabs = TRUE, caption = "Treatment effects among losers on trust in politician, Study 2", col.names = linebreak(c("Treatment value", "Estimate", "Std. Error", "t-statistic", "p value")), digits = 2) %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "responsive"))  %>% 
   cat(., file = here("output", "novig", "tbls", "html",  "tbl-losers-trust-novig.html"))
 ```

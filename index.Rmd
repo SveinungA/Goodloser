@@ -36,13 +36,32 @@ header-includes:
 This is the Supplementary Material for the manuscript entitled *How to be civil about political loss 
 – The importance of good loser messages*. 
 <!-- by [Peter Esaiasson](https://www.gu.se/omuniversitetet/personal/?userId=xesape), [Hannah Werner](http://www.uva.nl/profiel/w/e/h.i.werner/h.i.werner.html), and [Sveinung Arnesen](http://frosty-bose-c7f82c.netlify.com/).  -->
-The study comprises three survey embedded experiments; one video vignette experiment in Norway, one text vignette experiment in Sweden, and one conjoint experiment in Norway. 
 
-The experiment for Study I was fielded in Sweden in the fall of 2017 and spring of 2018 as an add-on to the fifth wave of the European Values Survey (EVS, PI Susanne Wallman Lundåsen). EVS is based on a probability sample of the Swedish population age 18 or older (n = 1194). Interviews were face-to-face. The fieldwork organization was IPSOS, Sweden. For a detailed documentation we refer to https://europeanvaluesstudy.eu/methodology-data-documentation/. Study 1 was one of three experiments included in a paper and pencil leave behind. The return rate of the questionnaire was 85% (n =1019).
+We pre-registered [Study 2](http://aspredicted.org/blind.php?x=a84rk7) and [Study 3](http://aspredicted.org/blind.php?x=t4ss9j) at aspredicted.org.
+ 
+When not otherwise stated, we followed the pre-registration. 
 
-The experiment for Study II was fielded in Norway during the spring and fall of 2017 during the 9th and 10th waves of [Norwegian Citizen Panel](https://www.uib.no/medborger). This is a research-purpose internet panel with over 6000 active participants. It is based on a probability sample of the general Norwegian population above the age of 18 drawn from the Norwegian National Registry. The survey is based on a online questionnaire with postal recruitment. Panel members complete a questionnaire three times a year of 15 minutes each. The survey panel is a core component of The Digital Social Science Core Facilities (DIGSSCORE), and  was established in 2013 as a collaboration between several departments at the Faculty of Social Sciences at the University of Bergen and NORCE -- Norwegian Research Centre. We refer to the [documentation report](Data/ncp-wave13-documentation.pdf) for further details on technical aspects of the survey, panel recruitment, response rates of the 13th wave, and representativeness. For details about the data collected in this project and the survey panel at large, we refer to the [codebook for the Waves 1-13](Data/ncp-wave13-codebook.pdf).
+We deviated from it in the following ways: 
 
-The experiments for Study III was also fielded in Norway, this time during the fall of 2018 in the 13th panel wave.
+1.	Exclusion criteria. 
+While we registered to exclude individuals that raced through the survey in Study 2, we have since then learned that exclusion based on such a post-treatment variable can bias the obtained effects (Montgomery et al, 2018). 
+Accordingly, we present the analysis on the full sample in the main text. 
+The analysis using the reduced sample can be found in this Appendix (see section \@ref(reduced-sample) ). 
+
+2.	For study 2, we pre-registered a hypothesis that predicts an interaction between the good loser norm and the good loser message.
+Since there is little variance on the good-loser norm variable, this analysis is less insightful than we had anticipated. 
+We therefore do not present this analysis in the main text but in the Appendix (see section \@ref(norm-mod) ). 
+
+3.	For study 3, we pre-registered that we would use two indicators of fairness perceptions. 
+To keep the dependent variable comparable across studies we have later on decided to only present the analysis with the item:
+'How fair was the decision-making procedure?' for all three studies. 
+The analysis using the additional item 'How reasonable do you think the decision was?' is included in the robustness check analysis in the paper (Table 2). 
+
+4.	For study 3, we missed to specify that there are two good loser message like in study 2 (for which we have the same expectations):
+A generic and a specific good loser message.
+
+5.	While we use the wording good loser prime in the pre-registration, we have later decided to use good loser message in the manuscript.
+
 <!-- The study has been presented at the Barcelona-Gothenburg-Bergen workshop on Experiments in Political Science in 2018, and at the 2019 Conference of the Midwestern Political Science Association in Chicago, USA. -->
 
 ```{r include=FALSE}

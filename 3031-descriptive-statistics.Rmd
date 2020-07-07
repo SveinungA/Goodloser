@@ -1,4 +1,6 @@
 # Pre-treatment, vignette, post-treatment
+
+The statistics are displayed for the respondents of interest in this study, which is the respondents who end up with observing an unfavorable decision outcome in the experiment.
 ```{r 3031_setup, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
 if(!require("haven")){install.packages("haven");  library(haven)}
@@ -15,15 +17,37 @@ set.seed(2016)
 
 d <- read_sav("Data/Goodloser-exp3-orig.sav")
 e <- read_sav("Data/Goodloser-exp3-orig.sav")
-e <- na_if(e, 97)
-e <- na_if(e, 98)
 
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
+
 ```
 
-```{r 3031_manage_data}
+```{r, include=F, eval=F }
+
+e <- na_if(e, 97)
+e <- na_if(e, 98)
+e <-  e %>% mutate(treat_outfav = case_when(r13pad5_sak == 1 & r13pad1 == 1 & r13pad5_utfall == 1 ~ "Favorable outcome",
+                                  r13pad5_sak == 1 & r13pad1 == 2 & r13pad5_utfall == 2 ~ "Favorable outcome",
+                                  r13pad5_sak == 1 & r13pad1 == 1 & r13pad5_utfall == 2 ~ "Unfavorable outcome",
+                                  r13pad5_sak == 1 & r13pad1 == 2 & r13pad5_utfall == 1 ~ "Unfavorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 1 & r13pad5_utfall == 1 ~ "Favorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 2 & r13pad5_utfall == 2 ~ "Favorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 1 & r13pad5_utfall == 2 ~ "Unfavorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 2 & r13pad5_utfall == 1 ~ "Unfavorable outcome")) %>% 
+  filter(treat_outfav == "Unfavorable outcome")
+```
+
+```{r 3031_manage_data, include=F, eval=F}
 d <- d %>% 
   mutate(
+           treat_outfav = case_when(r13pad5_sak == 1 & r13pad1 == 1 & r13pad5_utfall == 1 ~ "Favorable outcome",
+                                  r13pad5_sak == 1 & r13pad1 == 2 & r13pad5_utfall == 2 ~ "Favorable outcome",
+                                  r13pad5_sak == 1 & r13pad1 == 1 & r13pad5_utfall == 2 ~ "Unfavorable outcome",
+                                  r13pad5_sak == 1 & r13pad1 == 2 & r13pad5_utfall == 1 ~ "Unfavorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 1 & r13pad5_utfall == 1 ~ "Favorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 2 & r13pad5_utfall == 2 ~ "Favorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 1 & r13pad5_utfall == 2 ~ "Unfavorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 2 & r13pad5_utfall == 1 ~ "Unfavorable outcome"),
            r13pad1 = case_when(r13pad1 == 1 ~ "In favor",
                                r13pad1 == 2 ~ "Oppose"),
            r13pad2 = case_when(r13pad2 == 1 ~ "Not important at all",
@@ -76,13 +100,29 @@ d <- d %>%
   )
 ```
 
+```{r 3031_filter_losers}
+d <- d %>%  mutate(
+           treat_outfav = case_when(r13pad5_sak == 1 & r13pad1 == 1 & r13pad5_utfall == 1 ~ "Favorable outcome",
+                                  r13pad5_sak == 1 & r13pad1 == 2 & r13pad5_utfall == 2 ~ "Favorable outcome",
+                                  r13pad5_sak == 1 & r13pad1 == 1 & r13pad5_utfall == 2 ~ "Unfavorable outcome",
+                                  r13pad5_sak == 1 & r13pad1 == 2 & r13pad5_utfall == 1 ~ "Unfavorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 1 & r13pad5_utfall == 1 ~ "Favorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 2 & r13pad5_utfall == 2 ~ "Favorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 1 & r13pad5_utfall == 2 ~ "Unfavorable outcome",
+                                  r13pad5_sak == 2 & r13pad3 == 2 & r13pad5_utfall == 1 ~ "Unfavorable outcome")) %>% 
+  filter(treat_outfav == "Unfavorable outcome")
+```
+
 ## Pre-treatment measures
 ### Ban on begging - opinion
 ```{r 3031_pre1}
-table <- d %>% group_by(r13pad1) %>%
+table <- d %>% mutate(r13pad1 = case_when(r13pad1 == 1 ~ "In favor",
+                               r13pad1 == 2 ~ "Oppose")) %>% 
+  group_by(r13pad1) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%
   ungroup()
+
 #for bookdown
   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "What is your opinion on a ban on begging in your municipality?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position")
@@ -94,11 +134,18 @@ table <- d %>% group_by(r13pad1) %>%
 
 ### Ban on begging - importance
 ```{r 3031_pre2}
-table <- d %>% group_by(r13pad2) %>%
+table <- d %>% 
+     mutate(r13pad2 = case_when(r13pad2 == 1 ~ "Not important at all",
+                               r13pad2 == 2 ~ "Slightly important",
+                               r13pad2 == 3 ~ "Somewhat important",
+                               r13pad2 == 4 ~ "Important",
+                               r13pad2 == 5 ~ "Very important"),
+           r13pad2 = lvls_reorder(factor(r13pad2), c(2, 3, 4, 1, 5))) %>% 
+     group_by(r13pad2) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
 
-  #for bookdown
+#For bookdown
 kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How important is the issue of begging ban to you?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
   kable_styling(latex_options = "HOLD_position")
 #save to file
@@ -110,7 +157,9 @@ The mean score for the pre treatment measure "How important is the issue of begg
 
 ### Toll on diesel cars - opinion
 ```{r 3031_pre3}
-table <- d %>% group_by(r13pad3) %>%
+table <- d %>% mutate(r13pad3 = case_when(r13pad3 == 1 ~ "In favor",
+                               r13pad3 == 2 ~ "Oppose")) %>% 
+  group_by(r13pad3) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
 #for bookdown
@@ -124,7 +173,13 @@ table <- d %>% group_by(r13pad3) %>%
 
 ### Toll on diesel cars - importance
 ```{r 3031_pre4}
-table <- d %>% group_by(r13pad4) %>%
+table <- d %>% mutate( r13pad4 = case_when(r13pad4 == 1 ~ "Not important at all",
+                               r13pad4 == 2 ~ "Slightly important",
+                               r13pad4 == 3 ~ "Somewhat important",
+                               r13pad4 == 4 ~ "Important",
+                               r13pad4 == 5 ~ "Very important"),
+                        r13pad4 = lvls_reorder(factor(r13pad4), c(2, 3, 4, 1, 5))) %>% 
+  group_by(r13pad4) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100))
 #for bookdown
@@ -197,7 +252,13 @@ This accounts for the high share of NA's in the post treatment distribution tabl
 
 ### Evaluation
 ```{r 3031_post1}
-table <- d %>% group_by(r13pad6a) %>%
+table <- d %>%  mutate(r13pad6a = case_when(r13pad6a == 1 ~ "Not fair at all",
+                                r13pad6a == 2 ~ "Slightly fair",
+                                r13pad6a == 3 ~ "Somewhat fair",
+                                r13pad6a == 4 ~ "Fair",
+                                r13pad6a == 5 ~ "Very fair"),
+           r13pad6a = lvls_reorder(factor(r13pad6a), c(2, 3, 4, 1, 5))) %>% 
+  group_by(r13pad6a) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
 #for bookdown
@@ -208,7 +269,12 @@ table <- d %>% group_by(r13pad6a) %>%
   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-eval-dv1.html"))
 
-table <- d %>% group_by(r13pad6b) %>%
+table <- d %>% mutate(r13pad6b = case_when(r13pad6b == 1 ~ "1 Not fair",
+                                r13pad6b == 2 ~ "2 ",
+                                r13pad6b == 3 ~ "3",
+                                r13pad6b == 4 ~ "4",
+                                r13pad6b == 5 ~ "5 Most fair")) %>% 
+  group_by(r13pad6b) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100))
 #for bookdown
@@ -222,37 +288,54 @@ table <- d %>% group_by(r13pad6b) %>%
 The mean score for the pre treatment measure "What do you think about the way the decision was made?" is `r round(mean(e$r13pad6a, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$r13pad6a, na.rm=T), digits=2)` for the worded answer scale.
 For the numbered answer scale, the mean score is `r round(mean(e$r13pad6b, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$r13pad6b, na.rm=T), digits=2)`
 
-### Reasonable decision
-```{r 3031_post2}
-table <- d %>% group_by(r13pad7a) %>%
-   summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
-#for bookdown
-   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
-  kable_styling(latex_options = "HOLD_position")
-#save to file
-   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
-  kable_styling(latex_options = "HOLD_position") %>% 
-  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-reasonable-dv1.html"))
+<!-- ### Reasonable decision -->
+<!-- ```{r 3031_post2} -->
+<!-- table <- d %>% mutate(r13pad7a = case_when(r13pad7a == 1 ~ "Not reasonable at all", -->
+<!--                                 r13pad7a == 2 ~ "Slightly reasonable", -->
+<!--                                 r13pad7a == 3 ~ "Somewhat reasonable", -->
+<!--                                 r13pad7a == 4 ~ "Reasonable", -->
+<!--                                 r13pad7a == 5 ~ "Very reasonable"), -->
+<!--            r13pad7a = lvls_reorder(factor(r13pad7a), c(1, 3, 4, 2, 5))) %>%  -->
+<!--   group_by(r13pad7a) %>% -->
+<!--    summarize(N_obs = n()) %>%  -->
+<!--   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100))  -->
+<!-- #for bookdown -->
+<!--    kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>%  -->
+<!--   kable_styling(latex_options = "HOLD_position") -->
+<!-- #save to file -->
+<!--    kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>%  -->
+<!--   kable_styling(latex_options = "HOLD_position") %>%  -->
+<!--   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-reasonable-dv1.html")) -->
 
-table <- d %>% group_by(r13pad7b) %>%
-   summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
-#for bookdown
-  kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
-  kable_styling(latex_options = "HOLD_position")
-  
-#save to file
-  kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>% 
-  kable_styling(latex_options = "HOLD_position") %>% 
-  cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-reasonable-dv2.html"))
-```
-The mean score for the pre treatment measure "How reasonable do you think the decision was?" is `r round(mean(e$r13pad7a, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$r13pad7a, na.rm=T), digits=2)` for the worded answer scale.
-For the numbered answer scale, the mean score is `r round(mean(e$r13pad7b, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$r13pad7b, na.rm=T), digits=2)`
+<!-- table <- d %>% mutate( r13pad7b = case_when(r13pad7b == 1 ~ "1 Not reasonable", -->
+<!--                                 r13pad7b == 2 ~ "2 ", -->
+<!--                                 r13pad7b == 3 ~ "3", -->
+<!--                                 r13pad7b == 4 ~ "4", -->
+<!--                                 r13pad7b == 5 ~ "5 Most reasonable")) %>%  -->
+<!--   group_by(r13pad7b) %>% -->
+<!--    summarize(N_obs = n()) %>%  -->
+<!--   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100))  -->
+<!-- #for bookdown -->
+<!--   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>%  -->
+<!--   kable_styling(latex_options = "HOLD_position") -->
+
+<!-- #save to file -->
+<!--   kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "How reasonable do you think the decision was?", col.names = linebreak(c("Value", "N", "Percent"))) %>%  -->
+<!--   kable_styling(latex_options = "HOLD_position") %>%  -->
+<!--   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-reasonable-dv2.html")) -->
+<!-- ``` -->
+<!-- The mean score for the pre treatment measure "How reasonable do you think the decision was?" is `r round(mean(e$r13pad7a, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$r13pad7a, na.rm=T), digits=2)` for the worded answer scale. -->
+<!-- For the numbered answer scale, the mean score is `r round(mean(e$r13pad7b, na.rm=T), digits=2)`, and the standard deviation is `r round(sd(e$r13pad7b, na.rm=T), digits=2)` -->
 
 ### Acceptance
 ``` {r 3031_post3}
-table <- d %>% group_by(r13pad8a) %>%
+table <- d %>% mutate( r13pad8a = case_when(r13pad8a == 1 ~ "Not willing at all",
+                                r13pad8a == 2 ~ "Slightly willing",
+                                r13pad8a == 3 ~ "Somewhat willing",
+                                r13pad8a == 4 ~ "Willing",
+                                r13pad8a == 5 ~ "Very willing"),
+           r13pad8a = lvls_reorder(factor(r13pad8a), c(1, 2, 3, 5, 4))) %>% 
+  group_by(r13pad8a) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100))
 #for bookdown
@@ -261,7 +344,12 @@ table <- d %>% group_by(r13pad8a) %>%
    kable(table, booktabs = TRUE, linesep = "", escape = F, caption = "When you think about the actual outcome of the decision, how willing are you to accept the decision?", col.names = linebreak(c("Value", "N", "Percent"))) %>%   kable_styling(latex_options = "HOLD_position") %>% 
   cat(., file = here("output", "nocon", "tbls", "html",  "tbl-nocon-accept-dv1.html"))
 
-table <- d %>% group_by(r13pad8b) %>%
+table <- d %>% mutate(r13pad8b = case_when(r13pad8b == 1 ~ "1 Not willing",
+                                r13pad8b == 2 ~ "2 ",
+                                r13pad8b == 3 ~ "3",
+                                r13pad8b == 4 ~ "4",
+                                r13pad8b == 5 ~ "5 Most willing")) %>% 
+  group_by(r13pad8b) %>%
    summarize(N_obs = n()) %>% 
   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) 
 #for bookdown

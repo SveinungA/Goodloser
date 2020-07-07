@@ -1,10 +1,4 @@
 base
-methods
-datasets
-utils
-grDevices
-graphics
-stats
 haven
 knitr
 naniar
@@ -26,3 +20,4 @@ margins
 codebook
 utf8
 openxlsx
+Stack

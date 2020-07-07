@@ -15,7 +15,7 @@ d <- read_sav("Data/Goodloser-exp2-orig.sav")
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 ```
 
-```{r 203_prepare, echo=TRUE}
+```{r 203_prepare}
 
 d <- d %>%
   rename("imp_accept"= "r9pad1",

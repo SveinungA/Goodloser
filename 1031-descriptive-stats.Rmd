@@ -1,4 +1,5 @@
 # Pre-treatment measures and experimental vignette
+The statistics are displayed for the respondents of interest in this study, which is the respondents who end up with observing an unfavorable decision outcome in the experiment.
 
 ```{r 1031_packages, include=FALSE}
 if(!require("broom")){install.packages("broom");  library(broom)}
@@ -16,6 +17,9 @@ set.seed(2016)
 source("goodloser-utils.R")
 
 d <- read_sav("Data/Goodloser-exp1.sav")
+#Filter on respondents who receive an unfavorable outcome
+d <- d %>% 
+  filter(favorability == "Unfavorable") 
 
 knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE)
 
@@ -151,109 +155,109 @@ d %>% mutate(
 ```
 The mean score for the post treatment measure "What do you think about the way the decision was made?" is `r round(mean(d$fairness), digits=2)`, and the standard deviation is `r round(sd(d$fairness), digits=2)`.
 
-### Justice
-```{r 1031_outcome_measure_justice}
+<!-- ### Justice -->
+<!-- ```{r 1031_outcome_measure_justice} -->
 
-d %>% mutate(
-   justice = case_when(
-      justice == 1 ~ "1 Not just at all",
-      justice == 2 ~ "2",
-      justice == 3 ~ "3",
-      justice == 4 ~ "4",
-      justice == 5 ~ "5",
-      justice == 6 ~ "6",
-      justice == 7 ~ "7 Very just")) %>% 
-  group_by(justice) %>%
-   summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How just do you think the decision procedure was?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
-  kable_styling(latex_options = "HOLD_position")
+<!-- d %>% mutate( -->
+<!--    justice = case_when( -->
+<!--       justice == 1 ~ "1 Not just at all", -->
+<!--       justice == 2 ~ "2", -->
+<!--       justice == 3 ~ "3", -->
+<!--       justice == 4 ~ "4", -->
+<!--       justice == 5 ~ "5", -->
+<!--       justice == 6 ~ "6", -->
+<!--       justice == 7 ~ "7 Very just")) %>%  -->
+<!--   group_by(justice) %>% -->
+<!--    summarize(N_obs = n()) %>%  -->
+<!--   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%  -->
+<!--   kable(booktabs = TRUE, linesep = "", escape = F, caption = "How just do you think the decision procedure was?", col.names = linebreak(c("Value", "N", "Percent")))%>%  -->
+<!--   kable_styling(latex_options = "HOLD_position") -->
 
-d %>% mutate(
-   justice = case_when(
-      justice == 1 ~ "1 Not just at all",
-      justice == 2 ~ "2",
-      justice == 3 ~ "3",
-      justice == 4 ~ "4",
-      justice == 5 ~ "5",
-      justice == 6 ~ "6",
-      justice == 7 ~ "7 Very just")) %>% 
-  group_by(justice) %>%
-   summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How just do you think the decision procedure was?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
-  kable_styling(latex_options = "HOLD_position") %>% 
-  cat(., file = here("output", "swevig", "tbls", "html", "tbl-dv-justice-swevig.html"))
-```
-The mean score for the post treatment measure "How just do you think the decision procedure was?" is `r round(mean(d$justice), digits=2)`, and the standard deviation is `r round(sd(d$justice), digits=2)`.
+<!-- d %>% mutate( -->
+<!--    justice = case_when( -->
+<!--       justice == 1 ~ "1 Not just at all", -->
+<!--       justice == 2 ~ "2", -->
+<!--       justice == 3 ~ "3", -->
+<!--       justice == 4 ~ "4", -->
+<!--       justice == 5 ~ "5", -->
+<!--       justice == 6 ~ "6", -->
+<!--       justice == 7 ~ "7 Very just")) %>%  -->
+<!--   group_by(justice) %>% -->
+<!--    summarize(N_obs = n()) %>%  -->
+<!--   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%  -->
+<!--   kable(booktabs = TRUE, linesep = "", escape = F, caption = "How just do you think the decision procedure was?", col.names = linebreak(c("Value", "N", "Percent")))%>%  -->
+<!--   kable_styling(latex_options = "HOLD_position") %>%  -->
+<!--   cat(., file = here("output", "swevig", "tbls", "html", "tbl-dv-justice-swevig.html")) -->
+<!-- ``` -->
+<!-- The mean score for the post treatment measure "How just do you think the decision procedure was?" is `r round(mean(d$justice), digits=2)`, and the standard deviation is `r round(sd(d$justice), digits=2)`. -->
 
-### Evaluation
-```{r 1031_outcome_measure_eval}
-d %>% mutate(
-     eval = case_when(
-      eval == 1 ~ "1 Very bad",
-      eval == 2 ~ "2",
-      eval == 3 ~ "3",
-      eval == 4 ~ "4",
-      eval == 5 ~ "5",
-      eval == 6 ~ "6",
-      eval == 7 ~ "7 Very good")) %>% 
-  group_by(eval) %>%
-   summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What do you think in general about the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
-  kable_styling(latex_options = "HOLD_position") 
+<!-- ### Evaluation -->
+<!-- ```{r 1031_outcome_measure_eval} -->
+<!-- d %>% mutate( -->
+<!--      eval = case_when( -->
+<!--       eval == 1 ~ "1 Very bad", -->
+<!--       eval == 2 ~ "2", -->
+<!--       eval == 3 ~ "3", -->
+<!--       eval == 4 ~ "4", -->
+<!--       eval == 5 ~ "5", -->
+<!--       eval == 6 ~ "6", -->
+<!--       eval == 7 ~ "7 Very good")) %>%  -->
+<!--   group_by(eval) %>% -->
+<!--    summarize(N_obs = n()) %>%  -->
+<!--   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%  -->
+<!--   kable(booktabs = TRUE, linesep = "", escape = F, caption = "What do you think in general about the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>%  -->
+<!--   kable_styling(latex_options = "HOLD_position")  -->
 
-d %>% mutate(
-     eval = case_when(
-      eval == 1 ~ "1 Very bad",
-      eval == 2 ~ "2",
-      eval == 3 ~ "3",
-      eval == 4 ~ "4",
-      eval == 5 ~ "5",
-      eval == 6 ~ "6",
-      eval == 7 ~ "7 Very good")) %>% 
-  group_by(eval) %>%
-   summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "What do you think in general about the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
-  kable_styling(latex_options = "HOLD_position") %>% 
-  cat(., file = here("output", "swevig", "tbls", "html", "tbl-dv-evaluation-swevig.html"))
-```
-The mean score for the post treatment measure "What do you think in general about the decision?" is `r round(mean(d$eval), digits=2)`, and the standard deviation is `r round(sd(d$eval), digits=2)`.
+<!-- d %>% mutate( -->
+<!--      eval = case_when( -->
+<!--       eval == 1 ~ "1 Very bad", -->
+<!--       eval == 2 ~ "2", -->
+<!--       eval == 3 ~ "3", -->
+<!--       eval == 4 ~ "4", -->
+<!--       eval == 5 ~ "5", -->
+<!--       eval == 6 ~ "6", -->
+<!--       eval == 7 ~ "7 Very good")) %>%  -->
+<!--   group_by(eval) %>% -->
+<!--    summarize(N_obs = n()) %>%  -->
+<!--   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%  -->
+<!--   kable(booktabs = TRUE, linesep = "", escape = F, caption = "What do you think in general about the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>%  -->
+<!--   kable_styling(latex_options = "HOLD_position") %>%  -->
+<!--   cat(., file = here("output", "swevig", "tbls", "html", "tbl-dv-evaluation-swevig.html")) -->
+<!-- ``` -->
+<!-- The mean score for the post treatment measure "What do you think in general about the decision?" is `r round(mean(d$eval), digits=2)`, and the standard deviation is `r round(sd(d$eval), digits=2)`. -->
 
-### Acceptance
-```{r 1031_outcome_measure_comply}
-d %>% mutate(
-  comply = case_when(
-      comply == 1 ~ "1 Not willing at all",
-      comply == 2 ~ "2",
-      comply == 3 ~ "3",
-      comply == 4 ~ "4",
-      comply == 5 ~ "5",
-      comply == 6 ~ "6",
-      comply == 7 ~ "7 Very willing")) %>% 
-  group_by(comply) %>%
-   summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
-  kable(booktabs = TRUE, linesep = "", escape = F, caption = "How willing are you to accept and comply with the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
-  kable_styling(latex_options = "HOLD_position")
+<!-- ### Acceptance -->
+<!-- ```{r 1031_outcome_measure_comply} -->
+<!-- d %>% mutate( -->
+<!--   comply = case_when( -->
+<!--       comply == 1 ~ "1 Not willing at all", -->
+<!--       comply == 2 ~ "2", -->
+<!--       comply == 3 ~ "3", -->
+<!--       comply == 4 ~ "4", -->
+<!--       comply == 5 ~ "5", -->
+<!--       comply == 6 ~ "6", -->
+<!--       comply == 7 ~ "7 Very willing")) %>%  -->
+<!--   group_by(comply) %>% -->
+<!--    summarize(N_obs = n()) %>%  -->
+<!--   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%  -->
+<!--   kable(booktabs = TRUE, linesep = "", escape = F, caption = "How willing are you to accept and comply with the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>%  -->
+<!--   kable_styling(latex_options = "HOLD_position") -->
 
-t <- d %>% mutate(
-  comply = case_when(
-      comply == 1 ~ "1 Not willing at all",
-      comply == 2 ~ "2",
-      comply == 3 ~ "3",
-      comply == 4 ~ "4",
-      comply == 5 ~ "5",
-      comply == 6 ~ "6",
-      comply == 7 ~ "7 Very willing")) %>% 
-  group_by(comply) %>%
-   summarize(N_obs = n()) %>% 
-  mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>% 
-    kable(booktabs = TRUE, linesep = "", escape = F, caption = "How willing are you to accept and comply with the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>% 
-  kable_styling(latex_options = "HOLD_position") %>% 
-  cat(., file = here("output", "swevig", "tbls", "html", "tbl-dv-accept-swevig.html"))
-```
-The mean score for the post treatment measure "How willing are you to accept and comply with the decision?" is `r round(mean(d$comply), digits=2)`, and the standard deviation is `r round(sd(d$comply), digits=2)`.
+<!-- t <- d %>% mutate( -->
+<!--   comply = case_when( -->
+<!--       comply == 1 ~ "1 Not willing at all", -->
+<!--       comply == 2 ~ "2", -->
+<!--       comply == 3 ~ "3", -->
+<!--       comply == 4 ~ "4", -->
+<!--       comply == 5 ~ "5", -->
+<!--       comply == 6 ~ "6", -->
+<!--       comply == 7 ~ "7 Very willing")) %>%  -->
+<!--   group_by(comply) %>% -->
+<!--    summarize(N_obs = n()) %>%  -->
+<!--   mutate(Percent_obs = round(N_obs/(sum(N_obs))*100)) %>%  -->
+<!--     kable(booktabs = TRUE, linesep = "", escape = F, caption = "How willing are you to accept and comply with the decision?", col.names = linebreak(c("Value", "N", "Percent")))%>%  -->
+<!--   kable_styling(latex_options = "HOLD_position") %>%  -->
+<!--   cat(., file = here("output", "swevig", "tbls", "html", "tbl-dv-accept-swevig.html")) -->
+<!-- ``` -->
+<!-- The mean score for the post treatment measure "How willing are you to accept and comply with the decision?" is `r round(mean(d$comply), digits=2)`, and the standard deviation is `r round(sd(d$comply), digits=2)`. -->
 

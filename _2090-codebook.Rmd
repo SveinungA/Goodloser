@@ -1,0 +1,19 @@
+# Codebook
+
+> This chapter displays the codebook for the  data set of Study 2, generated using the R package "codebook".
+
+
+```{r 202_setup, include=FALSE}
+if(!require("codebook")){install.packages("codebook");  library(codebook)}
+if(!require("haven")){install.packages("haven");  library(haven)}
+
+knitr::opts_chunk$set(echo = FALSE, knitr.kable.NA = "", warning = FALSE, message = FALSE, cache = TRUE)
+```
+
+```{r 202_codebook}
+d2 <- read_sav("Data/Goodloser-exp2-itt.sav")
+
+d2 <- detect_missings(d2, ninety_nine_problems = TRUE, negative_values_are_missing = TRUE)
+codebook(d2)
+```
+
