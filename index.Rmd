@@ -29,6 +29,10 @@ header-includes:
 - \usepackage{threeparttablex}
 - \usepackage[normalem]{ulem}
 - \usepackage{makecell}
+output:
+  bookdown::html_document2: default
+  bookdown::word_document2:
+    toc: true
 ---
 
 # Preface
@@ -37,7 +41,7 @@ This is the Supplementary Material for the manuscript entitled *How to be civil 
 – The importance of good loser messages*. 
 <!-- by [Peter Esaiasson](https://www.gu.se/omuniversitetet/personal/?userId=xesape), [Hannah Werner](http://www.uva.nl/profiel/w/e/h.i.werner/h.i.werner.html), and [Sveinung Arnesen](http://frosty-bose-c7f82c.netlify.com/).  -->
 
-We pre-registered [Study 2](http://aspredicted.org/blind.php?x=a84rk7) and [Study 3](http://aspredicted.org/blind.php?x=t4ss9j) at aspredicted.org.
+We pre-registered Study 2 and Study 3 at aspredicted.org.
  
 When not otherwise stated, we followed the pre-registration. 
 

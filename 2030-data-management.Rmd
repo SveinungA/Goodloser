@@ -50,13 +50,13 @@ d[d == 98] <- NA
 
 #Reverse scales
 d <- d %>%
-  mutate(imp_accept = -(imp_accept)+6,
-         other_accept = -(other_accept)+6,
-         self_accept = -(self_accept)+6,
-         opinion_strength = -(opinion_strength)+6,
-         fairness = -(fairness)+6,
-         accept = -(accept)+6,
-         trust = -(trust)+6
+  mutate(imp_accept = 6-(imp_accept),
+         other_accept = 6-(other_accept),
+         self_accept = 6-(self_accept),
+         opinion_strength = 6-(opinion_strength),
+         fairness = 6-(fairness),
+         accept = 6-(accept),
+         trust = 6-(trust)
   )
 
 

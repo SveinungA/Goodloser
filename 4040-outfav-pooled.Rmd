@@ -8,7 +8,6 @@ if(!require("knitr")){install.packages("knitr");  library(knitr)}
 options(kableExtra.latex.load_packages = FALSE) 
 if(!require("kableExtra")){install.packages("kableExtra");  library(kableExtra)}
 if(!require("naniar")){install.packages("naniar");  library(naniar)}
-if(!require("Stack")){install.packages("Stack");  library(Stack)}
 if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 # The analysis uses custom functions included in the compendium. Install the included pkg with `devtools::install()` or just install from github with:
 #if (!require(wiggle)) {  devtools::install_github("mikajoh/wiggle")}
@@ -114,8 +113,8 @@ res_main_03 <-  main_03 %>%
   amce(post_fair, treat_outfav)  %>%
   mutate(treatment =  case_when(treatment == "treat_outfav" ~ "Study 3"))
 
-res_main <- Stack(res_main_01, res_main_02)
-res_main <- Stack(res_main, res_main_03)
+res_main <- bind_rows(res_main_01, res_main_02)
+res_main <- bind_rows(res_main, res_main_03)
 
 res_main <- res_main %>%
   filter(value=='Unfavorable outcome') %>%

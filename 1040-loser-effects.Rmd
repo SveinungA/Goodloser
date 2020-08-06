@@ -10,7 +10,6 @@ options(kableExtra.latex.load_packages = FALSE)
 if(!require("kableExtra")){install.packages("kableExtra");  library(kableExtra)}
 if(!require("margins")){install.packages("margins"); library(margins)}
 if(!require("naniar")){install.packages("naniar");  library(naniar)}
-if(!require("Stack")){install.packages("Stack");  library(Stack)}
 if(!require("tidyverse")){install.packages("tidyverse");  library(tidyverse)}
 # The analysis uses custom functions included in the compendium. Install the included pkg with `devtools::install()` or just install from github with:
 #if (!require(wiggle)) {  devtools::install_github("mikajoh/wiggle")}

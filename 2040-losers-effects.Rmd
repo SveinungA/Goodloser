@@ -282,7 +282,7 @@ kable(table, booktabs = TRUE, caption = "Moderating effects of issue importance 
   
 ```
 
-### Fairness moderated by good loser norm {norm-mod}
+### Fairness moderated by good loser norm {#norm-mod}
 ```{r 2050_norm_treatment_fairness, fig.height=6}
 res <-  lm(fairness ~ factor(treatment)*imp_accept, data = d) 
 
